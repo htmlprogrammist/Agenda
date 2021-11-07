@@ -24,6 +24,7 @@
 		F659EDEF2737EC1700F2E9BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F659EDF22737EC1700F2E9BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F659EDF42737EC1700F2E9BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F659EE012737EEA100F2E9BF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		F659EDDA2737EC1500F2E9BF = {
 			isa = PBXGroup;
 			children = (
+				F659EE012737EEA100F2E9BF /* README.md */,
 				F659EDE52737EC1500F2E9BF /* Agenda */,
 				F659EDE42737EC1500F2E9BF /* Products */,
 			);
