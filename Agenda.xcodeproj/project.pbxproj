@@ -60,11 +60,19 @@
 				F659EDE82737EC1500F2E9BF /* SceneDelegate.swift */,
 				F659EDEA2737EC1500F2E9BF /* ViewController.swift */,
 				F659EDEC2737EC1500F2E9BF /* Main.storyboard */,
-				F659EDEF2737EC1700F2E9BF /* Assets.xcassets */,
+				F659EDFC2737EC4500F2E9BF /* Resources */,
 				F659EDF12737EC1700F2E9BF /* LaunchScreen.storyboard */,
 				F659EDF42737EC1700F2E9BF /* Info.plist */,
 			);
 			path = Agenda;
+			sourceTree = "<group>";
+		};
+		F659EDFC2737EC4500F2E9BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F659EDEF2737EC1700F2E9BF /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8V3Y2JKY7;
 				INFOPLIST_FILE = Agenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H8V3Y2JKY7;
 				INFOPLIST_FILE = Agenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
