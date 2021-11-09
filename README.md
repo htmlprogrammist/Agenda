@@ -15,3 +15,4 @@ My first independent UIKit learning project. In this project, I demonstrated the
 - Minimum version: iOS 13
 - For permanent data storage, you need to use only Core Data
 - The interface is drawn in UIKit
+- The app looks correct for iPhone SE (1st gen.) and above
