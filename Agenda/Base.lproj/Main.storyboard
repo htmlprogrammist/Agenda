@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wQJ-PZ-oNf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="183" width="414" height="630"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -32,9 +32,50 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8on-aU-fdE">
+                                <rect key="frame" x="369" y="64" width="25" height="24"/>
+                                <connections>
+                                    <segue destination="aiN-uF-bS7" kind="presentation" modalPresentationStyle="fullScreen" id="fuR-6w-vT8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agenda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktn-gS-8nm">
+                                <rect key="frame" x="20" y="104" width="130" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4J0-9H-3td">
+                                <rect key="frame" x="20" y="171" width="374" height="4"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RS3-jB-AHr">
+                                <rect key="frame" x="20" y="147" width="42" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DW2-pM-Ont">
+                                <rect key="frame" x="0.0" y="103" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Agenda" largeTitleDisplayMode="always" id="cnm-8J-gnt">
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="I0R-um-GAx"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4J0-9H-3td" firstAttribute="top" secondItem="RS3-jB-AHr" secondAttribute="bottom" id="02Y-i8-Fxu"/>
+                            <constraint firstItem="Ktn-gS-8nm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="HJ0-gb-tlf"/>
+                            <constraint firstItem="RS3-jB-AHr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="K3h-Ks-eRy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4J0-9H-3td" secondAttribute="trailing" constant="20" id="S1K-5B-Zu2"/>
+                            <constraint firstItem="RS3-jB-AHr" firstAttribute="top" secondItem="Ktn-gS-8nm" secondAttribute="bottom" id="aLa-86-XJL"/>
+                            <constraint firstItem="8on-aU-fdE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="bBg-Ib-Usr"/>
+                            <constraint firstItem="4J0-9H-3td" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kEY-7h-6OV"/>
+                            <constraint firstItem="Ktn-gS-8nm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="udr-RD-l4c"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8on-aU-fdE" secondAttribute="trailing" constant="20" id="xup-xk-buT"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main" image="tray.fill" catalog="system" id="v67-7N-VPr"/>
                 </viewController>
@@ -42,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="763.768115942029" y="-622.09821428571422"/>
         </scene>
-        <!--View Controller-->
+        <!--Add new item-->
         <scene sceneID="Cf9-yw-M07">
             <objects>
                 <viewController id="6AL-3z-W9d" sceneMemberID="viewController">
@@ -52,11 +93,13 @@
                         <viewLayoutGuide key="safeArea" id="s4Q-Bd-QD8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="AOf-QD-7Py"/>
+                    <navigationItem key="navigationItem" title="Add new item" id="AOf-QD-7Py">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="rme-Bo-146"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ii0-2q-e02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="-622"/>
+            <point key="canvasLocation" x="2489.8550724637685" y="-622.09821428571422"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Uyz-Xi-A0n">
@@ -64,6 +107,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="4Y8-E5-U8d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Yr-dN-JPw">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -108,6 +152,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FA-9f-Egs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="764" y="767"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ee3-a1-9kx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aiN-uF-bS7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u3K-mE-3jc">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6AL-3z-W9d" kind="relationship" relationship="rootViewController" id="tUr-Tp-NoA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmo-Dt-4lW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1579.7101449275362" y="-622.09821428571422"/>
         </scene>
     </scenes>
     <resources>
