@@ -9,22 +9,28 @@
 /* Begin PBXBuildFile section */
 		F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01F92763BBD600CDF414 /* AppDelegate.swift */; };
 		F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */; };
-		F62B01FE2763BBD600CDF414 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FD2763BBD600CDF414 /* ViewController.swift */; };
+		F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */; };
 		F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F62B02022763BBD600CDF414 /* Agenda.xcdatamodeld */; };
 		F62B02062763BBD800CDF414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62B02052763BBD800CDF414 /* Assets.xcassets */; };
 		F62B02092763BBD800CDF414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B02072763BBD800CDF414 /* LaunchScreen.storyboard */; };
+		F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021B2763C1F500CDF414 /* AgendaViewController.swift */; };
+		F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021E2763C20200CDF414 /* HistoryViewController.swift */; };
+		F62B02222763C20900CDF414 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B02212763C20900CDF414 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F62B01F62763BBD600CDF414 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62B01F92763BBD600CDF414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F62B01FD2763BBD600CDF414 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F62B02032763BBD600CDF414 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
 		F62B02052763BBD800CDF414 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62B02082763BBD800CDF414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F62B020A2763BBD800CDF414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F62B02122763BC1A00CDF414 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F62B021B2763C1F500CDF414 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		F62B021E2763C20200CDF414 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		F62B02212763C20900CDF414 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +94,10 @@
 		F62B02182763BD7100CDF414 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F62B01FD2763BBD600CDF414 /* ViewController.swift */,
+				F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */,
+				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
+				F62B021E2763C20200CDF414 /* HistoryViewController.swift */,
+				F62B02212763C20900CDF414 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -162,8 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F62B01FE2763BBD600CDF414 /* ViewController.swift in Sources */,
+				F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */,
 				F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */,
+				F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */,
+				F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */,
+				F62B02222763C20900CDF414 /* ProfileViewController.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 			);
