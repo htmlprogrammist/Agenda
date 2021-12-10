@@ -12,18 +12,53 @@
         <!--Agenda-->
         <scene sceneID="I9W-86-sbF">
             <objects>
-                <tableViewController id="4ZF-cV-30q" sceneMemberID="viewController">
+                <tableViewController id="4ZF-cV-30q" customClass="AgendaTableViewController" customModule="Agenda" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FlL-60-UNR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="026-7Y-AqK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="026-7Y-AqK">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="026-7Y-AqK" id="pZB-jf-ZBw">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FVR-t1-f4j">
+                                            <rect key="frame" x="20" y="28" width="374" height="4"/>
+                                        </progressView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bob-At-Egx">
+                                            <rect key="frame" x="20" y="6" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFe-pg-tl7">
+                                            <rect key="frame" x="20" y="34" width="29" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3u-hS-V1W">
+                                            <rect key="frame" x="365" y="34" width="29" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="T3u-hS-V1W" secondAttribute="trailing" constant="20" id="37I-rW-Gli"/>
+                                        <constraint firstItem="T3u-hS-V1W" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wFe-pg-tl7" secondAttribute="trailing" priority="999" constant="316" id="9Yr-bf-f4E"/>
+                                        <constraint firstItem="wFe-pg-tl7" firstAttribute="top" secondItem="FVR-t1-f4j" secondAttribute="bottom" constant="2" id="QGt-X6-WbW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="FVR-t1-f4j" secondAttribute="trailing" id="Rmp-AM-bx3"/>
+                                        <constraint firstItem="Bob-At-Egx" firstAttribute="top" secondItem="pZB-jf-ZBw" secondAttribute="top" constant="6" id="TY2-jv-XVq"/>
+                                        <constraint firstItem="FVR-t1-f4j" firstAttribute="top" secondItem="Bob-At-Egx" secondAttribute="bottom" constant="1" id="YGi-66-Fnh"/>
+                                        <constraint firstItem="wFe-pg-tl7" firstAttribute="leading" secondItem="pZB-jf-ZBw" secondAttribute="leading" constant="20" id="dKn-pE-Wxd"/>
+                                        <constraint firstItem="FVR-t1-f4j" firstAttribute="leading" secondItem="pZB-jf-ZBw" secondAttribute="leadingMargin" id="gqK-A2-TPA"/>
+                                        <constraint firstItem="Bob-At-Egx" firstAttribute="leading" secondItem="pZB-jf-ZBw" secondAttribute="leading" constant="20" id="hxy-YV-uNF"/>
+                                        <constraint firstItem="T3u-hS-V1W" firstAttribute="top" secondItem="FVR-t1-f4j" secondAttribute="bottom" constant="2" id="xwS-d6-ngy"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
