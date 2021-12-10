@@ -28,6 +28,7 @@ class MainTabBarController: UITabBarController {
         
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem = item
+        navController.navigationBar.prefersLargeTitles = true
         return navController
     }
 }
