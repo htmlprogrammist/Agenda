@@ -23,11 +23,39 @@ class AgendaViewController: UITableViewController {
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
+        
+        let defaultString = dateFormatter.string(from: date)
+        let arrayOfElements = defaultString.split(separator: ",")
 
         // navigationItem.title = "Agenda"
         navigationItem.title = "\(dateFormatter.string(from: date))"
         
-        // просто не очень решение
+        // MARK: моя попытка что-то сделать через label на основе ответов
+        let dayAndMonth = UILabel()
+        let year = UILabel()
+        dayAndMonth.attributedText = NSAttributedString(string: String(arrayOfElements[0]), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 32)])
+        year.attributedText = NSAttributedString(string: String(arrayOfElements[1]), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32)])
+
+        let stackView = UIStackView(arrangedSubviews: [dayAndMonth, year])
+        stackView.axis = .horizontal
+        navigationItem.titleView = stackView
+
+        // MARK: решение из stackoverflow
+//        if let navigationBar = self.navigationController?.navigationBar {
+//
+//           let frame = CGRect(x: navigationBar.center.x-(navigationBar.center.x/3), y: 0, width: navigationBar.frame.width/2, height: navigationBar.frame.height)
+//           let myMutableString = NSMutableAttributedString(string: dateFormatter.string(from: date), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)])
+//           myMutableString.setAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20),
+//                                                  NSAttributedString.Key.foregroundColor: UIColor.black],
+//                                                 range: NSMakeRange(0, 12))
+//           let lbl = UILabel(frame: frame)
+//           lbl.attributedText = myMutableString
+//           navigationBar.addSubview(lbl)
+//         }
+        
+        // navigationController?.navigationBar.prefersLargeTitles = true  // не работает
+        
+        // MARK: просто не очень решение
 //        let titleStackView: UIStackView = {
 //            let titleLabel = UILabel()
 //            titleLabel.text = "Title"
@@ -39,7 +67,7 @@ class AgendaViewController: UITableViewController {
 //        }()
 //        navigationItem.titleView = titleStackView
         
-        // очень топорно вставляет, нет отступов крч
+        // MARK: очень топорно вставляет, нет отступов крч
 //        let titleLabel = UILabel()
 //        titleLabel.text = "YourTitle"
 //        titleLabel.font = UIFont.systemFont(ofSize: 30)
