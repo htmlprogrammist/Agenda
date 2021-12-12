@@ -34,23 +34,20 @@ class AgendaViewController: UIViewController {
         let days = calendar.range(of: .day, in: .month, for: date)!.count
         let arrayOfElements = dateFormatter.string(from: date).split(separator: ",")
         
-        // MARK: Date labels
         dayAndMonth.attributedText = NSAttributedString(string: "\(arrayOfElements[0]),", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)])
         yearLabel.attributedText = NSAttributedString(string: String(arrayOfElements[1]), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)])
-        //yearLabel.addConstraint(yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0)) // NSException
-        
-        // MARK: ProgressView
         progressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
-        // progressView.progressTintColor = UIColor(red: 69/255, green: 208/255, blue: 100/255, alpha: 1) // этот цвет используется для целей
         
         let dateView = UIStackView(arrangedSubviews: [dayAndMonth, yearLabel])
         dateView.axis = .horizontal
+        dateView.setCustomSpacing(0, after: view)
 //        dateView.spacing = 0
 //        dateView.alignment = .leading
-//        dateView.distribution = .fillEqually
-        
+//        dateView.isLayoutMarginsRelativeArrangement = false
+//        dateView.distribution = .fillProportionally
         let dateAndProgress = UIStackView(arrangedSubviews: [progressView, dateView])
         dateAndProgress.axis = .vertical
+        dateAndProgress.spacing = 2
         view.addSubview(dateAndProgress)
         
         dateAndProgress.translatesAutoresizingMaskIntoConstraints = false
