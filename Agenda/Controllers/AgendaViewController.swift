@@ -23,7 +23,6 @@ class AgendaViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    // let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +31,11 @@ class AgendaViewController: UIViewController {
         navigationItem.title = "Agenda"
         
         getMonthInfo()
-        setConstraints()  // view.addSubview(dateAndProgress)
-        // view.addSubview(tableView)
+        setConstraints()  // adding subViews of view
     }
-    
+}
+
+extension AgendaViewController {
     func getMonthInfo() {
         let date = Date()
         let dateFormatter = DateFormatter()
