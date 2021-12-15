@@ -18,9 +18,9 @@ class MainTabBarController: UITabBarController {
     func createTabs() {
         let agendaViewController = createNavController(viewController: AgendaViewController(), itemName: "Agenda", itemImage: "tray.full.fill")
         let historyViewController = createNavController(viewController: HistoryViewController(), itemName: "History", itemImage: "clock.fill")
-        let profileViewController = createNavController(viewController: ProfileViewController(), itemName: "Profile", itemImage: "person.fill")
+        let summaryViewController = createNavController(viewController: SummaryViewController(), itemName: "Summary", itemImage: "note.text")
         
-        viewControllers = [agendaViewController, historyViewController, profileViewController]
+        viewControllers = [agendaViewController, historyViewController, summaryViewController]
     }
     
     func createNavController(viewController: UIViewController, itemName: String, itemImage: String) -> UINavigationController {

@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class SummaryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        title = "Profile"
+        title = "Summary"
     }
 }

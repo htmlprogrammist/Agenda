@@ -37,8 +37,12 @@ class AgendaViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Agenda"
         
+        agendaTableView.delegate = self
+        agendaTableView.dataSource = self
+        agendaTableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
+        
         getMonthInfo()
-        setConstraints()  // adding subViews of view
+        setConstraints()  // adding subViews of view and setting constraints
     }
 }
 
@@ -49,7 +53,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as! AgendaTableViewController
+        let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as! AgendaTableViewCell
         return cell
     }
 }
@@ -81,12 +85,12 @@ extension AgendaViewController {
         
         view.addSubview(dayAndMonth)
         NSLayoutConstraint.activate([
-            dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 0),
+            dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
         ])
         view.addSubview(yearLabel)
         NSLayoutConstraint.activate([
-            yearLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 0),
+            yearLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
         ])
         
