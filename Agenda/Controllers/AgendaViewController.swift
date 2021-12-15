@@ -23,6 +23,13 @@ class AgendaViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
+    var agendaTableView: UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    var idAgendaCell = "idAgendaCell"
+    var goals = Goal.getGoals()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,18 @@ class AgendaViewController: UIViewController {
         
         getMonthInfo()
         setConstraints()  // adding subViews of view
+    }
+}
+
+// MARK: UITableViewDelegate, UITableViewDataSource
+extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        goals.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as! AgendaTableViewController
+        return cell
     }
 }
 
@@ -69,6 +88,14 @@ extension AgendaViewController {
         NSLayoutConstraint.activate([
             yearLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 0),
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
+        ])
+        
+        view.addSubview(agendaTableView)
+        NSLayoutConstraint.activate([
+            agendaTableView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
+            agendaTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            agendaTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            agendaTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
 }
