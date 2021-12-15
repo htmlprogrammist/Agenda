@@ -14,6 +14,7 @@ My first independent UIKit learning project. In this project, I demonstrated the
 (мне кажется, требования не нужно писать)
 # Requirements
 - Minimum version: iOS 13
-- For permanent data storage, you need to use only Core Data
+- For permanent data storage, you need to use Core Data
+- No storyboard is allowed
 - The interface is drawn in UIKit
 - The app looks correct for iPhone SE (1st gen.) and above
