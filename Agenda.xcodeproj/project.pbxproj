@@ -18,6 +18,7 @@
 		F62B02222763C20900CDF414 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B02212763C20900CDF414 /* ProfileViewController.swift */; };
 		F6461D0627660433001D9CBA /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Person.swift */; };
 		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
+		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F62B02212763C20900CDF414 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F6461D0527660433001D9CBA /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,7 @@
 		F62B01F82763BBD600CDF414 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				F6461D042766041F001D9CBA /* Models */,
+				F6461D042766041F001D9CBA /* Model */,
 				F62B02162763BD1900CDF414 /* Application */,
 				F62B02182763BD7100CDF414 /* Controllers */,
 				F62B02132763BC7800CDF414 /* Resources */,
@@ -107,13 +109,22 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		F6461D042766041F001D9CBA /* Models */ = {
+		F6461D042766041F001D9CBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F65121132769BC92006DC3EC /* Cell */,
 				F6461D0527660433001D9CBA /* Person.swift */,
 				F6461D092766045B001D9CBA /* Goal.swift */,
 			);
-			path = Models;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F65121132769BC92006DC3EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Person.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
+				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
