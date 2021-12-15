@@ -5,6 +5,7 @@ Application that allows you to track your goals for a month
 
 # Description
 My first independent UIKit learning project. In this project, I demonstrated the knowledge:
+1. UIKit (code)
 1. UITableView
 2. CoreData
 3. Human Interface Guidelines
