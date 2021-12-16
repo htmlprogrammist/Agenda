@@ -19,6 +19,7 @@
 		F6461D0627660433001D9CBA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Summary.swift */; };
 		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
 		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
+		F6C0AAE3276B6820007D372E /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C0AAE2276B6820007D372E /* GoalDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		F6461D0527660433001D9CBA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
+		F6C0AAE2276B6820007D372E /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */,
-				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
-				F62B021E2763C20200CDF414 /* HistoryViewController.swift */,
-				F62B02212763C20900CDF414 /* SummaryViewController.swift */,
+				F6C0AAE5276B6964007D372E /* Agenda */,
+				F6C0AAE7276B697E007D372E /* History */,
+				F6C0AAE9276B6984007D372E /* Summary */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +127,31 @@
 				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F6C0AAE5276B6964007D372E /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
+				F6C0AAE2276B6820007D372E /* GoalDetailsViewController.swift */,
+			);
+			path = Agenda;
+			sourceTree = "<group>";
+		};
+		F6C0AAE7276B697E007D372E /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F62B021E2763C20200CDF414 /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		F6C0AAE9276B6984007D372E /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				F62B02212763C20900CDF414 /* SummaryViewController.swift */,
+			);
+			path = Summary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +231,7 @@
 				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
+				F6C0AAE3276B6820007D372E /* GoalDetailsViewController.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,
 			);

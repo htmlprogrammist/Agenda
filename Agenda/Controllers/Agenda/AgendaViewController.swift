@@ -53,8 +53,22 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as! AgendaTableViewCell
+        guard let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as? AgendaTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка передаёт вам привет")}
+        
+        let goal = goals[indexPath.row]
+        cell.goalTextLabel.text = goal.title
+        cell.goalProgressView.progress = Float(goal.current) / Float(goal.end)
+        cell.goalCurrentLabel.text = String(goal.current)
+        cell.goalEndLabel.text = String(goal.end)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        agendaTableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -77,19 +91,16 @@ extension AgendaViewController {
     
     func setConstraints() {
         view.addSubview(progressView)
+        view.addSubview(dayAndMonth)
+        view.addSubview(yearLabel)
         NSLayoutConstraint.activate([
             progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -2),
             progressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-        
-        view.addSubview(dayAndMonth)
-        NSLayoutConstraint.activate([
+            progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
             dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        ])
-        view.addSubview(yearLabel)
-        NSLayoutConstraint.activate([
+            
             yearLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
         ])
@@ -98,7 +109,7 @@ extension AgendaViewController {
         NSLayoutConstraint.activate([
             agendaTableView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
             agendaTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            agendaTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            agendaTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             agendaTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
