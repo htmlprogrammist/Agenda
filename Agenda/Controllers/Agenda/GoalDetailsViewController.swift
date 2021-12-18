@@ -82,7 +82,13 @@ class GoalDetailsViewController: UIViewController {
         goalProgressView.progress = Float(goal?.current ?? 0) / Float(goal?.aim ?? 1)
         currentStepper.maximumValue = Double(goal?.aim ?? 1)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveChangesInGoal))
+        
         setConstaints()
+    }
+    
+    @objc func saveChangesInGoal() {
+        print("Saved changes")
     }
     
     func setConstaints() {

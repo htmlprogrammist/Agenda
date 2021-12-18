@@ -1,5 +1,5 @@
 //
-//  TrayViewController.swift
+//  AgendaViewController.swift
 //  Agenda
 //
 //  Created by Егор Бадмаев on 10.12.2021.
@@ -24,11 +24,12 @@ class AgendaViewController: UIViewController {
         return progress
     }()
     var agendaTableView: UITableView = {
-        var tableView = UITableView()
+        let tableView = UITableView()
         tableView.bounces = false  // чтобы нельзя было двигать таблицу ни вверх, ни вниз. Но она прокручивается.
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+
     var idAgendaCell = "idAgendaCell"
     var goals = Goal.getGoals()
     
@@ -43,6 +44,17 @@ class AgendaViewController: UIViewController {
         agendaTableView.delegate = self
         agendaTableView.dataSource = self
         agendaTableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
+        
+        navigationItem.rightBarButtonItems = [
+            // 1 вариант - почему-то не отображается line.3.horizontal.circle
+            UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(addNewGoal)),
+            UIBarButtonItem(image: UIImage(named: "line.3.horizontal.circle"), style: .plain, target: self, action: #selector(addNewGoal)), // временно выполняет ту же функцию
+            
+            // 2 вариант
+//            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal)),
+//            UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: self, action: #selector(addNewGoal)) // временно выполняет ту же функцию
+//            UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addNewGoal)), // 2-й вариант edit'а
+        ]
         
         getMonthInfo()
         setConstraints()  // adding subViews of view and setting constraints
@@ -76,6 +88,11 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         destination.goal = goals[indexPath.row]
         navigationController?.pushViewController(destination, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let chosenGoal = goals.remove(at: sourceIndexPath.row)  // удаляем из одного места
+        goals.insert(chosenGoal, at: destinationIndexPath.row)  // вставляем в другое
+    }
 }
 
 extension AgendaViewController {
@@ -95,16 +112,21 @@ extension AgendaViewController {
         progressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     
+    @objc func addNewGoal() {
+        let destination = AddingGoalViewController()
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
     func setConstraints() {
         view.addSubview(progressView)
         view.addSubview(dayAndMonth)
         view.addSubview(yearLabel)
         NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -2),
+            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             progressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
+            dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 1),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
             yearLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 2),
