@@ -25,7 +25,7 @@ class AgendaViewController: UIViewController {
     }()
     var agendaTableView: UITableView = {
         let tableView = UITableView()
-        tableView.bounces = false  // чтобы нельзя было двигать таблицу ни вверх, ни вниз. Но она прокручивается.
+//        tableView.bounces = false  // чтобы нельзя было двигать таблицу ни вверх, ни вниз. Но она прокручивается.
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -45,8 +45,7 @@ class AgendaViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(addNewGoal)),
-            editButtonItem
-//            UIBarButtonItem(image: UIImage(named: "line.3.horizontal.circle"), style: .plain, target: self, action: #selector(addNewGoal)), // временно выполняет ту же функцию
+            UIBarButtonItem(image: UIImage(named: "line.3.horizontal.circle"), style: .plain, target: self, action: #selector(didTapEdit)), // временно выполняет ту же функцию
             
             // 2 вариант
 //            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal)),
@@ -88,23 +87,19 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: Drag-n-drop moving cells
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        agendaTableView.setEditing(editing, animated: animated)
-        
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let chosenGoal = goals.remove(at: sourceIndexPath.row) // удаляем из одного места
-        goals.insert(chosenGoal, at: destinationIndexPath.row) // вставляем в другое
-    }
-    
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        true
-    }
-    
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        goals.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+    }
+    
+    @objc func didTapEdit() {
+        if agendaTableView.isEditing {
+            agendaTableView.isEditing = false
+        } else {
+            agendaTableView.isEditing = true
+        }
     }
 }
 
