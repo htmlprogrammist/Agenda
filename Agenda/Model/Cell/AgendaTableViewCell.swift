@@ -30,11 +30,6 @@ class AgendaTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
-    let displayingLabelsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

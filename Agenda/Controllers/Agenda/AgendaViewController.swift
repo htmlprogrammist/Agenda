@@ -25,6 +25,7 @@ class AgendaViewController: UIViewController {
     }()
     var agendaTableView: UITableView = {
         var tableView = UITableView()
+        tableView.bounces = false  // чтобы нельзя было двигать таблицу ни вверх, ни вниз. Но она прокручивается.
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -33,6 +34,8 @@ class AgendaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        navigationItem.leftBarButtonItem = editButtonItem
         
         view.backgroundColor = .white
         navigationItem.title = "Agenda"
@@ -57,9 +60,9 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         
         let goal = goals[indexPath.row]
         cell.goalTextLabel.text = goal.title
-        cell.goalProgressView.progress = Float(goal.current) / Float(goal.end)
+        cell.goalProgressView.progress = Float(goal.current) / Float(goal.aim)
         cell.goalCurrentLabel.text = String(goal.current)
-        cell.goalEndLabel.text = String(goal.end)
+        cell.goalEndLabel.text = String(goal.aim)
         return cell
     }
     

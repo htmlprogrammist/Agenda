@@ -8,16 +8,16 @@
 struct Goal {
      var title: String
      var current: Int
-     var end: Int
+     var aim: Int
  }
 
  extension Goal {
      static func getGoals() -> [Goal] {
          return [
-             Goal(title: "Дочитать книгу", current: 240, end: 450),
-             Goal(title: "Прыжки со скакалкой", current: 90, end: 210),
-             Goal(title: "Курс по саморазвитию", current: 4, end: 10),
-             Goal(title: "Написать статьи для блога", current: 14, end: 20)
+             Goal(title: "Дочитать книгу", current: 240, aim: 450),
+             Goal(title: "Прыжки со скакалкой", current: 90, aim: 210),
+             Goal(title: "Курс по саморазвитию", current: 4, aim: 10),
+             Goal(title: "Написать статьи для блога", current: 14, aim: 20)
          ]
      }
  }
