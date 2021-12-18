@@ -19,11 +19,12 @@ class HistoryViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.bounces = false
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: idHistoryCell)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,7 +39,7 @@ class HistoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 70
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
