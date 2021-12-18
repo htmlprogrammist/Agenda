@@ -30,6 +30,13 @@ class AgendaTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
+    let labelsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,27 +49,38 @@ class AgendaTableViewCell: UITableViewCell {
     }
     
     func setConstraints() {
-        let labelsStackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
-        labelsStackView.axis = .horizontal
-        labelsStackView.distribution = .equalSpacing
-        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+//        let labelsStackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
+        labelsStackView.addArrangedSubview(goalCurrentLabel)
+        labelsStackView.addArrangedSubview(goalEndLabel)
         
-        self.addSubview(goalTextLabel)
-        self.addSubview(goalProgressView)
-        self.addSubview(labelsStackView)
+        contentView.addSubview(goalTextLabel)
+        contentView.addSubview(goalProgressView)
+        contentView.addSubview(labelsStackView)
         
         NSLayoutConstraint.activate([
-            goalTextLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            goalTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
             goalProgressView.topAnchor.constraint(equalTo: goalTextLabel.bottomAnchor, constant: 10),
-            goalProgressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            goalProgressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-//            goalProgressView.heightAnchor.constraint(equalToConstant: 4),
+            goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            goalProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            labelsStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            labelsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            labelsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+            labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
+    
+//    func changeConstraints() {
+//        NSLayoutConstraint.activate([
+//            goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+//            goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+//
+//            goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+//            goalProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+//
+//            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+//            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
+//        ])
+//    }
 }
