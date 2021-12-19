@@ -19,7 +19,6 @@ class HistoryViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.bounces = false
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: idHistoryCell)
     }
     

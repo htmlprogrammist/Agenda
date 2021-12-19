@@ -43,16 +43,8 @@ class AgendaViewController: UIViewController {
         agendaTableView.dataSource = self
         agendaTableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
         
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(addNewGoal)),
-            editButtonItem
-//            UIBarButtonItem(image: UIImage(named: "line.3.horizontal.circle"), style: .plain, target: self, action: #selector(didTapEdit)), // временно выполняет ту же функцию
-            
-            // 2 вариант
-//            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal)),
-//            UIBarButtonItem(image: UIImage(systemName: "text.justify"), style: .plain, target: self, action: #selector(addNewGoal)) // временно выполняет ту же функцию
-//            UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addNewGoal)), // 2-й вариант edit'а
-        ]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+        navigationItem.leftBarButtonItem = editButtonItem
         
         getMonthInfo()
         setConstraints()  // adding subViews of view and setting constraints

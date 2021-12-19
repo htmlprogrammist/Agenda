@@ -16,25 +16,17 @@ class MainTabBarController: UITabBarController {
     }
     
     func createTabs() {
-        let agendaViewController = createNavController(viewController: AgendaViewController(), itemName: "Agenda", itemImage: "tray.full.fill", ios13CompabilityForIcon: false)
-        let historyViewController = createNavController(viewController: HistoryViewController(), itemName: "History", itemImage: "clock.fill", ios13CompabilityForIcon: false)
-        let summaryViewController = createNavController(viewController: SummaryViewController(), itemName: "Summary", itemImage: "square.text.square.fill", ios13CompabilityForIcon: true)
+        let agendaViewController = createNavController(viewController: AgendaViewController(), itemName: "Agenda", itemImage: "tray.full.fill")
+        let historyViewController = createNavController(viewController: HistoryViewController(), itemName: "History", itemImage: "clock.fill")
+        let summaryViewController = createNavController(viewController: SummaryViewController(), itemName: "Summary", itemImage: "square.text.square.fill")
         
         viewControllers = [agendaViewController, historyViewController, summaryViewController]
     }
     
-    func createNavController(viewController: UIViewController, itemName: String, itemImage: String, ios13CompabilityForIcon: Bool) -> UINavigationController {
-        
-        var imageNamed: UIImage?
-        switch ios13CompabilityForIcon {
-        case true:
-            imageNamed = UIImage(named: itemImage)
-        case false:
-            imageNamed = UIImage(systemName: itemImage)
-        }
+    func createNavController(viewController: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
         
         let navController = UINavigationController(rootViewController: viewController)
-        navController.tabBarItem = UITabBarItem(title: itemName, image: imageNamed, tag: 0)
+        navController.tabBarItem = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
         navController.navigationBar.prefersLargeTitles = true
         return navController
     }
