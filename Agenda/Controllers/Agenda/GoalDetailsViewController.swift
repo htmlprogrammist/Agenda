@@ -11,25 +11,32 @@ class GoalDetailsViewController: UIViewController {
     
     var goal: Goal?
     
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     var goalTitleTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = .red
+        textField.backgroundColor = .white
         textField.placeholder = "Title"
         textField.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-//        textField.bounds = CGRect(origin: CGPoint(x: 16, y: 8), size: CGSize(width: 150, height: 40))
-        textField.frame = CGRect(x: 10, y: 10, width: 60, height: 40)
+        textField.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        textField.insetsLayoutMarginsFromSafeArea = true
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.resignFirstResponder()
         return textField
     }()
     let currentLabel: UILabel = {
         let label = UILabel()
         label.text = "Current"
-//        label.backgroundColor = .white
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     let aimLabel: UILabel = {
         let label = UILabel()
         label.text = "Aim"
+        label.font = UIFont.systemFont(ofSize: 18)
         label.backgroundColor = .white
         return label
     }()
@@ -44,6 +51,8 @@ class GoalDetailsViewController: UIViewController {
         textField.textAlignment = .right
         textField.keyboardType = .numberPad
         textField.placeholder = "0"
+        textField.font = UIFont.systemFont(ofSize: 18)
+        textField.resignFirstResponder()
         return textField
     }()
     let currentStepper: UIStepper = {
@@ -55,8 +64,9 @@ class GoalDetailsViewController: UIViewController {
         let textField = UITextField()
         textField.textAlignment = .right
         textField.keyboardType = .numberPad
+        textField.font = UIFont.systemFont(ofSize: 18)
+        textField.resignFirstResponder()
         textField.placeholder = "0"
-//        textField.bounds = CGRect(x: 10, y: 10, width: 10, height: 5)
         return textField
     }()
     let noteTextView: UITextView = {
@@ -66,78 +76,98 @@ class GoalDetailsViewController: UIViewController {
         textView.text = "Notes"
         textView.textColor = UIColor.lightGray
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.resignFirstResponder()
         return textView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 248/255, alpha: 1)
+//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.width)
         
         goalTitleTextField.text = goal?.title
         goalProgressView.progress = Float(goal?.current ?? 0) / Float(goal?.aim ?? 1)
+        
+        currentStepper.minimumValue = 0
         currentStepper.maximumValue = Double(goal?.aim ?? 1)
+        currentStepper.value = Double(goal?.current ?? 0)
+        currentStepper.addTarget(self, action: #selector(stepperAction(sender:)), for: .valueChanged)
+        
+        currentTextField.text = String(goal?.current ?? 0)
+        aimTextField.text = String(goal?.aim ?? 1)
         noteTextView.delegate = self // adding placeholder to the TextView
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveChangesInGoal))
         
-        setConstaints()
+        setupView()
+    }
+    
+    @objc func stepperAction(sender: UIStepper) {
+        goal?.current = Int(sender.value) // работает, но ничего на экране не изменяется, поэтому...
+        currentTextField.text = String(Int(sender.value))
+        goalProgressView.progress = Float(sender.value) / Float(goal?.aim ?? 1)
+    }
+    
+    @objc func saveChangesInGoal() {
+        print("Saved changes")
     }
 }
 
 extension GoalDetailsViewController {
     
-    @objc func saveChangesInGoal() {
-        print("Saved changes")
-    }
-    
-    func setConstaints() {
+    func setupView() {
+        let headerStackView = UIStackView(arrangedSubviews: [goalTitleTextField, goalProgressView])
         let editingCurrentStackView = UIStackView(arrangedSubviews: [currentLabel, currentTextField])
         let editingAimStackView = UIStackView(arrangedSubviews: [aimLabel, aimTextField])
+        view.addSubview(scrollView)
+        scrollView.addSubview(headerStackView)
+        scrollView.addSubview(editingCurrentStackView)
         
-        view.addSubview(goalTitleTextField)
-        view.addSubview(goalProgressView)
-        view.addSubview(editingCurrentStackView)
-        view.addSubview(currentStepper)
-        view.addSubview(editingAimStackView)
-        view.addSubview(noteTextView)
+        scrollView.addSubview(currentStepper)
+        scrollView.addSubview(editingAimStackView)
+        scrollView.addSubview(noteTextView)
         
-        editingCurrentStackView.translatesAutoresizingMaskIntoConstraints = false
-        editingCurrentStackView.backgroundColor = .white
-        editingCurrentStackView.bounds = CGRect(x: 0, y: 0, width: 150, height: 40)
-//        editingCurrentStackView.
+        [headerStackView, editingCurrentStackView, editingAimStackView].forEach {
+            $0.isLayoutMarginsRelativeArrangement = true
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.backgroundColor = .white
+        }
         
-        editingAimStackView.translatesAutoresizingMaskIntoConstraints = false
-        editingAimStackView.backgroundColor = .white
+        headerStackView.layoutMargins = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+        headerStackView.spacing = 4
+        headerStackView.axis = .vertical
+
+        editingCurrentStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        editingAimStackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         NSLayoutConstraint.activate([
-            goalTitleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            goalTitleTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            goalTitleTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             
-            goalProgressView.topAnchor.constraint(equalTo: goalTitleTextField.bottomAnchor, constant: 10),
-            goalProgressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            goalProgressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            goalProgressView.heightAnchor.constraint(equalToConstant: 8),
+            headerStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
+            headerStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            headerStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             
             currentTextField.widthAnchor.constraint(equalToConstant: 94),
-            editingCurrentStackView.topAnchor.constraint(equalTo: goalProgressView.bottomAnchor, constant: 10),
-            editingCurrentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            editingCurrentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            editingCurrentStackView.heightAnchor.constraint(equalToConstant: 32),
+            editingCurrentStackView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 10),
+            editingCurrentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            editingCurrentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            editingCurrentStackView.heightAnchor.constraint(equalToConstant: 36),
             
-            currentStepper.topAnchor.constraint(equalTo: editingCurrentStackView.bottomAnchor, constant: 10),
-//            currentStepper.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            currentStepper.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            currentStepper.topAnchor.constraint(equalTo: currentLabel.bottomAnchor, constant: 10),
+            currentStepper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
             
             aimTextField.widthAnchor.constraint(equalToConstant: 94),
             editingAimStackView.topAnchor.constraint(equalTo: currentStepper.bottomAnchor, constant: 10),
-            editingAimStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            editingAimStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            editingAimStackView.heightAnchor.constraint(equalToConstant: 32),
+            editingAimStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            editingAimStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            editingAimStackView.heightAnchor.constraint(equalToConstant: 36),
             
             noteTextView.topAnchor.constraint(equalTo: editingAimStackView.bottomAnchor, constant: 10),
-            noteTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            noteTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            noteTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            noteTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             noteTextView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
