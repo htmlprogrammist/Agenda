@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GoalDetailsViewController: UIViewController {
+class GoalDetailsTableViewController: UITableViewController {
     
     var goal: Goal?
     
@@ -113,7 +113,7 @@ class GoalDetailsViewController: UIViewController {
     }
 }
 
-extension GoalDetailsViewController {
+extension GoalDetailsTableViewController {
     
     func setupView() {
         let headerStackView = UIStackView(arrangedSubviews: [goalTitleTextField, goalProgressView])
@@ -178,7 +178,7 @@ extension GoalDetailsViewController {
 }
 
 // MARK: UITextViewDelegate
-extension GoalDetailsViewController: UITextViewDelegate {
+extension GoalDetailsTableViewController: UITextViewDelegate {
     // adding placeholder to the TextView
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {

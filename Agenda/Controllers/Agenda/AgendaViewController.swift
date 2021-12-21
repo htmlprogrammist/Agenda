@@ -74,7 +74,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         agendaTableView.deselectRow(at: indexPath, animated: true)
-        let destination = GoalDetailsViewController()
+        let destination = GoalDetailsTableViewController()
         destination.goal = goals[indexPath.row]
         navigationController?.pushViewController(destination, animated: true)
     }
