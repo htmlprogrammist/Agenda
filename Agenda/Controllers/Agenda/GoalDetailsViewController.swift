@@ -149,12 +149,14 @@ extension GoalDetailsViewController {
             headerStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
             headerStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
             headerStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            headerStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
             currentTextField.widthAnchor.constraint(equalToConstant: 94),
             editingCurrentStackView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 10),
             editingCurrentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
             editingCurrentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             editingCurrentStackView.heightAnchor.constraint(equalToConstant: 36),
+            editingCurrentStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
             currentStepper.topAnchor.constraint(equalTo: currentLabel.bottomAnchor, constant: 10),
             currentStepper.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
@@ -164,11 +166,13 @@ extension GoalDetailsViewController {
             editingAimStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
             editingAimStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
             editingAimStackView.heightAnchor.constraint(equalToConstant: 36),
+            editingAimStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
             noteTextView.topAnchor.constraint(equalTo: editingAimStackView.bottomAnchor, constant: 10),
             noteTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
             noteTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
-            noteTextView.heightAnchor.constraint(equalToConstant: 300)
+            noteTextView.heightAnchor.constraint(equalToConstant: 300),
+            noteTextView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
         ])
     }
 }
