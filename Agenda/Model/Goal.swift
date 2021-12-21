@@ -6,9 +6,10 @@
 //
 
 struct Goal {
-     var title: String
-     var current: Int
-     var aim: Int
+    var title: String
+    var current: Int
+    var aim: Int
+    var notes: String?
  }
 
  extension Goal {

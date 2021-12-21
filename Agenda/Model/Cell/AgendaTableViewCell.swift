@@ -41,14 +41,14 @@ class AgendaTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setConstraints()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    func setupView() {
 //        let labelsStackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
         labelsStackView.addArrangedSubview(goalCurrentLabel)
         labelsStackView.addArrangedSubview(goalEndLabel)

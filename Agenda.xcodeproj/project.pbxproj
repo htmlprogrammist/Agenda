@@ -76,9 +76,9 @@
 		F62B01F82763BBD600CDF414 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				F6461D042766041F001D9CBA /* Model */,
 				F62B02162763BD1900CDF414 /* Application */,
 				F62B02182763BD7100CDF414 /* Controllers */,
+				F6461D042766041F001D9CBA /* Model */,
 				F62B02132763BC7800CDF414 /* Resources */,
 			);
 			path = Agenda;

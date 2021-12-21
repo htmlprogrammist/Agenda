@@ -47,7 +47,7 @@ class AgendaViewController: UIViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         getMonthInfo()
-        setConstraints()  // adding subViews of view and setting constraints
+        setupView()  // adding subViews of view and setting constraints
     }
 }
 
@@ -89,6 +89,26 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         let chosenGoal = goals.remove(at: sourceIndexPath.row) // удаляем из одного места
         goals.insert(chosenGoal, at: destinationIndexPath.row) // вставляем в другое
     }
+    
+    // deleting cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("Delete")
+//            let alert = UIAlertController(title: "Delete Note", message: "Are you sure you want to delete this note?", preferredStyle: .actionSheet)
+//
+//            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {
+//                (alert:UIAlertAction!) in
+//                //****//
+////                 your code to delete item from parse.
+//                // ***//
+//                 //And then remove object from tableview
+//                tableView.deleteRows(at: [indexPath], with: .automatic)
+//            }))
+//            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+//
+//            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension AgendaViewController {
@@ -113,7 +133,7 @@ extension AgendaViewController {
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    func setConstraints() {
+    func setupView() {
         view.addSubview(progressView)
         view.addSubview(dayAndMonth)
         view.addSubview(yearLabel)

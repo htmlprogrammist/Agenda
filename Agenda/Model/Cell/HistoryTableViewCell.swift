@@ -23,14 +23,14 @@ class HistoryTableViewCell: UITableViewCell {
         
         monthDateLabel.text = "November, 2021"
         
-        setConstraints()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    func setupView() {
         self.addSubview(monthDateLabel)
         
         NSLayoutConstraint.activate([
