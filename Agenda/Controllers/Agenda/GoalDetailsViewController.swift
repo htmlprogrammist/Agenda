@@ -83,7 +83,7 @@ class GoalDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 248/255, alpha: 1)
-//        scrollView.contentSize = CGSize(width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.width)
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.height)
         
         goalTitleTextField.text = goal?.title
         goalProgressView.progress = Float(goal?.current ?? 0) / Float(goal?.aim ?? 1)

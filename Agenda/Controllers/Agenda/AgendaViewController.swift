@@ -107,8 +107,31 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
 //            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
 //
 //            self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal?", preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+                print("Yes")
+//                self.goals.remove(at: indexPath.row)
+//                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .automatic)
+//                self.agendaTableView.deleteRowsAtIndexPaths([NSIndexPath(forItem: indexPath, inSection: 0)], withRowAnimation: nil)
+//                self.agendaTableView.deleteRows(at: [indexPath], with: .automatic)
+                self.setEditing(false, animated: true)
+            })
+            let no = UIAlertAction(title: "No", style: .default) { _ in self.setEditing(false, animated: true) }
+            
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/
+            present(alert, animated: true, completion: nil)
         }
     }
+
+
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        self.dataSource.removeAtIndex(myIndex) // dataSource Начало массива
+//        self.tableview!.reloadData()
+//        tableView.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: .automatic)
+//    }
 }
 
 extension AgendaViewController {

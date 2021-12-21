@@ -16,6 +16,7 @@
 		F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021B2763C1F500CDF414 /* AgendaViewController.swift */; };
 		F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021E2763C20200CDF414 /* HistoryViewController.swift */; };
 		F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B02212763C20900CDF414 /* SummaryViewController.swift */; };
+		F632600327723D11006347DF /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F632600227723D11006347DF /* UIAlertController.swift */; };
 		F6461D0627660433001D9CBA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Summary.swift */; };
 		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
 		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
@@ -37,6 +38,7 @@
 		F62B021B2763C1F500CDF414 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		F62B021E2763C20200CDF414 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F62B02212763C20900CDF414 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		F632600227723D11006347DF /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		F6461D0527660433001D9CBA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				F62B02162763BD1900CDF414 /* Application */,
 				F62B02182763BD7100CDF414 /* Controllers */,
 				F6461D042766041F001D9CBA /* Model */,
+				F632600027723CE3006347DF /* Extensions */,
 				F62B02132763BC7800CDF414 /* Resources */,
 			);
 			path = Agenda;
@@ -113,6 +116,22 @@
 				F6C0AAE9276B6984007D372E /* Summary */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F632600027723CE3006347DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F632600127723CF9006347DF /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F632600127723CF9006347DF /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				F632600227723D11006347DF /* UIAlertController.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		F6461D042766041F001D9CBA /* Model */ = {
@@ -239,6 +258,7 @@
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
 				F6C0AAE3276B6820007D372E /* GoalDetailsViewController.swift in Sources */,
+				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,
 				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,
