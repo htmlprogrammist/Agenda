@@ -17,13 +17,13 @@
 		F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021E2763C20200CDF414 /* HistoryViewController.swift */; };
 		F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B02212763C20900CDF414 /* SummaryViewController.swift */; };
 		F632600327723D11006347DF /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F632600227723D11006347DF /* UIAlertController.swift */; };
-		F632600827724CDC006347DF /* GoalDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F632600727724CDC006347DF /* GoalDetailsTableViewCell.swift */; };
 		F6461D0627660433001D9CBA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Summary.swift */; };
 		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
 		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
 		F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */; };
 		F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */; };
-		F6C0AAE3276B6820007D372E /* GoalDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C0AAE2276B6820007D372E /* GoalDetailsTableViewController.swift */; };
+		F6E712F1277632110087A2A1 /* GoalDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */; };
+		F6E712F52776323E0087A2A1 /* GoalDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,13 +40,13 @@
 		F62B021E2763C20200CDF414 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F62B02212763C20900CDF414 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		F632600227723D11006347DF /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		F632600727724CDC006347DF /* GoalDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		F6461D0527660433001D9CBA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 		F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingGoalViewController.swift; sourceTree = "<group>"; };
 		F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		F6C0AAE2276B6820007D372E /* GoalDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewController.swift; sourceTree = "<group>"; };
+		F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 			children = (
 				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
 				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
-				F632600727724CDC006347DF /* GoalDetailsTableViewCell.swift */,
+				F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 			children = (
 				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
 				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
-				F6C0AAE2276B6820007D372E /* GoalDetailsTableViewController.swift */,
+				F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -252,7 +252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6461D0A2766045B001D9CBA /* Goal.swift in Sources */,
-				F632600827724CDC006347DF /* GoalDetailsTableViewCell.swift in Sources */,
+				F6E712F52776323E0087A2A1 /* GoalDetailsTableViewController.swift in Sources */,
+				F6E712F1277632110087A2A1 /* GoalDetailsTableViewCell.swift in Sources */,
 				F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */,
 				F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */,
 				F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */,
@@ -261,7 +262,6 @@
 				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
-				F6C0AAE3276B6820007D372E /* GoalDetailsTableViewController.swift in Sources */,
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,
