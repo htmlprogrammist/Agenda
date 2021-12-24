@@ -23,7 +23,7 @@ class GoalDetailsTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         tableView.separatorStyle = .none
-        tableView.register(GoalDetailsTableViewCell.self, forCellReuseIdentifier: idAgendaDetailsCell)
+//        tableView.register(GoalDetailsTableViewCell.self, forCellReuseIdentifier: idAgendaDetailsCell)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,8 +44,10 @@ class GoalDetailsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalDetailsTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
-        cell.configure(indexPath: indexPath)
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalDetailsTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
+        let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath)
+//        cell.configure(indexPath: indexPath)
+        cell.textLabel?.text = "\(indexPath.row)"
         return cell
     }
     
