@@ -9,6 +9,10 @@ import UIKit
 
 class GoalDetailsTableViewCell: UITableViewCell {
     
+    let labelsArray = [["Title"],
+                       ["Current", "", "Aim"],
+                       [""]]
+    
     let backgroundViewCell: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -27,13 +31,17 @@ class GoalDetailsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-//        setupView() // начиная с этого момента мы возвращаемся к кривому отображению всего
+        setupView() // начиная с этого момента мы возвращаемся к кривому отображению всего
         
         self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func cellConfigure(indexPath: IndexPath) {
+        cellLabel.text = labelsArray[indexPath.section][indexPath.row]
     }
     
     func setupView() {
@@ -43,11 +51,11 @@ class GoalDetailsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             backgroundViewCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             backgroundViewCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            backgroundViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 16),
+            backgroundViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             backgroundViewCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1),
             
             cellLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 10),
+            cellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 16),
         ])
     }
 }
