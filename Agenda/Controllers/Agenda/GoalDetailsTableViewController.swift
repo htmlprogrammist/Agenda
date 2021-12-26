@@ -41,8 +41,25 @@ class GoalDetailsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath)
-        cell.textLabel?.text = "Cell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalDetailsTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
+//        let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath)
+//        cell.textLabel?.text = "Cell"
+        cell.cellLabel.text = "Cell"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+}
+
+extension GoalDetailsTableViewController {
+    
+    func setupView() {
+        
     }
 }
