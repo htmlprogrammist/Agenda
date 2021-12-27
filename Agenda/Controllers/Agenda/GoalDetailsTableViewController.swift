@@ -42,18 +42,19 @@ class GoalDetailsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalDetailsTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
-//        let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as! GoalDetailsTableViewCell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath)
-//        cell.textLabel?.text = "Cell"
         cell.cellConfigure(indexPath: indexPath)
-//        cell.textLabel?.text = cell.labelsArray[indexPath.section][indexPath.row] // работает
-//        cell.cellLabel.text = "Cell"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 //        let cell = tableView.cellForRow(at: indexPath) as! GoalDetailsTableViewCell
+        // безопасный, по моему мнению, вариант
+//        guard let cell = tableView.cellForRow(at: indexPath) as? GoalDetailsTableViewCell else { fatalError("Ошибка, я в методе didSelectFowAt")}
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

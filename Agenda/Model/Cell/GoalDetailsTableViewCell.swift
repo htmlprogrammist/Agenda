@@ -16,7 +16,7 @@ class GoalDetailsTableViewCell: UITableViewCell {
     let backgroundViewCell: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 10
+//        view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,6 +34,7 @@ class GoalDetailsTableViewCell: UITableViewCell {
         setupView() // начиная с этого момента мы возвращаемся к кривому отображению всего
         
         self.backgroundColor = .clear
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
@@ -42,6 +43,10 @@ class GoalDetailsTableViewCell: UITableViewCell {
     
     func cellConfigure(indexPath: IndexPath) {
         cellLabel.text = labelsArray[indexPath.section][indexPath.row]
+        
+        if indexPath == [3, 0] {
+            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        }
     }
     
     func setupView() {
@@ -50,8 +55,10 @@ class GoalDetailsTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             backgroundViewCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            backgroundViewCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            backgroundViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+//            backgroundViewCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+//            backgroundViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            backgroundViewCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            backgroundViewCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             backgroundViewCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1),
             
             cellLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

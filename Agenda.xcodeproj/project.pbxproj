@@ -159,8 +159,8 @@
 		F6C0AAE5276B6964007D372E /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
 				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
+				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
 				F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */,
 			);
 			path = Agenda;
