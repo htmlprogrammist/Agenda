@@ -38,22 +38,8 @@ class GoalDetailsTableViewCell: UITableViewCell {
         return textField
     }()
     
-    let incrementButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
-        button.tintColor = .black
-        button.layer.cornerRadius = 8
-        return button
-    }()
-    let decrementButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "minus"), for: .normal)
-        button.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
-        button.tintColor = .black
-        button.layer.cornerRadius = 8
-        return button
-    }()
+    let incrementButton = UIButton(imageSystemName: "plus")
+    let decrementButton = UIButton(imageSystemName: "minus")
     let stepperStack: UIStackView = {
         let stackView = UIStackView()
         stackView.isHidden = true
