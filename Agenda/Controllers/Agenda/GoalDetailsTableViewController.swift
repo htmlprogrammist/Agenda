@@ -18,7 +18,7 @@ class GoalDetailsTableViewController: UITableViewController {
         view.backgroundColor = .white
         
         navigationItem.title = "Details"
-        navigationController?.navigationBar.prefersLargeTitles = false
+//        navigationController?.navigationBar.prefersLargeTitles = false
         
         tableView.delegate = self
         tableView.dataSource = self
