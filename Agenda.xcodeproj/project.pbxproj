@@ -23,6 +23,7 @@
 		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
 		F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */; };
 		F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */; };
+		F6B37182277B8A9400F011EC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B37181277B8A9400F011EC /* UITextField.swift */; };
 		F6E712F1277632110087A2A1 /* GoalDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */; };
 		F6E712F52776323E0087A2A1 /* GoalDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 		F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingGoalViewController.swift; sourceTree = "<group>"; };
 		F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F6B37181277B8A9400F011EC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		F6E712F42776323E0087A2A1 /* GoalDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 			children = (
 				F632600227723D11006347DF /* UIAlertController.swift */,
 				F61BE119277B2571001E0A5F /* UIButton.swift */,
+				F6B37181277B8A9400F011EC /* UITextField.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,
+				F6B37182277B8A9400F011EC /* UITextField.swift in Sources */,
 				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

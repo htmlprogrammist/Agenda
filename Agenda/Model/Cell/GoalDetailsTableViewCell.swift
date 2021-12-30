@@ -27,16 +27,9 @@ class GoalDetailsTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let currentTextField: UITextField = {
-        let textField = UITextField()
-        textField.textAlignment = .right
-        textField.keyboardType = .numberPad
-        textField.placeholder = "0"
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.resignFirstResponder()
-        return textField
-    }()
+    let titleTextField = UITextField(keyboardType: .default, placeholder: "Title")
+    let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
+    let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
     
     let incrementButton = UIButton(imageSystemName: "plus")
     let decrementButton = UIButton(imageSystemName: "minus")
@@ -45,19 +38,9 @@ class GoalDetailsTableViewCell: UITableViewCell {
         stackView.isHidden = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.isLayoutMarginsRelativeArrangement = true
-//        stackView.layer.cornerRadius = 10
         return stackView
     }()
     
-    let aimTextField: UITextField = {
-        let textField = UITextField()
-        textField.textAlignment = .right
-        textField.keyboardType = .numberPad
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.resignFirstResponder()
-        textField.placeholder = "0"
-        return textField
-    }()
     let notesTextView: UITextView = {
         let textView = UITextView()
         textView.isHidden = true
@@ -85,12 +68,15 @@ class GoalDetailsTableViewCell: UITableViewCell {
         
         notesTextView.delegate = self
         
+        titleTextField.text = goal?.title
+        currentTextField.text = String(goal?.current ?? 0)
+        aimTextField.text = String(goal?.aim ?? 1)
         // MARK: Stepper
         incrementButton.addTarget(self, action: #selector(incrementButtonTapped), for: .touchUpInside)
         decrementButton.addTarget(self, action: #selector(decrementButtonTapped), for: .touchUpInside)
         stepperStack.distribution = .fillEqually
         stepperStack.spacing = 4
-        stepperStack.layoutMargins = UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)
+        stepperStack.layoutMargins = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
         stepperStack.addArrangedSubview(decrementButton)
         stepperStack.addArrangedSubview(incrementButton)
         
@@ -117,19 +103,27 @@ extension GoalDetailsTableViewCell {
     func cellConfigure(indexPath: IndexPath) {
         cellLabel.text = labelsArray[indexPath.section][indexPath.row]
         
+        if indexPath == [0, 0] {
+            titleTextField.isHidden = false
+        }
+        if indexPath == [1, 0] {
+            currentTextField.isHidden = false
+        }
         if indexPath == [1, 1] {
             stepperStack.isHidden = false
         }
-        
         if indexPath == [1, 2] {
             currentStepper.isHidden = false
+            aimTextField.isHidden = false
         }
         
         if indexPath == [2, 0] {
-            if let note = goal?.notes {
+            notesTextView.text = goal?.notes
+            textViewDidEndEditing(notesTextView) // in order to display placeholder.
+            /*if let note = goal?.notes {
                 notesTextView.text = note
                 notesTextView.textColor = UIColor.black
-            }
+            }*/
             notesTextView.isHidden = false
         }
     }
@@ -148,12 +142,22 @@ extension GoalDetailsTableViewCell {
             cellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 16),
         ])
         
+        contentView.addSubview(titleTextField)
+        contentView.addSubview(currentTextField)
+        contentView.addSubview(aimTextField)
+        NSLayoutConstraint.activate([
+            titleTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            currentTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            aimTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            aimTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+        ])
+        
         // MARK: Stepper
         contentView.addSubview(stepperStack)
         NSLayoutConstraint.activate([
             stepperStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-//            stepperStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-//            stepperStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             stepperStack.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             stepperStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
         ])
@@ -164,7 +168,7 @@ extension GoalDetailsTableViewCell {
             notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             notesTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             notesTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            notesTextView.heightAnchor.constraint(equalToConstant: 300),
+            notesTextView.heightAnchor.constraint(equalToConstant: 200),
             notesTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
         ])
         
