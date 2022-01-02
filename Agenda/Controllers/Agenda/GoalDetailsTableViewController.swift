@@ -38,7 +38,7 @@ class GoalDetailsTableViewController: UITableViewController {
     }
     
     @objc func saveButtonTapped() {
-        
+        print("Save")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,12 +78,5 @@ class GoalDetailsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
-    }
-}
-
-extension GoalDetailsTableViewController {
-    
-    func setupView() {
-        
     }
 }

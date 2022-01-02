@@ -9,7 +9,7 @@ import UIKit
 
 class GoalDetailsTableViewCell: UITableViewCell {
     
-    var goal: Goal?
+    var goal: Goal? // MARK: Add unwrapping this thing so there will be no need to use "goal?.current ?? 0" etc.
     let labelsArray = [["Title"], // 1st section
                        ["Current", "", "Aim"], // 2nd section
                        [""]] // 3rd section
@@ -95,13 +95,21 @@ class GoalDetailsTableViewCell: UITableViewCell {
     }
     
     @objc func incrementButtonTapped() {
-//        if value < goal?.aim {
-//
-//        }
-        print("+")
+        // MARK: needs refactoring
+        if var value = goal?.current, value < goal?.aim ?? 1 {
+            value += 1
+            goal?.current = value
+            currentTextField.text = String(value)
+            print("\(value) +")
+        }
     }
     @objc func decrementButtonTapped() {
-        print("-")
+        if var value = goal?.current, value > 0 {
+            value -= 1
+            goal?.current = value
+            currentTextField.text = String(value)
+            print("\(value) -")
+        }
     }
 }
 
