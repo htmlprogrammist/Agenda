@@ -21,16 +21,15 @@ class AddingGoalViewController: UIViewController {
         // соответственно, надо будет научиться подсвечивать каждое поле красным и писать ! required или типо того
         
         // можно сделать как в календаре (там пока title не заполнишь, кнопка недоступна для нажатия. Тут можно либо так же сделать (aim = 1, current = 0 по умолчанию), либо для всех полей сделать
-        print("Adding Goal")
     }
     
     @objc func closeThisVC() {
-        print(navigationController?.topViewController)
-//        navigationController?.popViewController(animated: true)
-//        navigationController?.popToRootViewController(animated: true)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @objc func doneButtonTapped() {
         
+        
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

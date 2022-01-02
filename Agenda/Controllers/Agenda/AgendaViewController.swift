@@ -24,7 +24,6 @@ class AgendaViewController: UIViewController {
         return progress
     }()
     var tableView: UITableView = {
-//        let tableView = UITableView()
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -82,7 +81,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destination = GoalDetailsTableViewController(style: .grouped)
+        let destination = GoalDetailsViewController()
         destination.goal = goals[indexPath.row]
         navigationController?.pushViewController(destination, animated: true)
     }
