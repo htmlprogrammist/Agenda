@@ -11,21 +11,34 @@ class GoalDetailsTableViewController: UITableViewController {
     
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
+    var idAgendaDetailsHeader = "idAgendaDetailsHeader"
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
-        navigationItem.title = "Details"
+//        navigationController?.navigationBar.isHidden = true
+//        navigationItem.title = "Details"
 //        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        tableView.separatorStyle = .none
-        
         tableView.register(GoalDetailsTableViewCell.self, forCellReuseIdentifier: idAgendaDetailsCell)
+    }
+    
+    @objc func saveButtonTapped() {
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,23 +57,27 @@ class GoalDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalDetailsTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
         cell.cellConfigure(indexPath: indexPath)
-        cell.goal = self.goal // не работает
+        cell.goal = goal
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-//        let cell = tableView.cellForRow(at: indexPath) as! GoalDetailsTableViewCell
-        // безопасный, по моему мнению, вариант
-//        guard let cell = tableView.cellForRow(at: indexPath) as? GoalDetailsTableViewCell else { fatalError("Ошибка, я в методе didSelectFowAt")}
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idAgendaDetailsHeader)
+        header?.backgroundColor = .clear
+        return header
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        switch indexPath {
+        case [2, 0]: // UITextView
+            return 200 + 10 // bottom insets = 10 points
+        default:
+            return 44
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+        return 20
     }
 }
 

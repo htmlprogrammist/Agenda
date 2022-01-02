@@ -31,8 +31,8 @@ class GoalDetailsTableViewCell: UITableViewCell {
     let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
     let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
     
-    let incrementButton = UIButton(imageSystemName: "plus")
-    let decrementButton = UIButton(imageSystemName: "minus")
+    let incrementButton = UIButton(type: .system, imageSystemName: "plus")
+    let decrementButton = UIButton(type: .system, imageSystemName: "minus")
     let stepperStack: UIStackView = {
         let stackView = UIStackView()
         stackView.isHidden = true
@@ -45,7 +45,7 @@ class GoalDetailsTableViewCell: UITableViewCell {
         let textView = UITextView()
         textView.isHidden = true
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textView.textContainerInset = UIEdgeInsets(top: 4, left: 10, bottom: 10, right: 5)
         textView.text = "Notes"
         textView.textColor = UIColor.lightGray
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,9 +68,16 @@ class GoalDetailsTableViewCell: UITableViewCell {
         
         notesTextView.delegate = self
         
-        titleTextField.text = goal?.title
-        currentTextField.text = String(goal?.current ?? 0)
-        aimTextField.text = String(goal?.aim ?? 1)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: { [self] in
+            titleTextField.text = goal?.title
+            currentTextField.text = String(goal?.current ?? 0)
+            aimTextField.text = String(goal?.aim ?? 1)
+            if let notes = goal?.notes {
+                notesTextView.text = notes
+                notesTextView.textColor = UIColor.black
+            }
+        })
+        
         // MARK: Stepper
         incrementButton.addTarget(self, action: #selector(incrementButtonTapped), for: .touchUpInside)
         decrementButton.addTarget(self, action: #selector(decrementButtonTapped), for: .touchUpInside)
@@ -118,12 +125,9 @@ extension GoalDetailsTableViewCell {
         }
         
         if indexPath == [2, 0] {
-            notesTextView.text = goal?.notes
-            textViewDidEndEditing(notesTextView) // in order to display placeholder.
-            /*if let note = goal?.notes {
-                notesTextView.text = note
+            if !notesTextView.text.isEmpty && notesTextView.text != "Notes" {
                 notesTextView.textColor = UIColor.black
-            }*/
+            }
             notesTextView.isHidden = false
         }
     }

@@ -155,9 +155,9 @@
 		F65121132769BC92006DC3EC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
 				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
 				F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */,
+				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

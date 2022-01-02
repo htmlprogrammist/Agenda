@@ -14,12 +14,23 @@ class AddingGoalViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addGoal))
+        title = "Goal"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         // надо узнать, как сделать так, чтобы на эту кнопку нельзя было нажимать, пока все поля не будут заполнены
         // соответственно, надо будет научиться подсвечивать каждое поле красным и писать ! required или типо того
+        
+        // можно сделать как в календаре (там пока title не заполнишь, кнопка недоступна для нажатия. Тут можно либо так же сделать (aim = 1, current = 0 по умолчанию), либо для всех полей сделать
+        print("Adding Goal")
     }
     
-    @objc func addGoal() {
+    @objc func closeThisVC() {
+        print(navigationController?.topViewController)
+//        navigationController?.popViewController(animated: true)
+//        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func doneButtonTapped() {
         
     }
 }
