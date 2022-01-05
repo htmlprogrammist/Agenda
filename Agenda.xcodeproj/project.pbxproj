@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BE119277B2571001E0A5F /* UIButton.swift */; };
+		F623ADB92783926600375094 /* AddingGoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */; };
 		F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01F92763BBD600CDF414 /* AppDelegate.swift */; };
 		F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */; };
 		F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		F61BE119277B2571001E0A5F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingGoalTableViewCell.swift; sourceTree = "<group>"; };
 		F62B01F62763BBD600CDF414 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62B01F92763BBD600CDF414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F623ADBB2783929F00375094 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
+				F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */,
+				F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */,
+			);
+			path = Agenda;
+			sourceTree = "<group>";
+		};
 		F62B01ED2763BBD600CDF414 = {
 			isa = PBXGroup;
 			children = (
@@ -158,8 +170,7 @@
 		F65121132769BC92006DC3EC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
-				F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */,
+				F623ADBB2783929F00375094 /* Agenda */,
 				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
 			);
 			path = Cell;
@@ -279,6 +290,7 @@
 				F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */,
 				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
 				F6752849278255A900C9869C /* GoalTableView.swift in Sources */,
+				F623ADB92783926600375094 /* AddingGoalTableViewCell.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,

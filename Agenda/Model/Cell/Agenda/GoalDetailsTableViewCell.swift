@@ -53,13 +53,6 @@ class GoalDetailsTableViewCell: UITableViewCell {
         return textView
     }()
     
-    let currentStepper: UIStepper = {
-        let stepper = UIStepper()
-        stepper.isHidden = true
-        stepper.translatesAutoresizingMaskIntoConstraints = false
-        return stepper
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -94,6 +87,7 @@ class GoalDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Don't work properly after changing value in currentTextField
     @objc func incrementButtonTapped() {
         // MARK: needs refactoring
         if var value = goal?.current, value < goal?.aim ?? 1 {
@@ -128,7 +122,6 @@ extension GoalDetailsTableViewCell {
             stepperStack.isHidden = false
         }
         if indexPath == [1, 2] {
-            currentStepper.isHidden = false
             aimTextField.isHidden = false
         }
         
@@ -182,12 +175,6 @@ extension GoalDetailsTableViewCell {
             notesTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             notesTextView.heightAnchor.constraint(equalToConstant: 200),
             notesTextView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-        ])
-        
-        contentView.addSubview(currentStepper)
-        NSLayoutConstraint.activate([
-            currentStepper.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            currentStepper.topAnchor.constraint(equalTo: contentView.topAnchor),
         ])
     }
 }
