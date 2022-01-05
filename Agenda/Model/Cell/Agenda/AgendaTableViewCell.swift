@@ -49,14 +49,12 @@ class AgendaTableViewCell: UITableViewCell {
     }
     
     func setupView() {
-//        let labelsStackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
         labelsStackView.addArrangedSubview(goalCurrentLabel)
         labelsStackView.addArrangedSubview(goalEndLabel)
         
         contentView.addSubview(goalTextLabel)
         contentView.addSubview(goalProgressView)
         contentView.addSubview(labelsStackView)
-        
         NSLayoutConstraint.activate([
             goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -70,17 +68,4 @@ class AgendaTableViewCell: UITableViewCell {
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
-    
-//    func changeConstraints() {
-//        NSLayoutConstraint.activate([
-//            goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-//            goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-//
-//            goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-//            goalProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-//
-//            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-//            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
-//        ])
-//    }
 }

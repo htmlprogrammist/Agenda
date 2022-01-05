@@ -23,9 +23,8 @@ class AgendaViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    var agendaTableView: UITableView = {
-        let tableView = UITableView()
-//        tableView.bounces = false  // чтобы нельзя было двигать таблицу ни вверх, ни вниз. Но она прокручивается.
+    var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -39,9 +38,9 @@ class AgendaViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Agenda"
         
-        agendaTableView.delegate = self
-        agendaTableView.dataSource = self
-        agendaTableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
         navigationItem.leftBarButtonItem = editButtonItem
@@ -58,7 +57,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = agendaTableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as? AgendaTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка передаёт вам привет")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as? AgendaTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка передаёт вам привет")}
         
         let goal = goals[indexPath.row]
         cell.goalTextLabel.text = goal.title
@@ -72,17 +71,25 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        return header
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        agendaTableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         let destination = GoalDetailsViewController()
         destination.goal = goals[indexPath.row]
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    // MARK: Drag-n-drop moving cells
+    // MARK: Editing tableView (moving, deleting cells)
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        agendaTableView.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -152,8 +159,8 @@ extension AgendaViewController {
     }
     
     @objc func addNewGoal() {
-        let destination = AddingGoalViewController()
-        navigationController?.pushViewController(destination, animated: true)
+        let destination = UINavigationController(rootViewController: AddingGoalViewController())
+        navigationController?.present(destination, animated: true, completion: nil)
     }
     
     func setupView() {
@@ -172,12 +179,12 @@ extension AgendaViewController {
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
         ])
         
-        view.addSubview(agendaTableView)
+        view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            agendaTableView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
-            agendaTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            agendaTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            agendaTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
 }

@@ -1,14 +1,14 @@
 //
-//  GoalDetailsViewController.swift
+//  GoalTableView.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 16.12.2021.
+//  Created by Егор Бадмаев on 03.01.2022.
 //
 
 import UIKit
 
-class GoalDetailsViewController: UIViewController {
-    
+class GoalTableView: UIView {
+/*
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
     var idAgendaDetailsHeader = "idAgendaDetailsHeader"
@@ -18,23 +18,6 @@ class GoalDetailsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(GoalDetailsTableViewCell.self, forCellReuseIdentifier: idAgendaDetailsCell)
-        
-        setupView()
-    }
-    
-    @objc func saveButtonTapped() {
-        print("Save")
-    }
     
     func setupView() {
         view.addSubview(tableView)
@@ -94,4 +77,6 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             return 20
         }
     }
+}
+*/
 }
