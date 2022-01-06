@@ -30,7 +30,7 @@ class AgendaViewController: UIViewController {
     }()
 
     var idAgendaCell = "idAgendaCell"
-    var goals = Goal.getGoals()
+    var goals: [Goal] = Goal.getGoals() // must be optional (var goals: [Goal]?)
     
     override func viewDidLoad() {
         super.viewDidLoad()

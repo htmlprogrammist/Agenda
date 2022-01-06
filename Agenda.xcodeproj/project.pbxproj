@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61452572787437800E76E64 /* GoalTableViewCell.swift */; };
 		F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BE119277B2571001E0A5F /* UIButton.swift */; };
-		F623ADB92783926600375094 /* AddingGoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */; };
 		F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01F92763BBD600CDF414 /* AppDelegate.swift */; };
 		F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */; };
 		F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */; };
@@ -22,17 +22,15 @@
 		F6461D0627660433001D9CBA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Summary.swift */; };
 		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
 		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
-		F6752849278255A900C9869C /* GoalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6752848278255A800C9869C /* GoalTableView.swift */; };
 		F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */; };
 		F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */; };
 		F6B37182277B8A9400F011EC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B37181277B8A9400F011EC /* UITextField.swift */; };
-		F6E712F1277632110087A2A1 /* GoalDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */; };
 		F6E712F52776323E0087A2A1 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F61452572787437800E76E64 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F61BE119277B2571001E0A5F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
-		F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingGoalTableViewCell.swift; sourceTree = "<group>"; };
 		F62B01F62763BBD600CDF414 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62B01F92763BBD600CDF414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,11 +47,9 @@
 		F6461D0527660433001D9CBA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
-		F6752848278255A800C9869C /* GoalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableView.swift; sourceTree = "<group>"; };
 		F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingGoalViewController.swift; sourceTree = "<group>"; };
 		F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		F6B37181277B8A9400F011EC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
-		F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,8 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
-				F623ADB82783926600375094 /* AddingGoalTableViewCell.swift */,
-				F6E712F0277632110087A2A1 /* GoalDetailsTableViewCell.swift */,
+				F61452572787437800E76E64 /* GoalTableViewCell.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -101,7 +96,6 @@
 				F62B02162763BD1900CDF414 /* Application */,
 				F62B02182763BD7100CDF414 /* Controllers */,
 				F6461D042766041F001D9CBA /* Model */,
-				F67528472782557000C9869C /* View */,
 				F632600027723CE3006347DF /* Extensions */,
 				F62B02132763BC7800CDF414 /* Resources */,
 			);
@@ -174,14 +168,6 @@
 				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		F67528472782557000C9869C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F6752848278255A800C9869C /* GoalTableView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		F6C0AAE5276B6964007D372E /* Agenda */ = {
@@ -281,16 +267,14 @@
 			files = (
 				F6461D0A2766045B001D9CBA /* Goal.swift in Sources */,
 				F6E712F52776323E0087A2A1 /* GoalDetailsViewController.swift in Sources */,
-				F6E712F1277632110087A2A1 /* GoalDetailsTableViewCell.swift in Sources */,
 				F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */,
 				F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */,
 				F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */,
 				F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */,
 				F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */,
+				F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */,
 				F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */,
 				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
-				F6752849278255A900C9869C /* GoalTableView.swift in Sources */,
-				F623ADB92783926600375094 /* AddingGoalTableViewCell.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,

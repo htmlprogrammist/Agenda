@@ -12,6 +12,9 @@ class AddingGoalViewController: UIViewController {
     var goal: Goal?
     var idAgendaAddingCell = "idAgendaAddingCell"
     var idAgendaAddingHeader = "idAgendaAddingHeader"
+    let labelsArray = [["Title"], // 1st section
+                       ["Current", "Aim"], // 2nd section
+                       [""]] // 3rd section
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -33,7 +36,7 @@ class AddingGoalViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AddingGoalTableViewCell.self, forCellReuseIdentifier: idAgendaAddingCell)
+        tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: idAgendaAddingCell)
         
         setupView()
     }
@@ -77,10 +80,9 @@ extension AddingGoalViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaAddingCell, for: indexPath) as? AddingGoalTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (AddingGoal) передаёт вам привет") }
-        cell.cellConfigure(indexPath: indexPath)
-        goal = cell.goal // наоборот, потому что передаём ИЗ этого вьюк.
-//        cell.textLabel?.text = "cell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaAddingCell, for: indexPath) as? GoalTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (AddingGoal) передаёт вам привет") }
+        cell.cellConfigure(indexPath: indexPath, stepper: false)
+        cell.cellLabel.text = labelsArray[indexPath.section][indexPath.row]
         return cell
     }
     

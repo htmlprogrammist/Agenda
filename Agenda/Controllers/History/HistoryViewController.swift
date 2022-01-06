@@ -9,6 +9,12 @@ import UIKit
 
 class HistoryViewController: UITableViewController {
     
+    // MARK: Мысли:
+    /*
+     Надо переделать в UIViewController, и так же, как и в Agenda, сверху, под Title'ом будет DatePicker, чтобы сразу выбрать месяц и год, и открыть новый экран (Как AgendaViewController), который будет показывать всё по этому месяцу, как сейчас AgendaViewController показывает текущий
+     От AgendaViewController нам нужен только tableView с ячейками. Ни UIBarButtonItems, ни прогресс-вью с лейблом даты. А в title можно передать тот месяц и год, который сейчас открыт
+     */
+    
     var idHistoryCell = "idHistoryCell"
     
     override init(style: UITableView.Style) {
@@ -36,12 +42,6 @@ class HistoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idHistoryCell, for: indexPath) as? HistoryTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (History) передаёт вам привет")}
-        
-//        let goal = goals[indexPath.row]
-//        cell.goalTextLabel.text = goal.title
-//        cell.goalProgressView.progress = Float(goal.current) / Float(goal.aim)
-//        cell.goalCurrentLabel.text = String(goal.current)
-//        cell.goalEndLabel.text = String(goal.aim)
         return cell
     }
     

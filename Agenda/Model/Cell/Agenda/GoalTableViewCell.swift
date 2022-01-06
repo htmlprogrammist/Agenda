@@ -1,18 +1,15 @@
 //
-//  GoalDetailsTableViewCell.swift
+//  GoalTableViewCell.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 24.12.2021.
+//  Created by Егор Бадмаев on 06.01.2022.
 //
 
 import UIKit
 
-class GoalDetailsTableViewCell: UITableViewCell {
+class GoalTableViewCell: UITableViewCell {
     
     var goal: Goal? // MARK: Add unwrapping this thing so there will be no need to use "goal?.current ?? 0" etc.
-    let labelsArray = [["Title"], // 1st section
-                       ["Current", "", "Aim"], // 2nd section
-                       [""]] // 3rd section
     
     let backgroundViewCell: UIView = {
         let view = UIView()
@@ -63,8 +60,10 @@ class GoalDetailsTableViewCell: UITableViewCell {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: { [self] in
             titleTextField.text = goal?.title
-            currentTextField.text = String(goal?.current ?? 0)
-            aimTextField.text = String(goal?.aim ?? 1)
+            if let current = goal?.current, let aim = goal?.aim {
+                currentTextField.text = String(current)
+                aimTextField.text = String(aim)
+            }
             if let notes = goal?.notes {
                 notesTextView.text = notes
                 notesTextView.textColor = UIColor.black
@@ -80,7 +79,7 @@ class GoalDetailsTableViewCell: UITableViewCell {
         stepperStack.addArrangedSubview(decrementButton)
         stepperStack.addArrangedSubview(incrementButton)
         
-        setupView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -108,20 +107,23 @@ class GoalDetailsTableViewCell: UITableViewCell {
 }
 
 // MARK: cellConfigure and setting view's contstraints
-extension GoalDetailsTableViewCell {
-    func cellConfigure(indexPath: IndexPath) {
-        cellLabel.text = labelsArray[indexPath.section][indexPath.row]
-        
+extension GoalTableViewCell {
+    func cellConfigure(indexPath: IndexPath, stepper: Bool) {
         if indexPath == [0, 0] {
             titleTextField.isHidden = false
         }
         if indexPath == [1, 0] {
             currentTextField.isHidden = false
         }
-        if indexPath == [1, 1] {
+        
+        if indexPath == [1, 1] && stepper {
             stepperStack.isHidden = false
         }
-        if indexPath == [1, 2] {
+        if indexPath == [1, 2] && stepper {
+            aimTextField.isHidden = false
+        }
+        
+        if indexPath == [1, 1] && !stepper {
             aimTextField.isHidden = false
         }
         
@@ -133,7 +135,7 @@ extension GoalDetailsTableViewCell {
         }
     }
     
-    func setupView() {
+    func setConstraints() {
         contentView.addSubview(backgroundViewCell)
         contentView.addSubview(cellLabel)
         
@@ -180,7 +182,7 @@ extension GoalDetailsTableViewCell {
 }
 
 // MARK: UITextViewDelegate
- extension GoalDetailsTableViewCell: UITextViewDelegate {
+ extension GoalTableViewCell: UITextViewDelegate {
      // adding placeholder to the TextView
      func textViewDidBeginEditing(_ textView: UITextView) {
          if textView.textColor == UIColor.lightGray {
