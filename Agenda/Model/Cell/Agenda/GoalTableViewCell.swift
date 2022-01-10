@@ -10,6 +10,9 @@ import UIKit
 class GoalTableViewCell: UITableViewCell {
     
     var goal: Goal? // MARK: Add unwrapping this thing so there will be no need to use "goal?.current ?? 0" etc.
+    let labelsArray = [["Title"], // 1st section
+                       ["Current", "Aim"], // 2nd section
+                       [""]] // 3rd section
     
     let backgroundViewCell: UIView = {
         let view = UIView()
@@ -24,9 +27,9 @@ class GoalTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let titleTextField = UITextField(keyboardType: .default, placeholder: "Title")
-    let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
-    let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
+    let titleTextField = UITextField(keyboardType: .default, placeholder: "Title", borderStyle: .none)
+    let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
+    let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
 
     let currentStepper: UIStepper = {
         let stepper = UIStepper()
@@ -91,6 +94,8 @@ class GoalTableViewCell: UITableViewCell {
 // MARK: cellConfigure and setting view's contstraints
 extension GoalTableViewCell {
     func cellConfigure(indexPath: IndexPath, stepper: Bool) {
+        cellLabel.text = labelsArray[indexPath.section][indexPath.row]
+        
         if indexPath == [0, 0] {
             titleTextField.isHidden = false
         }
@@ -134,16 +139,19 @@ extension GoalTableViewCell {
         NSLayoutConstraint.activate([
             titleTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            titleTextField.widthAnchor.constraint(equalToConstant: 300 * 0.8),
             currentTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            currentTextField.widthAnchor.constraint(equalToConstant: 60),
             aimTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             aimTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            aimTextField.widthAnchor.constraint(equalToConstant: 60)
         ])
 
         contentView.addSubview(currentStepper)
         NSLayoutConstraint.activate([
             currentStepper.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            currentStepper.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            currentStepper.trailingAnchor.constraint(equalTo: currentTextField.leadingAnchor, constant: -6),
         ])
         
         // Notes

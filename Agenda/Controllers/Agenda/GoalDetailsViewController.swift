@@ -11,9 +11,6 @@ class GoalDetailsViewController: UIViewController {
     
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
-    let labelsArray = [["Title"], // 1st section
-                       ["Current", "Aim"], // 2nd section
-                       [""]] // 3rd section
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -70,7 +67,6 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaDetailsCell, for: indexPath) as? GoalTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (GoalDetails) передаёт вам привет") }
         cell.cellConfigure(indexPath: indexPath, stepper: true)
-        cell.cellLabel.text = labelsArray[indexPath.section][indexPath.row]
         cell.goal = goal
 //        cell.incrementButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
 //        cell.decrementButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)

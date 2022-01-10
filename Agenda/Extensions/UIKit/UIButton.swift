@@ -9,6 +9,7 @@ import UIKit
 
 /// Кнопки из бывшего Stepper'a. Кастомного, на весь экран. 10.01.21 - ветка `stepper-v1`
 /// Рано или поздно планирую всё же вернуть всё как было, поэтому не удаляю этот файл
+/// 9-й тикет в проект в Notion'e
 
 extension UIButton {
     convenience init(type: ButtonType, imageSystemName: String) {
