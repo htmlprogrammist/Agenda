@@ -37,6 +37,12 @@ class GoalTableViewCell: UITableViewCell {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
+    let currentStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.isHidden = true
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        return stepper
+    }()
     
     let notesTextView: UITextView = {
         let textView = UITextView()
@@ -58,18 +64,6 @@ class GoalTableViewCell: UITableViewCell {
         
         notesTextView.delegate = self
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: { [self] in
-            titleTextField.text = goal?.title
-            if let current = goal?.current, let aim = goal?.aim {
-                currentTextField.text = String(current)
-                aimTextField.text = String(aim)
-            }
-            if let notes = goal?.notes {
-                notesTextView.text = notes
-                notesTextView.textColor = UIColor.black
-            }
-        })
-        
         // MARK: Stepper
         incrementButton.addTarget(self, action: #selector(incrementButtonTapped), for: .touchUpInside)
         decrementButton.addTarget(self, action: #selector(decrementButtonTapped), for: .touchUpInside)
@@ -79,11 +73,32 @@ class GoalTableViewCell: UITableViewCell {
         stepperStack.addArrangedSubview(decrementButton)
         stepperStack.addArrangedSubview(incrementButton)
         
+        currentStepper.addTarget(self, action: #selector(stepperAction(sender:)), for: .valueChanged)
+        
+        displayData()
         setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func displayData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: { [self] in
+            titleTextField.text = goal?.title
+            if let current = goal?.current, let aim = goal?.aim {
+                currentTextField.text = String(current)
+                aimTextField.text = String(aim)
+                
+                currentStepper.minimumValue = 0
+                currentStepper.maximumValue = Double(goal?.aim ?? 1)
+                currentStepper.value = Double(goal?.current ?? 0)
+            }
+            if let notes = goal?.notes {
+                notesTextView.text = notes
+                notesTextView.textColor = UIColor.black
+            }
+        })
     }
     
     // MARK: Don't work properly after changing value in currentTextField
@@ -92,7 +107,8 @@ class GoalTableViewCell: UITableViewCell {
         if var value = goal?.current, value < goal?.aim ?? 1 {
             value += 1
             goal?.current = value
-            currentTextField.text = String(value)
+            displayData() // не работает
+            currentTextField.text = String(value) // не работает
             print("\(value) +")
         }
     }
@@ -100,9 +116,15 @@ class GoalTableViewCell: UITableViewCell {
         if var value = goal?.current, value > 0 {
             value -= 1
             goal?.current = value
-            currentTextField.text = String(value)
+            displayData() // не работает
+            currentTextField.text = String(value) // не работает
             print("\(value) -")
         }
+    }
+    
+    @objc func stepperAction(sender: UIStepper) {
+        goal?.current = Int(sender.value) // работает, но ничего на экране не изменяется, поэтому...
+        currentTextField.text = String(Int(sender.value)) // не работает
     }
 }
 
@@ -117,7 +139,8 @@ extension GoalTableViewCell {
         }
         
         if indexPath == [1, 1] && stepper {
-            stepperStack.isHidden = false
+//            stepperStack.isHidden = false
+            currentStepper.isHidden = false
         }
         if indexPath == [1, 2] && stepper {
             aimTextField.isHidden = false
@@ -167,6 +190,11 @@ extension GoalTableViewCell {
             stepperStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             stepperStack.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             stepperStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+        ])
+        contentView.addSubview(currentStepper)
+        NSLayoutConstraint.activate([
+            currentStepper.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            currentStepper.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
         ])
         
         // Notes
