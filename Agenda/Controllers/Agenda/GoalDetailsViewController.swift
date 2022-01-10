@@ -12,7 +12,7 @@ class GoalDetailsViewController: UIViewController {
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
     let labelsArray = [["Title"], // 1st section
-                       ["Current", "", "Aim"], // 2nd section
+                       ["Current", "Aim"], // 2nd section
                        [""]] // 3rd section
     
     let tableView: UITableView = {
@@ -61,7 +61,7 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return 3
+        case 1: return 2
         case 2: return 1
         default: return 1
         }
