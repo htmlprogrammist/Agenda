@@ -87,6 +87,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: Editing tableView (moving, deleting cells)
+    // moving cell (goal)
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
@@ -97,16 +98,18 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         goals.insert(chosenGoal, at: destinationIndexPath.row) // вставляем в другое
     }
     
-    // deleting cell
+    // deleting cell (goal)
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal?", preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { action in
                 self.goals.remove(at: indexPath.row)
                 self.tableView.reloadData()
-                self.setEditing(false, animated: true)
+//                self.tableView.reloadRows(at: indexPath, with: .fade) // NSException
+                // MARK: Надо ли выходить из режима редактирования? Просто анимации нет, в этом проблема.
+//                self.setEditing(false, animated: true) // turn off editing mode
             })
-            let no = UIAlertAction(title: "No", style: .default) { _ in self.setEditing(false, animated: true) }
+            let no = UIAlertAction(title: "No", style: .default) { _ in self.setEditing(false, animated: true) } // turn off editing mode
             
             alert.addAction(yes)
             alert.addAction(no)
@@ -115,13 +118,6 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             present(alert, animated: true, completion: nil) // present alert to the display
         }
     }
-
-
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        self.dataSource.removeAtIndex(myIndex) // dataSource Начало массива
-//        self.tableview!.reloadData()
-//        tableView.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: .automatic)
-//    }
 }
 
 extension AgendaViewController {
@@ -154,6 +150,7 @@ extension AgendaViewController {
             progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             progressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            progressView.heightAnchor.constraint(equalToConstant: 4), // default: 4
             
             dayAndMonth.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 1),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

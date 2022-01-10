@@ -139,7 +139,7 @@ extension GoalTableViewCell {
         }
         
         if indexPath == [1, 1] && stepper {
-//            stepperStack.isHidden = false
+            stepperStack.isHidden = false
             currentStepper.isHidden = false
         }
         if indexPath == [1, 2] && stepper {

@@ -11,7 +11,6 @@ class GoalDetailsViewController: UIViewController {
     
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
-    var idAgendaDetailsHeader = "idAgendaDetailsHeader"
     let labelsArray = [["Title"], // 1st section
                        ["Current", "", "Aim"], // 2nd section
                        [""]] // 3rd section
@@ -37,6 +36,7 @@ class GoalDetailsViewController: UIViewController {
     
     @objc func saveButtonTapped() {
         print("Save")
+        navigationController?.popViewController(animated: true) // нужно ли это? Скорее да, чем нет
     }
     
     func setupView() {
@@ -72,6 +72,8 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         cell.cellConfigure(indexPath: indexPath, stepper: true)
         cell.cellLabel.text = labelsArray[indexPath.section][indexPath.row]
         cell.goal = goal
+//        cell.incrementButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
+//        cell.decrementButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
         return cell
     }
     
@@ -85,7 +87,7 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idAgendaDetailsHeader)
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "idAgendaDetailsHeader")
         header?.backgroundColor = .clear
         return header
     }
@@ -97,5 +99,11 @@ extension GoalDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         default:
             return 20
         }
+    }
+}
+
+extension GoalDetailsViewController {
+    @objc func reloadData() {
+        tableView.reloadData()
     }
 }

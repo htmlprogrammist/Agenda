@@ -1,5 +1,5 @@
 //
-//  Aim.swift
+//  Goal.swift
 //  Agenda
 //
 //  Created by Егор Бадмаев on 12.12.2021.

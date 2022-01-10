@@ -10,7 +10,9 @@
 struct Summary {
     // var streak: Int // сомнительная идея, ведь цели на месяц, а не на день
     var minAimsForMonth: Int  // минимальное количество целей, которые надо выполнить (потом будут поощрения)
-    var numberOfCompletedGoals: Int
-    var numberOfGoals: Int
-    var averageNumberOfCompletedGoals: Double
+    var numberOfCompletedGoals: Int // общее количество выполненных целей
+    var numberOfGoals: Int // общее количество поставленных целей
+    var averageNumberOfCompletedGoals: Double {
+        Double(numberOfCompletedGoals) / Double(numberOfGoals)
+    } // среднее арифметическое выполненных целей (округлить до десятых)
 }

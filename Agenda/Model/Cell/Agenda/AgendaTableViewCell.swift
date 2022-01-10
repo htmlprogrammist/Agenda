@@ -59,9 +59,10 @@ class AgendaTableViewCell: UITableViewCell {
             goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
-            goalProgressView.topAnchor.constraint(equalTo: goalTextLabel.bottomAnchor, constant: 10),
+            goalProgressView.topAnchor.constraint(equalTo: goalTextLabel.bottomAnchor, constant: 8),
             goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             goalProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            goalProgressView.heightAnchor.constraint(equalToConstant: 5), // default: 4
             
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
