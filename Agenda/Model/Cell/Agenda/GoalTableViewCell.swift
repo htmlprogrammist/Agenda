@@ -10,6 +10,9 @@ import UIKit
 class GoalTableViewCell: UITableViewCell {
     
     var goal: Goal? // MARK: Add unwrapping this thing so there will be no need to use "goal?.current ?? 0" etc.
+    let labelsArray = [["Title"], // 1st section
+                       ["Current", "Aim"], // 2nd section
+                       [""]] // 3rd section
     
     let backgroundViewCell: UIView = {
         let view = UIView()
@@ -24,19 +27,10 @@ class GoalTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let titleTextField = UITextField(keyboardType: .default, placeholder: "Title")
-    let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
-    let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0")
-    
-    let incrementButton = UIButton(type: .system, imageSystemName: "plus")
-    let decrementButton = UIButton(type: .system, imageSystemName: "minus")
-    let stepperStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.isHidden = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isLayoutMarginsRelativeArrangement = true
-        return stackView
-    }()
+    let titleTextField = UITextField(keyboardType: .default, placeholder: "Title", borderStyle: .none)
+    let currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
+    let aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
+
     let currentStepper: UIStepper = {
         let stepper = UIStepper()
         stepper.isHidden = true
@@ -63,16 +57,6 @@ class GoalTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         
         notesTextView.delegate = self
-        
-        // MARK: Stepper
-        incrementButton.addTarget(self, action: #selector(incrementButtonTapped), for: .touchUpInside)
-        decrementButton.addTarget(self, action: #selector(decrementButtonTapped), for: .touchUpInside)
-        stepperStack.distribution = .fillEqually
-        stepperStack.spacing = 4
-        stepperStack.layoutMargins = UIEdgeInsets(top: 3, left: 10, bottom: 3, right: 10)
-        stepperStack.addArrangedSubview(decrementButton)
-        stepperStack.addArrangedSubview(incrementButton)
-        
         currentStepper.addTarget(self, action: #selector(stepperAction(sender:)), for: .valueChanged)
         
         displayData()
@@ -101,36 +85,17 @@ class GoalTableViewCell: UITableViewCell {
         })
     }
     
-    // MARK: Don't work properly after changing value in currentTextField
-    @objc func incrementButtonTapped() {
-        // MARK: needs refactoring
-        if var value = goal?.current, value < goal?.aim ?? 1 {
-            value += 1
-            goal?.current = value
-            displayData() // не работает
-            currentTextField.text = String(value) // не работает
-            print("\(value) +")
-        }
-    }
-    @objc func decrementButtonTapped() {
-        if var value = goal?.current, value > 0 {
-            value -= 1
-            goal?.current = value
-            displayData() // не работает
-            currentTextField.text = String(value) // не работает
-            print("\(value) -")
-        }
-    }
-    
     @objc func stepperAction(sender: UIStepper) {
         goal?.current = Int(sender.value) // работает, но ничего на экране не изменяется, поэтому...
-        currentTextField.text = String(Int(sender.value)) // не работает
+        currentTextField.text = String(Int(sender.value))
     }
 }
 
 // MARK: cellConfigure and setting view's contstraints
 extension GoalTableViewCell {
     func cellConfigure(indexPath: IndexPath, stepper: Bool) {
+        cellLabel.text = labelsArray[indexPath.section][indexPath.row]
+        
         if indexPath == [0, 0] {
             titleTextField.isHidden = false
         }
@@ -138,15 +103,11 @@ extension GoalTableViewCell {
             currentTextField.isHidden = false
         }
         
-        if indexPath == [1, 1] && stepper {
-            stepperStack.isHidden = false
+        if indexPath == [1, 0] && stepper {
             currentStepper.isHidden = false
         }
-        if indexPath == [1, 2] && stepper {
-            aimTextField.isHidden = false
-        }
         
-        if indexPath == [1, 1] && !stepper {
+        if indexPath == [1, 1] {
             aimTextField.isHidden = false
         }
         
@@ -178,23 +139,19 @@ extension GoalTableViewCell {
         NSLayoutConstraint.activate([
             titleTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            titleTextField.widthAnchor.constraint(equalToConstant: 300 * 0.8),
             currentTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            currentTextField.widthAnchor.constraint(equalToConstant: 60),
             aimTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             aimTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            aimTextField.widthAnchor.constraint(equalToConstant: 60)
         ])
-        
-        // MARK: Stepper
-        contentView.addSubview(stepperStack)
-        NSLayoutConstraint.activate([
-            stepperStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            stepperStack.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            stepperStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-        ])
+
         contentView.addSubview(currentStepper)
         NSLayoutConstraint.activate([
             currentStepper.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            currentStepper.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            currentStepper.trailingAnchor.constraint(equalTo: currentTextField.leadingAnchor, constant: -6),
         ])
         
         // Notes
