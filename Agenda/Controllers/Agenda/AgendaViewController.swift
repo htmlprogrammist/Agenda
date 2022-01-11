@@ -23,24 +23,28 @@ class AgendaViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+//    var tableView: UITableView = {
+//        let tableView = UITableView(frame: .zero, style: .grouped)
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        return tableView
+//    }()
+    
+//    let aTableView = AgendaTableView()
+//    var goals = aTableView.goals
+//    let tableView = aTableView.tableView
+    
+    let tableView: UITableView = {
+        let aTableView = AgendaTableView()
+        aTableView.translatesAutoresizingMaskIntoConstraints = false
+        return aTableView.tableView
     }()
 
-    var idAgendaCell = "idAgendaCell"
-    var goals: [Goal] = Goal.getGoals() // must be optional (var goals: [Goal]?)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         navigationItem.title = "Agenda"
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
         navigationItem.leftBarButtonItem = editButtonItem
@@ -50,34 +54,8 @@ class AgendaViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDelegate, UITableViewDataSource
-extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        goals.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idAgendaCell, for: indexPath) as? AgendaTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка передаёт вам привет")}
-        
-        let goal = goals[indexPath.row]
-        cell.goalTextLabel.text = goal.title
-        cell.goalProgressView.progress = Float(goal.current) / Float(goal.aim)
-        cell.goalCurrentLabel.text = String(goal.current)
-        cell.goalEndLabel.text = String(goal.aim)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
-        return header
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
+// MARK: TableView
+extension AgendaViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

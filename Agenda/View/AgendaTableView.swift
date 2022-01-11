@@ -28,22 +28,26 @@ class AgendaTableView: UIView {
      - [ ] 
      */
     
-    func setupConstraints() {
+    func setupView() {
         contentView.addSubview(tableView)
         addSubview(contentView)
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: idAgendaCell)
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.topAnchor.constraint(equalTo: topAnchor),
-//            contentView.centerXAnchor.constraint(equalTo: centerXAnchor), // ?
-//            contentView.centerYAnchor.constraint(equalTo: centerYAnchor), // ?
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            tableView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            tableView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
