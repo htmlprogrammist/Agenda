@@ -138,8 +138,8 @@ extension GoalTableViewCell {
         contentView.addSubview(aimTextField)
         NSLayoutConstraint.activate([
             titleTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleTextField.leadingAnchor.constraint(equalTo: cellLabel.trailingAnchor, constant: 10),
             titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            titleTextField.widthAnchor.constraint(equalToConstant: 300 * 0.8),
             currentTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             currentTextField.widthAnchor.constraint(equalToConstant: 60),
