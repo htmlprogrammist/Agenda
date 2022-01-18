@@ -11,6 +11,7 @@ class GoalDetailsViewController: UIViewController {
     
     var goal: Goal?
     var idAgendaDetailsCell = "idAgendaDetailsCell"
+    var saveButtonShow: Bool?
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -22,7 +23,9 @@ class GoalDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        if let saveButtonBool = saveButtonShow, saveButtonBool {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        }
         
         tableView.delegate = self
         tableView.dataSource = self

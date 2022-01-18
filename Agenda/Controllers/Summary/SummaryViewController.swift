@@ -13,12 +13,13 @@ class SummaryViewController: UIViewController {
                           numberOfCompletedGoals: 3,
                           numberOfGoals: 5)
     let idSummaryCell = "idSummaryCell"
-    
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+    /*
+    let collectionView: UICollectionView = {
+        let collectionView = UICollectionView()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
+    */
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +29,14 @@ class SummaryViewController: UIViewController {
     }
 }
 
-extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4 // summary has 4 things to display
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: idSummaryCell, for: indexPath) as? SummaryTableViewCell else { fatalError("SummaryCell fatalError") }
-        let cell = tableView.dequeueReusableCell(withIdentifier: idSummaryCell, for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: idSummaryCell, for: indexPath) as? SummaryCollectionViewCell else { fatalError("SummaryCell fatalError") }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idSummaryCell, for: indexPath)
         return cell
     }
 }

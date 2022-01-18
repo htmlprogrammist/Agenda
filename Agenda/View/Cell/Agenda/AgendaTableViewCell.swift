@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+//class GoalPreviewTableViewCell: UITableViewCell {
+/// тогда GoalTableViewCell.swift будет
+//class GoalDetailsTableViewCell: UITableViewCell {
 class AgendaTableViewCell: UITableViewCell {
     var goalTextLabel: UILabel = {
         let label = UILabel()

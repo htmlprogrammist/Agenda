@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F609DA172794AEA60015E142 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F609DA162794AEA60015E142 /* SummaryCollectionViewCell.swift */; };
 		F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61452572787437800E76E64 /* GoalTableViewCell.swift */; };
 		F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BE119277B2571001E0A5F /* UIButton.swift */; };
 		F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01F92763BBD600CDF414 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F609DA162794AEA60015E142 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F61452572787437800E76E64 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F61BE119277B2571001E0A5F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		F62B01F62763BBD600CDF414 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,13 +72,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F623ADBB2783929F00375094 /* Agenda */ = {
+		F609DA152794AE8F0015E142 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				F609DA162794AEA60015E142 /* SummaryCollectionViewCell.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		F6270256278F735700618D88 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
 				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
 				F61452572787437800E76E64 /* GoalTableViewCell.swift */,
 			);
 			path = Agenda;
+			sourceTree = "<group>";
+		};
+		F6270258278F735D00618D88 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		F62B01ED2763BBD600CDF414 = {
@@ -161,7 +179,6 @@
 		F6461D042766041F001D9CBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F65121132769BC92006DC3EC /* Cell */,
 				F6461D092766045B001D9CBA /* Goal.swift */,
 				F6461D0527660433001D9CBA /* Summary.swift */,
 			);
@@ -171,8 +188,9 @@
 		F65121132769BC92006DC3EC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F623ADBB2783929F00375094 /* Agenda */,
-				F6CA5BFB278C329D000E514E /* History */,
+				F6270256278F735700618D88 /* Agenda */,
+				F6270258278F735D00618D88 /* History */,
+				F609DA152794AE8F0015E142 /* Summary */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -180,6 +198,7 @@
 		F65712D62789DFBA00C24141 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F65121132769BC92006DC3EC /* Cell */,
 				F65712D72789DFD100C24141 /* AgendaTableView.swift */,
 				F65712DB2789DFE000C24141 /* GoalTableView.swift */,
 			);
@@ -211,14 +230,6 @@
 				F62B02212763C20900CDF414 /* SummaryViewController.swift */,
 			);
 			path = Summary;
-			sourceTree = "<group>";
-		};
-		F6CA5BFB278C329D000E514E /* History */ = {
-			isa = PBXGroup;
-			children = (
-				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
-			);
-			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +316,7 @@
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
+				F609DA172794AEA60015E142 /* SummaryCollectionViewCell.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F65712DC2789DFE000C24141 /* GoalTableView.swift in Sources */,
 				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,

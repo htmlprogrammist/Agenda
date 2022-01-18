@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainTabBarController.swift
 //  Agenda
 //
 //  Created by Егор Бадмаев on 10.12.2021.
@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
     }
     
     func createTabs() {
-        let agendaViewController = createNavController(viewController: AgendaViewController(), itemName: "Agenda", itemImage: "tray.full.fill")
+        let agendaViewController = createNavController(viewController: AgendaViewController(), itemName: "Main", itemImage: "calendar")
         let historyViewController = createNavController(viewController: HistoryViewController(style: .grouped), itemName: "History", itemImage: "clock.fill")
         let summaryViewController = createNavController(viewController: SummaryViewController(), itemName: "Summary", itemImage: "square.text.square.fill")
         

@@ -83,6 +83,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let destination = GoalDetailsViewController()
         destination.goal = goals[indexPath.row]
+        destination.saveButtonShow = true
         navigationController?.pushViewController(destination, animated: true)
     }
     
