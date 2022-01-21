@@ -21,4 +21,13 @@ struct Goal {
             Goal(title: "Написать статьи для блога", current: 14, aim: 20, notes: "\"Как стать успешным?\"")
          ]
      }
+    
+    static func getHistoryGoals() -> [Goal] {
+        return [
+            Goal(title: "Пройти Ведьмака 3", current: 99, aim: 100),
+            Goal(title: "Домашка по курсу", current: 20, aim: 20, notes: "Курс iOS-разработчик"),
+            Goal(title: "Прочесть книгу", current: 510, aim: 545, notes: "Думай как математик. Барбара Оакли"),
+            Goal(title: "Написать статьи для блога", current: 16, aim: 14, notes: "\"Как стать успешным?\"")
+        ]
+    }
  }

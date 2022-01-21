@@ -15,8 +15,8 @@ class HistoryViewController: UITableViewController {
      От AgendaViewController нам нужен только tableView с ячейками. Ни UIBarButtonItems, ни прогресс-вью с лейблом даты. А в title можно передать тот месяц и год, который сейчас открыт
      Если я научусь всё-таки передавать tableView со всеми настройками в Custom View: UIVIew каком-нибудь, то будет вообще здорово. Эта фишка нужна здесь, и в AddingGoal & GoalDetails
      */
-//    var data = ["November, 2021", "December, 2021", "January, 2022", "February, 2022"] // MARK: (1)
-    var data: [String] = []
+    var data = ["November, 2021", "December, 2021", "January, 2022", "February, 2022"] // MARK: (1)
+//    var data: [String] = []
     var idHistoryCell = "idHistoryCell"
     
     let datePicker: UIDatePicker = {

@@ -10,7 +10,7 @@ import UIKit
 class MonthGoalsViewController: UITableViewController {
 
     var idMonthGoalCell = "idMonthGoalCell"
-    var goals: [Goal] = Goal.getGoals() // must be optional (var goals: [Goal]?)
+    var goals: [Goal] = Goal.getHistoryGoals() // must be optional (var goals: [Goal]?)
     
     override init(style: UITableView.Style) {
         super.init(style: style)
