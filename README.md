@@ -1,7 +1,13 @@
 #  Agenda
 Application that allows you to track your goals for a month
 
-# Demo
+# Demo (now screenshots only)
+![Agenda-main](Screens/Agenda-main.png)
+![Agenda-add](Screens/Agenda-add.png)
+![Agenda-details](Screens/Agenda-details.png)
+![History-main](Screens/History-main.png)
+![History-goals](Screens/History-goals.png)
+![History-details](Screens/History-details.png)
 
 # Description
 My first independent UIKit learning project. In this project, I demonstrated the knowledge:
