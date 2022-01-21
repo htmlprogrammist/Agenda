@@ -75,7 +75,7 @@ class GoalTableViewCell: UITableViewCell {
                 aimTextField.text = String(aim)
                 
                 currentStepper.minimumValue = 0
-                currentStepper.maximumValue = Double(goal?.aim ?? 1)
+//                currentStepper.maximumValue = Double(goal?.aim ?? 1)
                 currentStepper.value = Double(goal?.current ?? 0)
             }
             if let notes = goal?.notes {

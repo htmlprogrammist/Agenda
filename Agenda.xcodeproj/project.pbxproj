@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				F62B02162763BD1900CDF414 /* Application */,
-				F62B02182763BD7100CDF414 /* Controllers */,
+				F62B02182763BD7100CDF414 /* Controller */,
 				F6461D042766041F001D9CBA /* Model */,
 				F65712D62789DFBA00C24141 /* View */,
 				F632600027723CE3006347DF /* Extensions */,
@@ -147,7 +147,7 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		F62B02182763BD7100CDF414 /* Controllers */ = {
+		F62B02182763BD7100CDF414 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */,
@@ -155,7 +155,7 @@
 				F6C0AAE7276B697E007D372E /* History */,
 				F6C0AAE9276B6984007D372E /* Summary */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		F632600027723CE3006347DF /* Extensions */ = {
