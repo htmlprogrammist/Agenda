@@ -2,12 +2,9 @@
 Application that allows you to track your goals for a month
 
 # Demo (now screenshots only)
-![Agenda-main](Screens/Agenda-main.png)
-![Agenda-add](Screens/Agenda-add.png)
-![Agenda-details](Screens/Agenda-details.png)
-![History-main](Screens/History-main.png)
-![History-goals](Screens/History-goals.png)
-![History-details](Screens/History-details.png)
+| <img src="Screens/Agenda-main.png" alt="Agenda-main" width="300"/> | <img src="Screens/Agenda-add.png" alt="Agenda-add" width="300"/> | <img src="Screens/Agenda-details.png" alt="Agenda-details" width="300"/> |
+| ------------- |:-------------:| -----:|
+| <img src="Screens/History-main.png" alt="History-main" width="300"/> | <img src="Screens/History-goals.png" alt="History-goals" width="300"/> | <img src="Screens/History-details.png" alt="History-details" width="300"/> |
 
 # Description
 My first independent UIKit learning project. In this project, I demonstrated the knowledge:
