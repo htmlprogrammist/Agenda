@@ -118,9 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				F62B02162763BD1900CDF414 /* Application */,
-				F62B02182763BD7100CDF414 /* Controller */,
-				F6461D042766041F001D9CBA /* Model */,
-				F65712D62789DFBA00C24141 /* View */,
+				F62B02182763BD7100CDF414 /* Controllers */,
+				F6461D042766041F001D9CBA /* Models */,
+				F65712D62789DFBA00C24141 /* Views */,
 				F632600027723CE3006347DF /* Extensions */,
 				F62B02132763BC7800CDF414 /* Resources */,
 			);
@@ -147,7 +147,7 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		F62B02182763BD7100CDF414 /* Controller */ = {
+		F62B02182763BD7100CDF414 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */,
@@ -155,7 +155,7 @@
 				F6C0AAE7276B697E007D372E /* History */,
 				F6C0AAE9276B6984007D372E /* Summary */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F632600027723CE3006347DF /* Extensions */ = {
@@ -176,13 +176,13 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		F6461D042766041F001D9CBA /* Model */ = {
+		F6461D042766041F001D9CBA /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F6461D092766045B001D9CBA /* Goal.swift */,
 				F6461D0527660433001D9CBA /* Summary.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F65121132769BC92006DC3EC /* Cell */ = {
@@ -195,22 +195,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		F65712D62789DFBA00C24141 /* View */ = {
+		F65712D62789DFBA00C24141 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F65121132769BC92006DC3EC /* Cell */,
 				F65712D72789DFD100C24141 /* AgendaTableView.swift */,
 				F65712DB2789DFE000C24141 /* GoalTableView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F6C0AAE5276B6964007D372E /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
 				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
-				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
 				F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */,
+				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";

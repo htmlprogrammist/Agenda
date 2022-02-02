@@ -9,33 +9,18 @@ import UIKit
 
 class HistoryViewController: UITableViewController {
     
-    // MARK: Мысли:
-    /*
-     Надо переделать в UIViewController, и так же, как и в Agenda, сверху, под Title'ом будет DatePicker, чтобы сразу выбрать месяц и год, и открыть новый экран (Как AgendaViewController), который будет показывать всё по этому месяцу, как сейчас AgendaViewController показывает текущий
-     От AgendaViewController нам нужен только tableView с ячейками. Ни UIBarButtonItems, ни прогресс-вью с лейблом даты. А в title можно передать тот месяц и год, который сейчас открыт
-     Если я научусь всё-таки передавать tableView со всеми настройками в Custom View: UIVIew каком-нибудь, то будет вообще здорово. Эта фишка нужна здесь, и в AddingGoal & GoalDetails
-     */
     var data = ["November, 2021", "December, 2021", "January, 2022", "February, 2022"] // MARK: (1)
 //    var data: [String] = []
     var idHistoryCell = "idHistoryCell"
-    
-    let datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        return datePicker
-    }()
-//    var tableView: UITableView = {
-//        let tableView = UITableView(frame: .zero, style: .grouped)
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        return tableView
-//    }()
+
     let infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Information on previous months will be reflected here."
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular) // .medium?
+        // мне кажется, если и делать медиум, то тогда с картинкой в стеке
         label.isHidden = true
         return label
     }()

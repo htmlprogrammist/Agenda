@@ -45,8 +45,13 @@ class AgendaViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
         navigationItem.leftBarButtonItem = editButtonItem
         
-        getMonthInfo()
         setupView()  // adding subViews of view and setting constraints
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getMonthInfo()
     }
 }
 
@@ -83,7 +88,6 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let destination = GoalDetailsViewController()
         destination.goal = goals[indexPath.row]
-        destination.saveButtonShow = true
         navigationController?.pushViewController(destination, animated: true)
     }
     
