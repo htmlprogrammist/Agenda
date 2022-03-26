@@ -11,7 +11,6 @@
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
 		F0BB552727EF4D5700FA7E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */; };
-		F0BB553327EF4E3000FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553127EF4E3000FA7E99 /* Agenda.xcdatamodeld */; };
 		F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */; };
 		F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */; };
 		F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */; };
@@ -19,6 +18,11 @@
 		F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */; };
 		F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554627EF525300FA7E99 /* SummaryViewController.swift */; };
 		F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554827EF534C00FA7E99 /* TransitionManager.swift */; };
+		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
+		F0BB555127EF5A9B00FA7E99 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554D27EF5A9B00FA7E99 /* Goal+CoreDataClass.swift */; };
+		F0BB555227EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554E27EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift */; };
+		F0BB555327EF5A9B00FA7E99 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554F27EF5A9B00FA7E99 /* Month+CoreDataClass.swift */; };
+		F0BB555427EF5A9B00FA7E99 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB555027EF5A9B00FA7E99 /* Month+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +33,6 @@
 		F0BB552627EF4D5700FA7E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0BB552827EF4D5700FA7E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0BB552E27EF4D8700FA7E99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F0BB553227EF4E3000FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
 		F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +40,11 @@
 		F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F0BB554627EF525300FA7E99 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		F0BB554827EF534C00FA7E99 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
+		F0BB554D27EF5A9B00FA7E99 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0BB554E27EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0BB554F27EF5A9B00FA7E99 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0BB555027EF5A9B00FA7E99 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +94,7 @@
 				F0BB552327EF4D5700FA7E99 /* Assets.xcassets */,
 				F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */,
 				F0BB552827EF4D5700FA7E99 /* Info.plist */,
-				F0BB553127EF4E3000FA7E99 /* Agenda.xcdatamodeld */,
+				F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -123,6 +131,7 @@
 		F0BB553627EF4F0D00FA7E99 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0BB555527EF5AD800FA7E99 /* CoreData */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +174,17 @@
 				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB554D27EF5A9B00FA7E99 /* Goal+CoreDataClass.swift */,
+				F0BB554E27EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift */,
+				F0BB554F27EF5A9B00FA7E99 /* Month+CoreDataClass.swift */,
+				F0BB555027EF5A9B00FA7E99 /* Month+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,12 +258,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
+				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F0BB555427EF5A9B00FA7E99 /* Month+CoreDataProperties.swift in Sources */,
+				F0BB555327EF5A9B00FA7E99 /* Month+CoreDataClass.swift in Sources */,
+				F0BB555227EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
-				F0BB553327EF4E3000FA7E99 /* Agenda.xcdatamodeld in Sources */,
 				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,
+				F0BB555127EF5A9B00FA7E99 /* Goal+CoreDataClass.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
 				F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */,
 				F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */,
@@ -458,14 +482,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F0BB553127EF4E3000FA7E99 /* Agenda.xcdatamodeld */ = {
+		F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F0BB553227EF4E3000FA7E99 /* Agenda.xcdatamodel */,
+				F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */,
 			);
-			currentVersion = F0BB553227EF4E3000FA7E99 /* Agenda.xcdatamodel */;
-			name = Agenda.xcdatamodeld;
-			path = ../../../../Downloads/Agenda.xcdatamodeld;
+			currentVersion = F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */;
+			path = Agenda.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
