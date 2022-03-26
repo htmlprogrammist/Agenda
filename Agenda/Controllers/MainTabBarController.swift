@@ -8,7 +8,9 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-
+    
+    private lazy var coreDataManager = CoreDataManager(containerName: "Agenda")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,7 +19,7 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func createTabs() {
-        let agendaViewController = createNavController(viewController: AgendaViewController(),
+        let agendaViewController = createNavController(viewController: AgendaViewController(coreDataManager: coreDataManager),
                                                        itemName: "Agenda", itemImage: "calendar")
         let historyViewController = createNavController(viewController: HistoryViewController(),
                                                         itemName: "History", itemImage: "clock.fill")
