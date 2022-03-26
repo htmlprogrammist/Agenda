@@ -4,7 +4,7 @@
 //
 //  Created by Егор Бадмаев on 12.12.2021.
 //
-
+/*
 struct Goal {
     var title: String
     var current: Int
@@ -31,3 +31,4 @@ struct Goal {
         ]
     }
  }
+*/
