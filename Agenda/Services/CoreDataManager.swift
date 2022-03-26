@@ -8,7 +8,10 @@
 import CoreData
 
 protocol CoreDataManagerProtocol {
+    var managedObjectContext: NSManagedObjectContext { get }
+    var persistentContainer: NSPersistentContainer { get }
     
+    func saveContext()
 }
 
 final class CoreDataManager: NSObject, CoreDataManagerProtocol {
