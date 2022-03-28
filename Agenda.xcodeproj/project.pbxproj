@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F06F2A9427F184EF00704CC4 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06F2A9027F184EF00704CC4 /* Goal+CoreDataClass.swift */; };
+		F06F2A9527F184EF00704CC4 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06F2A9127F184EF00704CC4 /* Goal+CoreDataProperties.swift */; };
+		F06F2A9627F184EF00704CC4 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06F2A9227F184EF00704CC4 /* Month+CoreDataClass.swift */; };
+		F06F2A9727F184EF00704CC4 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06F2A9327F184EF00704CC4 /* Month+CoreDataProperties.swift */; };
 		F0BB54B027EF418500FA7E99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB54AF27EF418500FA7E99 /* CoreDataManager.swift */; };
-		F0BB54B527EF435600FA7E99 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB54B127EF435600FA7E99 /* Month+CoreDataClass.swift */; };
-		F0BB54B627EF435600FA7E99 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB54B227EF435600FA7E99 /* Month+CoreDataProperties.swift */; };
-		F0BB54B727EF435600FA7E99 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB54B327EF435600FA7E99 /* Goal+CoreDataClass.swift */; };
-		F0BB54B827EF435600FA7E99 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB54B427EF435600FA7E99 /* Goal+CoreDataProperties.swift */; };
 		F609DA172794AEA60015E142 /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F609DA162794AEA60015E142 /* SummaryCollectionViewCell.swift */; };
 		F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61452572787437800E76E64 /* GoalTableViewCell.swift */; };
 		F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BE119277B2571001E0A5F /* UIButton.swift */; };
@@ -38,11 +38,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F06F2A9027F184EF00704CC4 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F06F2A9127F184EF00704CC4 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F06F2A9227F184EF00704CC4 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F06F2A9327F184EF00704CC4 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BB54AF27EF418500FA7E99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		F0BB54B127EF435600FA7E99 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F0BB54B227EF435600FA7E99 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F0BB54B327EF435600FA7E99 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F0BB54B427EF435600FA7E99 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F609DA162794AEA60015E142 /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F61452572787437800E76E64 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F61BE119277B2571001E0A5F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -93,10 +93,10 @@
 		F0BB54B927EF435D00FA7E99 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F0BB54B127EF435600FA7E99 /* Month+CoreDataClass.swift */,
-				F0BB54B227EF435600FA7E99 /* Month+CoreDataProperties.swift */,
-				F0BB54B327EF435600FA7E99 /* Goal+CoreDataClass.swift */,
-				F0BB54B427EF435600FA7E99 /* Goal+CoreDataProperties.swift */,
+				F06F2A9027F184EF00704CC4 /* Goal+CoreDataClass.swift */,
+				F06F2A9127F184EF00704CC4 /* Goal+CoreDataProperties.swift */,
+				F06F2A9227F184EF00704CC4 /* Month+CoreDataClass.swift */,
+				F06F2A9327F184EF00704CC4 /* Month+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -338,9 +338,7 @@
 				F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */,
 				F6CA5BD8278C2836000E514E /* MonthGoalsViewController.swift in Sources */,
 				F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */,
-				F0BB54B527EF435600FA7E99 /* Month+CoreDataClass.swift in Sources */,
 				F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */,
-				F0BB54B827EF435600FA7E99 /* Goal+CoreDataProperties.swift in Sources */,
 				F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */,
 				F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */,
 				F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */,
@@ -348,13 +346,15 @@
 				F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */,
 				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
 				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
-				F0BB54B727EF435600FA7E99 /* Goal+CoreDataClass.swift in Sources */,
+				F06F2A9527F184EF00704CC4 /* Goal+CoreDataProperties.swift in Sources */,
 				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
+				F06F2A9427F184EF00704CC4 /* Goal+CoreDataClass.swift in Sources */,
 				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
+				F06F2A9627F184EF00704CC4 /* Month+CoreDataClass.swift in Sources */,
 				F609DA172794AEA60015E142 /* SummaryCollectionViewCell.swift in Sources */,
-				F0BB54B627EF435600FA7E99 /* Month+CoreDataProperties.swift in Sources */,
 				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
 				F65712DC2789DFE000C24141 /* GoalTableView.swift in Sources */,
+				F06F2A9727F184EF00704CC4 /* Month+CoreDataProperties.swift in Sources */,
 				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,
 				F6B37182277B8A9400F011EC /* UITextField.swift in Sources */,
 				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,

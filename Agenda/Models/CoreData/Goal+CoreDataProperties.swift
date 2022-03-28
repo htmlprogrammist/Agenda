@@ -2,7 +2,7 @@
 //  Goal+CoreDataProperties.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 26.03.2022.
+//  Created by Егор Бадмаев on 28.03.2022.
 //
 //
 
@@ -16,10 +16,10 @@ extension Goal {
         return NSFetchRequest<Goal>(entityName: "Goal")
     }
 
-    @NSManaged public var title: String?
-    @NSManaged public var current: Int32
     @NSManaged public var aim: Int32
+    @NSManaged public var current: Int32
     @NSManaged public var notes: String?
+    @NSManaged public var title: String?
     @NSManaged public var month: Month?
 
 }

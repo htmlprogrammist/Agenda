@@ -2,7 +2,7 @@
 //  Month+CoreDataProperties.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 26.03.2022.
+//  Created by Егор Бадмаев on 28.03.2022.
 //
 //
 
