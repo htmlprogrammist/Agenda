@@ -21,7 +21,7 @@ final class MainTabBarController: UITabBarController {
     private func createTabs() {
         let agendaViewController = createNavController(viewController: AgendaViewController(coreDataManager: coreDataManager),
                                                        itemName: "Agenda", itemImage: "calendar")
-        let historyViewController = createNavController(viewController: HistoryViewController(),
+        let historyViewController = createNavController(viewController: HistoryViewController(coreDataManager: coreDataManager),
                                                         itemName: "History", itemImage: "clock.fill")
         let summaryViewController = createNavController(viewController: SummaryViewController(),
                                                         itemName: "Summary", itemImage: "square.text.square.fill")

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AgendaTableViewCell: UITableViewCell {
+final class AgendaTableViewCell: UITableViewCell {
     
     static let identifier = "agendaCell"
     

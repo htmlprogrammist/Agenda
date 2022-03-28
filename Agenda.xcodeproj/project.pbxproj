@@ -23,6 +23,7 @@
 		F0BB555227EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554E27EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift */; };
 		F0BB555327EF5A9B00FA7E99 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554F27EF5A9B00FA7E99 /* Month+CoreDataClass.swift */; };
 		F0BB555427EF5A9B00FA7E99 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB555027EF5A9B00FA7E99 /* Month+CoreDataProperties.swift */; };
+		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		F0BB554E27EF5A9B00FA7E99 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BB554F27EF5A9B00FA7E99 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0BB555027EF5A9B00FA7E99 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
+				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
+				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
 				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,
 				F0BB555127EF5A9B00FA7E99 /* Goal+CoreDataClass.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,

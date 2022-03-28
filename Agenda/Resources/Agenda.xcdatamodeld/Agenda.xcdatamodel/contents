@@ -8,11 +8,11 @@
         <relationship name="month" maxCount="1" deletionRule="Nullify" destinationEntity="Month" inverseName="goals" inverseEntity="Month"/>
     </entity>
     <entity name="Month" representedClassName=".Month" syncable="YES">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="String"/>
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Goal" inverseName="month" inverseEntity="Goal"/>
     </entity>
     <elements>
-        <element name="Month" positionX="-829.197265625" positionY="-79.8599853515625" width="128" height="59"/>
         <element name="Goal" positionX="-402.92236328125" positionY="-204.6199035644531" width="128" height="104"/>
+        <element name="Month" positionX="-829.197265625" positionY="-79.8599853515625" width="128" height="59"/>
     </elements>
 </model>

@@ -16,7 +16,7 @@ extension Month {
         return NSFetchRequest<Month>(entityName: "Month")
     }
 
-    @NSManaged public var date: Date?
+    @NSManaged public var date: String
     @NSManaged public var goals: NSOrderedSet?
 
 }
