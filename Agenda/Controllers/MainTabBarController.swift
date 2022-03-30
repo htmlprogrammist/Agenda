@@ -9,7 +9,7 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
-    private lazy var coreDataManager = CoreDataManager(containerName: "Agenda")
+    public lazy var coreDataManager = CoreDataManager(containerName: "Agenda")
     
     override func viewDidLoad() {
         super.viewDidLoad()
