@@ -38,13 +38,14 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         var goals: [Goal] = month.goals - наверное, так
      3.
      */
+    // Fetches current month or creates a new one
     func fetchCurrentMonth() -> Month {
         
         // Get date in the chosen format, and then replace `dd` with `01` (for example: 27.03.2022 -> 01.03.2022)
         // This format is being used all over the project
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        var predicateDate = dateFormatter.string(from: Date())
+        var predicateDate = dateFormatter.string(from: Date()) // now
         predicateDate = predicateDate.replacingCharacters(in: ...predicateDate.index(predicateDate.startIndex, offsetBy: 1), with: "01")
         
         let fetchRequest: NSFetchRequest<Month> = Month.fetchRequest()

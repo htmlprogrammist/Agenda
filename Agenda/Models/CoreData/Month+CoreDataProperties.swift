@@ -55,3 +55,7 @@ extension Month {
     @NSManaged public func removeFromGoals(_ values: NSOrderedSet)
 
 }
+
+extension Month : Identifiable {
+
+}

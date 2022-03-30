@@ -19,14 +19,14 @@
 		F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554627EF525300FA7E99 /* SummaryViewController.swift */; };
 		F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554827EF534C00FA7E99 /* TransitionManager.swift */; };
 		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
+		F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */; };
+		F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */; };
+		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
+		F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */; };
 		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F025BFA127F3117200DCF7C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F025BFA227F3117200DCF7C5 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F025BFA327F3117200DCF7C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F025BFA427F3117200DCF7C5 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +42,10 @@
 		F0BB554627EF525300FA7E99 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		F0BB554827EF534C00FA7E99 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
+		F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,10 +182,10 @@
 		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F025BFA127F3117200DCF7C5 /* Goal+CoreDataClass.swift */,
-				F025BFA227F3117200DCF7C5 /* Goal+CoreDataProperties.swift */,
-				F025BFA327F3117200DCF7C5 /* Month+CoreDataClass.swift */,
-				F025BFA427F3117200DCF7C5 /* Month+CoreDataProperties.swift */,
+				F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */,
+				F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */,
+				F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */,
+				F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -258,11 +262,15 @@
 			files = (
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
+				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
+				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
+				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
 				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
 				F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */,

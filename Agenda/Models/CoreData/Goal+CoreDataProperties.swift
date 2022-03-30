@@ -23,3 +23,7 @@ extension Goal {
     @NSManaged public var month: Month?
 
 }
+
+extension Goal : Identifiable {
+
+}
