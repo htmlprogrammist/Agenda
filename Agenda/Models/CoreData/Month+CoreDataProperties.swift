@@ -16,7 +16,7 @@ extension Month {
         return NSFetchRequest<Month>(entityName: "Month")
     }
 
-    @NSManaged public var date: String
+    @NSManaged public var date: String?
     @NSManaged public var goals: NSOrderedSet?
 
 }
@@ -53,9 +53,5 @@ extension Month {
 
     @objc(removeGoals:)
     @NSManaged public func removeFromGoals(_ values: NSOrderedSet)
-
-}
-
-extension Month : Identifiable {
 
 }

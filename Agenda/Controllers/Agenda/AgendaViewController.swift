@@ -10,6 +10,7 @@ import UIKit
 final class AgendaViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
+    private var month: Month!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -23,6 +24,7 @@ final class AgendaViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "Agenda"
         
+        month = coreDataManager.fetchCurrentMonth()
         setupView()  // adding subViews of view and setting constraints
     }
     
