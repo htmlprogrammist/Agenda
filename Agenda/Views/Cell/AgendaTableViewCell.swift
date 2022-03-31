@@ -11,7 +11,7 @@ final class AgendaTableViewCell: UITableViewCell {
     
     static let identifier = "agendaCell"
     
-    lazy var goalTextLabel: UILabel = {
+    private lazy var goalTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,12 +23,12 @@ final class AgendaTableViewCell: UITableViewCell {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
-    lazy var goalCurrentLabel: UILabel = {
+    private lazy var goalCurrentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
-    lazy var goalEndLabel: UILabel = {
+    private lazy var goalEndLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -51,7 +51,7 @@ final class AgendaTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    private func setupView() {
         contentView.addSubview(goalTextLabel)
         contentView.addSubview(goalProgressView)
         contentView.addSubview(labelsStackView)
@@ -69,5 +69,12 @@ final class AgendaTableViewCell: UITableViewCell {
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
+    }
+    
+    public func configure(goal: Goal) {
+        goalTextLabel.text = goal.name
+        goalCurrentLabel.text = "\(goal.current)"
+        goalEndLabel.text = "\(goal.aim)"
+        goalProgressView.progress = Float(goal.current) / Float(goal.aim)
     }
 }

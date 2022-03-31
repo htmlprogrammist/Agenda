@@ -26,16 +26,31 @@ class HistoryViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         title = "History"
         
+        setupView()
+    }
+}
+
+extension HistoryViewController {
+    
+    private func setupView() {
+        view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
     }
 }
 
@@ -47,8 +62,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
-        cell.monthDateLabel.text = "November, 2021"
-//        cell.monthDateLabel.text = months[indexPath.row] // MARK: (1)
+        cell.configure(month: months[indexPath.row])
         return cell
     }
     
@@ -64,10 +78,15 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         return 0
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let destination = MonthGoalsViewController(style: .grouped)
-//        destination.title = data[indexPath.row]
-//        navigationController?.pushViewController(destination, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath == [0, 0] {
+            tabBarController?.selectedIndex = 0
+        } else {
+//            let destination = MonthGoalsViewController()
+//            destination.title = data[indexPath.row]
+//            navigationController?.pushViewController(destination, animated: true)
+        }
+    }
 }

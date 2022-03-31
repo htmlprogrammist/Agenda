@@ -32,24 +32,18 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         })
         managedObjectContext = persistentContainer.newBackgroundContext()
     }
-    /*
-     1. Как сделать запрос по дате?
-     2. Что мне делать с этим запросом?
-        var goals: [Goal] = month.goals - наверное, так
-     3.
-     */
+    
     // Fetches current month or creates a new one
     func fetchCurrentMonth() -> Month {
         
-        // Get date in current format, and then replace `dd` with `01` (for example: 27.03.2022 -> 01.03.2022)
-        // This format is being used all over the project
+        let calendarDate = Calendar.current.dateComponents([.year, .month], from: Date())
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        var predicateDate = dateFormatter.string(from: Date())
-        predicateDate = predicateDate.replacingCharacters(in: ...predicateDate.index(predicateDate.startIndex, offsetBy: 1), with: "01")
-        
+        guard let predicateDate = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") else {
+            fatalError("Fatal Error at `fetchCurrentMonth`")
+        }
         let fetchRequest: NSFetchRequest<Month> = Month.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "date = %@", predicateDate)
+        fetchRequest.predicate = NSPredicate(format: "date = %@", predicateDate as CVarArg)
         
         let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         if let months = months, !months.isEmpty {
@@ -58,13 +52,17 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         } else {
             // empty? Ok, create new month
             let month = Month(context: managedObjectContext)
-            month.date = predicateDate
+            month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)")
             return month
         }
     }
     
     func fetchMonths() -> [Month] {
-        let months: [Month]? = try? managedObjectContext.fetch(Month.fetchRequest())
+        let fetchRequest = Month.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         return months ?? []
     }
     

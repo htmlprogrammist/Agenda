@@ -8,7 +8,7 @@
         <relationship name="month" maxCount="1" deletionRule="Nullify" destinationEntity="Month" inverseName="goals" inverseEntity="Month"/>
     </entity>
     <entity name="Month" representedClassName=".Month" syncable="YES">
-        <attribute name="date" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Goal" inverseName="month" inverseEntity="Goal"/>
     </entity>
     <elements>

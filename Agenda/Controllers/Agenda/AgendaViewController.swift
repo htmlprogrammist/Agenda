@@ -25,7 +25,7 @@ final class AgendaViewController: UIViewController {
         navigationItem.title = "Agenda"
         
         month = coreDataManager.fetchCurrentMonth()
-        setupView()  // adding subViews of view and setting constraints
+        setupView() // adding subViews of view and setting constraints
     }
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -57,6 +57,7 @@ extension AgendaViewController {
 
 // MARK: UITableViewDelegate, UITableViewDataSource
 extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         month.goals?.count ?? 0
     }
@@ -68,8 +69,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
             fatalError("Error at casting to Goal in AgendaTableView (cellForRowAt)")
         }
-        
-        cell.goalTextLabel.text = goal.name
+        cell.configure(goal: goal)
         return cell
     }
 }
