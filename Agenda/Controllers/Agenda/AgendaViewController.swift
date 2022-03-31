@@ -38,19 +38,38 @@ final class AgendaViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDelegate, UITableViewDataSource
-//extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
-//}
-
 extension AgendaViewController {
     
     private func setupView() {
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
+    }
+}
+
+// MARK: UITableViewDelegate, UITableViewDataSource
+extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        month.goals?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AgendaTableViewCell.identifier, for: indexPath) as? AgendaTableViewCell else {
+            return AgendaTableViewCell()
+        }
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
+            fatalError("Error at casting to Goal in AgendaTableView (cellForRowAt)")
+        }
+        
+        cell.goalTextLabel.text = goal.name
+        return cell
     }
 }

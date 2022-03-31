@@ -11,7 +11,7 @@ final class AgendaTableViewCell: UITableViewCell {
     
     static let identifier = "agendaCell"
     
-    private lazy var goalTextLabel: UILabel = {
+    lazy var goalTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,12 +23,12 @@ final class AgendaTableViewCell: UITableViewCell {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
-    private lazy var goalCurrentLabel: UILabel = {
+    lazy var goalCurrentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
-    private lazy var goalEndLabel: UILabel = {
+    lazy var goalEndLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
