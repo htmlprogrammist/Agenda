@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
+		F037C51E27F5ECE0001D2CBC /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51D27F5ECE0001D2CBC /* GoalTableViewCell.swift */; };
+		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		F037C51D27F5ECE0001D2CBC /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F037C51F27F5ECF8001D2CBC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F037C52027F5ED00001D2CBC /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F037C52027F5ED00001D2CBC /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				F037C52127F5ED1F001D2CBC /* UITextField.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		F0BB550E27EF4D5400FA7E99 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +107,7 @@
 				F0BB554027EF510500FA7E99 /* Views */,
 				F0BB553627EF4F0D00FA7E99 /* Models */,
 				F0BB553427EF4EFE00FA7E99 /* Services */,
+				F037C51F27F5ECF8001D2CBC /* Extensions */,
 				F0BB552F27EF4DBE00FA7E99 /* Resources */,
 			);
 			path = Agenda;
@@ -142,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */,
+				F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -175,6 +199,7 @@
 			children = (
 				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
 				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
+				F037C51D27F5ECE0001D2CBC /* GoalTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -262,6 +287,7 @@
 			files = (
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
@@ -270,6 +296,8 @@
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
+				F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */,
+				F037C51E27F5ECE0001D2CBC /* GoalTableViewCell.swift in Sources */,
 				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
 				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,

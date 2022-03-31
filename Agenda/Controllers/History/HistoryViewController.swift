@@ -37,6 +37,7 @@ class HistoryViewController: UIViewController {
     }
 }
 
+// MARK: - Methods
 extension HistoryViewController {
     
     private func setupView() {
@@ -54,6 +55,7 @@ extension HistoryViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,7 +83,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath == [0, 0] {
+        if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
 //            let destination = MonthGoalsViewController()
