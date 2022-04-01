@@ -177,9 +177,10 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        // TODO: реализовать всё через month.??? (возможно, найду решение получше, но пока так)
-//        let chosenGoal = goals.remove(at: sourceIndexPath.row) // удаляем из одного места
-//        goals.insert(chosenGoal, at: destinationIndexPath.row) // вставляем в другое
+        guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
+        month.removeFromGoals(at: sourceIndexPath.row)
+        month.insertIntoGoals(chosenGoal, at: destinationIndexPath.row)
+        coreDataManager.saveContext()
     }
     
     // deleting cell (goal)
@@ -200,7 +201,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(yes)
             alert.addAction(no)
             
-            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/
+            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
             present(alert, animated: true, completion: nil) // present alert to the display
         }
     }
