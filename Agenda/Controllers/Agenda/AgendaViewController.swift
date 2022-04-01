@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AgendaViewControllerDelegate: AnyObject {
+    func reloadTableView()
+}
+
 final class AgendaViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
@@ -170,7 +174,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: Editing tableView (moving, deleting cells)
-    // moving cell (goal)
+    // moving cell
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
@@ -183,7 +187,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         coreDataManager.saveContext()
     }
     
-    // deleting cell (goal)
+    // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal?", preferredStyle: .actionSheet)
@@ -207,7 +211,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AgendaViewController: AddGoalViewControllerDelegate {
+extension AgendaViewController: AgendaViewControllerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

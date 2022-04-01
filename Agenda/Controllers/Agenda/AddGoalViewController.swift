@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol AddGoalViewControllerDelegate: AnyObject {
-    func reloadTableView()
-}
-
 final class AddGoalViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
     private let month: Month
     
     public var goalData: GoalData = GoalData()
-    public weak var delegate: AddGoalViewControllerDelegate?
+    public weak var delegate: AgendaViewControllerDelegate?
     
     private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
