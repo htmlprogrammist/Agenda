@@ -58,7 +58,7 @@ class HistoryTableViewCell: UITableViewCell {
         monthDateLabel.text = dateFormatter.string(from: month.date ?? Date())
         
         // TODO: Count completed goals (if current >= aim)
-        let uncompletedGoalsCounter = 3
+        let uncompletedGoalsCounter = 0
         
         detailsSubtitle.text = "Goals: \(uncompletedGoalsCounter)/\(month.goals?.count ?? 0)"
     }

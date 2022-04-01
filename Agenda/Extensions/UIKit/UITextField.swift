@@ -8,10 +8,9 @@
 import UIKit
 
 extension UITextField {
-    convenience init(keyboardType: UIKeyboardType, placeholder: String, borderStyle: BorderStyle) {
+    convenience init(keyboardType: UIKeyboardType, placeholder: String, textAlignment: NSTextAlignment = .right, borderStyle: BorderStyle) {
         self.init()
-        self.isHidden = true
-        self.textAlignment = .right
+        self.textAlignment = textAlignment
         self.keyboardType = keyboardType
         self.placeholder = placeholder
         self.font = UIFont.systemFont(ofSize: 16)

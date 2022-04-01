@@ -9,95 +9,189 @@ import UIKit
 
 class AddGoalViewController: UIViewController {
     
-    var goal: Goal?
+    private let coreDataManager: CoreDataManagerProtocol
+    private let month: Month
     
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+    private lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-    let doneBarButton: UIBarButtonItem = {
+    
+    private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         barButton.isEnabled = false
         return barButton
     }()
     
+    private lazy var upperContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private lazy var lowerContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private lazy var separatorView2 = separatorView
+    
+    private lazy var titleTextField = UITextField(keyboardType: .default, placeholder: "Title", textAlignment: .left, borderStyle: .none)
+    private lazy var currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
+    private lazy var aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
+    
+    private lazy var notesTextView: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.delegate = self
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        textView.text = "Notes"
+        textView.textColor = UIColor.lightGray
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.resignFirstResponder()
+        return textView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Goal"
+        title = "New Goal"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
-        // пока не заполнишь 3 обязательных поля (title, current, aim), кнопка недоступна для нажатия.
         
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         
         setupView()
+        setConstraints()
     }
     
-    @objc func closeThisVC() {
-        navigationController?.dismiss(animated: true, completion: nil)
+    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
+        self.month = month
+        self.coreDataManager = coreDataManager
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
-    @objc func doneButtonTapped() {
-        
-        
-        navigationController?.dismiss(animated: true, completion: nil)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
-        view.addSubview(tableView)
+    @objc private func closeThisVC() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func doneButtonTapped() {
+        let goal = Goal(context: coreDataManager.managedObjectContext)
         
+        goal.name = titleTextField.text
+        goal.current = Int64(currentTextField.text!) ?? 0 // this code is safe...
+        goal.aim = Int64(aimTextField.text!) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
+        
+        if let notes = notesTextView.text, notes != "Notes" {
+            goal.notes = notes
+        }
+        month.addToGoals(goal)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(upperContentView)
+        upperContentView.addSubview(titleTextField)
+        upperContentView.addSubview(separatorView)
+        upperContentView.addSubview(notesTextView)
+        
+        if !notesTextView.text.isEmpty && notesTextView.text != "Notes" {
+            notesTextView.textColor = UIColor.black
+        }
+        
+        scrollView.addSubview(lowerContentView)
+        lowerContentView.addSubview(currentTextField)
+        lowerContentView.addSubview(separatorView)
+        lowerContentView.addSubview(aimTextField)
+        
+        [titleTextField, currentTextField, aimTextField].forEach {
+            $0.delegate = self
+        }
+    }
+    
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            
+            upperContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            upperContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            upperContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            upperContentView.bottomAnchor.constraint(equalTo: lowerContentView.topAnchor),
+            upperContentView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32),
+            
+            titleTextField.topAnchor.constraint(equalTo: upperContentView.topAnchor, constant: 14),
+            titleTextField.leadingAnchor.constraint(equalTo: upperContentView.leadingAnchor, constant: 16),
+            separatorView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 14),
+            separatorView.leadingAnchor.constraint(equalTo: upperContentView.leadingAnchor, constant: 16),
+            separatorView.trailingAnchor.constraint(equalTo: upperContentView.trailingAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            notesTextView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 14),
+            notesTextView.leadingAnchor.constraint(equalTo: upperContentView.leadingAnchor),
+            notesTextView.trailingAnchor.constraint(equalTo: upperContentView.trailingAnchor),
+            
+            lowerContentView.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: 16),
+            lowerContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            lowerContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            lowerContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            lowerContentView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32),
+            lowerContentView.heightAnchor.constraint(equalToConstant: 33),
+            
+            currentTextField.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: 16),
+            currentTextField.trailingAnchor.constraint(equalTo: lowerContentView.trailingAnchor, constant: -16),
+            separatorView2.topAnchor.constraint(equalTo: currentTextField.bottomAnchor, constant: 14),
+            separatorView2.leadingAnchor.constraint(equalTo: upperContentView.leadingAnchor, constant: 16),
+            separatorView2.trailingAnchor.constraint(equalTo: upperContentView.trailingAnchor),
+            separatorView2.heightAnchor.constraint(equalToConstant: 1),
+            aimTextField.topAnchor.constraint(equalTo: separatorView2.bottomAnchor, constant: 16),
+            aimTextField.trailingAnchor.constraint(equalTo: lowerContentView.trailingAnchor, constant: -16)
         ])
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate 
-extension AddGoalViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        3
+// MARK: - UITextFieldDelegate
+extension AddGoalViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // if all text fields are filled with smth, done has to be enabled
+        if !(titleTextField.text?.isEmpty ?? true), !(currentTextField.text?.isEmpty ?? true), !(aimTextField.text?.isEmpty ?? true) {
+            doneBarButton.isEnabled = true
+        }
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 1
-        case 1: return 2
-        case 2: return 1
-        default: return 1
+}
+
+// MARK: - UITextViewDelegate
+extension AddGoalViewController: UITextViewDelegate {
+    // adding placeholder to the TextView
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (AddingGoal) передаёт вам привет") }
-        cell.configure(indexPath: indexPath, stepper: false)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath {
-        case [2, 0]: // UITextView
-            return 200 + 10 // bottom insets = 10 points
-        default:
-            return 44
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Notes"
+            textView.textColor = UIColor.lightGray
         }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "idAgendaAddingHeader")
-        header?.backgroundColor = .clear
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
     }
 }

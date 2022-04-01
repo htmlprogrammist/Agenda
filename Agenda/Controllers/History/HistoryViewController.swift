@@ -14,6 +14,9 @@ class HistoryViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -42,9 +45,6 @@ extension HistoryViewController {
     
     private func setupView() {
         view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),

@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import UIKit
 
 protocol CoreDataManagerProtocol {
     var managedObjectContext: NSManagedObjectContext { get }
