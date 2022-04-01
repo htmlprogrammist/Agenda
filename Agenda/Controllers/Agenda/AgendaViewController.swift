@@ -124,7 +124,9 @@ private extension AgendaViewController {
     }
     
     @objc func addNewGoal() {
-        let destination = UINavigationController(rootViewController: AddGoalViewController(month: month, coreDataManager: coreDataManager))
+        let vc = AddGoalViewController(month: month, coreDataManager: coreDataManager)
+        vc.delegate = self
+        let destination = UINavigationController(rootViewController: vc)
         present(destination, animated: true)
     }
 }
@@ -149,5 +151,27 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         75
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+//        let destination = GoalDetailsViewController()
+//        destination.goal = goals[indexPath.row]
+//        navigationController?.pushViewController(destination, animated: true)
+    }
+}
+
+extension AgendaViewController: AddGoalViewControllerDelegate {
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }

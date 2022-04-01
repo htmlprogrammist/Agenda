@@ -7,10 +7,17 @@
 
 import UIKit
 
-class AddGoalViewController: UIViewController {
+protocol AddGoalViewControllerDelegate: AnyObject {
+    func reloadTableView()
+}
+
+final class AddGoalViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
     private let month: Month
+    
+    public var goalData: GoalData = GoalData()
+    public weak var delegate: AddGoalViewControllerDelegate?
     
     private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
@@ -59,15 +66,16 @@ class AddGoalViewController: UIViewController {
     @objc private func doneButtonTapped() {
         let goal = Goal(context: coreDataManager.managedObjectContext)
         
-//        goal.name = titleTextField.text
-//        goal.current = Int64(currentTextField.text!) ?? 0 // this code is safe...
-//        goal.aim = Int64(aimTextField.text!) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
+        goal.name = goalData.title
+        goal.current = Int64(goalData.current) ?? 0 // this code is safe...
+        goal.aim = Int64(goalData.aim) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
         
-//        if let notes = notesTextView.text, notes != "Notes" {
-//            goal.notes = notes
-//        }
+        if !goalData.notes.isEmpty { // because it's optional value
+            goal.notes = goalData.notes
+        }
         month.addToGoals(goal)
         coreDataManager.saveContext()
+        delegate?.reloadTableView()
         
         dismiss(animated: true, completion: nil)
     }
@@ -102,7 +110,7 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("Error")
         }
         cell.configure(indexPath: indexPath)
-        cell.cellDelegate = self
+        cell.delegate = self
         return cell
     }
     
@@ -112,9 +120,13 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AddGoalViewController: GoalTableViewCellDelegate {
-    func checkDoneButtonEnabled(texts: [Bool]) {
-        
-//        doneBarButton.isEnabled = flag
+    
+    func checkDoneButtonEnabled() {
+        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
+            doneBarButton.isEnabled = true
+        } else {
+            doneBarButton.isEnabled = false
+        }
     }
     
     // Update height of UITextView based on string height

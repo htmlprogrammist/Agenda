@@ -8,15 +8,19 @@
 import UIKit
 
 protocol GoalTableViewCellDelegate: AnyObject {
+    var goalData: GoalData { get set }
+    
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView)
-    func checkDoneButtonEnabled(texts: [Bool])
+    func checkDoneButtonEnabled()
 }
 
-class GoalTableViewCell: UITableViewCell {
+final class GoalTableViewCell: UITableViewCell {
     
     static let identifier = "addGoalCell"
-    weak var cellDelegate: GoalTableViewCellDelegate?
     let labelsArray = ["Current", "Aim"]
+    
+    weak var delegate: GoalTableViewCellDelegate?
+//    var goalData = GoalData() // для каждой ячейки создаётся своя, уникальная goalData
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -35,6 +39,7 @@ class GoalTableViewCell: UITableViewCell {
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.text = "Notes"
+//        textView
         textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
@@ -55,9 +60,12 @@ class GoalTableViewCell: UITableViewCell {
     private func setupView() {
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
+        titleTextField.addTarget(self, action: #selector(titleTextFieldChange), for: .editingChanged)
         contentView.addSubview(notesTextView)
         contentView.addSubview(currentTextField)
+        currentTextField.addTarget(self, action: #selector(currentTextFieldChange), for: .editingChanged)
         contentView.addSubview(aimTextField)
+        aimTextField.addTarget(self, action: #selector(aimTextFieldChange), for: .editingChanged)
         
         [titleTextField, currentTextField, aimTextField].forEach {
             $0.delegate = self
@@ -108,11 +116,36 @@ class GoalTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Text Fields' methods to transfer data
+private extension GoalTableViewCell {
+    @objc func titleTextFieldChange(_ sender: UITextField) {
+        delegate?.goalData.title = sender.text ?? ""
+    }
+    
+    @objc func currentTextFieldChange(_ sender: UITextField) {
+        delegate?.goalData.current = sender.text ?? ""
+    }
+    
+    @objc func aimTextFieldChange(_ sender: UITextField) {
+        delegate?.goalData.aim = sender.text ?? ""
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension GoalTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let deletate = delegate {
+            deletate.checkDoneButtonEnabled()
+        }
+    }
+}
+
 // MARK: - UITextViewDelegate
 extension GoalTableViewCell: UITextViewDelegate {
     // adding dynamic height to the TextView
     func textViewDidChange(_ textView: UITextView) {
-        if let deletate = cellDelegate {
+        if let deletate = delegate {
+            deletate.goalData.notes = textView.text ?? ""
             deletate.updateHeightOfRow(self, textView)
         }
     }
@@ -129,20 +162,6 @@ extension GoalTableViewCell: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "Notes"
             textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
-        }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension GoalTableViewCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let deletate = cellDelegate {
-//            guard let title = titleTextField.text,
-//                  let current = currentTextField.text,
-//                  let aim = aimTextField.text
-//            else { return }
-//            deletate.checkDoneButtonEnabled(texts: [title, current, aim])
-            deletate.checkDoneButtonEnabled(texts: [titleTextField.hasText, currentTextField.hasText, aimTextField.hasText])
         }
     }
 }
