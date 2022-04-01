@@ -57,9 +57,14 @@ class HistoryTableViewCell: UITableViewCell {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMy")
         monthDateLabel.text = dateFormatter.string(from: month.date ?? Date())
         
-        // TODO: Count completed goals (if current >= aim)
-        let uncompletedGoalsCounter = 0
+        var uncompletedGoalsCounter = 0
+        guard let goals = month.goals?.array as? [Goal] else { return }
         
+        for goal in goals {
+            if goal.current >= goal.aim {
+                uncompletedGoalsCounter += 1
+            }
+        }
         detailsSubtitle.text = "Goals: \(uncompletedGoalsCounter)/\(month.goals?.count ?? 0)"
     }
 }
