@@ -60,17 +60,7 @@ final class AddGoalViewController: UIViewController {
     }
     
     @objc private func doneButtonTapped() {
-        let goal = Goal(context: coreDataManager.managedObjectContext)
-        
-        goal.name = goalData.title
-        goal.current = Int64(goalData.current) ?? 0 // this code is safe...
-        goal.aim = Int64(goalData.aim) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
-        
-        if !goalData.notes.isEmpty { // because it's optional value
-            goal.notes = goalData.notes
-        }
-        month.addToGoals(goal)
-        coreDataManager.saveContext()
+        coreDataManager.createGoal(data: goalData, in: month)
         delegate?.reloadTableView()
         
         dismiss(animated: true, completion: nil)

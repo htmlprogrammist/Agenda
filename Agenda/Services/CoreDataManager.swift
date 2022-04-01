@@ -15,6 +15,8 @@ protocol CoreDataManagerProtocol {
     
     func fetchCurrentMonth() -> Month
     func fetchMonths() -> [Month]
+    
+    func createGoal(data: GoalData, in month: Month)
 }
 
 final class CoreDataManager: NSObject, CoreDataManagerProtocol {
@@ -63,6 +65,20 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         return months ?? []
+    }
+    
+    func createGoal(data: GoalData, in month: Month) {
+        let goal = Goal(context: managedObjectContext)
+        
+        goal.name = data.title
+        goal.current = Int64(data.current) ?? 0 // this code is safe...
+        goal.aim = Int64(data.aim) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
+        
+        if !data.notes.isEmpty { // because it's optional value
+            goal.notes = data.notes
+        }
+        month.addToGoals(goal)
+        saveContext()
     }
     
     func saveContext() {
