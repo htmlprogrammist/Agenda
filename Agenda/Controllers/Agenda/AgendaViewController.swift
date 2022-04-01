@@ -168,6 +168,42 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
 //        destination.goal = goals[indexPath.row]
 //        navigationController?.pushViewController(destination, animated: true)
     }
+    
+    // MARK: Editing tableView (moving, deleting cells)
+    // moving cell (goal)
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // TODO: реализовать всё через month.??? (возможно, найду решение получше, но пока так)
+//        let chosenGoal = goals.remove(at: sourceIndexPath.row) // удаляем из одного места
+//        goals.insert(chosenGoal, at: destinationIndexPath.row) // вставляем в другое
+    }
+    
+    // deleting cell (goal)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal?", preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+                
+                guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+                
+                coreDataManager.managedObjectContext.delete(goal)
+                coreDataManager.saveContext()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                setEditing(false, animated: true)
+            })
+            let no = UIAlertAction(title: "No", style: .default) { _ in self.setEditing(false, animated: true) } // turn off editing mode
+            
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/
+            present(alert, animated: true, completion: nil) // present alert to the display
+        }
+    }
 }
 
 extension AgendaViewController: AddGoalViewControllerDelegate {
