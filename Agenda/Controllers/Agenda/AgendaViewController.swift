@@ -125,7 +125,6 @@ private extension AgendaViewController {
     
     @objc func addNewGoal() {
         let destination = UINavigationController(rootViewController: AddGoalViewController(month: month, coreDataManager: coreDataManager))
-//        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
         present(destination, animated: true)
     }
 }
