@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol GoalTableViewCellDelegate: AnyObject {
+    func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView)
+    func checkDoneButtonEnabled(texts: [Bool])
+}
+
 class GoalTableViewCell: UITableViewCell {
     
     static let identifier = "addGoalCell"
-    weak var cellDelegate: SelfsizingCellDelegate?
+    weak var cellDelegate: GoalTableViewCellDelegate?
     let labelsArray = ["Current", "Aim"]
     
     private lazy var label: UILabel = {
@@ -53,6 +58,10 @@ class GoalTableViewCell: UITableViewCell {
         contentView.addSubview(notesTextView)
         contentView.addSubview(currentTextField)
         contentView.addSubview(aimTextField)
+        
+        [titleTextField, currentTextField, aimTextField].forEach {
+            $0.delegate = self
+        }
     }
     
     private func setContraints() {
@@ -99,10 +108,6 @@ class GoalTableViewCell: UITableViewCell {
     }
 }
 
-protocol SelfsizingCellDelegate: AnyObject {
-    func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView)
-}
-
 // MARK: - UITextViewDelegate
 extension GoalTableViewCell: UITextViewDelegate {
     // adding dynamic height to the TextView
@@ -124,6 +129,20 @@ extension GoalTableViewCell: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "Notes"
             textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension GoalTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let deletate = cellDelegate {
+//            guard let title = titleTextField.text,
+//                  let current = currentTextField.text,
+//                  let aim = aimTextField.text
+//            else { return }
+//            deletate.checkDoneButtonEnabled(texts: [title, current, aim])
+            deletate.checkDoneButtonEnabled(texts: [titleTextField.hasText, currentTextField.hasText, aimTextField.hasText])
         }
     }
 }

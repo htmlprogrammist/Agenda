@@ -111,7 +111,12 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AddGoalViewController: SelfsizingCellDelegate {
+extension AddGoalViewController: GoalTableViewCellDelegate {
+    func checkDoneButtonEnabled(texts: [Bool]) {
+        
+//        doneBarButton.isEnabled = flag
+    }
+    
     // Update height of UITextView based on string height
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
         let size = textView.bounds.size
