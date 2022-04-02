@@ -3,64 +3,66 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61452572787437800E76E64 /* GoalTableViewCell.swift */; };
-		F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BE119277B2571001E0A5F /* UIButton.swift */; };
-		F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01F92763BBD600CDF414 /* AppDelegate.swift */; };
-		F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */; };
-		F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */; };
-		F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F62B02022763BBD600CDF414 /* Agenda.xcdatamodeld */; };
-		F62B02062763BBD800CDF414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62B02052763BBD800CDF414 /* Assets.xcassets */; };
-		F62B02092763BBD800CDF414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B02072763BBD800CDF414 /* LaunchScreen.storyboard */; };
-		F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021B2763C1F500CDF414 /* AgendaViewController.swift */; };
-		F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B021E2763C20200CDF414 /* HistoryViewController.swift */; };
-		F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B02212763C20900CDF414 /* SummaryViewController.swift */; };
-		F632600327723D11006347DF /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F632600227723D11006347DF /* UIAlertController.swift */; };
-		F6461D0627660433001D9CBA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D0527660433001D9CBA /* Summary.swift */; };
-		F6461D0A2766045B001D9CBA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6461D092766045B001D9CBA /* Goal.swift */; };
-		F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */; };
-		F65712D82789DFD100C24141 /* AgendaTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65712D72789DFD100C24141 /* AgendaTableView.swift */; };
-		F65712DC2789DFE000C24141 /* GoalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65712DB2789DFE000C24141 /* GoalTableView.swift */; };
-		F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */; };
-		F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */; };
-		F6B37182277B8A9400F011EC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B37181277B8A9400F011EC /* UITextField.swift */; };
-		F6CA5BD8278C2836000E514E /* MonthGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CA5BD7278C2836000E514E /* MonthGoalsViewController.swift */; };
-		F6E712F52776323E0087A2A1 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */; };
+		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
+		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
+		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
+		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
+		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
+		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
+		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
+		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
+		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
+		F0BB552727EF4D5700FA7E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */; };
+		F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */; };
+		F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */; };
+		F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */; };
+		F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */; };
+		F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */; };
+		F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554627EF525300FA7E99 /* SummaryViewController.swift */; };
+		F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554827EF534C00FA7E99 /* TransitionManager.swift */; };
+		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
+		F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */; };
+		F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */; };
+		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
+		F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */; };
+		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F61452572787437800E76E64 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
-		F61BE119277B2571001E0A5F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
-		F62B01F62763BBD600CDF414 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F62B01F92763BBD600CDF414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		F62B02032763BBD600CDF414 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
-		F62B02052763BBD800CDF414 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F62B02082763BBD800CDF414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F62B020A2763BBD800CDF414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F62B02122763BC1A00CDF414 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F62B021B2763C1F500CDF414 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
-		F62B021E2763C20200CDF414 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		F62B02212763C20900CDF414 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
-		F632600227723D11006347DF /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		F6461D0527660433001D9CBA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
-		F6461D092766045B001D9CBA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
-		F65712D72789DFD100C24141 /* AgendaTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableView.swift; sourceTree = "<group>"; };
-		F65712DB2789DFE000C24141 /* GoalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableView.swift; sourceTree = "<group>"; };
-		F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingGoalViewController.swift; sourceTree = "<group>"; };
-		F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		F6B37181277B8A9400F011EC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
-		F6CA5BD7278C2836000E514E /* MonthGoalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthGoalsViewController.swift; sourceTree = "<group>"; };
-		F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
+		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
+		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
+		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F0BB552327EF4D5700FA7E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0BB552627EF4D5700FA7E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0BB552827EF4D5700FA7E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0BB552E27EF4D8700FA7E99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
+		F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		F0BB554627EF525300FA7E99 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		F0BB554827EF534C00FA7E99 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
+		F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F62B01F32763BBD600CDF414 /* Frameworks */ = {
+		F0BB551427EF4D5400FA7E99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -70,167 +72,168 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F623ADBB2783929F00375094 /* Agenda */ = {
+		F037C51F27F5ECF8001D2CBC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F65121142769BCCD006DC3EC /* AgendaTableViewCell.swift */,
-				F61452572787437800E76E64 /* GoalTableViewCell.swift */,
-			);
-			path = Agenda;
-			sourceTree = "<group>";
-		};
-		F62B01ED2763BBD600CDF414 = {
-			isa = PBXGroup;
-			children = (
-				F62B02122763BC1A00CDF414 /* README.md */,
-				F62B01F82763BBD600CDF414 /* Agenda */,
-				F62B01F72763BBD600CDF414 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		F62B01F72763BBD600CDF414 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F62B01F62763BBD600CDF414 /* Agenda.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F62B01F82763BBD600CDF414 /* Agenda */ = {
-			isa = PBXGroup;
-			children = (
-				F62B02162763BD1900CDF414 /* Application */,
-				F62B02182763BD7100CDF414 /* Controllers */,
-				F6461D042766041F001D9CBA /* Model */,
-				F65712D62789DFBA00C24141 /* View */,
-				F632600027723CE3006347DF /* Extensions */,
-				F62B02132763BC7800CDF414 /* Resources */,
-			);
-			path = Agenda;
-			sourceTree = "<group>";
-		};
-		F62B02132763BC7800CDF414 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F62B02052763BBD800CDF414 /* Assets.xcassets */,
-				F62B02072763BBD800CDF414 /* LaunchScreen.storyboard */,
-				F62B020A2763BBD800CDF414 /* Info.plist */,
-				F62B02022763BBD600CDF414 /* Agenda.xcdatamodeld */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		F62B02162763BD1900CDF414 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				F62B01F92763BBD600CDF414 /* AppDelegate.swift */,
-				F62B01FB2763BBD600CDF414 /* SceneDelegate.swift */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		F62B02182763BD7100CDF414 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				F62B01FD2763BBD600CDF414 /* MainTabBarController.swift */,
-				F6C0AAE5276B6964007D372E /* Agenda */,
-				F6C0AAE7276B697E007D372E /* History */,
-				F6C0AAE9276B6984007D372E /* Summary */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		F632600027723CE3006347DF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F632600127723CF9006347DF /* UIKit */,
+				F037C52027F5ED00001D2CBC /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		F632600127723CF9006347DF /* UIKit */ = {
+		F037C52027F5ED00001D2CBC /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				F632600227723D11006347DF /* UIAlertController.swift */,
-				F61BE119277B2571001E0A5F /* UIButton.swift */,
-				F6B37181277B8A9400F011EC /* UITextField.swift */,
+				F037C52127F5ED1F001D2CBC /* UITextField.swift */,
+				F016F77D27F7B1EC008D184A /* UIAlertController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		F6461D042766041F001D9CBA /* Model */ = {
+		F0BB550E27EF4D5400FA7E99 = {
 			isa = PBXGroup;
 			children = (
-				F65121132769BC92006DC3EC /* Cell */,
-				F6461D092766045B001D9CBA /* Goal.swift */,
-				F6461D0527660433001D9CBA /* Summary.swift */,
+				F0BB552E27EF4D8700FA7E99 /* README.md */,
+				F0BB551927EF4D5400FA7E99 /* Agenda */,
+				F0BB551827EF4D5400FA7E99 /* Products */,
 			);
-			path = Model;
 			sourceTree = "<group>";
 		};
-		F65121132769BC92006DC3EC /* Cell */ = {
+		F0BB551827EF4D5400FA7E99 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F623ADBB2783929F00375094 /* Agenda */,
-				F6CA5BFB278C329D000E514E /* History */,
+				F0BB551727EF4D5400FA7E99 /* Agenda.app */,
 			);
-			path = Cell;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		F65712D62789DFBA00C24141 /* View */ = {
+		F0BB551927EF4D5400FA7E99 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				F65712D72789DFD100C24141 /* AgendaTableView.swift */,
-				F65712DB2789DFE000C24141 /* GoalTableView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F6C0AAE5276B6964007D372E /* Agenda */ = {
-			isa = PBXGroup;
-			children = (
-				F62B021B2763C1F500CDF414 /* AgendaViewController.swift */,
-				F6AEBB56276E77FB005D5A6D /* AddingGoalViewController.swift */,
-				F6E712F42776323E0087A2A1 /* GoalDetailsViewController.swift */,
+				F0BB553027EF4DC500FA7E99 /* Application */,
+				F0BB553527EF4F0600FA7E99 /* Controllers */,
+				F0BB554027EF510500FA7E99 /* Views */,
+				F0BB553627EF4F0D00FA7E99 /* Models */,
+				F0BB553427EF4EFE00FA7E99 /* Services */,
+				F037C51F27F5ECF8001D2CBC /* Extensions */,
+				F0BB552F27EF4DBE00FA7E99 /* Resources */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
 		};
-		F6C0AAE7276B697E007D372E /* History */ = {
+		F0BB552F27EF4DBE00FA7E99 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F62B021E2763C20200CDF414 /* HistoryViewController.swift */,
-				F6CA5BD7278C2836000E514E /* MonthGoalsViewController.swift */,
+				F0BB552327EF4D5700FA7E99 /* Assets.xcassets */,
+				F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */,
+				F0BB552827EF4D5700FA7E99 /* Info.plist */,
+				F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F0BB553027EF4DC500FA7E99 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */,
+				F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F0BB553427EF4EFE00FA7E99 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */,
+				F0BB554827EF534C00FA7E99 /* TransitionManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F0BB553527EF4F0600FA7E99 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */,
+				F0BB553B27EF506A00FA7E99 /* Agenda */,
+				F0BB553C27EF507000FA7E99 /* History */,
+				F0BB553D27EF507800FA7E99 /* Summary */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F0BB553627EF4F0D00FA7E99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB555527EF5AD800FA7E99 /* CoreData */,
+				F016F77B27F7A4D6008D184A /* GoalData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F0BB553B27EF506A00FA7E99 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */,
+				F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */,
+				F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */,
+			);
+			path = Agenda;
+			sourceTree = "<group>";
+		};
+		F0BB553C27EF507000FA7E99 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
 		};
-		F6C0AAE9276B6984007D372E /* Summary */ = {
+		F0BB553D27EF507800FA7E99 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				F62B02212763C20900CDF414 /* SummaryViewController.swift */,
+				F0BB554627EF525300FA7E99 /* SummaryViewController.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
 		};
-		F6CA5BFB278C329D000E514E /* History */ = {
+		F0BB554027EF510500FA7E99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F6AEBB59276E781E005D5A6D /* HistoryTableViewCell.swift */,
+				F0BB554127EF510D00FA7E99 /* Cell */,
 			);
-			path = History;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F0BB554127EF510D00FA7E99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
+				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
+				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */,
+				F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */,
+				F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */,
+				F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F62B01F52763BBD600CDF414 /* Agenda */ = {
+		F0BB551627EF4D5400FA7E99 /* Agenda */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F62B020D2763BBD800CDF414 /* Build configuration list for PBXNativeTarget "Agenda" */;
+			buildConfigurationList = F0BB552B27EF4D5700FA7E99 /* Build configuration list for PBXNativeTarget "Agenda" */;
 			buildPhases = (
-				F62B01F22763BBD600CDF414 /* Sources */,
-				F62B01F32763BBD600CDF414 /* Frameworks */,
-				F62B01F42763BBD600CDF414 /* Resources */,
+				F0BB551327EF4D5400FA7E99 /* Sources */,
+				F0BB551427EF4D5400FA7E99 /* Frameworks */,
+				F0BB551527EF4D5400FA7E99 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -238,88 +241,90 @@
 			);
 			name = Agenda;
 			productName = Agenda;
-			productReference = F62B01F62763BBD600CDF414 /* Agenda.app */;
+			productReference = F0BB551727EF4D5400FA7E99 /* Agenda.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F62B01EE2763BBD600CDF414 /* Project object */ = {
+		F0BB550F27EF4D5400FA7E99 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					F62B01F52763BBD600CDF414 = {
-						CreatedOnToolsVersion = 12.4;
+					F0BB551627EF4D5400FA7E99 = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = F62B01F12763BBD600CDF414 /* Build configuration list for PBXProject "Agenda" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = F0BB551227EF4D5400FA7E99 /* Build configuration list for PBXProject "Agenda" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = F62B01ED2763BBD600CDF414;
-			productRefGroup = F62B01F72763BBD600CDF414 /* Products */;
+			mainGroup = F0BB550E27EF4D5400FA7E99;
+			productRefGroup = F0BB551827EF4D5400FA7E99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F62B01F52763BBD600CDF414 /* Agenda */,
+				F0BB551627EF4D5400FA7E99 /* Agenda */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F62B01F42763BBD600CDF414 /* Resources */ = {
+		F0BB551527EF4D5400FA7E99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F62B02092763BBD800CDF414 /* LaunchScreen.storyboard in Resources */,
-				F62B02062763BBD800CDF414 /* Assets.xcassets in Resources */,
+				F0BB552727EF4D5700FA7E99 /* LaunchScreen.storyboard in Resources */,
+				F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F62B01F22763BBD600CDF414 /* Sources */ = {
+		F0BB551327EF4D5400FA7E99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6461D0A2766045B001D9CBA /* Goal.swift in Sources */,
-				F65712D82789DFD100C24141 /* AgendaTableView.swift in Sources */,
-				F6E712F52776323E0087A2A1 /* GoalDetailsViewController.swift in Sources */,
-				F61BE11A277B2571001E0A5F /* UIButton.swift in Sources */,
-				F6CA5BD8278C2836000E514E /* MonthGoalsViewController.swift in Sources */,
-				F62B01FE2763BBD600CDF414 /* MainTabBarController.swift in Sources */,
-				F6AEBB5A276E781E005D5A6D /* HistoryTableViewCell.swift in Sources */,
-				F62B01FA2763BBD600CDF414 /* AppDelegate.swift in Sources */,
-				F62B021C2763C1F500CDF414 /* AgendaViewController.swift in Sources */,
-				F61452582787437800E76E64 /* GoalTableViewCell.swift in Sources */,
-				F62B021F2763C20200CDF414 /* HistoryViewController.swift in Sources */,
-				F62B02222763C20900CDF414 /* SummaryViewController.swift in Sources */,
-				F62B01FC2763BBD600CDF414 /* SceneDelegate.swift in Sources */,
-				F6461D0627660433001D9CBA /* Summary.swift in Sources */,
-				F632600327723D11006347DF /* UIAlertController.swift in Sources */,
-				F62B02042763BBD600CDF414 /* Agenda.xcdatamodeld in Sources */,
-				F65712DC2789DFE000C24141 /* GoalTableView.swift in Sources */,
-				F6AEBB57276E77FB005D5A6D /* AddingGoalViewController.swift in Sources */,
-				F6B37182277B8A9400F011EC /* UITextField.swift in Sources */,
-				F65121152769BCCD006DC3EC /* AgendaTableViewCell.swift in Sources */,
+				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
+				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */,
+				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
+				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
+				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
+				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
+				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
+				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
+				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
+				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
+				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
+				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
+				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
+				F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */,
+				F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */,
+				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
+				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,
+				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
+				F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */,
+				F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F62B02072763BBD800CDF414 /* LaunchScreen.storyboard */ = {
+		F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F62B02082763BBD800CDF414 /* Base */,
+				F0BB552627EF4D5700FA7E99 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -327,13 +332,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F62B020B2763BBD800CDF414 /* Debug */ = {
+		F0BB552927EF4D5700FA7E99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -388,13 +393,13 @@
 			};
 			name = Debug;
 		};
-		F62B020C2763BBD800CDF414 /* Release */ = {
+		F0BB552A27EF4D5700FA7E99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -443,63 +448,77 @@
 			};
 			name = Release;
 		};
-		F62B020E2763BBD800CDF414 /* Debug */ = {
+		F0BB552C27EF4D5700FA7E99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H8V3Y2JKY7;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Agenda/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = EgorInc.Agenda;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.egbad.Agenda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		F62B020F2763BBD800CDF414 /* Release */ = {
+		F0BB552D27EF4D5700FA7E99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H8V3Y2JKY7;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Agenda/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = EgorInc.Agenda;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.egbad.Agenda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F62B01F12763BBD600CDF414 /* Build configuration list for PBXProject "Agenda" */ = {
+		F0BB551227EF4D5400FA7E99 /* Build configuration list for PBXProject "Agenda" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F62B020B2763BBD800CDF414 /* Debug */,
-				F62B020C2763BBD800CDF414 /* Release */,
+				F0BB552927EF4D5700FA7E99 /* Debug */,
+				F0BB552A27EF4D5700FA7E99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F62B020D2763BBD800CDF414 /* Build configuration list for PBXNativeTarget "Agenda" */ = {
+		F0BB552B27EF4D5700FA7E99 /* Build configuration list for PBXNativeTarget "Agenda" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F62B020E2763BBD800CDF414 /* Debug */,
-				F62B020F2763BBD800CDF414 /* Release */,
+				F0BB552C27EF4D5700FA7E99 /* Debug */,
+				F0BB552D27EF4D5700FA7E99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -507,17 +526,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F62B02022763BBD600CDF414 /* Agenda.xcdatamodeld */ = {
+		F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F62B02032763BBD600CDF414 /* Agenda.xcdatamodel */,
+				F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */,
 			);
-			currentVersion = F62B02032763BBD600CDF414 /* Agenda.xcdatamodel */;
+			currentVersion = F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */;
 			path = Agenda.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = F62B01EE2763BBD600CDF414 /* Project object */;
+	rootObject = F0BB550F27EF4D5400FA7E99 /* Project object */;
 }

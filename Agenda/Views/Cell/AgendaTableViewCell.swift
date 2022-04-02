@@ -7,31 +7,34 @@
 
 import UIKit
 
-class AgendaTableViewCell: UITableViewCell {
-    var goalTextLabel: UILabel = {
+final class AgendaTableViewCell: UITableViewCell {
+    
+    static let identifier = "agendaCell"
+    
+    private lazy var goalTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let goalProgressView: UIProgressView = {
+    private lazy var goalProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.progressTintColor = UIColor(red: 69/255, green: 208/255, blue: 100/255, alpha: 1)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
-    let goalCurrentLabel: UILabel = {
+    private lazy var goalCurrentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
-    let goalEndLabel: UILabel = {
+    private lazy var goalEndLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
-    let labelsStackView: UIStackView = {
-        let stackView = UIStackView()
+    private lazy var labelsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,13 +51,11 @@ class AgendaTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
-        labelsStackView.addArrangedSubview(goalCurrentLabel)
-        labelsStackView.addArrangedSubview(goalEndLabel)
-        
+    private func setupView() {
         contentView.addSubview(goalTextLabel)
         contentView.addSubview(goalProgressView)
         contentView.addSubview(labelsStackView)
+        
         NSLayoutConstraint.activate([
             goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -68,5 +69,12 @@ class AgendaTableViewCell: UITableViewCell {
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
+    }
+    
+    public func configure(goal: Goal) {
+        goalTextLabel.text = goal.name
+        goalCurrentLabel.text = "\(goal.current)"
+        goalEndLabel.text = "\(goal.aim)"
+        goalProgressView.progress = Float(goal.current) / Float(goal.aim)
     }
 }

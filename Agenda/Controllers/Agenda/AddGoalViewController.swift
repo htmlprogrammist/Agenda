@@ -1,19 +1,25 @@
 //
-//  GoalDetailsViewController.swift
+//  AddGoalViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 16.12.2021.
+//  Created by Егор Бадмаев on 17.12.2021.
 //
 
 import UIKit
 
-final class GoalDetailsViewController: UIViewController {
+final class AddGoalViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol!
+    private let coreDataManager: CoreDataManagerProtocol
+    private let month: Month
     
-    public var goal: Goal!
-    public lazy var goalData: GoalData = goal.goalData
+    public var goalData: GoalData = GoalData()
     public weak var delegate: CoreDataManagerDelegate?
+    
+    private lazy var doneBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        barButton.isEnabled = false
+        return barButton
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -25,8 +31,22 @@ final class GoalDetailsViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = "New Goal"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
+        navigationItem.rightBarButtonItem = doneBarButton
+        
+        view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        
+        setupViewAndConstraints()
+    }
+    
+    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
+        self.month = month
         self.coreDataManager = coreDataManager
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,26 +54,15 @@ final class GoalDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
-        view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        
-        setupViewAndConstraints()
+    @objc private func closeThisVC() {
+        dismiss(animated: true, completion: nil)
     }
     
-    @objc private func closeButtonTapped() {
-        dismiss(animated: true)
-    }
-    
-    @objc private func saveButtonTapped() {
-        coreDataManager.rewriteGoal(data: goalData, in: goal)
+    @objc private func doneButtonTapped() {
+        coreDataManager.createGoal(data: goalData, in: month)
         delegate?.reloadTableView()
         
-        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
-        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
+        dismiss(animated: true, completion: nil)
     }
     
     private func setupViewAndConstraints() {
@@ -69,7 +78,7 @@ final class GoalDetailsViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -83,7 +92,6 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
             fatalError("Error")
         }
-        cell.goal = goalData
         cell.configure(indexPath: indexPath)
         cell.delegate = self
         return cell
@@ -94,10 +102,14 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension GoalDetailsViewController: GoalTableViewCellDelegate {
+extension AddGoalViewController: GoalTableViewCellDelegate {
     
     func checkBarButtonEnabled() {
-        // TODO: Check for 'Save' button is enabled (if any changes were done)
+        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
+            doneBarButton.isEnabled = true
+        } else {
+            doneBarButton.isEnabled = false
+        }
     }
     
     // Update height of UITextView based on string height

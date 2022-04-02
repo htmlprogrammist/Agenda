@@ -1,10 +1,8 @@
 #  Agenda
 Application that allows you to track your goals for a month
 
-# Demo (now screenshots only)
-| <img src="Screens/Agenda-main.png" alt="Agenda-main" width="300"/> | <img src="Screens/Agenda-add.png" alt="Agenda-add" width="300"/> | <img src="Screens/Agenda-details.png" alt="Agenda-details" width="300"/> |
-| ------------- |:-------------:| -----:|
-| <img src="Screens/History-main.png" alt="History-main" width="300"/> | <img src="Screens/History-goals.png" alt="History-goals" width="300"/> | <img src="Screens/History-details.png" alt="History-details" width="300"/> |
+# Demo
+
 
 # Description
 My first independent UIKit learning project. In this project, I demonstrated the knowledge:
@@ -12,6 +10,7 @@ My first independent UIKit learning project. In this project, I demonstrated the
 2. CoreData
 3. Human Interface Guidelines
 4. MVC Architecture
+5. Animations
 
 # Requirements
 - Minimum version: iOS 13

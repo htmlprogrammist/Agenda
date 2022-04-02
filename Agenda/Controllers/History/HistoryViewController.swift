@@ -7,64 +7,106 @@
 
 import UIKit
 
-class HistoryViewController: UITableViewController {
+final class HistoryViewController: UIViewController {
     
-    // MARK: Мысли:
-    /*
-     Надо переделать в UIViewController, и так же, как и в Agenda, сверху, под Title'ом будет DatePicker, чтобы сразу выбрать месяц и год, и открыть новый экран (Как AgendaViewController), который будет показывать всё по этому месяцу, как сейчас AgendaViewController показывает текущий
-     От AgendaViewController нам нужен только tableView с ячейками. Ни UIBarButtonItems, ни прогресс-вью с лейблом даты. А в title можно передать тот месяц и год, который сейчас открыт
-     Если я научусь всё-таки передавать tableView со всеми настройками в Custom View: UIVIew каком-нибудь, то будет вообще здорово. Эта фишка нужна здесь, и в AddingGoal & GoalDetails
-     */
-    var data = ["November, 2021", "December, 2021", "January, 2022", "February, 2022"] // MARK: (1)
-    var idHistoryCell = "idHistoryCell"
+    private var coreDataManager: CoreDataManagerProtocol
+    private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
     
-    override init(style: UITableView.Style) {
-        super.init(style: style)
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    init(coreDataManager: CoreDataManagerProtocol) {
+        self.coreDataManager = coreDataManager
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         title = "History"
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: idHistoryCell)
+        setupView()
+        
+        do {
+            try historyFetchedResultsController.performFetch()
+            coreDataManager.delegate = self
+        } catch let error as NSError {
+            // TODO: Handle this error
+            print("\(error), \(error.localizedDescription)")
+        }
+    }
+}
+
+// MARK: - Methods
+extension HistoryViewController {
+    
+    private func setupView() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
+    }
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let section = historyFetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return section.numberOfObjects
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idHistoryCell, for: indexPath) as? HistoryTableViewCell else { fatalError("Мистер Анджело? Мисс Ячейка (History) передаёт вам привет")}
-//        cell.monthDateLabel.text = "November, 2021"
-        cell.monthDateLabel.text = data[indexPath.row] // MARK: (1)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
+        let month = historyFetchedResultsController.object(at: indexPath)
+        cell.configure(month: month)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destination = MonthGoalsViewController()
-        /// Здесь важно, чтобы `title` был по типу `November, 2021`
-        destination.title = data[indexPath.row]
-        navigationController?.pushViewController(destination, animated: true)
+        
+        if indexPath == [0, 0] { // current month
+            tabBarController?.selectedIndex = 0
+        } else {
+//            let destination = MonthGoalsViewController()
+//            destination.title = data[indexPath.row]
+//            navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+}
+
+extension HistoryViewController: CoreDataManagerDelegate {
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
