@@ -168,13 +168,18 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let destination = GoalDetailsViewController()
-//        destination.goal = goals[indexPath.row]
-//        navigationController?.pushViewController(destination, animated: true)
+        
+        let destination = GoalDetailsViewController()
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+        destination.goal = goal
+        let navController = UINavigationController(rootViewController: destination)
+        navController.modalPresentationStyle = .overCurrentContext
+        
+        present(navController, animated: true)
     }
     
-    // MARK: Editing tableView (moving, deleting cells)
-    // moving cell
+    // MARK: Editing tableView (reordering, deleting cells)
+    // reordering cells
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)

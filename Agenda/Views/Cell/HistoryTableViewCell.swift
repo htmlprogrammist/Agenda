@@ -14,10 +14,6 @@ class HistoryTableViewCell: UITableViewCell {
     private lazy var monthDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        /* with size of 20 and bold
-         cell's height: 60
-         stackView's spacing: 4
-         */
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

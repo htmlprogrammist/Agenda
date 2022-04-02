@@ -10,6 +10,7 @@ My first independent UIKit learning project. In this project, I demonstrated the
 2. CoreData
 3. Human Interface Guidelines
 4. MVC Architecture
+5. Animations
 
 # Requirements
 - Minimum version: iOS 13

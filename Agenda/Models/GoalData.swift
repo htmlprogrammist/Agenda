@@ -11,3 +11,9 @@ struct GoalData {
     var aim: String = ""
     var notes: String = ""
 }
+
+extension Goal {
+    var goalData: GoalData {
+        GoalData(title: name ?? "", current: String(current), aim: String(aim), notes: notes ?? "")
+    }
+}

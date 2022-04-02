@@ -11,7 +11,7 @@ protocol GoalTableViewCellDelegate: AnyObject {
     var goalData: GoalData { get set }
     
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView)
-    func checkDoneButtonEnabled()
+    func checkBarButtonEnabled()
 }
 
 final class GoalTableViewCell: UITableViewCell {
@@ -135,7 +135,7 @@ private extension GoalTableViewCell {
 extension GoalTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let deletate = delegate {
-            deletate.checkDoneButtonEnabled()
+            deletate.checkBarButtonEnabled()
         }
     }
 }

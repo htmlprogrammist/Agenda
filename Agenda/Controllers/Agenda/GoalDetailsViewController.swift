@@ -1,25 +1,17 @@
 //
-//  AddGoalViewController.swift
+//  GoalDetailsViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 17.12.2021.
+//  Created by Егор Бадмаев on 16.12.2021.
 //
 
 import UIKit
 
-final class AddGoalViewController: UIViewController {
+class GoalDetailsViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol
-    private let month: Month
-    
+    public var goal: Goal!
     public var goalData: GoalData = GoalData()
     public weak var delegate: AgendaViewControllerDelegate?
-    
-    private lazy var doneBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
-        barButton.isEnabled = false
-        return barButton
-    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -34,35 +26,21 @@ final class AddGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Goal"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
-        navigationItem.rightBarButtonItem = doneBarButton
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
         setupViewAndConstraints()
     }
     
-    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
-        self.month = month
-        self.coreDataManager = coreDataManager
+    @objc private func closeButtonTapped() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        print(goalData.title)
         
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func closeThisVC() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func doneButtonTapped() {
-        coreDataManager.createGoal(data: goalData, in: month)
-        delegate?.reloadTableView()
-        
-        dismiss(animated: true, completion: nil)
+        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
     }
     
     private func setupViewAndConstraints() {
@@ -78,7 +56,7 @@ final class AddGoalViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
+extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -102,14 +80,10 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AddGoalViewController: GoalTableViewCellDelegate {
+extension GoalDetailsViewController: GoalTableViewCellDelegate {
     
     func checkBarButtonEnabled() {
-        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            doneBarButton.isEnabled = true
-        } else {
-            doneBarButton.isEnabled = false
-        }
+        // TODO: Check for 'Save' button is enabled (if any changes were done)
     }
     
     // Update height of UITextView based on string height

@@ -71,8 +71,8 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let goal = Goal(context: managedObjectContext)
         
         goal.name = data.title
-        goal.current = Int64(data.current) ?? 0 // this code is safe...
-        goal.aim = Int64(data.aim) ?? 0 // ... because 'done bar button' is not enabled if there is no text in text fields
+        goal.current = Int64(data.current) ?? 0
+        goal.aim = Int64(data.aim) ?? 0
         
         if !data.notes.isEmpty { // because it's optional value
             goal.notes = data.notes
