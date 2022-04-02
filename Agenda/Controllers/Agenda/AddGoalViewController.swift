@@ -100,6 +100,21 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "idAgendaDetailsHeader")
+        header?.backgroundColor = .clear
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 8
+        default:
+            return 20
+        }
+    }
 }
 
 extension AddGoalViewController: GoalTableViewCellDelegate {

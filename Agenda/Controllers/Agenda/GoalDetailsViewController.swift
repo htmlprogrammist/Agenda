@@ -9,7 +9,7 @@ import UIKit
 
 final class GoalDetailsViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol!
+    private let coreDataManager: CoreDataManagerProtocol
     
     public var goal: Goal!
     public lazy var goalData: GoalData = goal.goalData
@@ -53,7 +53,7 @@ final class GoalDetailsViewController: UIViewController {
         delegate?.reloadTableView()
         
         // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
-        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
+        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120 or 
     }
     
     private func setupViewAndConstraints() {
@@ -91,6 +91,21 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "idAgendaDetailsHeader")
+        header?.backgroundColor = .clear
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 8
+        default:
+            return 20
+        }
     }
 }
 

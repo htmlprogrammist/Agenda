@@ -21,7 +21,6 @@ final class GoalTableViewCell: UITableViewCell {
     
     public var goal: GoalData?
     public weak var delegate: GoalTableViewCellDelegate?
-//    var goalData = GoalData() // для каждой ячейки создаётся своя, уникальная goalData
     
     private lazy var label: UILabel = {
         let label = UILabel()
