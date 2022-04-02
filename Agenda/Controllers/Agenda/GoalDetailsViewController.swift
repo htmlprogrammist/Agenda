@@ -52,6 +52,7 @@ final class GoalDetailsViewController: UIViewController {
         coreDataManager.rewriteGoal(data: goalData, in: goal)
         delegate?.reloadTableView()
         
+        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
         // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
     }
     

@@ -95,6 +95,11 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.aim = Int64(data.aim) ?? 0
         goal.notes = data.notes
         
+//        goal.setValue(data.title, forKey: "name")
+//        goal.setValue(Int64(data.current) ?? 0, forKey: "current")
+//        goal.setValue(Int64(data.aim) ?? 0, forKey: "aim")
+//        goal.setValue(data.notes, forKey: "notes")
+        
         saveContext()
     }
     

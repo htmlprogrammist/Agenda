@@ -52,7 +52,7 @@ final class AgendaViewController: UIViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         month = coreDataManager.fetchCurrentMonth()
-        setupView() // adding subViews of view and setting constraints
+        setupView()
         setConstraints()
     }
     
@@ -124,10 +124,9 @@ private extension AgendaViewController {
     }
     
     @objc func addNewGoal() {
-        let vc = AddGoalViewController(month: month, coreDataManager: coreDataManager)
-        vc.delegate = self
-        let destination = UINavigationController(rootViewController: vc)
-        present(destination, animated: true)
+        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
+        destination.delegate = self
+        present(UINavigationController(rootViewController: destination), animated: true)
     }
 }
 
