@@ -7,11 +7,11 @@
 
 import UIKit
 
-class GoalDetailsViewController: UIViewController {
+final class GoalDetailsViewController: UIViewController {
     
     public var goal: Goal!
     public var goalData: GoalData = GoalData()
-    public weak var delegate: AgendaViewControllerDelegate?
+    public weak var delegate: CoreDataManagerDelegate?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)

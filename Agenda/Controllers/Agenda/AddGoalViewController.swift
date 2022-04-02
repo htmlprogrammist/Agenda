@@ -13,7 +13,7 @@ final class AddGoalViewController: UIViewController {
     private let month: Month
     
     public var goalData: GoalData = GoalData()
-    public weak var delegate: AgendaViewControllerDelegate?
+    public weak var delegate: CoreDataManagerDelegate?
     
     private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))

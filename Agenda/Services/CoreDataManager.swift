@@ -14,11 +14,15 @@ protocol CoreDataManagerProtocol {
     func saveContext()
     
     var historyFetchedResultsController: NSFetchedResultsController<Month> { get }
-    var delegate: HistoryViewControllerDelegate? { get set }
+    var delegate: CoreDataManagerDelegate? { get set }
     
     func fetchCurrentMonth() -> Month
     
     func createGoal(data: GoalData, in month: Month)
+}
+
+protocol CoreDataManagerDelegate: AnyObject {
+    func reloadTableView()
 }
 
 final class CoreDataManager: NSObject, CoreDataManagerProtocol {
@@ -26,7 +30,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    weak var delegate: HistoryViewControllerDelegate?
+    weak var delegate: CoreDataManagerDelegate?
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)

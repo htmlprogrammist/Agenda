@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol HistoryViewControllerDelegate: AnyObject {
-    func reloadTableView()
-}
-
 final class HistoryViewController: UIViewController {
     
     private var coreDataManager: CoreDataManagerProtocol
@@ -109,7 +105,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension HistoryViewController: HistoryViewControllerDelegate {
+extension HistoryViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

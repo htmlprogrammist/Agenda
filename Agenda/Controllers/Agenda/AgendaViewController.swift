@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol AgendaViewControllerDelegate: AnyObject {
-    func reloadTableView()
-}
-
 final class AgendaViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
@@ -216,7 +212,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AgendaViewController: AgendaViewControllerDelegate {
+extension AgendaViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }
