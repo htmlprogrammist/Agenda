@@ -9,17 +9,15 @@ import UIKit
 
 protocol GoalTableViewCellDelegate: AnyObject {
     var goalData: GoalData { get set }
-    
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView)
-    func checkBarButtonEnabled()
 }
 
 final class GoalTableViewCell: UITableViewCell {
     
-    static let identifier = "addGoalCell"
-    let labelsArray = ["Current", "Aim"]
+    static let identifier = "goalTableViewCell"
+    private let labelsArray = ["Current", "Aim"]
     
-    public var goal: GoalData?
+    public var goal: GoalData? // to fill the cell with data (from GoalDetails)
     public weak var delegate: GoalTableViewCellDelegate?
     
     private lazy var label: UILabel = {
@@ -39,7 +37,7 @@ final class GoalTableViewCell: UITableViewCell {
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.text = "Notes"
-        textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
+        textView.textColor = .placeholderText
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
         return textView
@@ -56,15 +54,23 @@ final class GoalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            superview?.endEditing(true)
+        }
+        super.touchesBegan(touches, with: event)
+    }
+    
     private func setupView() {
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
-        titleTextField.addTarget(self, action: #selector(titleTextFieldChange), for: .editingChanged)
+        titleTextField.addTarget(self, action: #selector(titleTextFieldChange), for: .allEditingEvents)
         contentView.addSubview(notesTextView)
+        
         contentView.addSubview(currentTextField)
-        currentTextField.addTarget(self, action: #selector(currentTextFieldChange), for: .editingChanged)
+        currentTextField.addTarget(self, action: #selector(currentTextFieldChange), for: .allEditingEvents)
         contentView.addSubview(aimTextField)
-        aimTextField.addTarget(self, action: #selector(aimTextFieldChange), for: .editingChanged)
+        aimTextField.addTarget(self, action: #selector(aimTextFieldChange), for: .allEditingEvents)
         
         [titleTextField, currentTextField, aimTextField].forEach {
             $0.delegate = self
@@ -123,27 +129,34 @@ final class GoalTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Text Fields' methods to transfer data
-private extension GoalTableViewCell {
-    @objc func titleTextFieldChange(_ sender: UITextField) {
+// MARK: - UITextFieldDelegate & Text Fields' methods to transfer data and
+extension GoalTableViewCell: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentCharacterCount = textField.text?.count ?? 0
+        if range.length + range.location > currentCharacterCount {
+            return false
+        }
+        let newLength = currentCharacterCount + string.count - range.length
+        return newLength <= 120
+    }
+    
+    @objc private func titleTextFieldChange(_ sender: UITextField) {
         delegate?.goalData.title = sender.text ?? ""
     }
     
-    @objc func currentTextFieldChange(_ sender: UITextField) {
+    @objc private func currentTextFieldChange(_ sender: UITextField) {
         delegate?.goalData.current = sender.text ?? ""
     }
     
-    @objc func aimTextFieldChange(_ sender: UITextField) {
+    @objc private func aimTextFieldChange(_ sender: UITextField) {
         delegate?.goalData.aim = sender.text ?? ""
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension GoalTableViewCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let deletate = delegate {
-            deletate.checkBarButtonEnabled()
-        }
     }
 }
 
@@ -152,23 +165,23 @@ extension GoalTableViewCell: UITextViewDelegate {
     // adding dynamic height to the TextView
     func textViewDidChange(_ textView: UITextView) {
         if let deletate = delegate {
-            deletate.goalData.notes = textView.text ?? ""
             deletate.updateHeightOfRow(self, textView)
+            deletate.goalData.notes = textView.text ?? ""
         }
     }
     
     // adding placeholder to the TextView
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1) {
+        if textView.textColor == .placeholderText {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = .black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Notes"
-            textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
+            textView.textColor = .placeholderText
         }
     }
 }

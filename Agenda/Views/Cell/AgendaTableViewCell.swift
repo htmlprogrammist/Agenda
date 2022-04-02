@@ -59,6 +59,7 @@ final class AgendaTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            goalTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             goalProgressView.topAnchor.constraint(equalTo: goalTextLabel.bottomAnchor, constant: 8),
             goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

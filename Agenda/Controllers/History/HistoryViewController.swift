@@ -41,9 +41,8 @@ final class HistoryViewController: UIViewController {
         do {
             try historyFetchedResultsController.performFetch()
             coreDataManager.delegate = self
-        } catch let error as NSError {
-            // TODO: Handle this error
-            print("\(error), \(error.localizedDescription)")
+        } catch {
+            alertForError(title: "Oops!", message: "We've got unexpected error while loading your history. Please, restart the application")
         }
     }
 }

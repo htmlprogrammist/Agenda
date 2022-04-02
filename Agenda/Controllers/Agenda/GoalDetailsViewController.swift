@@ -9,17 +9,28 @@ import UIKit
 
 final class GoalDetailsViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol!
+    private let coreDataManager: CoreDataManagerProtocol
     
     public var goal: Goal!
-    public lazy var goalData: GoalData = goal.goalData
+    public lazy var goalData = goal.goalData {
+        didSet {
+            checkBarButtonEnabled()
+        }
+    }
     public weak var delegate: CoreDataManagerDelegate?
+    
+    private lazy var saveBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        barButton.isEnabled = false
+        return barButton
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -38,22 +49,22 @@ final class GoalDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = saveBarButton
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
         setupViewAndConstraints()
     }
     
-    @objc private func closeButtonTapped() {
-        dismiss(animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForKeyboardNotifications()
     }
     
-    @objc private func saveButtonTapped() {
-        coreDataManager.rewriteGoal(data: goalData, in: goal)
-        delegate?.reloadTableView()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
-        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
+        unregisterForKeyboardNotifications()
     }
     
     private func setupViewAndConstraints() {
@@ -65,6 +76,20 @@ final class GoalDetailsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    @objc private func closeButtonTapped() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        view.endEditing(true)
+        saveBarButton.isEnabled = false
+        coreDataManager.rewriteGoal(data: goalData, in: goal)
+        delegate?.reloadTableView()
+        
+        // TODO: Fix: not updating HistoryTableView on ending up the goal (when current >= aim)
+        // TODO: Display SPIndicator
     }
 }
 
@@ -94,12 +119,41 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension GoalDetailsViewController: GoalTableViewCellDelegate {
-    
+// MARK: - Helper methods
+private extension GoalDetailsViewController {
     func checkBarButtonEnabled() {
-        // TODO: Check for 'Save' button is enabled (if any changes were done)
+        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
+            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
+                saveBarButton.isEnabled = true
+            }
+        } else {
+            saveBarButton.isEnabled = false
+        }
     }
     
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        tableView.contentInset = .zero
+    }
+}
+
+// MARK: - GoalTableViewCellDelegate
+extension GoalDetailsViewController: GoalTableViewCellDelegate {
     // Update height of UITextView based on string height
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
         let size = textView.bounds.size
