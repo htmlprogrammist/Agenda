@@ -10,6 +10,7 @@
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
 		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
+		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
 		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
 		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
@@ -36,6 +37,7 @@
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB554127EF510D00FA7E99 /* Cell */,
+				F030A20227F8DD51004B375A /* AlertError.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
 				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
+				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,

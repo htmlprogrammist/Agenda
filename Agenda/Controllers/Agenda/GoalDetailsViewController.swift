@@ -21,7 +21,7 @@ final class GoalDetailsViewController: UIViewController {
     
     private lazy var saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
-        barButton.isEnabled = false // false
+        barButton.isEnabled = false
         return barButton
     }()
     
@@ -30,6 +30,7 @@ final class GoalDetailsViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -54,6 +55,18 @@ final class GoalDetailsViewController: UIViewController {
         setupViewAndConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        unregisterForKeyboardNotifications()
+    }
+    
     private func setupViewAndConstraints() {
         view.addSubview(tableView)
         
@@ -75,8 +88,8 @@ final class GoalDetailsViewController: UIViewController {
         coreDataManager.rewriteGoal(data: goalData, in: goal)
         delegate?.reloadTableView()
         
-        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
-        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
+        // TODO: Fix: not updating HistoryTableView on ending up the goal (when current >= aim)
+        // TODO: Display SPIndicator
     }
 }
 
@@ -116,6 +129,26 @@ private extension GoalDetailsViewController {
         } else {
             saveBarButton.isEnabled = false
         }
+    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        tableView.contentInset = .zero
     }
 }
 

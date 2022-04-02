@@ -50,7 +50,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         guard let predicateDate = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") else {
-            fatalError("Fatal Error at `fetchCurrentMonth`")
+            fatalError("Fatal Error at fetchCurrentMonth() method")
         }
         let fetchRequest: NSFetchRequest<Month> = Month.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date = %@", predicateDate as CVarArg)
