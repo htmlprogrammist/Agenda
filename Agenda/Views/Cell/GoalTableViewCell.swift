@@ -19,7 +19,8 @@ final class GoalTableViewCell: UITableViewCell {
     static let identifier = "addGoalCell"
     let labelsArray = ["Current", "Aim"]
     
-    weak var delegate: GoalTableViewCellDelegate?
+    public var goal: GoalData?
+    public weak var delegate: GoalTableViewCellDelegate?
 //    var goalData = GoalData() // для каждой ячейки создаётся своя, уникальная goalData
     
     private lazy var label: UILabel = {
@@ -39,7 +40,6 @@ final class GoalTableViewCell: UITableViewCell {
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.text = "Notes"
-//        textView
         textView.textColor = UIColor(red: 197/255, green: 197/255, blue: 197/255, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
@@ -99,17 +99,25 @@ final class GoalTableViewCell: UITableViewCell {
     public func configure(indexPath: IndexPath) {
         if indexPath == [0, 0] {
             titleTextField.isHidden = false
+            titleTextField.text = goal?.title
         }
         if indexPath == [0, 1] {
             notesTextView.isHidden = false
+            
+            if let notes = goal?.notes, notes != "Notes", !notes.isEmpty {
+                notesTextView.text = notes
+                notesTextView.textColor = .black
+            }
         }
         if indexPath == [1, 0] {
             currentTextField.isHidden = false
+            currentTextField.text = goal?.current
             label.isHidden = false
             label.text = labelsArray[indexPath.row]
         }
         if indexPath == [1, 1] {
             aimTextField.isHidden = false
+            aimTextField.text = goal?.aim
             label.isHidden = false
             label.text = labelsArray[indexPath.row]
         }

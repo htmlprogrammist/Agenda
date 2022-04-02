@@ -19,6 +19,7 @@ protocol CoreDataManagerProtocol {
     func fetchCurrentMonth() -> Month
     
     func createGoal(data: GoalData, in month: Month)
+    func rewriteGoal(data: GoalData, in goal: Goal)
 }
 
 protocol CoreDataManagerDelegate: AnyObject {
@@ -82,11 +83,18 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.name = data.title
         goal.current = Int64(data.current) ?? 0
         goal.aim = Int64(data.aim) ?? 0
+        goal.notes = data.notes
         
-        if !data.notes.isEmpty { // because it's optional value
-            goal.notes = data.notes
-        }
         month.addToGoals(goal)
+        saveContext()
+    }
+    
+    func rewriteGoal(data: GoalData, in goal: Goal) {
+        goal.name = data.title
+        goal.current = Int64(data.current) ?? 0
+        goal.aim = Int64(data.aim) ?? 0
+        goal.notes = data.notes
+        
         saveContext()
     }
     

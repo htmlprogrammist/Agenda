@@ -9,8 +9,10 @@ import UIKit
 
 final class GoalDetailsViewController: UIViewController {
     
+    private let coreDataManager: CoreDataManagerProtocol!
+    
     public var goal: Goal!
-    public var goalData: GoalData = GoalData()
+    public lazy var goalData: GoalData = goal.goalData
     public weak var delegate: CoreDataManagerDelegate?
     
     private lazy var tableView: UITableView = {
@@ -23,10 +25,19 @@ final class GoalDetailsViewController: UIViewController {
         return tableView
     }()
     
+    init(coreDataManager: CoreDataManagerProtocol) {
+        self.coreDataManager = coreDataManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
@@ -38,7 +49,8 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        print(goalData.title)
+        coreDataManager.rewriteGoal(data: goalData, in: goal)
+        delegate?.reloadTableView()
         
         // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
     }
@@ -70,6 +82,7 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
             fatalError("Error")
         }
+        cell.goal = goalData
         cell.configure(indexPath: indexPath)
         cell.delegate = self
         return cell

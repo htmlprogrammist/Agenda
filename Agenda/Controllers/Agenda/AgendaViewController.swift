@@ -165,11 +165,14 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let destination = GoalDetailsViewController()
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
         destination.goal = goal
+        destination.delegate = self
+        
         let navController = UINavigationController(rootViewController: destination)
-        navController.modalPresentationStyle = .overCurrentContext
+        navController.hidesBottomBarWhenPushed = true
+        navController.modalPresentationStyle = .fullScreen
         
         present(navController, animated: true)
     }
