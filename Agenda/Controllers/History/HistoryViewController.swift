@@ -10,8 +10,7 @@ import UIKit
 class HistoryViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
-//    private lazy var months: [Month] = coreDataManager.fetchMonths()
-    private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
+    private lazy var months: [Month] = coreDataManager.fetchMonths()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -38,13 +37,6 @@ class HistoryViewController: UIViewController {
         title = "History"
         
         setupView()
-        
-        do {
-            try historyFetchedResultsController.performFetch()
-        } catch let error as NSError {
-            // TODO: Handle this error
-            print("\(error), \(error.localizedDescription)")
-        }
     }
 }
 
@@ -67,18 +59,12 @@ extension HistoryViewController {
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        months.count
-        guard let section = historyFetchedResultsController.sections?[section] else {
-            return 0
-        }
-        return section.numberOfObjects
+        months.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
-//        cell.configure(month: months[indexPath.row])
-        let month = historyFetchedResultsController.object(at: indexPath)
-        cell.configure(month: month)
+        cell.configure(month: months[indexPath.row])
         return cell
     }
     

@@ -15,7 +15,6 @@ protocol CoreDataManagerProtocol {
     
     func fetchCurrentMonth() -> Month
     func fetchMonths() -> [Month]
-    var historyFetchedResultsController: NSFetchedResultsController<Month> { get }
     
     func createGoal(data: GoalData, in month: Month)
 }
@@ -67,15 +66,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         return months ?? []
     }
-    
-    lazy var historyFetchedResultsController: NSFetchedResultsController<Month> = {
-        let fetchRequest = Month.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return fetchedResultsController
-    }()
     
     func createGoal(data: GoalData, in month: Month) {
         let goal = Goal(context: managedObjectContext)
