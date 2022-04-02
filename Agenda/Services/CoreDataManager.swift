@@ -13,8 +13,10 @@ protocol CoreDataManagerProtocol {
     
     func saveContext()
     
+    var historyFetchedResultsController: NSFetchedResultsController<Month> { get }
+    var delegate: HistoryViewControllerDelegate? { get set }
+    
     func fetchCurrentMonth() -> Month
-    func fetchMonths() -> [Month]
     
     func createGoal(data: GoalData, in month: Month)
 }
@@ -23,6 +25,8 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
+    
+    weak var delegate: HistoryViewControllerDelegate?
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -58,14 +62,15 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
     }
     
-    func fetchMonths() -> [Month] {
+    lazy var historyFetchedResultsController: NSFetchedResultsController<Month> = {
         let fetchRequest = Month.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
-        return months ?? []
-    }
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
     
     func createGoal(data: GoalData, in month: Month) {
         let goal = Goal(context: managedObjectContext)
@@ -90,5 +95,12 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+}
+
+extension CoreDataManager: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard let delegate = delegate else { return }
+        delegate.reloadTableView()
     }
 }
