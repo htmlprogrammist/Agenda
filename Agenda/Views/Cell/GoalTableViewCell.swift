@@ -137,6 +137,16 @@ extension GoalTableViewCell: UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentCharacterCount = textField.text?.count ?? 0
+        if range.length + range.location > currentCharacterCount {
+            return false
+        }
+        let newLength = currentCharacterCount + string.count - range.length
+        return newLength <= 120
+    }
+    
     @objc private func titleTextFieldChange(_ sender: UITextField) {
         delegate?.goalData.title = sender.text ?? ""
     }
