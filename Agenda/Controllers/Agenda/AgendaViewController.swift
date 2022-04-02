@@ -201,9 +201,8 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
                 coreDataManager.managedObjectContext.delete(goal)
                 coreDataManager.saveContext()
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                setEditing(false, animated: true)
             })
-            let no = UIAlertAction(title: "No", style: .default) { _ in self.setEditing(false, animated: true) } // turn off editing mode
+            let no = UIAlertAction(title: "No", style: .default)
             
             alert.addAction(yes)
             alert.addAction(no)

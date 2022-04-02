@@ -9,11 +9,21 @@ import UIKit
 
 final class GoalDetailsViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol!
+    private let coreDataManager: CoreDataManagerProtocol
     
     public var goal: Goal!
-    public lazy var goalData: GoalData = goal.goalData
+    public lazy var goalData = goal.goalData {
+        didSet {
+            checkBarButtonEnabled()
+        }
+    }
     public weak var delegate: CoreDataManagerDelegate?
+    
+    private lazy var saveBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        barButton.isEnabled = false // false
+        return barButton
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -38,22 +48,10 @@ final class GoalDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = saveBarButton
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
         setupViewAndConstraints()
-    }
-    
-    @objc private func closeButtonTapped() {
-        dismiss(animated: true)
-    }
-    
-    @objc private func saveButtonTapped() {
-        coreDataManager.rewriteGoal(data: goalData, in: goal)
-        delegate?.reloadTableView()
-        
-        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
-        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
     }
     
     private func setupViewAndConstraints() {
@@ -65,6 +63,20 @@ final class GoalDetailsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    @objc private func closeButtonTapped() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        view.endEditing(true)
+        saveBarButton.isEnabled = false
+        coreDataManager.rewriteGoal(data: goalData, in: goal)
+        delegate?.reloadTableView()
+        
+        // TODO: Fix not updating HistoryTableView on ending up the goal (current >= aim)
+        // TODO: Display some kind of SPAlert https://t.me/sparrowcode/120
     }
 }
 
@@ -94,12 +106,21 @@ extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-extension GoalDetailsViewController: GoalTableViewCellDelegate {
-    
+// MARK: - Helper methods
+private extension GoalDetailsViewController {
     func checkBarButtonEnabled() {
-        // TODO: Check for 'Save' button is enabled (if any changes were done)
+        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
+            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
+                saveBarButton.isEnabled = true
+            }
+        } else {
+            saveBarButton.isEnabled = false
+        }
     }
-    
+}
+
+// MARK: - GoalTableViewCellDelegate
+extension GoalDetailsViewController: GoalTableViewCellDelegate {
     // Update height of UITextView based on string height
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
         let size = textView.bounds.size

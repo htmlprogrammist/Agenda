@@ -10,12 +10,11 @@ import CoreData
 protocol CoreDataManagerProtocol {
     var managedObjectContext: NSManagedObjectContext { get }
     var persistentContainer: NSPersistentContainer { get }
+    var delegate: CoreDataManagerDelegate? { get set }
     
     func saveContext()
     
     var historyFetchedResultsController: NSFetchedResultsController<Month> { get }
-    var delegate: CoreDataManagerDelegate? { get set }
-    
     func fetchCurrentMonth() -> Month
     
     func createGoal(data: GoalData, in month: Month)

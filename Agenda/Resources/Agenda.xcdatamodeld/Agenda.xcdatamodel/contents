@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<<<<<<< HEAD
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
-=======
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Goal" representedClassName=".Goal" syncable="YES">
         <attribute name="aim" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -19,5 +15,4 @@
         <element name="Goal" positionX="-402.92236328125" positionY="-204.6199035644531" width="128" height="104"/>
         <element name="Month" positionX="-829.197265625" positionY="-79.8599853515625" width="128" height="59"/>
     </elements>
->>>>>>> add-core-data-2
 </model>

@@ -102,8 +102,8 @@ extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AddGoalViewController: GoalTableViewCellDelegate {
-    
+// MARK: - Helper methods
+private extension AddGoalViewController {
     func checkBarButtonEnabled() {
         if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
             doneBarButton.isEnabled = true
@@ -111,7 +111,10 @@ extension AddGoalViewController: GoalTableViewCellDelegate {
             doneBarButton.isEnabled = false
         }
     }
-    
+}
+
+// MARK: - GoalTableViewCellDelegate
+extension AddGoalViewController: GoalTableViewCellDelegate {
     // Update height of UITextView based on string height
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
         let size = textView.bounds.size
