@@ -44,14 +44,7 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     public func configure(month: Month) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMy")
-        monthDateLabel.text = dateFormatter.string(from: month.date ?? Date())
+        monthDateLabel.text = month.date?.formatToMonthYear()
         
         var completedGoalsCounter = 0
         guard let goals = month.goals?.array as? [Goal] else { return }
