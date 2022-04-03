@@ -109,11 +109,11 @@ final class TransitionManager: NSObject, TransitionManagerProtocol {
         let beginState = CGAffineTransform(translationX: containerView.frame.width, y: 0)
         let endState = CGAffineTransform(translationX: -containerView.frame.width, y: 0)
         
-        toView.transform = isPresented ? beginState: endState
+        toView.transform = isPresented ? beginState : endState
         
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut, .transitionCrossDissolve], animations: { [unowned self] in
             toView.transform = .identity
-            fromView.transform = isPresented ? endState: beginState
+            fromView.transform = isPresented ? endState : beginState
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })

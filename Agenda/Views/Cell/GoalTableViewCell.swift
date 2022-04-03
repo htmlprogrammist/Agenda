@@ -55,13 +55,6 @@ final class GoalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            superview?.endEditing(true)
-        }
-        super.touchesBegan(touches, with: event)
-    }
-    
     private func setupView() {
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
