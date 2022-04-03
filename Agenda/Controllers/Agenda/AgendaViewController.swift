@@ -15,11 +15,13 @@ final class AgendaViewController: UIViewController {
     
     private lazy var dayAndMonth: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -96,7 +98,7 @@ private extension AgendaViewController {
             
             dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 2),
+            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
             
             separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
@@ -118,11 +120,11 @@ private extension AgendaViewController {
         dateFormatter.locale = Locale(identifier: "en_US")
         
         let calendar = Calendar.current
-        let days = calendar.range(of: .day, in: .month, for: date)!.count
-        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",")
+        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
+        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",") // splitting string into 2 strings
         
-        dayAndMonth.attributedText = NSAttributedString(string: "\(arrayOfElements[0]),", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)])
-        yearLabel.attributedText = NSAttributedString(string: String(arrayOfElements[1]), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)])
+        dayAndMonth.text = "\(arrayOfElements[0]),"
+        yearLabel.text = "\(arrayOfElements[1])"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     

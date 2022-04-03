@@ -23,6 +23,7 @@ final class GoalTableViewCell: UITableViewCell {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.isHidden = true
+        label.textColor = .darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
