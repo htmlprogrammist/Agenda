@@ -196,9 +196,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-                
-                coreDataManager.managedObjectContext.delete(goal)
-                coreDataManager.saveContext()
+                coreDataManager.deleteGoal(goal: goal)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
             let no = UIAlertAction(title: "No", style: .default)

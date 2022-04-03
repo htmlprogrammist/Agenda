@@ -98,9 +98,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             tabBarController?.selectedIndex = 0
         } else {
             let month = historyFetchedResultsController.object(at: indexPath)
-            
-            let destination = MonthDetailsViewController(month: month)
-            destination.title = month.date?.formatToMonthYear()
+            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager)
             navigationController?.pushViewController(destination, animated: true)
         }
     }
