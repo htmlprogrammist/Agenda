@@ -23,6 +23,7 @@ final class GoalTableViewCell: UITableViewCell {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.isHidden = true
+        label.textColor = .darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,13 +55,6 @@ final class GoalTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            superview?.endEditing(true)
-        }
-        super.touchesBegan(touches, with: event)
-    }
-    
     private func setupView() {
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
@@ -88,8 +82,8 @@ final class GoalTableViewCell: UITableViewCell {
             
             notesTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             notesTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            notesTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            notesTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
             
             currentTextField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
             currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),

@@ -10,6 +10,7 @@ import UIKit
 final class MainTabBarController: UITabBarController {
     
     public lazy var coreDataManager = CoreDataManager(containerName: "Agenda")
+    private lazy var transitionManager = TransitionManager(duration: 0.25)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +20,9 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func createTabs() {
-        let agendaViewController = createNavController(viewController: AgendaViewController(coreDataManager: coreDataManager),
+        let agendaViewController = createNavController(viewController: AgendaViewController(coreDataManager: coreDataManager, transitionManager: transitionManager),
                                                        itemName: "Agenda", itemImage: "calendar")
-        let historyViewController = createNavController(viewController: HistoryViewController(coreDataManager: coreDataManager),
+        let historyViewController = createNavController(viewController: HistoryViewController(coreDataManager: coreDataManager, transitionManager: transitionManager),
                                                         itemName: "History", itemImage: "clock.fill")
         let summaryViewController = createNavController(viewController: SummaryViewController(),
                                                         itemName: "Summary", itemImage: "square.text.square.fill")
@@ -42,6 +43,6 @@ final class MainTabBarController: UITabBarController {
 extension MainTabBarController: UITabBarControllerDelegate {
     
     public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TransitionManager(duration: 0.25, tabBarController: tabBarController, lastIndex: tabBarController.selectedIndex)
+        return TransitionManager(duration: 0.35, tabBarController: tabBarController, lastIndex: tabBarController.selectedIndex)
     }
 }

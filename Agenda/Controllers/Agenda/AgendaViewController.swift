@@ -10,15 +10,18 @@ import UIKit
 final class AgendaViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
+    private let transitionManager: TransitionManagerProtocol
     private var month: Month!
     
     private lazy var dayAndMonth: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -29,6 +32,7 @@ final class AgendaViewController: UIViewController {
     }()
     private lazy var separatorView: UIView = {
         let view = UIView()
+        view.layer.zPosition = 1
         view.backgroundColor = .systemGray5
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -62,8 +66,9 @@ final class AgendaViewController: UIViewController {
         getMonthInfo()
     }
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(coreDataManager: CoreDataManagerProtocol, transitionManager: TransitionManagerProtocol) {
         self.coreDataManager = coreDataManager
+        self.transitionManager = transitionManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -93,14 +98,14 @@ private extension AgendaViewController {
             
             dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 2),
+            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
             
             separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
             separatorView.heightAnchor.constraint(equalToConstant: 1),
             separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
@@ -115,11 +120,11 @@ private extension AgendaViewController {
         dateFormatter.locale = Locale(identifier: "en_US")
         
         let calendar = Calendar.current
-        let days = calendar.range(of: .day, in: .month, for: date)!.count
-        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",")
+        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
+        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",") // splitting string into 2 strings
         
-        dayAndMonth.attributedText = NSAttributedString(string: "\(arrayOfElements[0]),", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold)])
-        yearLabel.attributedText = NSAttributedString(string: String(arrayOfElements[1]), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24)])
+        dayAndMonth.text = "\(arrayOfElements[0]),"
+        yearLabel.text = "\(arrayOfElements[1])"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     
@@ -172,6 +177,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         let navController = UINavigationController(rootViewController: destination)
         navController.hidesBottomBarWhenPushed = true
         navController.modalPresentationStyle = .fullScreen
+        navController.transitioningDelegate = transitionManager
         
         present(navController, animated: true)
     }
