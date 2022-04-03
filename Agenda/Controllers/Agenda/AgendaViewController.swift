@@ -10,6 +10,7 @@ import UIKit
 final class AgendaViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
+    private let transitionManager: TransitionManagerProtocol
     private var month: Month!
     
     private lazy var dayAndMonth: UILabel = {
@@ -62,8 +63,9 @@ final class AgendaViewController: UIViewController {
         getMonthInfo()
     }
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(coreDataManager: CoreDataManagerProtocol, transitionManager: TransitionManagerProtocol) {
         self.coreDataManager = coreDataManager
+        self.transitionManager = transitionManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -172,6 +174,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         let navController = UINavigationController(rootViewController: destination)
         navController.hidesBottomBarWhenPushed = true
         navController.modalPresentationStyle = .fullScreen
+        navController.transitioningDelegate = transitionManager
         
         present(navController, animated: true)
     }

@@ -9,6 +9,7 @@ import UIKit
 
 final class HistoryViewController: UIViewController {
     
+    private let transitionManager: TransitionManagerProtocol
     private var coreDataManager: CoreDataManagerProtocol
     private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
     
@@ -21,8 +22,9 @@ final class HistoryViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(coreDataManager: CoreDataManagerProtocol, transitionManager: TransitionManagerProtocol) {
         self.coreDataManager = coreDataManager
+        self.transitionManager = transitionManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -99,7 +101,12 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
 //            let destination = MonthGoalsViewController()
 //            destination.title = data[indexPath.row]
-//            navigationController?.pushViewController(destination, animated: true)
+            
+//            let navController = UINavigationController(rootViewController: destination)
+//            navController.hidesBottomBarWhenPushed = true
+//            navController.modalPresentationStyle = .fullScreen
+//            navController.transitioningDelegate = transitionManager
+//            present(navController, animated: true)
         }
     }
 }
