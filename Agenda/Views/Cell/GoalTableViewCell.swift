@@ -162,7 +162,7 @@ extension GoalTableViewCell: UITextFieldDelegate {
 
 // MARK: - UITextViewDelegate
 extension GoalTableViewCell: UITextViewDelegate {
-    // adding dynamic height to the TextView
+    // adding dynamic height to the TextView and provide data
     func textViewDidChange(_ textView: UITextView) {
         if let deletate = delegate {
             deletate.updateHeightOfRow(self, textView)

@@ -12,7 +12,11 @@ final class AddGoalViewController: UIViewController {
     private let coreDataManager: CoreDataManagerProtocol
     private let month: Month
     
-    public var goalData: GoalData = GoalData()
+    public var goalData = GoalData() {
+        didSet {
+            checkBarButtonEnabled()
+        }
+    }
     public weak var delegate: CoreDataManagerDelegate?
     
     private lazy var doneBarButton: UIBarButtonItem = {
