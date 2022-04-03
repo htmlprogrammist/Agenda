@@ -95,6 +95,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.aim = Int64(data.aim) ?? 0
         goal.notes = data.notes
         
+        managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
         saveContext()
     }
     
