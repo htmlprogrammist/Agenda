@@ -88,8 +88,8 @@ final class GoalTableViewCell: UITableViewCell {
             
             notesTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             notesTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            notesTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            notesTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
             
             currentTextField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
             currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),

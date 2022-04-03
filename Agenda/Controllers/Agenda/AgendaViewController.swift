@@ -30,6 +30,7 @@ final class AgendaViewController: UIViewController {
     }()
     private lazy var separatorView: UIView = {
         let view = UIView()
+        view.layer.zPosition = 1
         view.backgroundColor = .systemGray5
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -102,7 +103,7 @@ private extension AgendaViewController {
             separatorView.heightAnchor.constraint(equalToConstant: 1),
             separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
