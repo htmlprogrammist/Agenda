@@ -12,6 +12,13 @@ final class MonthDetailsViewController: UIViewController {
     private let month: Month
     private let coreDataManager: CoreDataManagerProtocol
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.layer.zPosition = 1
+        view.backgroundColor = .systemGray5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -42,13 +49,18 @@ final class MonthDetailsViewController: UIViewController {
     }
     
     private func setupViewAndConstraints() {
+        view.addSubview(separatorView)
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
 }
@@ -112,7 +124,7 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
     // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This change cannot be undone", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This action cannot be undone", preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
