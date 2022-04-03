@@ -20,11 +20,6 @@ public enum TransitionType {
     case viewController
 }
 
-private enum PresentationType {
-    case presentation
-    case dismissal
-}
-
 final class TransitionManager: NSObject, TransitionManagerProtocol {
     
     public var duration: TimeInterval

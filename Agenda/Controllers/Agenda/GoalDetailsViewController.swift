@@ -19,12 +19,6 @@ final class GoalDetailsViewController: UIViewController {
     }
     public weak var delegate: CoreDataManagerDelegate?
     
-    private lazy var closeSwipe: UISwipeGestureRecognizer = {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        swipe.direction = .right
-        return swipe
-    }()
-    
     private lazy var saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
@@ -54,7 +48,6 @@ final class GoalDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeViewController))
         navigationItem.rightBarButtonItem = saveBarButton
         view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
@@ -78,8 +71,6 @@ final class GoalDetailsViewController: UIViewController {
     }
     
     private func setupViewAndConstraints() {
-        view.addGestureRecognizer(closeSwipe)
-        
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -90,10 +81,6 @@ final class GoalDetailsViewController: UIViewController {
         ])
     }
     
-    @objc private func closeViewController() {
-        dismiss(animated: true)
-    }
-    
     @objc private func saveButtonTapped() {
         view.endEditing(true)
         saveBarButton.isEnabled = false
@@ -102,12 +89,6 @@ final class GoalDetailsViewController: UIViewController {
         
         // TODO: Fix: not updating HistoryTableView on ending up the goal (when current >= aim)
         // TODO: Display SPIndicator
-    }
-    
-    @objc private func handleSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.location(in: view).x < view.frame.width / 2 {
-            closeViewController()
-        }
     }
 }
 
