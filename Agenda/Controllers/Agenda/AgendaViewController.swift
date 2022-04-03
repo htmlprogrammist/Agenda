@@ -192,7 +192,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal?", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This change cannot be undone", preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
