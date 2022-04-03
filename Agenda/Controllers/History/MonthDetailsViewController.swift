@@ -1,34 +1,17 @@
 //
-//  AgendaViewController.swift
+//  MonthDetailsViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 10.12.2021.
+//  Created by Егор Бадмаев on 03.04.2022.
 //
 
 import UIKit
 
-final class AgendaViewController: UIViewController {
+final class MonthDetailsViewController: UIViewController {
     
+    private let month: Month
     private let coreDataManager: CoreDataManagerProtocol
-    private var month: Month!
     
-    private lazy var dayAndMonth: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private lazy var yearLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private lazy var monthProgressView: UIProgressView = {
-        let progress = UIProgressView()
-        progress.translatesAutoresizingMaskIntoConstraints = false
-        return progress
-    }()
     private lazy var separatorView: UIView = {
         let view = UIView()
         view.layer.zPosition = 1
@@ -36,7 +19,6 @@ final class AgendaViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -49,23 +31,15 @@ final class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = editButtonItem
+        title = month.date?.formatToMonthYear()
         view.backgroundColor = .white
-        navigationItem.title = "Agenda"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
-        navigationItem.leftBarButtonItem = editButtonItem
         
-        month = coreDataManager.fetchCurrentMonth()
-        setupView()
-        setConstraints()
+        setupViewAndConstraints()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getMonthInfo()
-    }
-    
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
+        self.month = month
         self.coreDataManager = coreDataManager
         super.init(nibName: nil, bundle: nil)
     }
@@ -73,33 +47,13 @@ final class AgendaViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-// MARK: - Methods
-private extension AgendaViewController {
     
-    func setupView() {
-        view.addSubview(monthProgressView)
-        view.addSubview(dayAndMonth)
-        view.addSubview(yearLabel)
+    private func setupViewAndConstraints() {
         view.addSubview(separatorView)
-        
         view.addSubview(tableView)
-    }
-    
-    func setConstraints() {
+        
         NSLayoutConstraint.activate([
-            monthProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            monthProgressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            monthProgressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            monthProgressView.heightAnchor.constraint(equalToConstant: 4), // default: 4
-            
-            dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
-            dayAndMonth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
-            yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
-            
-            separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
+            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1),
             separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
@@ -109,32 +63,10 @@ private extension AgendaViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
-    
-    func getMonthInfo() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        dateFormatter.locale = Locale(identifier: "en_US")
-        
-        let calendar = Calendar.current
-        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
-        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",") // splitting string into 2 strings
-        
-        dayAndMonth.text = "\(arrayOfElements[0]),"
-        yearLabel.text = "\(arrayOfElements[1])"
-        monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
-    }
-    
-    @objc func addNewGoal() {
-        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
-        destination.delegate = self
-        present(UINavigationController(rootViewController: destination), animated: true)
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
+extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         month.goals?.count ?? 0
@@ -210,7 +142,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AgendaViewController: CoreDataManagerDelegate {
+extension MonthDetailsViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

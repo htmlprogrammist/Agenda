@@ -12,6 +12,13 @@ final class HistoryViewController: UIViewController {
     private var coreDataManager: CoreDataManagerProtocol
     private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.layer.zPosition = 1
+        view.backgroundColor = .systemGray5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -36,7 +43,7 @@ final class HistoryViewController: UIViewController {
         view.backgroundColor = .white
         title = "History"
         
-        setupView()
+        setupViewAndConstraints()
         
         do {
             try historyFetchedResultsController.performFetch()
@@ -50,11 +57,16 @@ final class HistoryViewController: UIViewController {
 // MARK: - Methods
 extension HistoryViewController {
     
-    private func setupView() {
+    private func setupViewAndConstraints() {
+        view.addSubview(separatorView)
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
@@ -97,9 +109,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-//            let destination = MonthGoalsViewController()
-//            destination.title = data[indexPath.row]
-//            navigationController?.pushViewController(destination, animated: true)
+            let month = historyFetchedResultsController.object(at: indexPath)
+            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager)
+            navigationController?.pushViewController(destination, animated: true)
         }
     }
 }

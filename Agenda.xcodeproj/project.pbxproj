@@ -15,6 +15,8 @@
 		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
+		F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */; };
+		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
 		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewController.swift; sourceTree = "<group>"; };
+		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				F037C52027F5ED00001D2CBC /* UIKit */,
+				F053020B27FA264300C62FAC /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */,
+				F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -306,12 +312,14 @@
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
+				F053020C27FA264300C62FAC /* Date.swift in Sources */,
 				F053020827FA161D00C62FAC /* UIViewController.swift in Sources */,
 				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
 				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
+				F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
