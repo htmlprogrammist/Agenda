@@ -29,13 +29,7 @@ final class AgendaViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.layer.zPosition = 1
-        view.backgroundColor = .systemGray5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var separatorView = SeparatorView()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -100,7 +94,6 @@ private extension AgendaViewController {
             yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
             
             separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
-            separatorView.heightAnchor.constraint(equalToConstant: 1),
             separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
             tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
@@ -171,6 +164,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
         destination.goal = goal
         destination.delegate = self
+        destination.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(destination, animated: true)
     }
@@ -205,7 +199,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(no)
             
             alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true, completion: nil) // present alert to the display
+            present(alert, animated: true)
         }
     }
 }

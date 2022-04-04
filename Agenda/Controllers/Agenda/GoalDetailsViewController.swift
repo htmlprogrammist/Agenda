@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SPIndicator
 
 final class GoalDetailsViewController: UIViewController {
     
@@ -23,6 +24,12 @@ final class GoalDetailsViewController: UIViewController {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
         return barButton
+    }()
+    private lazy var indicatorView: SPIndicatorView = {
+        let indicatorView = SPIndicatorView(title: "Saved successfully", preset: .done)
+        indicatorView.presentSide = .bottom
+        indicatorView.iconView?.tintColor = .systemGreen
+        return indicatorView
     }()
     
     private lazy var tableView: UITableView = {
@@ -68,6 +75,7 @@ final class GoalDetailsViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         unregisterForKeyboardNotifications()
+        indicatorView.dismiss()
     }
     
     private func setupViewAndConstraints() {
@@ -87,8 +95,7 @@ final class GoalDetailsViewController: UIViewController {
         coreDataManager.rewriteGoal(data: goalData, in: goal)
         delegate?.reloadTableView()
         
-        // TODO: Fix: not updating HistoryTableView on ending up the goal (when current >= aim)
-        // TODO: Display SPIndicator
+        indicatorView.present(haptic: .success)
     }
 }
 
