@@ -133,7 +133,7 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
             alert.addAction(no)
             
             alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true, completion: nil) // present alert to the display
+            present(alert, animated: true)
         }
     }
 }
