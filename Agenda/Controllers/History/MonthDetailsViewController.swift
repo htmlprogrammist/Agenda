@@ -2,7 +2,7 @@
 //  MonthDetailsViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 03.04.2022.
+//  Created by Егор Бадмаев on 10.01.2022.
 //
 
 import UIKit

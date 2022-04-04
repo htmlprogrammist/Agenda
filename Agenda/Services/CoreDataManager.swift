@@ -19,6 +19,8 @@ protocol CoreDataManagerProtocol {
     
     func createGoal(data: GoalData, in month: Month)
     func rewriteGoal(data: GoalData, in goal: Goal)
+    
+    func deleteMonth(month: Month)
     func deleteGoal(goal: Goal)
 }
 
@@ -96,6 +98,16 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.notes = data.notes
         
         managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
+        saveContext()
+    }
+    
+    func deleteMonth(month: Month) {
+        guard let goals = month.goals?.array as? [Goal] else { return }
+//        month.removeFromGoals(month.goals) // does not work
+        goals.forEach {
+            deleteGoal(goal: $0)
+        }
+        managedObjectContext.delete(month)
         saveContext()
     }
     

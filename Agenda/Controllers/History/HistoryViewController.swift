@@ -36,8 +36,9 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        navigationItem.leftBarButtonItem = editButtonItem
         title = "History"
+        view.backgroundColor = .white
         
         setupViewAndConstraints()
         
@@ -107,6 +108,33 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             let month = historyFetchedResultsController.object(at: indexPath)
             let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager)
             navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: "Delete month", message: "Are you sure you want to delete this month? This action cannot be undone", preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+                tableView.beginUpdates()
+                
+                let month = historyFetchedResultsController.object(at: indexPath)
+                coreDataManager.deleteMonth(month: month)
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            })
+            let no = UIAlertAction(title: "No", style: .default)
+            
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
+            present(alert, animated: true, completion: nil) // present alert to the display
         }
     }
 }
