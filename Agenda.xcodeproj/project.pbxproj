@@ -558,8 +558,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
 			requirement = {
-				kind = exactVersion;
-				version = 1.6.4;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

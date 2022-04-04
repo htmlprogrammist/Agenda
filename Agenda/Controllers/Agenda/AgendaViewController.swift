@@ -171,6 +171,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
         destination.goal = goal
         destination.delegate = self
+        destination.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(destination, animated: true)
     }
