@@ -12,13 +12,9 @@ final class HistoryViewController: UIViewController {
     private var coreDataManager: CoreDataManagerProtocol
     private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
     
-    private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.layer.zPosition = 1
-        view.backgroundColor = .systemGray5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
+    private lazy var separatorView = SeparatorView()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -63,7 +59,6 @@ extension HistoryViewController {
         
         NSLayoutConstraint.activate([
             separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: 1),
             separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             
             tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
