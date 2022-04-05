@@ -35,7 +35,6 @@ final class GoalDetailsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
@@ -99,8 +98,8 @@ final class GoalDetailsViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension GoalDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableView
+extension GoalDetailsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2

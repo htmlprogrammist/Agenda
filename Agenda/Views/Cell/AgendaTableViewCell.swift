@@ -58,17 +58,17 @@ final class AgendaTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             goalTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            goalTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            goalTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            goalTextLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            goalTextLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             
             goalProgressView.topAnchor.constraint(equalTo: goalTextLabel.bottomAnchor, constant: 8),
-            goalProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            goalProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            goalProgressView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            goalProgressView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             goalProgressView.heightAnchor.constraint(equalToConstant: 5), // default: 4
             
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            labelsStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            labelsStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
         ])
     }
     

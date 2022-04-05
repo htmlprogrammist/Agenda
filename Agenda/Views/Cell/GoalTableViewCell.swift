@@ -73,24 +73,24 @@ final class GoalTableViewCell: UITableViewCell {
     
     private func setContraints() {
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            label.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            titleTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            titleTextField.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleTextField.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             titleTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            notesTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            notesTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            notesTextView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: -4),
+            notesTextView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             notesTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
             notesTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
             
             currentTextField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
-            currentTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            currentTextField.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             currentTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             aimTextField.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
-            aimTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            aimTextField.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             aimTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }

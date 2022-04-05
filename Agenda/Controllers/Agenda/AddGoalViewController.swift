@@ -28,7 +28,6 @@ final class AddGoalViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,8 +96,8 @@ final class AddGoalViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension AddGoalViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableView
+extension AddGoalViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
