@@ -35,6 +35,7 @@ final class AgendaViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 75
         tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -86,6 +87,7 @@ private extension AgendaViewController {
             monthProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             monthProgressView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             monthProgressView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            monthProgressView.heightAnchor.constraint(equalToConstant: 4), // for correct displaying in iOS 13
             
             dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
             dayAndMonth.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
@@ -141,10 +143,6 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configure(goal: goal)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        75
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

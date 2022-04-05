@@ -119,7 +119,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if indexPath == [0, 0] {
-                alertForError(title: "Oops!", message: "You could not delete current month!")
+                alertForError(title: "Oops!", message: "You could not delete current month")
             } else {
                 let alert = UIAlertController(title: "Delete month", message: "Are you sure you want to delete this month? This action cannot be undone", preferredStyle: .actionSheet)
                 let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in

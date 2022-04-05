@@ -23,7 +23,7 @@ final class MainTabBarController: UITabBarController {
                                                        itemName: "Agenda", itemImage: "calendar")
         let historyViewController = createNavController(viewController: HistoryViewController(coreDataManager: coreDataManager),
                                                         itemName: "History", itemImage: "clock.fill")
-        let summaryViewController = createNavController(viewController: SummaryViewController(),
+        let summaryViewController = createNavController(viewController: SummaryViewController(coreDataManager: coreDataManager),
                                                         itemName: "Summary", itemImage: "square.text.square.fill")
         
         viewControllers = [agendaViewController, historyViewController, summaryViewController]

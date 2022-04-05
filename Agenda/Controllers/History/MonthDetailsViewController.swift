@@ -19,6 +19,7 @@ final class MonthDetailsViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 75
         tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -76,10 +77,6 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
         }
         cell.configure(goal: goal)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        75
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
