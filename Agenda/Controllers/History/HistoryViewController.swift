@@ -10,7 +10,7 @@ import UIKit
 final class HistoryViewController: UIViewController {
     
     private var coreDataManager: CoreDataManagerProtocol
-    private lazy var historyFetchedResultsController = coreDataManager.historyFetchedResultsController
+    private lazy var fetchedResultsController = coreDataManager.historyFetchedResultsController
     
     // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
     private lazy var separatorView = SeparatorView()
@@ -36,14 +36,14 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItem = editButtonItem
         title = "History"
         view.backgroundColor = .white
         
         setupViewAndConstraints()
         
         do {
-            try historyFetchedResultsController.performFetch()
+            try fetchedResultsController.performFetch()
             coreDataManager.delegate = self
         } catch {
             alertForError(title: "Oops!", message: "We've got unexpected error while loading your history. Please, restart the application")
@@ -74,7 +74,7 @@ extension HistoryViewController {
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = historyFetchedResultsController.sections?[section] else {
+        guard let section = fetchedResultsController.sections?[section] else {
             return 0
         }
         return section.numberOfObjects
@@ -82,7 +82,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
-        let month = historyFetchedResultsController.object(at: indexPath)
+        let month = fetchedResultsController.object(at: indexPath)
         cell.configure(month: month)
         return cell
     }
@@ -105,7 +105,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-            let month = historyFetchedResultsController.object(at: indexPath)
+            let month = fetchedResultsController.object(at: indexPath)
             let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager)
             navigationController?.pushViewController(destination, animated: true)
         }
@@ -118,23 +118,27 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete month", message: "Are you sure you want to delete this month? This action cannot be undone", preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
-                tableView.beginUpdates()
+            if indexPath == [0, 0] {
+                alertForError(title: "Oops!", message: "You could not delete current month!")
+            } else {
+                let alert = UIAlertController(title: "Delete month", message: "Are you sure you want to delete this month? This action cannot be undone", preferredStyle: .actionSheet)
+                let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+                    tableView.beginUpdates()
+                    
+                    let month = fetchedResultsController.object(at: indexPath)
+                    coreDataManager.deleteMonth(month: month)
+                    
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.endUpdates()
+                })
+                let no = UIAlertAction(title: "No", style: .default)
                 
-                let month = historyFetchedResultsController.object(at: indexPath)
-                coreDataManager.deleteMonth(month: month)
+                alert.addAction(yes)
+                alert.addAction(no)
                 
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
-            })
-            let no = UIAlertAction(title: "No", style: .default)
-            
-            alert.addAction(yes)
-            alert.addAction(no)
-            
-            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true)
+                alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
+                present(alert, animated: true)
+            }
         }
     }
 }
