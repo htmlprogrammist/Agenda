@@ -14,6 +14,7 @@ final class SummaryCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,6 +36,12 @@ final class SummaryCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+//    private lazy var widthView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .red
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,21 +68,34 @@ final class SummaryCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(numberLabel)
         contentView.addSubview(measureLabel)
+//        contentView.addSubview(widthView)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 6),
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 8),
             iconImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 2),
             
             titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),
             titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 4),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -4),
             
+            numberLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             numberLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -2),
-            numberLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 6),
+            numberLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 8),
             
             measureLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -4),
-            measureLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 2)
+            measureLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 2),
+            
+//            widthView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            widthView.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
+//            widthView.widthAnchor.constraint(equalToConstant: 300),
+//            widthView.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 2),
+//            widthView.heightAnchor.constraint(equalToConstant: 1),
+//            widthView.topAnchor.constraint(equalTo: numberLabel.bottomAnchor),
+//            widthView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            widthView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            widthView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
 }
