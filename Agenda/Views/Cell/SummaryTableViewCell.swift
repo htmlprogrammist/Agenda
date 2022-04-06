@@ -24,8 +24,9 @@ final class SummaryTableViewCell: UITableViewCell {
         return imageView
     }()
     private lazy var titleStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, iconImageView])
-        stackView.alignment = .leading
+        let stackView = UIStackView(arrangedSubviews: [iconImageView, titleLabel])
+        stackView.alignment = .center
+        stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -55,8 +56,9 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        contentView.addSubview(iconImageView)
-        contentView.addSubview(titleLabel)
+//        contentView.addSubview(iconImageView)
+//        contentView.addSubview(titleLabel)
+        contentView.addSubview(titleStackView)
         
         iconImageView.image = UIImage(named: "clock.fill")
         titleLabel.text = "Average number of completed goals"
@@ -69,13 +71,16 @@ final class SummaryTableViewCell: UITableViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+//            iconImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+//            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             iconImageView.widthAnchor.constraint(equalToConstant: 20),
-            
-            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+//
+//            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+//            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),
+//            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             
             numberLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             numberLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
