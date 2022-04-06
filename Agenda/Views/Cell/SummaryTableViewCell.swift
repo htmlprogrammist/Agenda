@@ -76,8 +76,9 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     public func configure(data: Summary) {
-        iconImageView.image = UIImage(named: data.iconImagePath)
+        iconImageView.image = UIImage(systemName: data.iconImagePath)?.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
         titleLabel.text = data.title
+        titleLabel.textColor = data.tintColor
         numberLabel.text = String(data.number)
         measureLabel.text = data.measure
     }

@@ -11,10 +11,12 @@ final class SummaryViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
     
-    private let imagePaths = [String]()
-    private let titleLabelsText = [String]()
-    private let numbers = [Double]()
-    private let measureLabelsText = [String]()
+    private let imagePaths = ["number", "checkmark.square", "xmark.square", "list.triangle"]
+    private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
+    private let tintColors: [UIColor] = [.systemBlue, .systemGreen, .systemRed, .systemYellow]
+    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad things when they are repeating
+    private var numbers = [3.2, 4, 13, 17]
+//    private var numbers = [Double]()
     
     /// 1. Average number of completed goals
     /// 2. Completed goals
@@ -83,7 +85,7 @@ extension SummaryViewController: UITableViewDataSource {
         else {
             fatalError("Could not create SummaryTableViewCell")
         }
-        let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
+        let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
         cell.configure(data: summary)
         return cell
     }
