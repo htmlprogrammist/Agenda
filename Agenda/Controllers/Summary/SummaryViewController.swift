@@ -11,10 +11,15 @@ final class SummaryViewController: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
     
+    private let imagePaths = [String]()
+    private let titleLabelsText = [String]()
+    private let numbers = [Double]()
+    private let measureLabelsText = [String]()
+    
     /// 1. Average number of completed goals
-    /// 1. Completed goals
-    /// 2. All goals
+    /// 2. Completed goals
     /// 3. Uncompleted goals
+    /// 4. All goals
     /// 4. Months with completed goals?
     
     private lazy var tableView: UITableView = {
@@ -78,7 +83,8 @@ extension SummaryViewController: UITableViewDataSource {
         else {
             fatalError("Could not create SummaryTableViewCell")
         }
-        cell.backgroundColor = .systemGroupedBackground
+        let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
+        cell.configure(data: summary)
         return cell
     }
     

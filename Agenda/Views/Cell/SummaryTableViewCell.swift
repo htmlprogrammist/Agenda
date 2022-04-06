@@ -49,14 +49,9 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
+        contentView.backgroundColor = .systemGroupedBackground
         contentView.addSubview(iconImageView)
         contentView.addSubview(titleLabel)
-        
-        iconImageView.image = UIImage(named: "clock.fill")
-        titleLabel.text = "Average number of completed goals"
-        numberLabel.text = "7.8"
-        measureLabel.text = "goals"
-        
         contentView.addSubview(numberLabel)
         contentView.addSubview(measureLabel)
     }
@@ -78,5 +73,12 @@ final class SummaryTableViewCell: UITableViewCell {
             measureLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 2),
             measureLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -2),
         ])
+    }
+    
+    public func configure(data: Summary) {
+        iconImageView.image = UIImage(named: data.iconImagePath)
+        titleLabel.text = data.title
+        numberLabel.text = String(data.number)
+        measureLabel.text = data.measure
     }
 }
