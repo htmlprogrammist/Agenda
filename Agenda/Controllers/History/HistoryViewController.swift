@@ -20,6 +20,7 @@ final class HistoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

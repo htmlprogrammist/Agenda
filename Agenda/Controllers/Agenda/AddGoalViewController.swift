@@ -30,6 +30,7 @@ final class AddGoalViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

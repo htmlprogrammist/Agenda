@@ -37,6 +37,7 @@ final class AgendaViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 75
         tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
