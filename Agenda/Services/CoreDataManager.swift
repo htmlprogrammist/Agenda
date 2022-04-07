@@ -133,8 +133,10 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
 
 extension CoreDataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let delegate = delegate else { return }
-        delegate.reloadTableView()
+//        guard let delegate = delegate else { return }
+        if let delegate = delegate {
+            delegate.reloadTableView()
+        }
         // TODO: refactor this
         if let summaryDelegate = summaryDelegate {
             summaryDelegate.reloadTableView()
