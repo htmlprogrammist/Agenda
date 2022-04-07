@@ -12,6 +12,7 @@
 		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
 		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
+		F030C32227FF629A00B0F0A2 /* SuperCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030C32127FF629A00B0F0A2 /* SuperCoreDataManager.swift */; };
 		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
 		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
@@ -46,6 +47,7 @@
 		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
+		F030C32127FF629A00B0F0A2 /* SuperCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCoreDataManager.swift; sourceTree = "<group>"; };
 		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */,
+				F030C32127FF629A00B0F0A2 /* SuperCoreDataManager.swift */,
 				F0BB554827EF534C00FA7E99 /* TransitionManager.swift */,
 			);
 			path = Services;
@@ -342,6 +345,7 @@
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
+				F030C32227FF629A00B0F0A2 /* SuperCoreDataManager.swift in Sources */,
 				F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */,
 				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
 				F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */,
