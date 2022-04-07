@@ -109,9 +109,7 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
-        month.removeFromGoals(at: sourceIndexPath.row)
-        month.insertIntoGoals(chosenGoal, at: destinationIndexPath.row)
-        coreDataManager.saveContext()
+        coreDataManager.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
     // deleting cell
