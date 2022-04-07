@@ -9,25 +9,26 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol
+    private var coreDataManager: CoreDataManagerProtocol
+    private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
+    private var months: [Month]! // set only after the first fetch, used only after the setting
     
-    /// 1. Average number of completed goals
-    /// 1. Completed goals
-    /// 2. All goals
-    /// 3. Uncompleted goals
+    private let imagePaths = ["number", "checkmark.square", "xmark.square", "list.bullet"]
+    private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
+    private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
+    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
+    private var numbers = [0.0, 0.0, 0.0, 0.0]
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let width = view.frame.size.width - 2 * 16
-        layout.itemSize = CGSize(width: width, height: width * 0.3)
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.register(SummaryCollectionViewCell.self, forCellWithReuseIdentifier: SummaryCollectionViewCell.identifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return collectionView
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.dataSource = self
+        tableView.sectionHeaderHeight = 0
+        tableView.backgroundColor = .white
+        tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -47,31 +48,85 @@ final class SummaryViewController: UIViewController {
         
         setupView()
         setConstraints()
+        
+        do {
+            try fetchedResultsController.performFetch()
+            coreDataManager.delegate = self
+        } catch {
+            alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
+        }
+        
+        if let months = fetchedResultsController.fetchedObjects {
+            self.months = months
+            countGoals(months: months)
+        }
     }
     
     private func setupView() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    private func countGoals(months: [Month]) {
+        var completedGoalsCounter = 0
+        var uncompletedGoalsCounter = 0
+        var allGoalsCounter = 0
+        for month in months {
+            guard let goals = month.goals?.array as? [Goal] else { return }
+            for goal in goals {
+                if goal.current >= goal.aim {
+                    completedGoalsCounter += 1
+                } else {
+                    uncompletedGoalsCounter += 1
+                }
+                allGoalsCounter += 1
+            }
+        }
+        let formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+        numbers[0] = formattedNumber
+        numbers[1] = Double(completedGoalsCounter)
+        numbers[2] = Double(uncompletedGoalsCounter)
+        numbers[3] = Double(allGoalsCounter)
     }
 }
 
-// MARK: - UICollectionView
-extension SummaryViewController: UICollectionViewDataSource {
+// MARK: UITableView
+extension SummaryViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         4
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SummaryCollectionViewCell.identifier, for: indexPath) as? SummaryCollectionViewCell else { return SummaryCollectionViewCell() }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
+        else {
+            fatalError("Could not create SummaryTableViewCell")
+        }
+        let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
+        cell.configure(data: summary)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+}
+
+extension SummaryViewController: CoreDataManagerDelegate {
+    func reloadTableView() {
+        countGoals(months: months)
+        tableView.reloadData()
     }
 }

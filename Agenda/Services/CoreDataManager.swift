@@ -14,7 +14,7 @@ protocol CoreDataManagerProtocol {
     
     func saveContext()
     
-    var historyFetchedResultsController: NSFetchedResultsController<Month> { get }
+    var monthsFetchedResultsController: NSFetchedResultsController<Month> { get }
     func fetchCurrentMonth() -> Month
     
     func createGoal(data: GoalData, in month: Month)
@@ -69,7 +69,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
     }
     
-    lazy var historyFetchedResultsController: NSFetchedResultsController<Month> = {
+    lazy var monthsFetchedResultsController: NSFetchedResultsController<Month> = {
         let fetchRequest = Month.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
