@@ -10,7 +10,6 @@ import UIKit
 final class SummaryViewController: UIViewController {
     
     private var coreDataManager: CoreDataManagerProtocol
-//    private lazy var months = coreDataManager.fetchMonths()
     private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     

@@ -27,12 +27,14 @@ final class SummaryTableViewCell: UITableViewCell {
     private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        label.textColor = .darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var measureLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -70,7 +72,7 @@ final class SummaryTableViewCell: UITableViewCell {
             numberLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             numberLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
             
-            measureLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 2),
+            measureLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: 4),
             measureLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -2),
         ])
     }
