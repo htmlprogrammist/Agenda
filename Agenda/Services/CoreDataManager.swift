@@ -11,8 +11,6 @@ protocol CoreDataManagerProtocol {
     var managedObjectContext: NSManagedObjectContext { get }
     var persistentContainer: NSPersistentContainer { get }
     var delegate: CoreDataManagerDelegate? { get set }
-    // TODO: refactor this
-    var summaryDelegate: CoreDataManagerDelegate? { get set }
     
     func saveContext()
     
@@ -37,7 +35,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let persistentContainer: NSPersistentContainer
     
     weak var delegate: CoreDataManagerDelegate?
-    weak var summaryDelegate: CoreDataManagerDelegate?
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -79,7 +76,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "months")
-        fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
     
@@ -134,17 +130,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
-    }
-}
-
-extension CoreDataManager: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let delegate = delegate else { return }
-        delegate.reloadTableView()
-        // TODO: refactor this
-        if let summaryDelegate = summaryDelegate {
-            summaryDelegate.reloadTableView()
         }
     }
 }
