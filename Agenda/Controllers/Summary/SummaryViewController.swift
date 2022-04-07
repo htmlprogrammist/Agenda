@@ -18,14 +18,7 @@ final class SummaryViewController: UIViewController {
     private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
-//    private var numbers = [3.2, 4, 13, 17]
     private var numbers = [0.0, 0.0, 0.0, 0.0]
-    
-    /// 1. Average number of completed goals
-    /// 2. Completed goals
-    /// 3. Uncompleted goals
-    /// 4. All goals
-    /// 4. Months with completed goals?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
