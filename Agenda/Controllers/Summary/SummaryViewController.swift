@@ -13,7 +13,7 @@ final class SummaryViewController: UIViewController {
     private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
-    private let imagePaths = ["number", "checkmark.square", "xmark.square", "list.bullet"]
+    private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
     private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
@@ -79,6 +79,8 @@ final class SummaryViewController: UIViewController {
         var completedGoalsCounter = 0
         var uncompletedGoalsCounter = 0
         var allGoalsCounter = 0
+        let formattedNumber: Double
+        
         for month in months {
             guard let goals = month.goals?.array as? [Goal] else { return }
             for goal in goals {
@@ -90,7 +92,11 @@ final class SummaryViewController: UIViewController {
                 allGoalsCounter += 1
             }
         }
-        let formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+        if allGoalsCounter > 0 {
+            formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+        } else {
+            formattedNumber = 0
+        }
         numbers[0] = formattedNumber
         numbers[1] = Double(completedGoalsCounter)
         numbers[2] = Double(uncompletedGoalsCounter)

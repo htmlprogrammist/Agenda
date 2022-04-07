@@ -62,7 +62,7 @@ final class SummaryTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             iconImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 20),
+            iconImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: 16),
             
             titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 1),
             titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),

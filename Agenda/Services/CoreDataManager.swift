@@ -77,7 +77,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "months")
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -135,6 +135,7 @@ extension CoreDataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let delegate = delegate else { return }
         delegate.reloadTableView()
+        // TODO: refactor this
         if let summaryDelegate = summaryDelegate {
             summaryDelegate.reloadTableView()
         }
