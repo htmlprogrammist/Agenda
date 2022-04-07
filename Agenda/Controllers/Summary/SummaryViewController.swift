@@ -51,7 +51,7 @@ final class SummaryViewController: UIViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            coreDataManager.delegate = self
+            coreDataManager.summaryDelegate = self
         } catch {
             alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
         }
