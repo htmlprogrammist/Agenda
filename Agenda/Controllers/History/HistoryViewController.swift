@@ -10,7 +10,7 @@ import UIKit
 final class HistoryViewController: UIViewController {
     
     private var coreDataManager: CoreDataManagerProtocol
-    private lazy var fetchedResultsController = coreDataManager.historyFetchedResultsController
+    private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
     
     // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
     private lazy var separatorView = SeparatorView()

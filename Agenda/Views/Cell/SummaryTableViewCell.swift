@@ -62,7 +62,7 @@ final class SummaryTableViewCell: UITableViewCell {
             iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             iconImageView.widthAnchor.constraint(equalToConstant: 20),
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 1),
             titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             
@@ -76,10 +76,10 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     public func configure(data: Summary) {
-        iconImageView.image = UIImage(systemName: data.iconImagePath)?.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
+        iconImageView.image = UIImage(systemName: data.iconImagePath, withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))?.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
         titleLabel.text = data.title
         titleLabel.textColor = data.tintColor
-        numberLabel.text = String(data.number)
+        numberLabel.text = NSNumber(value: data.number).stringValue // to display "1" instead of "1.0"
         measureLabel.text = data.measure
     }
 }

@@ -9,14 +9,17 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol
+    private var coreDataManager: CoreDataManagerProtocol
+//    private lazy var months = coreDataManager.fetchMonths()
+    private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
+    private var months: [Month]! // set only after the first fetch, used only after the setting
     
-    private let imagePaths = ["number", "checkmark.square", "xmark.square", "list.triangle"]
+    private let imagePaths = ["number", "checkmark.square", "xmark.square", "list.bullet"]
     private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
-    private let tintColors: [UIColor] = [.systemBlue, .systemGreen, .systemRed, .systemYellow]
-    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad things when they are repeating
-    private var numbers = [3.2, 4, 13, 17]
-//    private var numbers = [Double]()
+    private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
+    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
+//    private var numbers = [3.2, 4, 13, 17]
+    private var numbers = [0.0, 0.0, 0.0, 0.0]
     
     /// 1. Average number of completed goals
     /// 2. Completed goals
@@ -53,6 +56,18 @@ final class SummaryViewController: UIViewController {
         
         setupView()
         setConstraints()
+        
+        do {
+            try fetchedResultsController.performFetch()
+            coreDataManager.delegate = self
+        } catch {
+            alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
+        }
+        
+        if let months = fetchedResultsController.fetchedObjects {
+            self.months = months
+            countGoals(months: months)
+        }
     }
     
     private func setupView() {
@@ -66,6 +81,28 @@ final class SummaryViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    private func countGoals(months: [Month]) {
+        var completedGoalsCounter = 0
+        var uncompletedGoalsCounter = 0
+        var allGoalsCounter = 0
+        for month in months {
+            guard let goals = month.goals?.array as? [Goal] else { return }
+            for goal in goals {
+                if goal.current >= goal.aim {
+                    completedGoalsCounter += 1
+                } else {
+                    uncompletedGoalsCounter += 1
+                }
+                allGoalsCounter += 1
+            }
+        }
+        let formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+        numbers[0] = formattedNumber
+        numbers[1] = Double(completedGoalsCounter)
+        numbers[2] = Double(uncompletedGoalsCounter)
+        numbers[3] = Double(allGoalsCounter)
     }
 }
 
@@ -92,5 +129,12 @@ extension SummaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+extension SummaryViewController: CoreDataManagerDelegate {
+    func reloadTableView() {
+        countGoals(months: months)
+        tableView.reloadData()
     }
 }
