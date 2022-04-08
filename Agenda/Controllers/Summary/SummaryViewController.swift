@@ -9,8 +9,8 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    private var coreDataManager: CoreDataManagerProtocol
-    private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
+    private weak var coreDataManager: CoreDataManager?
+    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
@@ -31,7 +31,7 @@ final class SummaryViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,13 +50,13 @@ final class SummaryViewController: UIViewController {
         setConstraints()
         
         do {
-            try fetchedResultsController.performFetch()
-            coreDataManager.summaryDelegate = self
+            try fetchedResultsController?.performFetch()
+            coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
         } catch {
             alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
         }
         
-        if let months = fetchedResultsController.fetchedObjects {
+        if let months = fetchedResultsController?.fetchedObjects {
             self.months = months
             countGoals(months: months)
         }

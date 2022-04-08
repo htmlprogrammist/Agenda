@@ -9,8 +9,8 @@ import UIKit
 
 final class HistoryViewController: UIViewController {
     
-    private var coreDataManager: CoreDataManagerProtocol
-    private lazy var fetchedResultsController = coreDataManager.monthsFetchedResultsController
+    private weak var coreDataManager: CoreDataManager?
+    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     
     // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
     private lazy var separatorView = SeparatorView()
@@ -25,7 +25,7 @@ final class HistoryViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManagerProtocol) {
+    init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,8 +44,8 @@ final class HistoryViewController: UIViewController {
         setupViewAndConstraints()
         
         do {
-            try fetchedResultsController.performFetch()
-            coreDataManager.delegate = self
+            try fetchedResultsController?.performFetch()
+            coreDataManager?.clients.append(self)
         } catch {
             alertForError(title: "Oops!", message: "We've got unexpected error while loading your history. Please, restart the application")
         }
@@ -75,7 +75,7 @@ extension HistoryViewController {
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = fetchedResultsController.sections?[section] else {
+        guard let section = fetchedResultsController?.sections?[section] else {
             return 0
         }
         return section.numberOfObjects
@@ -83,7 +83,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
-        let month = fetchedResultsController.object(at: indexPath)
+        guard let month = fetchedResultsController?.object(at: indexPath) else { return HistoryTableViewCell() }
         cell.configure(month: month)
         return cell
     }
@@ -106,8 +106,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-            let month = fetchedResultsController.object(at: indexPath)
-            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager)
+            guard let month = fetchedResultsController?.object(at: indexPath) else { return }
+            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager!)
+            // we are sure that core data manager is not nil
             navigationController?.pushViewController(destination, animated: true)
         }
     }
@@ -126,8 +127,8 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
                 let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
                     tableView.beginUpdates()
                     
-                    let month = fetchedResultsController.object(at: indexPath)
-                    coreDataManager.deleteMonth(month: month)
+                    guard let month = fetchedResultsController?.object(at: indexPath) else { return }
+                    coreDataManager?.deleteMonth(month: month)
                     
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     tableView.endUpdates()
