@@ -37,6 +37,7 @@ enum Labels {
         static let title = "summary".localized
         static let fetchErrorDescription = "fetchErrorDescription".localized
         
+        static let goals = "goalsConjugation".localized
         static let averageNumberOfCompletedGoals = "averageNumberOfCompletedGoals".localized
         static let completedGoals = "completedGoals".localized
         static let uncompletedGoals = "uncompletedGoals".localized

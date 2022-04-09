@@ -16,7 +16,7 @@ final class SummaryViewController: UIViewController {
     private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
     private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
+    private let measureLabelsText = [Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals]
     private var numbers = [0.0, 0.0, 0.0, 0.0]
     
     private lazy var tableView: UITableView = {

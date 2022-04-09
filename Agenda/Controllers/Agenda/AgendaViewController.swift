@@ -108,8 +108,6 @@ private extension AgendaViewController {
     func getMonthInfo() {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
         
         let calendar = Calendar.current
@@ -181,7 +179,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This action cannot be undone", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }

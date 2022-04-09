@@ -151,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB552327EF4D5700FA7E99 /* Assets.xcassets */,
+				F0F45FE62801C2F000BA244D /* Labels.swift */,
 				F0F45FED2801C8DB00BA244D /* Localizable.strings */,
 				F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */,
 				F0BB552827EF4D5700FA7E99 /* Info.plist */,
@@ -173,7 +174,6 @@
 			children = (
 				F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */,
 				F0BB554827EF534C00FA7E99 /* TransitionManager.swift */,
-				F0F45FE62801C2F000BA244D /* Labels.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
