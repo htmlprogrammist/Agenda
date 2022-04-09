@@ -5,15 +5,17 @@
 //  Created by Егор Бадмаев on 09.04.2022.
 //
 
+import Foundation
+
 enum Labels {
     static let yes = "yes".localized
-    static let no = "No"
+    static let no = "no".localized
     static let goals = "goals".localized
-    static let oopsError = "Oops!"
+    static let oopsError = "oopsError".localized
     
     enum TabBarItemsNames {
         static let history = "history".localized
-        static let summary = "summary".localized
+        static let summary = NSLocalizedString("summary", comment: "")
     }
     
     enum Agenda {
@@ -23,6 +25,7 @@ enum Labels {
         static let notes = "Notes"
         
         static let newGoal = "New Goal"
+        static let saved = "Saved successfully"
         static let deleteGoalTitle = "Delete goal"
         static let deleteGoalDescription = "Are you sure you want to delete this goal? This action cannot be undone"
     }

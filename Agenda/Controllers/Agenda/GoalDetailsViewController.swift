@@ -26,7 +26,7 @@ final class GoalDetailsViewController: UIViewController {
         return barButton
     }()
     private lazy var indicatorView: SPIndicatorView = {
-        let indicatorView = SPIndicatorView(title: "Saved successfully", preset: .done)
+        let indicatorView = SPIndicatorView(title: Labels.Agenda.saved, preset: .done)
         indicatorView.presentSide = .bottom
         indicatorView.iconView?.tintColor = .systemGreen
         return indicatorView
