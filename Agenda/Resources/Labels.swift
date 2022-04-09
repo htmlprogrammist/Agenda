@@ -7,7 +7,7 @@
 
 enum Labels {
     static let yes = "yes".localized
-    static let no = "no".localized
+    static let cancel = "cancel".localized
     static let goals = "goals".localized
     static let oopsError = "oopsError".localized
     
@@ -37,7 +37,7 @@ enum Labels {
         static let title = "summary".localized
         static let fetchErrorDescription = "fetchErrorDescription".localized
         
-        static let goals = "goalsConjugation".localized
+        static let goalsDeclension = "goalsDeclension".localized
         static let averageNumberOfCompletedGoals = "averageNumberOfCompletedGoals".localized
         static let completedGoals = "completedGoals".localized
         static let uncompletedGoals = "uncompletedGoals".localized

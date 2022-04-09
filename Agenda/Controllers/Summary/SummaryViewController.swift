@@ -16,7 +16,7 @@ final class SummaryViewController: UIViewController {
     private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
     private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = [Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals]
+    private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0]
     
     // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)

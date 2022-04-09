@@ -134,7 +134,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     tableView.endUpdates()
                 })
-                let no = UIAlertAction(title: Labels.no, style: .default)
+                let no = UIAlertAction(title: Labels.cancel, style: .default)
                 
                 alert.addAction(yes)
                 alert.addAction(no)

@@ -186,7 +186,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
                 coreDataManager.deleteGoal(goal: goal)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
-            let no = UIAlertAction(title: Labels.no, style: .default)
+            let no = UIAlertAction(title: Labels.cancel, style: .default)
             
             alert.addAction(yes)
             alert.addAction(no)
