@@ -1,0 +1,41 @@
+/* 
+  Localized.strings
+  Agenda
+
+  Created by Егор Бадмаев on 09.04.2022.
+  
+*/
+
+// General
+yes = "Yes";
+cancel = "Cancel";
+goals = "Goals";
+oopsError = "Oops!";
+
+// TabBarItemsNames
+history = "History";
+summary = "Summary";
+
+// Agenda
+titleLabel = "Title";
+currentLabel = "Current";
+aimLabel = "Aim";
+notes = "Notes";
+newGoal = "New Goal";
+saved = "Saved successfully";
+deleteGoalTitle = "Delete goal";
+deleteGoalDescription = "Are you sure you want to delete this goal? This action cannot be undone";
+
+// History
+fetchErrorDescription = "We've got unexpected error while loading your history. Please, restart the application";
+currentMonthDeletion = "You could not delete current month";
+deleteMonthTitle = "Delete month";
+deleteMonthDescription = "Are you sure you want to delete this month? This action cannot be undone";
+
+// Summary
+fetchErrorDescription = "We've got unexpected error while loading statistics. Please, restart the application";
+goalsDeclension = "goals";
+averageNumberOfCompletedGoals = "Average number of completed goals";
+completedGoals = "Completed goals";
+uncompletedGoals = "Uncompleted goals";
+allGoals = "All goals";

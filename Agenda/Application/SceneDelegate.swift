@@ -13,12 +13,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let tabBarController = MainTabBarController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene else { return }
         
-        guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
-        window.overrideUserInterfaceStyle = .light
         self.window = window
     }
     
@@ -53,4 +52,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.coreDataManager.saveContext()
     }
 }
-

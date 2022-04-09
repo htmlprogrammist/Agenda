@@ -54,7 +54,7 @@ class HistoryTableViewCell: UITableViewCell {
                 completedGoalsCounter += 1
             }
         }
-        detailsSubtitle.text = "Goals: \(completedGoalsCounter)/\(goals.count)"
+        detailsSubtitle.text = "\(Labels.goals): \(completedGoalsCounter)/\(goals.count)"
     }
 }
 

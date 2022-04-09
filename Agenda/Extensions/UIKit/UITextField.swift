@@ -11,6 +11,7 @@ extension UITextField {
     convenience init(keyboardType: UIKeyboardType, placeholder: String, textAlignment: NSTextAlignment = .right, borderStyle: BorderStyle) {
         self.init()
         self.isHidden = true
+        self.backgroundColor = .clear
         self.textAlignment = textAlignment
         self.keyboardType = keyboardType
         self.placeholder = placeholder

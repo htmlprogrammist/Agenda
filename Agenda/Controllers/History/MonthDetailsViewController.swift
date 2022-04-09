@@ -30,7 +30,7 @@ final class MonthDetailsViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem
         title = month.date?.formatToMonthYear()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         setupViewAndConstraints()
     }
@@ -115,14 +115,14 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
     // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This action cannot be undone", preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+            let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
                 coreDataManager.deleteGoal(goal: goal)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
-            let no = UIAlertAction(title: "No", style: .default)
+            let no = UIAlertAction(title: Labels.cancel, style: .default)
             
             alert.addAction(yes)
             alert.addAction(no)

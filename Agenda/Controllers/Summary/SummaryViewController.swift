@@ -14,16 +14,18 @@ final class SummaryViewController: UIViewController {
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
-    private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
+    private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
+    private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0]
+    
+    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
+    private lazy var separatorView = SeparatorView()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
-        tableView.backgroundColor = .white
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
@@ -43,8 +45,8 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        title = "Summary"
+        view.backgroundColor = .systemBackground
+        title = Labels.Summary.title
         
         setupView()
         setConstraints()
@@ -53,7 +55,7 @@ final class SummaryViewController: UIViewController {
             try fetchedResultsController?.performFetch()
             coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
         } catch {
-            alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
+            alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
         }
         
         if let months = fetchedResultsController?.fetchedObjects {
@@ -63,13 +65,18 @@ final class SummaryViewController: UIViewController {
     }
     
     private func setupView() {
+        view.addSubview(separatorView)
         view.addSubview(tableView)
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // 1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -116,8 +123,7 @@ extension SummaryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell else {
             fatalError("Could not create SummaryTableViewCell")
         }
         let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
@@ -127,6 +133,10 @@ extension SummaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        " " // for correct displaying (table view gets from the top too much)
     }
 }
 

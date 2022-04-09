@@ -38,8 +38,8 @@ final class HistoryViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
-        title = "History"
-        view.backgroundColor = .white
+        title = Labels.History.title
+        view.backgroundColor = .systemBackground
         
         setupViewAndConstraints()
         
@@ -47,7 +47,7 @@ final class HistoryViewController: UIViewController {
             try fetchedResultsController?.performFetch()
             coreDataManager?.clients.append(self)
         } catch {
-            alertForError(title: "Oops!", message: "We've got unexpected error while loading your history. Please, restart the application")
+            alertForError(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
         }
     }
 }
@@ -96,6 +96,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
@@ -121,10 +122,10 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if indexPath == [0, 0] {
-                alertForError(title: "Oops!", message: "You could not delete current month")
+                alertForError(title: Labels.oopsError, message: Labels.History.currentMonthDeletion)
             } else {
-                let alert = UIAlertController(title: "Delete month", message: "Are you sure you want to delete this month? This action cannot be undone", preferredStyle: .actionSheet)
-                let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+                let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
+                let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                     tableView.beginUpdates()
                     
                     guard let month = fetchedResultsController?.object(at: indexPath) else { return }
@@ -133,7 +134,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     tableView.endUpdates()
                 })
-                let no = UIAlertAction(title: "No", style: .default)
+                let no = UIAlertAction(title: Labels.cancel, style: .default)
                 
                 alert.addAction(yes)
                 alert.addAction(no)

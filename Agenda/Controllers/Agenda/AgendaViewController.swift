@@ -45,7 +45,7 @@ final class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.title = "Agenda"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
         navigationItem.leftBarButtonItem = editButtonItem
@@ -108,16 +108,13 @@ private extension AgendaViewController {
     func getMonthInfo() {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
         
         let calendar = Calendar.current
         let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
-        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",") // splitting string into 2 strings
         
-        dayAndMonth.text = "\(arrayOfElements[0]),"
-        yearLabel.text = "\(arrayOfElements[1])"
+        dayAndMonth.text = "\(dateFormatter.string(from: date))"
+        yearLabel.text = ", \(calendar.dateComponents([.year], from: date).year ?? 0)"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     
@@ -182,14 +179,14 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This action cannot be undone", preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+            let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
                 coreDataManager.deleteGoal(goal: goal)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
-            let no = UIAlertAction(title: "No", style: .default)
+            let no = UIAlertAction(title: Labels.cancel, style: .default)
             
             alert.addAction(yes)
             alert.addAction(no)
