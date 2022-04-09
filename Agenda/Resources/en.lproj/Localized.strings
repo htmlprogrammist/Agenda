@@ -1,0 +1,17 @@
+/* 
+  Localized.strings
+  Agenda
+
+  Created by Егор Бадмаев on 09.04.2022.
+  
+*/
+
+// General
+yes = "Yes";
+no = "Cancel";
+goals = "Goals";
+oopsError = "Oops!";
+
+// TabBarItemsNames
+history = "History";
+summary = "Summary";

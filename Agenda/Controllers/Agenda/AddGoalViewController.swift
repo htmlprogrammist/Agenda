@@ -38,7 +38,7 @@ final class AddGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Goal"
+        title = Labels.Agenda.newGoal
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
         view.backgroundColor = .systemGroupedBackground

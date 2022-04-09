@@ -183,13 +183,13 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Delete goal", message: "Are you sure you want to delete this goal? This action cannot be undone", preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [self] _ in
+            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                 
                 guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
                 coreDataManager.deleteGoal(goal: goal)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
-            let no = UIAlertAction(title: "No", style: .default)
+            let no = UIAlertAction(title: Labels.no, style: .default)
             
             alert.addAction(yes)
             alert.addAction(no)

@@ -20,11 +20,11 @@ final class MainTabBarController: UITabBarController {
     
     private func createTabs() {
         let agendaViewController = createNavController(viewController: AgendaViewController(coreDataManager: coreDataManager),
-                                                       itemName: "Agenda", itemImage: "calendar")
+                                                       itemName: Labels.goals, itemImage: "calendar")
         let historyViewController = createNavController(viewController: HistoryViewController(coreDataManager: coreDataManager),
-                                                        itemName: "History", itemImage: "clock.fill")
+                                                        itemName: Labels.TabBarItemsNames.history, itemImage: "clock.fill")
         let summaryViewController = createNavController(viewController: SummaryViewController(coreDataManager: coreDataManager),
-                                                        itemName: "Summary", itemImage: "square.text.square.fill")
+                                                        itemName: Labels.TabBarItemsNames.summary, itemImage: "square.text.square.fill")
         
         viewControllers = [agendaViewController, historyViewController, summaryViewController]
     }

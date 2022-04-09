@@ -44,7 +44,7 @@ final class SummaryViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        title = "Summary"
+        title = Labels.Summary.title
         
         setupView()
         setConstraints()
@@ -53,7 +53,7 @@ final class SummaryViewController: UIViewController {
             try fetchedResultsController?.performFetch()
             coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
         } catch {
-            alertForError(title: "Oops!", message: "We've got unexpected error while loading statistics. Please, restart the application")
+            alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
         }
         
         if let months = fetchedResultsController?.fetchedObjects {
@@ -116,8 +116,7 @@ extension SummaryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell else {
             fatalError("Could not create SummaryTableViewCell")
         }
         let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])

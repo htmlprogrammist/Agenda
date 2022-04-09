@@ -15,8 +15,8 @@ protocol GoalTableViewCellDelegate: AnyObject {
 final class GoalTableViewCell: UITableViewCell {
     
     static let identifier = "goalTableViewCell"
-    private let labelsArray = ["Current", "Aim"]
     
+    private let labelsArray = [Labels.Agenda.currentLabel, Labels.Agenda.aimLabel]
     public var goal: GoalData? // to fill the cell with data (from GoalDetails)
     public weak var delegate: GoalTableViewCellDelegate?
     
@@ -27,7 +27,7 @@ final class GoalTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var titleTextField = UITextField(keyboardType: .default, placeholder: "Title", textAlignment: .left, borderStyle: .none)
+    private lazy var titleTextField = UITextField(keyboardType: .default, placeholder: Labels.Agenda.titleLabel, textAlignment: .left, borderStyle: .none)
     private lazy var currentTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
     private lazy var aimTextField = UITextField(keyboardType: .numberPad, placeholder: "0", borderStyle: .roundedRect)
     
@@ -37,7 +37,7 @@ final class GoalTableViewCell: UITableViewCell {
         textView.isScrollEnabled = false
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.text = "Notes"
+        textView.text = Labels.Agenda.notes
         textView.textColor = .placeholderText
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
@@ -103,7 +103,7 @@ final class GoalTableViewCell: UITableViewCell {
         if indexPath == [0, 1] {
             notesTextView.isHidden = false
             
-            if let notes = goal?.notes, notes != "Notes", !notes.isEmpty {
+            if let notes = goal?.notes, notes != Labels.Agenda.notes, !notes.isEmpty {
                 notesTextView.text = notes
                 notesTextView.textColor = .black
             }
@@ -174,7 +174,7 @@ extension GoalTableViewCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Notes"
+            textView.text = Labels.Agenda.notes
             textView.textColor = .placeholderText
         }
     }
