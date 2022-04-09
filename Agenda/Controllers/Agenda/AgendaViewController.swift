@@ -113,8 +113,8 @@ private extension AgendaViewController {
         let calendar = Calendar.current
         let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
         
-        dayAndMonth.text = "\(dateFormatter.string(from: date)), "
-        yearLabel.text = "\(calendar.dateComponents([.year], from: date).year ?? 0)"
+        dayAndMonth.text = "\(dateFormatter.string(from: date))"
+        yearLabel.text = ", \(calendar.dateComponents([.year], from: date).year ?? 0)"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     
