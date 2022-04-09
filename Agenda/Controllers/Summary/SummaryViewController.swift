@@ -19,6 +19,9 @@ final class SummaryViewController: UIViewController {
     private let measureLabelsText = [Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals, Labels.Summary.goals]
     private var numbers = [0.0, 0.0, 0.0, 0.0]
     
+    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
+    private lazy var separatorView = SeparatorView()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
@@ -62,13 +65,18 @@ final class SummaryViewController: UIViewController {
     }
     
     private func setupView() {
+        view.addSubview(separatorView)
         view.addSubview(tableView)
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // 1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -125,6 +133,10 @@ extension SummaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        " " // for correct displaying (table view gets from the top too much)
     }
 }
 
