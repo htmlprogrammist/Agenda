@@ -110,14 +110,13 @@ private extension AgendaViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
-        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
         
         let calendar = Calendar.current
         let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
-        let arrayOfElements = dateFormatter.string(from: date).split(separator: ",") // splitting string into 2 strings
         
-        dayAndMonth.text = "\(arrayOfElements[0]),"
-        yearLabel.text = "\(arrayOfElements[1])"
+        dayAndMonth.text = "\(dateFormatter.string(from: date)), "
+        yearLabel.text = "\(calendar.dateComponents([.year], from: date).year ?? 0)"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     

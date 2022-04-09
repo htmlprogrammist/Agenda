@@ -5,44 +5,41 @@
 //  Created by Егор Бадмаев on 09.04.2022.
 //
 
-import Foundation
-
 enum Labels {
     static let yes = "yes".localized
     static let no = "no".localized
     static let goals = "goals".localized
     static let oopsError = "oopsError".localized
     
-    enum TabBarItemsNames {
-        static let history = "history".localized
-        static let summary = NSLocalizedString("summary", comment: "")
-    }
-    
     enum Agenda {
-        static let titleLabel = "Title"
-        static let currentLabel = "Current"
-        static let aimLabel = "Aim"
-        static let notes = "Notes"
+        static let titleLabel = "titleLabel".localized
+        static let currentLabel = "currentLabel".localized
+        static let aimLabel = "aimLabel".localized
+        static let notes = "notes".localized
         
-        static let newGoal = "New Goal"
-        static let saved = "Saved successfully"
-        static let deleteGoalTitle = "Delete goal"
-        static let deleteGoalDescription = "Are you sure you want to delete this goal? This action cannot be undone"
+        static let newGoal = "newGoal".localized
+        static let saved = "saved".localized
+        static let deleteGoalTitle = "deleteGoalTitle".localized
+        static let deleteGoalDescription = "deleteGoalDescription".localized
     }
     
     enum History {
-        static let title = "History"
+        static let title = "history".localized
         
-        static let fetchErrorDescription = "We've got unexpected error while loading your history. Please, restart the application"
-        static let currentMonthDeletion = "You could not delete current month"
+        static let fetchErrorDescription = "fetchErrorDescription".localized
+        static let currentMonthDeletion = "currentMonthDeletion".localized
         
-        static let deleteMonthTitle = "Delete month"
-        static let deleteMonthDescription = "Are you sure you want to delete this month? This action cannot be undone"
+        static let deleteMonthTitle = "deleteMonthTitle".localized
+        static let deleteMonthDescription = "deleteMonthDescription".localized
     }
     
     enum Summary {
-        static let title = "Summary"
+        static let title = "summary".localized
+        static let fetchErrorDescription = "fetchErrorDescription".localized
         
-        static let fetchErrorDescription = "We've got unexpected error while loading statistics. Please, restart the application"
+        static let averageNumberOfCompletedGoals = "averageNumberOfCompletedGoals".localized
+        static let completedGoals = "completedGoals".localized
+        static let uncompletedGoals = "uncompletedGoals".localized
+        static let allGoals = "allGoals".localized
     }
 }

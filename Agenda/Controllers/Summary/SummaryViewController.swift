@@ -14,7 +14,7 @@ final class SummaryViewController: UIViewController {
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
-    private let titleLabelsText = ["Average number of completed goals", "Completed goals", "Uncompleted goals", "All goals"]
+    private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = ["goals", "goals", "goals", "goals"] // such a bad thing when they are repeating
     private var numbers = [0.0, 0.0, 0.0, 0.0]

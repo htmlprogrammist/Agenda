@@ -15,3 +15,26 @@ oopsError = "Упс!";
 // TabBarItemsNames
 history = "История";
 summary = "Обзор";
+
+// Agenda
+titleLabel = "Заголовок";
+currentLabel = "Текущее значение";
+aimLabel = "Цель";
+notes = "Заметки";
+newGoal = "Новая Цель";
+saved = "Успешно сохранено";
+deleteGoalTitle = "Удалить цель";
+deleteGoalDescription = "Вы уверены, что хотите удалить эту цель? Отменить это действие будет невозможно";
+
+// History
+fetchErrorDescription = "Возникла непредвиденная ошибка в результате загрузки вашей истории. Пожалуйста, перезапустите приложение";
+currentMonthDeletion = "Вы не можете удалить ещё не закончившийся месяц";
+deleteMonthTitle = "Удалить месяц";
+deleteMonthDescription = "Вы уверены, что хотите удалить этот месяц? Отменить это действие будет невозможно";
+
+// Summary
+fetchErrorDescription = "Возникла непредвиденная ошибка в результате загрузки вашей статистики. Пожалуйста, перезапустите приложение";
+averageNumberOfCompletedGoals = "Среднее количество выполненных целей";
+completedGoals = "Выполненные цели";
+uncompletedGoals = "Невыполненные цели";
+allGoals = "Все цели";
