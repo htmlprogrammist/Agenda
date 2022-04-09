@@ -23,7 +23,7 @@ final class GoalTableViewCell: UITableViewCell {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.isHidden = true
-        label.textColor = .darkText
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,6 +38,7 @@ final class GoalTableViewCell: UITableViewCell {
         textView.delegate = self
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.text = Labels.Agenda.notes
+        textView.backgroundColor = .clear
         textView.textColor = .placeholderText
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
@@ -105,7 +106,7 @@ final class GoalTableViewCell: UITableViewCell {
             
             if let notes = goal?.notes, notes != Labels.Agenda.notes, !notes.isEmpty {
                 notesTextView.text = notes
-                notesTextView.textColor = .black
+                notesTextView.textColor = .label
             }
         }
         if indexPath == [1, 0] {
@@ -168,7 +169,7 @@ extension GoalTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .placeholderText {
             textView.text = nil
-            textView.textColor = .black
+            textView.textColor = .label
         }
     }
     

@@ -41,7 +41,7 @@ final class AddGoalViewController: UIViewController {
         title = Labels.Agenda.newGoal
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .systemBackground
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place

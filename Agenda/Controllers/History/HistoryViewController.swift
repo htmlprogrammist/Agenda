@@ -39,7 +39,7 @@ final class HistoryViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem
         title = Labels.History.title
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         setupViewAndConstraints()
         
@@ -96,6 +96,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }

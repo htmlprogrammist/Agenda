@@ -23,7 +23,6 @@ final class SummaryViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
-        tableView.backgroundColor = .white
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
@@ -43,7 +42,7 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         title = Labels.Summary.title
         
         setupView()

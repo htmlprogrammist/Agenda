@@ -27,7 +27,6 @@ final class SummaryTableViewCell: UITableViewCell {
     private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.textColor = .darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,7 +50,6 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        contentView.backgroundColor = .systemGroupedBackground
         contentView.addSubview(iconImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(numberLabel)
