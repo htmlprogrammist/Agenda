@@ -11,6 +11,19 @@ enum Labels {
     static let goals = "goals".localized
     static let oopsError = "oopsError".localized
     
+    enum Onboarding {
+        static let welcomeLabel = "welcomeLabel".localized
+        static let continueButtonLabel = "continueButtonLabel".localized
+        
+        static let title1 = "title1".localized
+        static let title2 = "title2".localized
+        static let title3 = "title3".localized
+        
+        static let description1 = "description1".localized
+        static let description2 = "description2".localized
+        static let description3 = "description3".localized
+    }
+    
     enum Agenda {
         static let titleLabel = "titleLabel".localized
         static let currentLabel = "currentLabel".localized

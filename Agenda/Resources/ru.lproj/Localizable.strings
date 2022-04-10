@@ -16,6 +16,17 @@ oopsError = "Упс!";
 history = "История";
 summary = "Обзор";
 
+// Onboarding
+welcomeLabel = "Добро пожаловать в Agenda";
+continueButtonLabel = "Продолжить";
+title1 = "";
+title2 = "";
+title3 = "";
+
+description1 = "";
+description2 = "";
+description3 = "";
+
 // Agenda
 titleLabel = "Заголовок";
 currentLabel = "Текущее значение";

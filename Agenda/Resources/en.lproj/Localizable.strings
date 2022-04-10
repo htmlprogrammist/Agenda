@@ -16,6 +16,17 @@ oopsError = "Oops!";
 history = "History";
 summary = "Summary";
 
+// Onboarding
+welcomeLabel = "Welcome to the Agenda";
+continueButtonLabel = "Continue";
+title1 = "";
+title2 = "";
+title3 = "";
+
+description1 = "";
+description2 = "";
+description3 = "";
+
 // Agenda
 titleLabel = "Title";
 currentLabel = "Current";
