@@ -65,7 +65,9 @@ final class AgendaViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if !UserDefaults.standard.hasOnboarded {
-            present(OnboardingViewController(), animated: true)
+            let onboarding = OnboardingViewController()
+            onboarding.isModalInPresentation = true
+            present(onboarding, animated: true)
         }
     }
     

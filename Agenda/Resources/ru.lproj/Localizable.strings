@@ -19,13 +19,13 @@ summary = "Обзор";
 // Onboarding
 welcomeLabel = "Добро пожаловать в Agenda";
 continueButtonLabel = "Продолжить";
-title1 = "";
-title2 = "";
-title3 = "";
+title1 = "asdfklas;ldkfj";
+title2 = "asdfklas;ldkfj";
+title3 = "asdfklas;ldkfj";
 
-description1 = "";
-description2 = "";
-description3 = "";
+description1 = "Возникла непредвиденная ошибка в результате загрузки вашей статистики. Пожалуйста, перезапустите приложение";
+description2 = "Возникла непредвиденная ошибка в результате загрузки вашей статистики. Пожалуйста, перезапустите приложение";
+description3 = "Возникла непредвиденная ошибка в результате загрузки вашей статистики. Пожалуйста, перезапустите приложение";
 
 // Agenda
 titleLabel = "Заголовок";

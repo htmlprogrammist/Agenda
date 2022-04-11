@@ -12,7 +12,7 @@ final class OnboardingViewController: UIViewController {
     
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let imagePathsArray = [""]
+    private let imagePathsArray = ["circle", "circle.fill", "calendar"]
     private let colorsArray: [UIColor] = [.systemRed, .systemGreen, .systemBlue]
     
     private lazy var scrollView: UIScrollView = {
@@ -106,6 +106,7 @@ private extension OnboardingViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
             welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -115,7 +116,6 @@ private extension OnboardingViewController {
             tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            
         ])
         NSLayoutConstraint.activate([
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -128,8 +128,6 @@ private extension OnboardingViewController {
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             continueButton.heightAnchor.constraint(equalToConstant: 52)
         ])
-        
-        
     }
     
     @objc func continueButtonTapped() {
