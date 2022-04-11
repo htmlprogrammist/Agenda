@@ -16,6 +16,7 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+//        scrollView.backgroundColor = .systemGreen
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -45,6 +46,7 @@ final class OnboardingViewController: UIViewController {
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.backgroundColor = .clear
+//        tableView.backgroundColor = .yellow
         tableView.register(OnboardingTableViewCell.self, forCellReuseIdentifier: OnboardingTableViewCell.identifier)
         tableView.allowsSelection = false
         tableView.isScrollEnabled = false
@@ -85,6 +87,10 @@ private extension OnboardingViewController {
     
     func setupView() {
         view.addSubview(scrollView)
+        
+//        scrollView.addSubview(welcomeLabel)
+//        scrollView.addSubview(tableView)
+        
         scrollView.addSubview(contentView)
         
         contentView.addSubview(welcomeLabel)
@@ -95,7 +101,7 @@ private extension OnboardingViewController {
             welcomeLabel.attributedText = labelText
         }
         contentView.addSubview(tableView)
-        contentView.addSubview(footer)
+//        contentView.addSubview(footer)
         
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
@@ -116,6 +122,7 @@ private extension OnboardingViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: backgroundButtonView.bottomAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -123,23 +130,28 @@ private extension OnboardingViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
-            welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
             welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
+
             tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
 //            tableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.75),
-//            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75),
-            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: (view.frame.size.width / view.frame.size.height) + 1),
+            
+            // 1st way
+            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2.9 - (view.frame.size.height / view.frame.size.width)),
+            // 2nd way
+//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 4 - (view.frame.size.height / view.frame.size.width)),
+            
+//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: (view.frame.size.width / view.frame.size.height) + 1),
 //            tableView.bottomAnchor.constraint(equalTo: footer.topAnchor),
             
-            footer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            footer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            footer.widthAnchor.constraint(equalTo: view.widthAnchor),
-            footer.heightAnchor.constraint(equalToConstant: 20)
+//            footer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+//            footer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            footer.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            footer.heightAnchor.constraint(equalToConstant: 20)
         ])
         NSLayoutConstraint.activate([
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
