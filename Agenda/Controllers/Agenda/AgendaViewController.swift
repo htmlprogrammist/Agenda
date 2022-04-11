@@ -61,6 +61,14 @@ final class AgendaViewController: UIViewController {
         getMonthInfo()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !UserDefaults.standard.hasOnboarded {
+            present(OnboardingViewController(), animated: true)
+        }
+    }
+    
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
         super.init(nibName: nil, bundle: nil)

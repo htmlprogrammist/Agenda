@@ -10,8 +10,6 @@ import SwiftUI
 
 final class OnboardingViewController: UIViewController {
     
-    private let mainTabBarController: UITabBarController
-    
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
     private let imagePathsArray = [""]
@@ -31,6 +29,8 @@ final class OnboardingViewController: UIViewController {
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.text = Labels.Onboarding.welcomeLabel
+        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -47,26 +47,23 @@ final class OnboardingViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var backgroundButtonView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     private lazy var continueButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Continue", for: .normal)
+        button.setTitle(Labels.Onboarding.continueButtonLabel, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.layer.zPosition = 1
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
-        button.backgroundColor = UIColor(red: 99/255, green: 210/255, blue: 255/255, alpha: 1.0)
+        button.backgroundColor = UIColor(red: 245/255, green: 87/255, blue: 78/255, alpha: 1.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
         return button
     }()
-    
-    init(_ mainTabBarController: UITabBarController) {
-        self.mainTabBarController = mainTabBarController
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,40 +79,62 @@ final class OnboardingViewController: UIViewController {
 private extension OnboardingViewController {
     
     func setupView() {
-//        view.addSubview(scrollView)
-//        scrollView.addSubview(contentView)
-//
-//        contentView.addSubview(welcomeLabel)
-//        contentView.addSubview(tableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         
-//        if let locale = Locale.current.identifier
-//        let labelText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
-//        labelText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 99/255, green: 210/255, blue: 255/255, alpha: 1.0), range: NSRange(location: 15, length: 6))
-//        welcomeLabel.attributedText = labelText
-//        welcomeLabel.numberOfLines = 0
+        contentView.addSubview(welcomeLabel)
+        if let locale = Locale.current.languageCode, locale == "en" {
+            let labelText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
+            labelText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 245/255, green: 87/255, blue: 78/255, alpha: 1.0), range: NSRange(location: 15, length: 6))
+            welcomeLabel.attributedText = labelText
+        }
+        contentView.addSubview(tableView)
+        
+        view.addSubview(backgroundButtonView)
+        backgroundButtonView.addSubview(continueButton)
     }
     
     func setContraints() {
-        view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: backgroundButtonView.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            
+            welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
         ])
-//        NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
+        NSLayoutConstraint.activate([
+            backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            backgroundButtonView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            backgroundButtonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            backgroundButtonView.heightAnchor.constraint(equalToConstant: 84),
+            
+            continueButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            continueButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            continueButton.heightAnchor.constraint(equalToConstant: 52)
+        ])
+        
+        
     }
     
     @objc func continueButtonTapped() {
-        let destination = mainTabBarController
-        destination.modalPresentationStyle = .fullScreen
-        UserDefaults.standard.hasOnboarded = true
-        present(destination, animated: true, completion: nil)
+        dismiss(animated: true)
+//        UserDefaults.standard.hasOnboarded = true
     }
 }
 
