@@ -85,22 +85,27 @@ final class SummaryTableViewCell: UITableViewCell {
     
     private func goalsDeclensionRU(number: Double, measure: String) -> String {
         var variants: [String]
+        
         switch measure {
         case "целей":
             variants = ["цель", "цели", "целей"]
             
-            if number < 1 { // remake it to If it's double, then use "цели"
+            if NSNumber(value: number).stringValue.contains(".") { // if it is Double
                 return variants[1]
             }
-            if number == 1 || (Int(number) % 10 == 0 && number != 11) {
-                return variants[0]
+            let numberMutable = Int(number) % 100
+            
+            if (numberMutable >= 11 && numberMutable <= 19) {
+                return variants[2]
             }
-        case "месяцев":
-            return measure // mockup
+            
+            switch numberMutable % 10 {
+            case 1: return variants[0]
+            case 2...4: return variants[1]
+            default: return variants[2]
+            }
         default:
             return measure
         }
-        
-        return measure
     }
 }
