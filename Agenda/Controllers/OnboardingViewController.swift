@@ -16,17 +16,11 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .systemGreen
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     private lazy var contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    // MARK: Is there any need of this?
-    private lazy var footer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -46,7 +40,6 @@ final class OnboardingViewController: UIViewController {
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.backgroundColor = .clear
-//        tableView.backgroundColor = .yellow
         tableView.register(OnboardingTableViewCell.self, forCellReuseIdentifier: OnboardingTableViewCell.identifier)
         tableView.allowsSelection = false
         tableView.isScrollEnabled = false
@@ -88,9 +81,6 @@ private extension OnboardingViewController {
     func setupView() {
         view.addSubview(scrollView)
         
-//        scrollView.addSubview(welcomeLabel)
-//        scrollView.addSubview(tableView)
-        
         scrollView.addSubview(contentView)
         
         contentView.addSubview(welcomeLabel)
@@ -101,22 +91,12 @@ private extension OnboardingViewController {
             welcomeLabel.attributedText = labelText
         }
         contentView.addSubview(tableView)
-//        contentView.addSubview(footer)
         
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
     }
     
     func setContraints() {
-        print("H/W ratio: \(view.frame.size.height / view.frame.size.width); Height: \(view.frame.size.height); Width: \(view.frame.size.width)")
-        print("W/H ratio: \(view.frame.size.width / view.frame.size.height); Height: \(view.frame.size.height); Width: \(view.frame.size.width)")
-        
-        // 13 H/W ratio: 2.164; Height: 844.0; Width: 390.0
-        //    W/H ratio: 0.462; Height: 844.0; Width: 390.0
-        
-        // SE H/W ratio: 1.775; Height: 568.0; Width: 320.0
-        //    W/H ratio: 0.563; Height: 568.0; Width: 320.0
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -131,27 +111,14 @@ private extension OnboardingViewController {
             contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
             welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
-            welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
             tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-//            tableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.75),
-            
-            // 1st way
             tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2.9 - (view.frame.size.height / view.frame.size.width)),
-            // 2nd way
-//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 4 - (view.frame.size.height / view.frame.size.width)),
-            
-//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: (view.frame.size.width / view.frame.size.height) + 1),
-//            tableView.bottomAnchor.constraint(equalTo: footer.topAnchor),
-            
-//            footer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-//            footer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            footer.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            footer.heightAnchor.constraint(equalToConstant: 20)
         ])
         NSLayoutConstraint.activate([
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -168,7 +135,7 @@ private extension OnboardingViewController {
     
     @objc func continueButtonTapped() {
         dismiss(animated: true)
-//        UserDefaults.standard.hasOnboarded = true
+        UserDefaults.standard.hasOnboarded = true
     }
 }
 
@@ -189,7 +156,7 @@ extension OnboardingViewController: UITableViewDataSource {
             fatalError("Fatal error at creating OnboardingTableViewCell in `cellForRowAt` method")
         }
         cell.backgroundColor = .clear
-        cell.iconImageView.image = UIImage(systemName: imagePathsArray[indexPath.section])
+        cell.iconImageView.image = UIImage(named: imagePathsArray[indexPath.section])
         cell.titleLabel.text = titlesArray[indexPath.section]
         cell.descriptionLabel.text = descriptionsArray[indexPath.section]
         return cell
