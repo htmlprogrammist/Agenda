@@ -1,5 +1,5 @@
 //
-//  OnboardingCollectionViewCell.swift
+//  OnboardingTableViewCell.swift
 //  Agenda
 //
 //  Created by Егор Бадмаев on 10.04.2022.
@@ -14,6 +14,7 @@ final class OnboardingTableViewCell: UITableViewCell {
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .systemRed
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -27,13 +28,15 @@ final class OnboardingTableViewCell: UITableViewCell {
     }()
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,15 +58,15 @@ final class OnboardingTableViewCell: UITableViewCell {
         contentView.addSubview(labelsStackView)
         
         NSLayoutConstraint.activate([
-            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            iconImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             iconImageView.heightAnchor.constraint(equalToConstant: 64),
             iconImageView.widthAnchor.constraint(equalToConstant: 64),
             
             labelsStackView.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 16),
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            labelsStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            labelsStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
+            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }

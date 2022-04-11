@@ -12,8 +12,7 @@ final class OnboardingViewController: UIViewController {
     
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let imagePathsArray = ["circle", "circle.fill", "calendar"]
-    private let colorsArray: [UIColor] = [.systemRed, .systemGreen, .systemBlue]
+    private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "chart.bar.xaxis"]
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -21,6 +20,12 @@ final class OnboardingViewController: UIViewController {
         return scrollView
     }()
     private lazy var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    // MARK: Is there any need of this?
+    private lazy var footer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -59,7 +64,7 @@ final class OnboardingViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.layer.zPosition = 1
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
-        button.backgroundColor = UIColor(red: 245/255, green: 87/255, blue: 78/255, alpha: 1.0)
+        button.backgroundColor = .systemRed
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
         return button
@@ -84,17 +89,28 @@ private extension OnboardingViewController {
         
         contentView.addSubview(welcomeLabel)
         if let locale = Locale.current.languageCode, locale == "en" {
+            // Like Apple do
             let labelText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
-            labelText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 245/255, green: 87/255, blue: 78/255, alpha: 1.0), range: NSRange(location: 15, length: 6))
+            labelText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: 15, length: 6))
             welcomeLabel.attributedText = labelText
         }
         contentView.addSubview(tableView)
+        contentView.addSubview(footer)
         
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
     }
     
     func setContraints() {
+        print("H/W ratio: \(view.frame.size.height / view.frame.size.width); Height: \(view.frame.size.height); Width: \(view.frame.size.width)")
+        print("W/H ratio: \(view.frame.size.width / view.frame.size.height); Height: \(view.frame.size.height); Width: \(view.frame.size.width)")
+        
+        // 13 H/W ratio: 2.164; Height: 844.0; Width: 390.0
+        //    W/H ratio: 0.462; Height: 844.0; Width: 390.0
+        
+        // SE H/W ratio: 1.775; Height: 568.0; Width: 320.0
+        //    W/H ratio: 0.563; Height: 568.0; Width: 320.0
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -106,16 +122,24 @@ private extension OnboardingViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
             welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
             welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+//            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            tableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.75),
+//            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.75),
+            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: (view.frame.size.width / view.frame.size.height) + 1),
+//            tableView.bottomAnchor.constraint(equalTo: footer.topAnchor),
+            
+            footer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            footer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            footer.widthAnchor.constraint(equalTo: view.widthAnchor),
+            footer.heightAnchor.constraint(equalToConstant: 20)
         ])
         NSLayoutConstraint.activate([
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -152,8 +176,8 @@ extension OnboardingViewController: UITableViewDataSource {
         else {
             fatalError("Fatal error at creating OnboardingTableViewCell in `cellForRowAt` method")
         }
+        cell.backgroundColor = .clear
         cell.iconImageView.image = UIImage(systemName: imagePathsArray[indexPath.section])
-        cell.iconImageView.tintColor = colorsArray[indexPath.section]
         cell.titleLabel.text = titlesArray[indexPath.section]
         cell.descriptionLabel.text = descriptionsArray[indexPath.section]
         return cell

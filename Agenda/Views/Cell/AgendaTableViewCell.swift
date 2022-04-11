@@ -19,7 +19,8 @@ final class AgendaTableViewCell: UITableViewCell {
     }()
     private lazy var goalProgressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.progressTintColor = UIColor(red: 69/255, green: 208/255, blue: 100/255, alpha: 1)
+//        progressView.progressTintColor = UIColor(red: 69/255, green: 208/255, blue: 100/255, alpha: 1)
+        progressView.progressTintColor = .systemGreen
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()

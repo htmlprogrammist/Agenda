@@ -19,13 +19,13 @@ summary = "Summary";
 // Onboarding
 welcomeLabel = "Welcome to the Agenda";
 continueButtonLabel = "Continue";
-title1 = "";
-title2 = "";
-title3 = "";
+title1 = "Planning in a new way";
+title2 = "All in plain sight";
+title3 = "Data visualization";
 
-description1 = "";
-description2 = "";
-description3 = "";
+description1 = "Discover monthly planning as a new tool to achieve your goals";
+description2 = "Easily track your progress throughout the month with the progress bars";
+description3 = "Check out your data and become a better version of yourself";
 
 // Agenda
 titleLabel = "Title";
