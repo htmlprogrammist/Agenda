@@ -93,13 +93,13 @@ final class SummaryTableViewCell: UITableViewCell {
             if NSNumber(value: number).stringValue.contains(".") { // if it is Double
                 return variants[1]
             }
-            let numberMutable = Int(number) % 100
+            let tempNumber = Int(number) % 100
             
-            if (numberMutable >= 11 && numberMutable <= 19) {
+            if (tempNumber >= 11 && tempNumber <= 19) {
                 return variants[2]
             }
             
-            switch numberMutable % 10 {
+            switch tempNumber % 10 { // switch the last digit of the given number
             case 1: return variants[0]
             case 2...4: return variants[1]
             default: return variants[2]
