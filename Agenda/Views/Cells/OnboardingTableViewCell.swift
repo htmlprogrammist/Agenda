@@ -58,13 +58,13 @@ final class OnboardingTableViewCell: UITableViewCell {
         contentView.addSubview(labelsStackView)
         
         NSLayoutConstraint.activate([
-            iconImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
             iconImageView.heightAnchor.constraint(equalToConstant: 48),
             iconImageView.widthAnchor.constraint(equalToConstant: 48),
             
             labelsStackView.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
-            labelsStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            labelsStackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
