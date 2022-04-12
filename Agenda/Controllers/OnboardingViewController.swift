@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 final class OnboardingViewController: UIViewController {
     
@@ -80,7 +79,6 @@ private extension OnboardingViewController {
     
     func setupView() {
         view.addSubview(scrollView)
-        
         scrollView.addSubview(contentView)
         
         contentView.addSubview(welcomeLabel)
@@ -119,6 +117,7 @@ private extension OnboardingViewController {
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2.9 - (view.frame.size.height / view.frame.size.width)),
+//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2.5 - (view.frame.size.width / view.frame.size.height)),
         ])
         NSLayoutConstraint.activate([
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
