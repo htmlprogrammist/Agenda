@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10A43332A5943278E3DB2B4 /* Pods_Agenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6301702381470582E910E49 /* Pods_Agenda.framework */; };
 		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
@@ -19,6 +20,8 @@
 		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
 		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
+		F0421E8B2805D9EC00FE7D42 /* MonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0421E8A2805D9EC00FE7D42 /* MonthData.swift */; };
+		F050603228059AD700D88884 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F050603128059AD700D88884 /* ChartsViewController.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
 		F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */; };
 		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
@@ -40,7 +43,6 @@
 		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
 		F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */; };
 		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
-		F0EA8B2C27FAD2220048327A /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = F0EA8B2B27FAD2220048327A /* SPIndicator */; };
 		F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */; };
 		F0F45FE72801C2F000BA244D /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F45FE62801C2F000BA244D /* Labels.swift */; };
 		F0F45FEB2801C8DB00BA244D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0F45FED2801C8DB00BA244D /* Localizable.strings */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A6301702381470582E910E49 /* Pods_Agenda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agenda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3221CCFD69FF16F6D1D8CB /* Pods-Agenda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.debug.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.debug.xcconfig"; sourceTree = "<group>"; };
 		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		F0421E8A2805D9EC00FE7D42 /* MonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthData.swift; sourceTree = "<group>"; };
+		F050603128059AD700D88884 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewController.swift; sourceTree = "<group>"; };
 		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		F0F45FEC2801C8DB00BA244D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0F45FEE2801C8E000BA244D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0F45FEF2801C90C00BA244D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		FA46939BF56C436CBA05EC4D /* Pods-Agenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.release.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,13 +104,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0EA8B2C27FAD2220048327A /* SPIndicator in Frameworks */,
+				D10A43332A5943278E3DB2B4 /* Pods_Agenda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B8DD0E2BBB21305CF9EACD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6301702381470582E910E49 /* Pods_Agenda.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		471E7F4F83200293B6EA953C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD3221CCFD69FF16F6D1D8CB /* Pods-Agenda.debug.xcconfig */,
+				FA46939BF56C436CBA05EC4D /* Pods-Agenda.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F037C51F27F5ECF8001D2CBC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +156,8 @@
 				F0BB552E27EF4D8700FA7E99 /* README.md */,
 				F0BB551927EF4D5400FA7E99 /* Agenda */,
 				F0BB551827EF4D5400FA7E99 /* Products */,
+				471E7F4F83200293B6EA953C /* Pods */,
+				1B8DD0E2BBB21305CF9EACD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,6 +231,7 @@
 			children = (
 				F0BB555527EF5AD800FA7E99 /* CoreData */,
 				F016F77B27F7A4D6008D184A /* GoalData.swift */,
+				F0421E8A2805D9EC00FE7D42 /* MonthData.swift */,
 				F02572A027FDE750000A9A06 /* Summary.swift */,
 			);
 			path = Models;
@@ -232,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB554627EF525300FA7E99 /* SummaryViewController.swift */,
+				F050603128059AD700D88884 /* ChartsViewController.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -277,18 +306,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0BB552B27EF4D5700FA7E99 /* Build configuration list for PBXNativeTarget "Agenda" */;
 			buildPhases = (
+				420DDF88AFB1D9A7FB48FCD9 /* [CP] Check Pods Manifest.lock */,
 				F0BB551327EF4D5400FA7E99 /* Sources */,
 				F0BB551427EF4D5400FA7E99 /* Frameworks */,
 				F0BB551527EF4D5400FA7E99 /* Resources */,
+				74AD794DB2FE16D5592239F7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Agenda;
-			packageProductDependencies = (
-				F0EA8B2B27FAD2220048327A /* SPIndicator */,
-			);
 			productName = Agenda;
 			productReference = F0BB551727EF4D5400FA7E99 /* Agenda.app */;
 			productType = "com.apple.product-type.application";
@@ -318,9 +346,6 @@
 				ru,
 			);
 			mainGroup = F0BB550E27EF4D5400FA7E99;
-			packageReferences = (
-				F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */,
-			);
 			productRefGroup = F0BB551827EF4D5400FA7E99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -343,16 +368,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		420DDF88AFB1D9A7FB48FCD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agenda-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74AD794DB2FE16D5592239F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F0BB551327EF4D5400FA7E99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */,
+				F050603228059AD700D88884 /* ChartsViewController.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
 				F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */,
+				F0421E8B2805D9EC00FE7D42 /* MonthData.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
 				F02572A127FDE750000A9A06 /* Summary.swift in Sources */,
@@ -529,6 +598,7 @@
 		};
 		F0BB552C27EF4D5700FA7E99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD3221CCFD69FF16F6D1D8CB /* Pods-Agenda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -556,6 +626,7 @@
 		};
 		F0BB552D27EF4D5700FA7E99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA46939BF56C436CBA05EC4D /* Pods-Agenda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,25 +674,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		F0EA8B2B27FAD2220048327A /* SPIndicator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */;
-			productName = SPIndicator;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */ = {

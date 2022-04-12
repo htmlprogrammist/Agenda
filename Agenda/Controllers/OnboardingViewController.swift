@@ -64,7 +64,7 @@ final class OnboardingViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupView()
-        setContraints()
+        setConstraints()
     }
 }
 
@@ -88,7 +88,7 @@ private extension OnboardingViewController {
         backgroundButtonView.addSubview(continueButton)
     }
     
-    func setContraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

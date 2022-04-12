@@ -13,11 +13,17 @@ final class SummaryViewController: UIViewController {
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
+//    private var averageNumberOfCompletedGoalsPerMonth = [Double]()
+//    private var completedGoalsPerMonth = [Int]()
+//    private var uncompletedGoalsPerMonth = [Int]()
+//    private var allGoalsPerMonth = [Int]()
+    private var monthsData = [MonthData]()
+    
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
     private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
-    private var numbers = [0.0, 0.0, 0.0, 0.0]
+    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
     
     // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
     private lazy var separatorView = SeparatorView()
@@ -89,7 +95,7 @@ final class SummaryViewController: UIViewController {
         var completedGoalsCounter = 0
         var uncompletedGoalsCounter = 0
         var allGoalsCounter = 0
-        let formattedNumber: Double
+        var average = 0.0
         
         for month in months {
             guard let goals = month.goals?.array as? [Goal] else { return }
@@ -101,13 +107,16 @@ final class SummaryViewController: UIViewController {
                 }
                 allGoalsCounter += 1
             }
+            
+            if allGoalsCounter > 0 {
+                average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+            }
+            
+            // every month has a date, that is why we use force-unwrap
+            monthsData.append(MonthData(date: month.date!, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
-        if allGoalsCounter > 0 {
-            formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
-        } else {
-            formattedNumber = 0
-        }
-        numbers[0] = formattedNumber
+        
+        numbers[0] = average
         numbers[1] = Double(completedGoalsCounter)
         numbers[2] = Double(uncompletedGoalsCounter)
         numbers[3] = Double(allGoalsCounter)
