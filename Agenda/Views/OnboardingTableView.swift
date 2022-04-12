@@ -35,7 +35,6 @@ final class OnboardingTableView: UITableView {
     }
 
     override var intrinsicContentSize: CGSize {
-        let height = min(.infinity, contentSize.height)
-        return CGSize(width: contentSize.width, height: height)
+        return CGSize(width: contentSize.width, height: contentSize.height)
     }
 }
