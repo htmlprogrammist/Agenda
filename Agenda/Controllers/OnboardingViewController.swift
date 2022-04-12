@@ -34,15 +34,9 @@ final class OnboardingViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private lazy var tableView: OnboardingTableView = {
+        let tableView = OnboardingTableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
-        tableView.sectionHeaderHeight = 0
-        tableView.backgroundColor = .clear
-        tableView.register(OnboardingTableViewCell.self, forCellReuseIdentifier: OnboardingTableViewCell.identifier)
-        tableView.allowsSelection = false
-        tableView.isScrollEnabled = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -99,7 +93,7 @@ private extension OnboardingViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: backgroundButtonView.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: backgroundButtonView.topAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -115,11 +109,8 @@ private extension OnboardingViewController {
             tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2.9 - (view.frame.size.height / view.frame.size.width)),
-//            tableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2.5 - (view.frame.size.width / view.frame.size.height)),
-        ])
-        NSLayoutConstraint.activate([
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             backgroundButtonView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             backgroundButtonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
