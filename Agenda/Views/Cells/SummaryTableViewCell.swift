@@ -80,6 +80,32 @@ final class SummaryTableViewCell: UITableViewCell {
         titleLabel.text = data.title
         titleLabel.textColor = data.tintColor
         numberLabel.text = NSNumber(value: data.number).stringValue // to display "1" instead of "1.0"
-        measureLabel.text = data.measure
+        measureLabel.text = goalsDeclensionRU(number: data.number, measure: data.measure)
+    }
+    
+    private func goalsDeclensionRU(number: Double, measure: String) -> String {
+        var variants: [String]
+        
+        switch measure {
+        case "целей":
+            variants = ["цель", "цели", "целей"]
+            
+            if NSNumber(value: number).stringValue.contains(".") { // if it is Double
+                return variants[1]
+            }
+            let tempNumber = Int(number) % 100
+            
+            if (tempNumber >= 11 && tempNumber <= 19) {
+                return variants[2]
+            }
+            
+            switch tempNumber % 10 { // switch the last digit of the given number
+            case 1: return variants[0]
+            case 2...4: return variants[1]
+            default: return variants[2]
+            }
+        default:
+            return measure
+        }
     }
 }

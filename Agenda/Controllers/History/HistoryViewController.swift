@@ -146,6 +146,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - CoreDataManagerDelegate
 extension HistoryViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()

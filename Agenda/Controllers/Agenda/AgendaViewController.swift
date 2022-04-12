@@ -51,14 +51,20 @@ final class AgendaViewController: UIViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         month = coreDataManager.fetchCurrentMonth()
+        getMonthInfo()
+        
         setupView()
         setConstraints()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        getMonthInfo()
+        if !UserDefaults.standard.hasOnboarded {
+            let onboarding = OnboardingViewController()
+            onboarding.isModalInPresentation = true
+            present(onboarding, animated: true)
+        }
     }
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -113,7 +119,7 @@ private extension AgendaViewController {
         let calendar = Calendar.current
         let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
         
-        dayAndMonth.text = "\(dateFormatter.string(from: date))"
+        dayAndMonth.text = dateFormatter.string(from: date)
         yearLabel.text = ", \(calendar.dateComponents([.year], from: date).year ?? 0)"
         monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }

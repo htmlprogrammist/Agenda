@@ -13,7 +13,7 @@ final class SummaryViewController: UIViewController {
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
-    private let imagePaths = ["number", "checkmark.square", "xmark.square", "sum"]
+    private let imagePaths = ["number", "checkmark", "xmark", "sum"]
     private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
@@ -27,6 +27,10 @@ final class SummaryViewController: UIViewController {
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
+        
+        // I think, for header it's better to read this article: https://medium.com/@shadberrow/sticky-header-in-uitableview-62621b6fc1af
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +71,6 @@ final class SummaryViewController: UIViewController {
     private func setupView() {
         view.addSubview(separatorView)
         view.addSubview(tableView)
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
     
     private func setConstraints() {
@@ -111,7 +114,7 @@ final class SummaryViewController: UIViewController {
     }
 }
 
-// MARK: UITableView
+// MARK: - UITableView
 extension SummaryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -140,6 +143,7 @@ extension SummaryViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - CoreDataManagerDelegate
 extension SummaryViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         countGoals(months: months)

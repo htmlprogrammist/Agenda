@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
 		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
+		F01FDD2B280307A40011F1F3 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */; };
+		F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */; };
+		F01FDD2F28030A2F0011F1F3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2E28030A2F0011F1F3 /* UserDefaults.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
 		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
 		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
@@ -44,9 +48,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
+		F01FDD2E28030A2F0011F1F3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +110,7 @@
 				F037C52027F5ED00001D2CBC /* UIKit */,
 				F053020B27FA264300C62FAC /* Date.swift */,
 				F0F45FEF2801C90C00BA244D /* String.swift */,
+				F01FDD2E28030A2F0011F1F3 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,11 +160,11 @@
 			isa = PBXGroup;
 			children = (
 				F0BB552327EF4D5700FA7E99 /* Assets.xcassets */,
+				F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */,
 				F0F45FE62801C2F000BA244D /* Labels.swift */,
 				F0F45FED2801C8DB00BA244D /* Localizable.strings */,
-				F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */,
 				F0BB552827EF4D5700FA7E99 /* Info.plist */,
-				F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */,
+				F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -185,6 +194,7 @@
 				F0BB553B27EF506A00FA7E99 /* Agenda */,
 				F0BB553C27EF507000FA7E99 /* History */,
 				F0BB553D27EF507800FA7E99 /* Summary */,
+				F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,22 +239,24 @@
 		F0BB554027EF510500FA7E99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0BB554127EF510D00FA7E99 /* Cell */,
+				F0BB554127EF510D00FA7E99 /* Cells */,
 				F030A20227F8DD51004B375A /* AlertError.swift */,
 				F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */,
+				F00AB2232805902400C57F9D /* OnboardingTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F0BB554127EF510D00FA7E99 /* Cell */ = {
+		F0BB554127EF510D00FA7E99 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
 				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
 				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
 				F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */,
+				F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
@@ -339,6 +351,7 @@
 				F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
 				F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
@@ -349,9 +362,11 @@
 				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
 				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0F45FF02801C90C00BA244D /* String.swift in Sources */,
+				F01FDD2F28030A2F0011F1F3 /* UserDefaults.swift in Sources */,
 				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
 				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
+				F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */,
 				F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
@@ -359,6 +374,7 @@
 				F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */,
 				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
 				F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */,
+				F01FDD2B280307A40011F1F3 /* OnboardingViewController.swift in Sources */,
 				F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */,
 				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
 				F0BB554927EF534C00FA7E99 /* TransitionManager.swift in Sources */,

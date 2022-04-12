@@ -133,6 +133,7 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+// MARK: - CoreDataManagerDelegate
 extension MonthDetailsViewController: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
