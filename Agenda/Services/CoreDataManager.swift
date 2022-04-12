@@ -73,10 +73,11 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     
     lazy var monthsFetchedResultsController: NSFetchedResultsController<Month> = {
         let fetchRequest = Month.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "date < %@", Date() as CVarArg) // only current and old months (not new one)
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "months")
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil) // TODO: add cacheName later in production version
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
