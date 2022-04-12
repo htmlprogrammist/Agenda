@@ -82,12 +82,12 @@ private extension OnboardingViewController {
         scrollView.addSubview(contentView)
         
         contentView.addSubview(welcomeLabel)
-        if let locale = Locale.current.languageCode, locale == "en" {
-            // Like Apple do
-            let labelText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
-            labelText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: 15, length: 6))
-            welcomeLabel.attributedText = labelText
-        }
+        let labelText = welcomeLabel.text ?? ""
+        let labelAttributedText = NSMutableAttributedString(string: labelText)
+        let index = labelText.lastIndex(of: "A") ?? labelText.startIndex
+        labelAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: (labelText.distance(from: labelText.startIndex, to: index)), length: 6))
+        welcomeLabel.attributedText = labelAttributedText
+        
         contentView.addSubview(tableView)
         
         view.addSubview(backgroundButtonView)

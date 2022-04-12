@@ -237,14 +237,14 @@
 		F0BB554027EF510500FA7E99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0BB554127EF510D00FA7E99 /* Cell */,
+				F0BB554127EF510D00FA7E99 /* Cells */,
 				F030A20227F8DD51004B375A /* AlertError.swift */,
 				F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F0BB554127EF510D00FA7E99 /* Cell */ = {
+		F0BB554127EF510D00FA7E99 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
@@ -253,7 +253,7 @@
 				F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */,
 				F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
