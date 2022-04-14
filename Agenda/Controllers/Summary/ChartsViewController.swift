@@ -10,6 +10,7 @@ import Charts
 
 final class ChartsViewController: UIViewController {
     
+    private let monthNames: [String]
     private let values: [Double]
     private let tintColor: UIColor
     
@@ -17,16 +18,17 @@ final class ChartsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
-//        title = "Test "
         view.backgroundColor = .systemBackground
         
         setupView()
         setConstraints()
     }
     
-    init(values: [Double], name: String, tintColor: UIColor) {
+    init(monthNames: [String], values: [Double], name: String, tintColor: UIColor) {
+        self.monthNames = monthNames
         self.values = values
         self.tintColor = tintColor
+        
         super.init(nibName: nil, bundle: nil)
         title = name
     }

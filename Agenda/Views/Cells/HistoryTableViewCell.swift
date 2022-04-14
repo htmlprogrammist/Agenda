@@ -44,7 +44,7 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     public func configure(month: Month) {
-        monthDateLabel.text = month.date?.formatToMonthYear()
+        monthDateLabel.text = month.date?.formatTo("MMMMy")
         
         var completedGoalsCounter = 0
         guard let goals = month.goals?.array as? [Goal] else { return }

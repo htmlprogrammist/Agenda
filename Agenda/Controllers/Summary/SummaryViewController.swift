@@ -14,6 +14,7 @@ final class SummaryViewController: UIViewController {
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private var monthsData = [MonthData]()
+    private lazy var monthNames = monthsData.map { $0.date.formatTo("MMMy") }
     private lazy var data: [[Double]] = [
         monthsData.map { $0.averageNumberOfCompletedGoals },
         monthsData.map { $0.completedGoals },
@@ -113,9 +114,6 @@ final class SummaryViewController: UIViewController {
             if allGoalsCounter > 0 {
                 average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
             }
-            
-//            averageNumberOfCompletedGoalsPerMonth.append(average)
-            
             // every month has a date, that is why we use force-unwrap
             monthsData.append(MonthData(date: month.date!, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
@@ -157,13 +155,7 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
-//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
-//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
-//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
-        
-        let destination = ChartsViewController(values: data[indexPath.section], name: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section])
+        let destination = ChartsViewController(monthNames: monthNames, values: data[indexPath.section], name: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section])
         navigationController?.pushViewController(destination, animated: true)
     }
 }
