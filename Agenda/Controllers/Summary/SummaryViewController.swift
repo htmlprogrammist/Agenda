@@ -28,19 +28,13 @@ final class SummaryViewController: UIViewController {
     private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
     
-    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
-    private lazy var separatorView = SeparatorView()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
-        
         // I think, for header it's better to read this article: https://medium.com/@shadberrow/sticky-header-in-uitableview-62621b6fc1af
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -58,11 +52,11 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        tabBarController?.tabBar.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGroupedBackground
         title = Labels.Summary.title
         
-        setupView()
-        setConstraints()
+        setupViewAndConstraints()
         
         do {
             try fetchedResultsController?.performFetch()
@@ -77,17 +71,11 @@ final class SummaryViewController: UIViewController {
         }
     }
     
-    private func setupView() {
-        view.addSubview(separatorView)
+    private func setupViewAndConstraints() {
         view.addSubview(tableView)
-    }
-    
-    private func setConstraints() {
+        
         NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // 1 is separatorView's height
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

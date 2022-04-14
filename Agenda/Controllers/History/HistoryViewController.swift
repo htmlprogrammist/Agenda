@@ -7,27 +7,14 @@
 
 import UIKit
 
-final class HistoryViewController: UIViewController {
+final class HistoryViewController: UITableViewController {
     
     private weak var coreDataManager: CoreDataManager?
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     
-    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
-    private lazy var separatorView = SeparatorView()
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
-    
     init(coreDataManager: CoreDataManager) {
         self.coreDataManager = coreDataManager
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +28,8 @@ final class HistoryViewController: UIViewController {
         title = Labels.History.title
         view.backgroundColor = .systemBackground
         
-        setupViewAndConstraints()
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
         
         do {
             try fetchedResultsController?.performFetch()
@@ -52,56 +40,37 @@ final class HistoryViewController: UIViewController {
     }
 }
 
-// MARK: - Methods
+// MARK: - UITableView
 extension HistoryViewController {
     
-    private func setupViewAndConstraints() {
-        view.addSubview(separatorView)
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        ])
-    }
-}
-
-// MARK: - UITableViewDataSource, UITableViewDelegate
-extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = fetchedResultsController?.sections?[section] else {
             return 0
         }
         return section.numberOfObjects
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
         guard let month = fetchedResultsController?.object(at: indexPath) else { return HistoryTableViewCell() }
         cell.configure(month: month)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath == [0, 0] { // current month
@@ -119,7 +88,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.setEditing(editing, animated: animated)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if indexPath == [0, 0] {
                 alertForError(title: Labels.oopsError, message: Labels.History.currentMonthDeletion)
@@ -135,6 +104,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
                     tableView.endUpdates()
                 })
                 let no = UIAlertAction(title: Labels.cancel, style: .default)
+                no.setValue(UIColor.systemBlue, forKey: "titleTextColor")
                 
                 alert.addAction(yes)
                 alert.addAction(no)
