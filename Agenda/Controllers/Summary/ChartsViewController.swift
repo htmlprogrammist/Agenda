@@ -16,14 +16,19 @@ final class ChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
+//        title = "Test "
+        view.backgroundColor = .systemBackground
+        
         setupView()
         setConstraints()
     }
     
-    init(values: [Double], tintColor: UIColor) {
+    init(values: [Double], name: String, tintColor: UIColor) {
         self.values = values
         self.tintColor = tintColor
         super.init(nibName: nil, bundle: nil)
+        title = name
     }
     
     required init?(coder: NSCoder) {

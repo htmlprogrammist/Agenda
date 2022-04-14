@@ -13,12 +13,6 @@ final class SummaryViewController: UIViewController {
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
-//    private var averageNumberOfCompletedGoalsPerMonth = [Double]()
-//    private var completedGoalsPerMonth = [Double]()
-//    private var uncompletedGoalsPerMonth = [Double]()
-//    private var allGoalsPerMonth = [Double]()
-    
-//    private lazy var data = [averageNumberOfCompletedGoalsPerMonth, completedGoalsPerMonth, uncompletedGoalsPerMonth, allGoalsPerMonth]
     private var monthsData = [MonthData]()
     private lazy var data: [[Double]] = [
         monthsData.map { $0.averageNumberOfCompletedGoals },
@@ -169,7 +163,7 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
 //        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
 //        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
         
-        let destination = ChartsViewController(values: data[indexPath.section], tintColor: tintColors[indexPath.section])
+        let destination = ChartsViewController(values: data[indexPath.section], name: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section])
         navigationController?.pushViewController(destination, animated: true)
     }
 }

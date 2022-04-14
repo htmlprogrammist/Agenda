@@ -54,6 +54,8 @@ final class GoalDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
+        title = Labels.Agenda.details
         navigationItem.rightBarButtonItem = saveBarButton
         view.backgroundColor = .systemGroupedBackground
         

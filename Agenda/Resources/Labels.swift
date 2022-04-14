@@ -31,6 +31,7 @@ enum Labels {
         static let notes = "notes".localized
         
         static let newGoal = "newGoal".localized
+        static let details = "details".localized
         static let saved = "saved".localized
         static let deleteGoalTitle = "deleteGoalTitle".localized
         static let deleteGoalDescription = "deleteGoalDescription".localized

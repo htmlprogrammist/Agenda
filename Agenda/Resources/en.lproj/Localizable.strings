@@ -33,6 +33,7 @@ currentLabel = "Current";
 aimLabel = "Aim";
 notes = "Notes";
 newGoal = "New Goal";
+details = "Details";
 saved = "Saved successfully";
 deleteGoalTitle = "Delete goal";
 deleteGoalDescription = "Are you sure you want to delete this goal? This action cannot be undone";
