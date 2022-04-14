@@ -66,7 +66,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         } else {
             // empty? Ok, create new month
             let month = Month(context: managedObjectContext)
-            month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)")
+            month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
             return month
         }
     }

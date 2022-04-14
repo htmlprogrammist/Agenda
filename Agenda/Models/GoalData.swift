@@ -14,6 +14,6 @@ struct GoalData {
 
 extension Goal {
     var goalData: GoalData {
-        GoalData(title: name ?? "", current: String(current), aim: String(aim), notes: notes ?? "")
+        GoalData(title: name, current: String(current), aim: String(aim), notes: notes ?? "")
     }
 }

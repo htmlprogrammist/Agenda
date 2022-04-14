@@ -99,6 +99,7 @@ final class SummaryViewController: UIViewController {
         var uncompletedGoalsCounter = 0.0
         var allGoalsCounter = 0.0
         var average = 0.0
+        monthsData = []
         
         for month in months {
             guard let goals = month.goals?.array as? [Goal] else { return }
@@ -115,7 +116,7 @@ final class SummaryViewController: UIViewController {
                 average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
             }
             // every month has a date, that is why we use force-unwrap
-            monthsData.append(MonthData(date: month.date!, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
+            monthsData.append(MonthData(date: month.date, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
         
         numbers[0] = average

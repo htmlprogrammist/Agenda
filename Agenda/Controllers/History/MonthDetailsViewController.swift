@@ -29,7 +29,7 @@ final class MonthDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
-        title = month.date?.formatTo("MMMMy")
+        title = month.date.formatTo("MMMMy")
         view.backgroundColor = .systemBackground
         
         setupViewAndConstraints()
