@@ -115,14 +115,13 @@ final class SummaryViewController: UIViewController {
             if allGoalsCounter > 0 {
                 average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
             }
-            // every month has a date, that is why we use force-unwrap
             monthsData.append(MonthData(date: month.date, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
         
         numbers[0] = average
-        numbers[1] = Double(completedGoalsCounter)
-        numbers[2] = Double(uncompletedGoalsCounter)
-        numbers[3] = Double(allGoalsCounter)
+        numbers[1] = completedGoalsCounter
+        numbers[2] = uncompletedGoalsCounter
+        numbers[3] = allGoalsCounter
     }
 }
 
@@ -130,7 +129,7 @@ final class SummaryViewController: UIViewController {
 extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        numbers.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

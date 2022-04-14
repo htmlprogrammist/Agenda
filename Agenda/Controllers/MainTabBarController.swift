@@ -14,7 +14,6 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate = self
         createTabs()
     }
     
@@ -35,13 +34,5 @@ final class MainTabBarController: UITabBarController {
         navController.tabBarItem = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
         navController.navigationBar.prefersLargeTitles = true
         return navController
-    }
-}
-
-// MARK: - Transitioning
-extension MainTabBarController: UITabBarControllerDelegate {
-    
-    public func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TransitionManager(duration: 0.35, tabBarController: tabBarController, lastIndex: tabBarController.selectedIndex)
     }
 }
