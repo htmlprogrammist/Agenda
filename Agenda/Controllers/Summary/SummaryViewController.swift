@@ -14,10 +14,18 @@ final class SummaryViewController: UIViewController {
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
 //    private var averageNumberOfCompletedGoalsPerMonth = [Double]()
-//    private var completedGoalsPerMonth = [Int]()
-//    private var uncompletedGoalsPerMonth = [Int]()
-//    private var allGoalsPerMonth = [Int]()
+//    private var completedGoalsPerMonth = [Double]()
+//    private var uncompletedGoalsPerMonth = [Double]()
+//    private var allGoalsPerMonth = [Double]()
+    
+//    private lazy var data = [averageNumberOfCompletedGoalsPerMonth, completedGoalsPerMonth, uncompletedGoalsPerMonth, allGoalsPerMonth]
     private var monthsData = [MonthData]()
+    private lazy var data: [[Double]] = [
+        monthsData.map { $0.averageNumberOfCompletedGoals },
+        monthsData.map { $0.completedGoals },
+        monthsData.map { $0.uncompletedGoals },
+        monthsData.map { $0.allGoals },
+    ]
     
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
     private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
@@ -30,6 +38,7 @@ final class SummaryViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
@@ -37,7 +46,6 @@ final class SummaryViewController: UIViewController {
         // I think, for header it's better to read this article: https://medium.com/@shadberrow/sticky-header-in-uitableview-62621b6fc1af
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
-        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -92,9 +100,9 @@ final class SummaryViewController: UIViewController {
     }
     
     private func countGoals(months: [Month]) {
-        var completedGoalsCounter = 0
-        var uncompletedGoalsCounter = 0
-        var allGoalsCounter = 0
+        var completedGoalsCounter = 0.0
+        var uncompletedGoalsCounter = 0.0
+        var allGoalsCounter = 0.0
         var average = 0.0
         
         for month in months {
@@ -112,6 +120,8 @@ final class SummaryViewController: UIViewController {
                 average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
             }
             
+//            averageNumberOfCompletedGoalsPerMonth.append(average)
+            
             // every month has a date, that is why we use force-unwrap
             monthsData.append(MonthData(date: month.date!, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
@@ -124,7 +134,7 @@ final class SummaryViewController: UIViewController {
 }
 
 // MARK: - UITableView
-extension SummaryViewController: UITableViewDataSource {
+extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         4
@@ -149,6 +159,18 @@ extension SummaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         " " // for correct displaying (table view gets from the top too much)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
+//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
+//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
+//        data.append(monthsData.map { $0.averageNumberOfCompletedGoals })
+        
+        let destination = ChartsViewController(values: data[indexPath.section], tintColor: tintColors[indexPath.section])
+        navigationController?.pushViewController(destination, animated: true)
     }
 }
 
