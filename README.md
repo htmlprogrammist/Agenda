@@ -8,9 +8,12 @@ Application that allows you to track your goals for a month
 My first independent UIKit learning project. In this project, I demonstrated the knowledge:
 1. UIKit
 2. CoreData
-3. Human Interface Guidelines
-4. MVC Architecture
-5. Animations
+3. CloudKit
+4. Human Interface Guidelines
+5. MVC
+6. Localization
+7. CocoaPods
+8. Testing (Unit/UI)
 
 # Requirements
 - Minimum version: iOS 13
