@@ -11,8 +11,9 @@ struct MonthData {
     let date: Date
 //    let goals: [Goal]
     
-    let averageNumberOfCompletedGoals: Double
-    let completedGoals: Double
-    let uncompletedGoals: Double
-    let allGoals: Double
+    var averageNumberOfCompletedGoals: Double = 0.0
+    var percentage: Double = 0.0
+    var completedGoals: Double = 0.0
+    var uncompletedGoals: Double = 0.0
+    var allGoals: Double = 0.0
 }

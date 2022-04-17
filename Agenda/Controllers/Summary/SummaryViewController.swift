@@ -23,9 +23,9 @@ final class SummaryViewController: UIViewController {
     ]
     
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
-    private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
+    private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
+    private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
     
     private lazy var tableView: UITableView = {
@@ -86,7 +86,7 @@ final class SummaryViewController: UIViewController {
         var completedGoalsCounter = 0.0
         var uncompletedGoalsCounter = 0.0
         var allGoalsCounter = 0.0
-        var average = 0.0
+        var percentage = 0.0
         monthsData = []
         
         for month in months {
@@ -101,12 +101,12 @@ final class SummaryViewController: UIViewController {
             }
             
             if allGoalsCounter > 0 {
-                average = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
+                percentage = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10) * 100
             }
-            monthsData.append(MonthData(date: month.date, averageNumberOfCompletedGoals: average, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
+            monthsData.append(MonthData(date: month.date, averageNumberOfCompletedGoals: percentage, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
         
-        numbers[0] = average
+        numbers[0] = percentage
         numbers[1] = completedGoalsCounter
         numbers[2] = uncompletedGoalsCounter
         numbers[3] = allGoalsCounter

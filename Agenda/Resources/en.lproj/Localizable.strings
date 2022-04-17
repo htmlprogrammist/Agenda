@@ -47,7 +47,8 @@ deleteMonthDescription = "Are you sure you want to delete this month? This actio
 // Summary
 fetchErrorDescription = "We've got unexpected error while loading statistics. Please, restart the application";
 goalsDeclension = "goals";
-averageNumberOfCompletedGoals = "Average number of completed goals";
+percentOfSetGoals = "You achieve";
+ofSetGoals = "of the set goals";
 completedGoals = "Completed goals";
 uncompletedGoals = "Uncompleted goals";
 allGoals = "All goals";
