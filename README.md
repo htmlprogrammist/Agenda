@@ -5,7 +5,7 @@ Application that allows you to track your goals for a month
 
 
 # Description
-My first independent UIKit learning project. In this project, I demonstrated the knowledge:
+My first independent UIKit learning project. In this project, I demonstrated the knowledge of:
 1. UIKit
 2. CoreData
 3. CloudKit
