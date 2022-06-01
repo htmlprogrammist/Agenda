@@ -11,7 +11,7 @@ final class OnboardingViewController: UIViewController {
     
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "chart.bar.xaxis"]
+    private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "note.text.badge.plus"]
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
