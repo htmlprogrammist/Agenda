@@ -193,7 +193,6 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
             let no = UIAlertAction(title: Labels.cancel, style: .default)
-            no.setValue(UIColor.systemBlue, forKey: "titleTextColor")
             
             alert.addAction(yes)
             alert.addAction(no)

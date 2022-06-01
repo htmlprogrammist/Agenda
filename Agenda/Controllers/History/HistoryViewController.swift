@@ -77,8 +77,8 @@ extension HistoryViewController {
             tabBarController?.selectedIndex = 0
         } else {
             guard let month = fetchedResultsController?.object(at: indexPath) else { return }
+            // we are sure that coreDataManager is not nil
             let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager!)
-            // we are sure that core data manager is not nil
             navigationController?.pushViewController(destination, animated: true)
         }
     }
@@ -88,30 +88,33 @@ extension HistoryViewController {
         tableView.setEditing(editing, animated: animated)
     }
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath == [0, 0] {
+            return .none
+        } else {
+            return .delete
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if indexPath == [0, 0] {
-                alertForError(title: Labels.oopsError, message: Labels.History.currentMonthDeletion)
-            } else {
-                let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
-                let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
-                    tableView.beginUpdates()
-                    
-                    guard let month = fetchedResultsController?.object(at: indexPath) else { return }
-                    coreDataManager?.deleteMonth(month: month)
-                    
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                    tableView.endUpdates()
-                })
-                let no = UIAlertAction(title: Labels.cancel, style: .default)
-                no.setValue(UIColor.systemBlue, forKey: "titleTextColor")
+            let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
+                tableView.beginUpdates()
                 
-                alert.addAction(yes)
-                alert.addAction(no)
+                guard let month = fetchedResultsController?.object(at: indexPath) else { return }
+                coreDataManager?.deleteMonth(month: month)
                 
-                alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-                present(alert, animated: true)
-            }
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            })
+            let no = UIAlertAction(title: Labels.cancel, style: .default)
+            
+            alert.addAction(yes)
+            alert.addAction(no)
+            
+            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
+            present(alert, animated: true)
         }
     }
 }

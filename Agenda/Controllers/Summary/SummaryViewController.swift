@@ -101,7 +101,7 @@ final class SummaryViewController: UIViewController {
             }
             
             if allGoalsCounter > 0 {
-                percentage = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10) * 100
+                percentage = round(100 * Double(completedGoalsCounter) / Double(allGoalsCounter))
             }
             monthsData.append(MonthData(date: month.date, averageNumberOfCompletedGoals: percentage, completedGoals: completedGoalsCounter, uncompletedGoals: uncompletedGoalsCounter, allGoals: allGoalsCounter))
         }
