@@ -48,7 +48,7 @@ final class GoalTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
-        setContraints()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +71,7 @@ final class GoalTableViewCell: UITableViewCell {
         }
     }
     
-    private func setContraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),

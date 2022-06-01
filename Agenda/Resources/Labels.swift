@@ -31,6 +31,7 @@ enum Labels {
         static let notes = "notes".localized
         
         static let newGoal = "newGoal".localized
+        static let details = "details".localized
         static let saved = "saved".localized
         static let deleteGoalTitle = "deleteGoalTitle".localized
         static let deleteGoalDescription = "deleteGoalDescription".localized
@@ -51,7 +52,8 @@ enum Labels {
         static let fetchErrorDescription = "fetchErrorDescription".localized
         
         static let goalsDeclension = "goalsDeclension".localized
-        static let averageNumberOfCompletedGoals = "averageNumberOfCompletedGoals".localized
+        static let percentOfSetGoals = "percentOfSetGoals".localized
+        static let ofSetGoals = "ofSetGoals".localized
         static let completedGoals = "completedGoals".localized
         static let uncompletedGoals = "uncompletedGoals".localized
         static let allGoals = "allGoals".localized

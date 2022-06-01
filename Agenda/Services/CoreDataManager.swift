@@ -66,17 +66,18 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         } else {
             // empty? Ok, create new month
             let month = Month(context: managedObjectContext)
-            month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)")
+            month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
             return month
         }
     }
     
     lazy var monthsFetchedResultsController: NSFetchedResultsController<Month> = {
         let fetchRequest = Month.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "date < %@", Date() as CVarArg) // only current and old months (not new one)
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "months")
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "monthsCache")
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -111,7 +112,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     
     func deleteMonth(month: Month) {
         guard let goals = month.goals?.array as? [Goal] else { return }
-//        month.removeFromGoals(month.goals) // does not work
         goals.forEach {
             deleteGoal(goal: $0)
         }

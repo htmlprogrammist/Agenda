@@ -18,9 +18,9 @@ extension Goal {
 
     @NSManaged public var aim: Int64
     @NSManaged public var current: Int64
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var notes: String?
-    @NSManaged public var month: Month?
+    @NSManaged public var month: Month
 
 }
 

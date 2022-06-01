@@ -7,68 +7,41 @@
 
 import UIKit
 
-final class MonthDetailsViewController: UIViewController {
+final class MonthDetailsViewController: UITableViewController {
     
     private let month: Month
     private let coreDataManager: CoreDataManagerProtocol
-    
-    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
-    private lazy var separatorView = SeparatorView()
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 75
-        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
-        title = month.date?.formatToMonthYear()
+        title = month.date.formatTo("MMMMy")
         view.backgroundColor = .systemBackground
         
-        setupViewAndConstraints()
+        tableView.rowHeight = 75
+        tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
     }
     
     init(month: Month, coreDataManager: CoreDataManagerProtocol) {
         self.month = month
         self.coreDataManager = coreDataManager
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setupViewAndConstraints() {
-        view.addSubview(separatorView)
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        ])
-    }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableView
+extension MonthDetailsViewController {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         month.goals?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AgendaTableViewCell.identifier, for: indexPath) as? AgendaTableViewCell else {
             return AgendaTableViewCell()
         }
@@ -79,16 +52,16 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
         return header
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
@@ -107,13 +80,13 @@ extension MonthDetailsViewController: UITableViewDelegate, UITableViewDataSource
         tableView.setEditing(editing, animated: animated)
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
         coreDataManager.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
     // deleting cell
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in

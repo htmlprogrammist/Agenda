@@ -14,24 +14,16 @@ final class SummaryViewController: UIViewController {
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
-    private let titleLabelsText = [Labels.Summary.averageNumberOfCompletedGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
+    private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = [Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
-    private var numbers = [0.0, 0.0, 0.0, 0.0]
-    
-    // This UIView does not allow large title to go down with table view (it look awful, because table view's and view's background colors differ)
-    private lazy var separatorView = SeparatorView()
+    private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
+    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
-        
-        // I think, for header it's better to read this article: https://medium.com/@shadberrow/sticky-header-in-uitableview-62621b6fc1af
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        
-        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -49,11 +41,11 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        tabBarController?.tabBar.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGroupedBackground
         title = Labels.Summary.title
         
-        setupView()
-        setConstraints()
+        setupViewAndConstraints()
         
         do {
             try fetchedResultsController?.performFetch()
@@ -68,17 +60,11 @@ final class SummaryViewController: UIViewController {
         }
     }
     
-    private func setupView() {
-        view.addSubview(separatorView)
+    private func setupViewAndConstraints() {
         view.addSubview(tableView)
-    }
-    
-    private func setConstraints() {
+        
         NSLayoutConstraint.activate([
-            separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // 1 is separatorView's height
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -86,10 +72,10 @@ final class SummaryViewController: UIViewController {
     }
     
     private func countGoals(months: [Month]) {
-        var completedGoalsCounter = 0
-        var uncompletedGoalsCounter = 0
-        var allGoalsCounter = 0
-        let formattedNumber: Double
+        var completedGoalsCounter = 0.0
+        var uncompletedGoalsCounter = 0.0
+        var allGoalsCounter = 0.0
+        var percentage = 0.0
         
         for month in months {
             guard let goals = month.goals?.array as? [Goal] else { return }
@@ -101,16 +87,12 @@ final class SummaryViewController: UIViewController {
                 }
                 allGoalsCounter += 1
             }
+            
+            if allGoalsCounter > 0 {
+                percentage = round(100 * Double(completedGoalsCounter) / Double(allGoalsCounter))
+            }
         }
-        if allGoalsCounter > 0 {
-            formattedNumber = Double(round(10 * Double(completedGoalsCounter) / Double(allGoalsCounter)) / 10)
-        } else {
-            formattedNumber = 0
-        }
-        numbers[0] = formattedNumber
-        numbers[1] = Double(completedGoalsCounter)
-        numbers[2] = Double(uncompletedGoalsCounter)
-        numbers[3] = Double(allGoalsCounter)
+        numbers = [percentage, completedGoalsCounter, uncompletedGoalsCounter, allGoalsCounter]
     }
 }
 
@@ -118,7 +100,7 @@ final class SummaryViewController: UIViewController {
 extension SummaryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        numbers.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

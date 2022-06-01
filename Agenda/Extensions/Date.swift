@@ -8,10 +8,10 @@
 import Foundation
 
 extension Date {
-    func formatToMonthYear() -> String {
+    func formatTo(_ template: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMy")
+        dateFormatter.setLocalizedDateFormatFromTemplate(template)
         return dateFormatter.string(from: self).capitalizingFirstLetter()
     }
 }

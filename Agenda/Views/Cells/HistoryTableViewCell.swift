@@ -36,7 +36,7 @@ class HistoryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupView()
-        setContraints()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -44,7 +44,7 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     public func configure(month: Month) {
-        monthDateLabel.text = month.date?.formatToMonthYear()
+        monthDateLabel.text = month.date.formatTo("MMMMy")
         
         var completedGoalsCounter = 0
         guard let goals = month.goals?.array as? [Goal] else { return }
@@ -58,6 +58,7 @@ class HistoryTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: Methods
 private extension HistoryTableViewCell {
     
     func setupView() {
@@ -65,7 +66,7 @@ private extension HistoryTableViewCell {
         cellStackView.addArrangedSubview(detailsSubtitle)
     }
     
-    func setContraints() {
+    func setConstraints() {
         contentView.addSubview(cellStackView)
         
         NSLayoutConstraint.activate([
