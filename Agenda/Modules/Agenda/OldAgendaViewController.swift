@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AgendaViewController: UIViewController {
+final class AgendaViewControllerOld: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
     private var month: Month!
@@ -78,7 +78,7 @@ final class AgendaViewController: UIViewController {
 }
 
 // MARK: - Methods
-private extension AgendaViewController {
+private extension AgendaViewControllerOld {
     
     func setupView() {
         view.addSubview(monthProgressView)
@@ -125,14 +125,14 @@ private extension AgendaViewController {
     }
     
     @objc func addNewGoal() {
-        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
-        destination.delegate = self
-        present(UINavigationController(rootViewController: destination), animated: true)
+//        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
+//        destination.delegate = self
+//        present(UINavigationController(rootViewController: destination), animated: true)
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
+extension AgendaViewControllerOld: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         month.goals?.count ?? 0
@@ -162,12 +162,12 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
-        destination.goal = goal
-        destination.delegate = self
-        destination.hidesBottomBarWhenPushed = true
+//        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
+//        destination.goal = goal
+//        destination.delegate = self
+//        destination.hidesBottomBarWhenPushed = true
         
-        navigationController?.pushViewController(destination, animated: true)
+//        navigationController?.pushViewController(destination, animated: true)
     }
     
     // MARK: Editing tableView (reordering, deleting cells)
@@ -203,7 +203,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension AgendaViewController: CoreDataManagerDelegate {
+extension AgendaViewControllerOld: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

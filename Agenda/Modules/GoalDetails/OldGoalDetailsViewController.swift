@@ -1,47 +1,63 @@
 //
-//  AddGoalViewController.swift
+//  GoalDetailsViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 17.12.2021.
+//  Created by Егор Бадмаев on 16.12.2021.
 //
 
 import UIKit
+import SPIndicator
 
-final class AddGoalViewController: UIViewController {
+final class GoalDetailsViewControllerOld: UIViewController {
     
     private let coreDataManager: CoreDataManagerProtocol
-    private let month: Month
     
-    public var goalData = GoalData() {
+    public var goal: Goal!
+    public lazy var goalData = goal.goalData {
         didSet {
             checkBarButtonEnabled()
         }
     }
     public weak var delegate: CoreDataManagerDelegate?
     
-    private lazy var doneBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+    private lazy var saveBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
         return barButton
+    }()
+    private lazy var indicatorView: SPIndicatorView = {
+        let indicatorView = SPIndicatorView(title: Labels.Agenda.saved, preset: .done)
+        indicatorView.presentSide = .bottom
+        indicatorView.iconView?.tintColor = .systemGreen
+        return indicatorView
     }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
         tableView.dataSource = self
-        tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
+        tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
+    init(coreDataManager: CoreDataManagerProtocol) {
+        self.coreDataManager = coreDataManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Labels.Agenda.newGoal
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
-        navigationItem.rightBarButtonItem = doneBarButton
-        view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
+        title = Labels.Agenda.details
+        navigationItem.rightBarButtonItem = saveBarButton
+        view.backgroundColor = .systemGroupedBackground
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place
@@ -60,28 +76,7 @@ final class AddGoalViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         unregisterForKeyboardNotifications()
-    }
-    
-    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
-        self.month = month
-        self.coreDataManager = coreDataManager
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func closeThisVC() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func doneButtonTapped() {
-        coreDataManager.createGoal(data: goalData, in: month)
-        delegate?.reloadTableView()
-        
-        dismiss(animated: true, completion: nil)
+        indicatorView.dismiss()
     }
     
     private func setupViewAndConstraints() {
@@ -94,10 +89,19 @@ final class AddGoalViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    @objc private func saveButtonTapped() {
+        view.endEditing(true)
+        saveBarButton.isEnabled = false
+        coreDataManager.rewriteGoal(data: goalData, in: goal)
+        delegate?.reloadTableView()
+        
+        indicatorView.present(haptic: .success)
+    }
 }
 
 // MARK: - UITableView
-extension AddGoalViewController: UITableViewDataSource {
+extension GoalDetailsViewControllerOld: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -111,6 +115,7 @@ extension AddGoalViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
             fatalError("Error")
         }
+        cell.goal = goalData
         cell.configure(indexPath: indexPath)
         cell.delegate = self
         return cell
@@ -122,12 +127,14 @@ extension AddGoalViewController: UITableViewDataSource {
 }
 
 // MARK: - Helper methods
-private extension AddGoalViewController {
+private extension GoalDetailsViewControllerOld {
     func checkBarButtonEnabled() {
         if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            doneBarButton.isEnabled = true
+            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
+                saveBarButton.isEnabled = true
+            }
         } else {
-            doneBarButton.isEnabled = false
+            saveBarButton.isEnabled = false
         }
     }
     
@@ -153,7 +160,7 @@ private extension AddGoalViewController {
 }
 
 // MARK: - GoalTableViewCellDelegate
-extension AddGoalViewController: GoalTableViewCellDelegate {
+extension GoalDetailsViewControllerOld: GoalTableViewCellDelegate {
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
         resize(cell, in: tableView, with: textView) // Update height of UITextView based on text's number of lines
     }

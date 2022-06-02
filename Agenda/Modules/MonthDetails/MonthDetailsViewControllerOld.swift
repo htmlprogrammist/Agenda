@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MonthDetailsViewController: UITableViewController {
+final class MonthDetailsViewControllerOld: UITableViewController {
     
     private let month: Month
     private let coreDataManager: CoreDataManagerProtocol
@@ -35,7 +35,7 @@ final class MonthDetailsViewController: UITableViewController {
 }
 
 // MARK: - UITableView
-extension MonthDetailsViewController {
+extension MonthDetailsViewControllerOld {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         month.goals?.count ?? 0
@@ -65,12 +65,12 @@ extension MonthDetailsViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
-        destination.goal = goal
-        destination.delegate = self
-        destination.hidesBottomBarWhenPushed = true
+//        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
+//        destination.goal = goal
+//        destination.delegate = self
+//        destination.hidesBottomBarWhenPushed = true
         
-        navigationController?.pushViewController(destination, animated: true)
+//        navigationController?.pushViewController(destination, animated: true)
     }
     
     // MARK: Editing tableView (reordering, deleting cells)
@@ -107,7 +107,7 @@ extension MonthDetailsViewController {
 }
 
 // MARK: - CoreDataManagerDelegate
-extension MonthDetailsViewController: CoreDataManagerDelegate {
+extension MonthDetailsViewControllerOld: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

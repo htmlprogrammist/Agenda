@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HistoryViewController: UITableViewController {
+final class HistoryViewControllerOld: UITableViewController {
     
     private weak var coreDataManager: CoreDataManager?
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
@@ -41,7 +41,7 @@ final class HistoryViewController: UITableViewController {
 }
 
 // MARK: - UITableView
-extension HistoryViewController {
+extension HistoryViewControllerOld {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = fetchedResultsController?.sections?[section] else {
@@ -78,8 +78,8 @@ extension HistoryViewController {
         } else {
             guard let month = fetchedResultsController?.object(at: indexPath) else { return }
             // we are sure that coreDataManager is not nil
-            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager!)
-            navigationController?.pushViewController(destination, animated: true)
+//            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager!)
+//            navigationController?.pushViewController(destination, animated: true)
         }
     }
     
@@ -120,7 +120,7 @@ extension HistoryViewController {
 }
 
 // MARK: - CoreDataManagerDelegate
-extension HistoryViewController: CoreDataManagerDelegate {
+extension HistoryViewControllerOld: CoreDataManagerDelegate {
     func reloadTableView() {
         tableView.reloadData()
     }

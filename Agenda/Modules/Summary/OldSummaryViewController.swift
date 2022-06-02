@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SummaryViewController: UIViewController {
+final class SummaryViewControllerOld: UIViewController {
     
     private weak var coreDataManager: CoreDataManager?
     private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
@@ -98,7 +98,7 @@ final class SummaryViewController: UIViewController {
 }
 
 // MARK: - UITableView
-extension SummaryViewController: UITableViewDataSource {
+extension SummaryViewControllerOld: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         numbers.count
@@ -127,7 +127,7 @@ extension SummaryViewController: UITableViewDataSource {
 }
 
 // MARK: - CoreDataManagerDelegate
-extension SummaryViewController: CoreDataManagerDelegate {
+extension SummaryViewControllerOld: CoreDataManagerDelegate {
     func reloadTableView() {
         countGoals(months: months)
         tableView.reloadData()
