@@ -2,16 +2,18 @@
 //  AgendaViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 10.12.2021.
+//  Created by Егор Бадмаев on 01.06.2022.
+//  
 //
 
 import UIKit
 
-final class AgendaViewControllerOld: UIViewController {
-    
-    private let coreDataManager: CoreDataManagerProtocol
-    private var month: Month!
-    
+// Отображение данных и обработка событий пользователя
+final class AgendaViewController: UIViewController {
+	
+    private let output: AgendaViewOutput
+    private var viewModels = [GoalViewModel]()
+
     private lazy var dayAndMonth: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -42,6 +44,16 @@ final class AgendaViewControllerOld: UIViewController {
         return tableView
     }()
     
+    init(output: AgendaViewOutput) {
+        self.output = output
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,35 +62,24 @@ final class AgendaViewControllerOld: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
         navigationItem.leftBarButtonItem = editButtonItem
         
-        month = coreDataManager.fetchCurrentMonth()
-        getMonthInfo()
-        
         setupView()
         setConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        if !UserDefaults.standard.hasOnboarded {
-            let onboarding = OnboardingViewController()
-            onboarding.isModalInPresentation = true
-            present(onboarding, animated: true)
-        }
+        getMonthInfo()
+        output.viewDidLoad()
     }
-    
-    init(coreDataManager: CoreDataManagerProtocol) {
-        self.coreDataManager = coreDataManager
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+}
+
+// MARK: - AgendaViewInput
+extension AgendaViewController: AgendaViewInput {
+    func set(viewModels: [GoalViewModel]) {
+        self.viewModels = viewModels
+        tableView.reloadData()
     }
 }
 
 // MARK: - Methods
-private extension AgendaViewControllerOld {
+private extension AgendaViewController {
     
     func setupView() {
         view.addSubview(monthProgressView)
@@ -125,27 +126,21 @@ private extension AgendaViewControllerOld {
     }
     
     @objc func addNewGoal() {
-//        let destination = AddGoalViewController(month: month, coreDataManager: coreDataManager)
-//        destination.delegate = self
-//        present(UINavigationController(rootViewController: destination), animated: true)
+        output.addNewGoal()
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension AgendaViewControllerOld: UITableViewDelegate, UITableViewDataSource {
-    
+extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        month.goals?.count ?? 0
+        viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AgendaTableViewCell.identifier, for: indexPath) as? AgendaTableViewCell else {
-            return AgendaTableViewCell()
+            fatalError("Error at creating cell in AgendaTableView (cellForRowAt)")
         }
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
-            fatalError("Error at casting to Goal in AgendaTableView (cellForRowAt)")
-        }
-//        cell.configure(goal: goal)
+        cell.configure(goal: viewModels[indexPath.row])
         return cell
     }
     
@@ -160,36 +155,25 @@ extension AgendaViewControllerOld: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-//        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
-//        destination.goal = goal
-//        destination.delegate = self
-//        destination.hidesBottomBarWhenPushed = true
-        
-//        navigationController?.pushViewController(destination, animated: true)
+        output.didSelectRowAt(indexPath)
     }
     
-    // MARK: Editing tableView (reordering, deleting cells)
-    // reordering cells
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
-        coreDataManager.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
+        output.moveRowAt(from: sourceIndexPath, to: destinationIndexPath)
     }
     
-    // deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
-                guard let goal = strongSelf.month.goals?.object(at: indexPath.row) as? Goal else { return }
-                strongSelf.coreDataManager.deleteGoal(goal: goal)
+                
+                strongSelf.output.deleteGoal(at: indexPath)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
             let no = UIAlertAction(title: Labels.cancel, style: .default)
@@ -200,11 +184,5 @@ extension AgendaViewControllerOld: UITableViewDelegate, UITableViewDataSource {
             alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
             present(alert, animated: true)
         }
-    }
-}
-
-extension AgendaViewControllerOld: CoreDataManagerDelegate {
-    func reloadTableView() {
-        tableView.reloadData()
     }
 }

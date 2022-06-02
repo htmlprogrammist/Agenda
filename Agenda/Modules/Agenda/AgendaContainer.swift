@@ -15,7 +15,7 @@ final class AgendaContainer {
 
 	static func assemble(with context: AgendaContext) -> AgendaContainer {
         let router = AgendaRouter()
-        let interactor = AgendaInteractor()
+        let interactor = AgendaInteractor(coreDataManager: context.moduleDependency)
         let presenter = AgendaPresenter(router: router, interactor: interactor)
 		let viewController = AgendaViewController(output: presenter)
 

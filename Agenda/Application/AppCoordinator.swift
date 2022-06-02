@@ -63,29 +63,3 @@ private extension AppCoordinator {
         return navController
     }
 }
-
-fileprivate enum NavControllerType: Int, CaseIterable {
-    case agenda, history, summary
-    
-    var title: String {
-        switch self {
-        case .agenda:
-            return Labels.goals
-        case .history:
-            return Labels.History.title
-        case .summary:
-            return Labels.Summary.title
-        }
-    }
-    
-    var image: UIImage? {
-        switch self {
-        case .agenda:
-            return UIImage(named: "calendar")
-        case .history:
-            return UIImage(named: "clock.fill")
-        case .summary:
-            return UIImage(named: "square.text.square.fill")
-        }
-    }
-}

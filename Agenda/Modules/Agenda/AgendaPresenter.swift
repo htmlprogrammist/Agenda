@@ -18,6 +18,8 @@ final class AgendaPresenter {
 	private let router: AgendaRouterInput
 	private let interactor: AgendaInteractorInput
     
+    private var month: Month!
+    
     init(router: AgendaRouterInput, interactor: AgendaInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -28,7 +30,54 @@ extension AgendaPresenter: AgendaModuleInput {
 }
 
 extension AgendaPresenter: AgendaViewOutput {
+    func viewDidLoad() {
+        interactor.fetchCurrentMonth()
+    }
+    
+    func addNewGoal() {
+        router.showAddGoal()
+    }
+    
+    func openDetails() {
+        router.showDetails()
+    }
+    
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        // TODO: Implement didSelectRowAt
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+//        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
+//        destination.goal = goal
+//        destination.delegate = self
+//        destination.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
+        interactor.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+    func deleteGoal(at indexPath: IndexPath) {
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+        interactor.deleteGoal(goal)
+    }
 }
 
 extension AgendaPresenter: AgendaInteractorOutput {
+    func monthDidFetch(month: Month) {
+        self.month = month
+        guard let goals = month.goals?.array as? [Goal] else {
+            fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
+        }
+        view?.set(viewModels: makeViewModels(goals))
+    }
+}
+
+private extension AgendaPresenter {
+    func makeViewModels(_ goals: [Goal]) -> [GoalViewModel] {
+        return goals.map { goal in
+            GoalViewModel(name: goal.name, current: "\(goal.current)", aim: "\(goal.aim)",
+                          progress: Float(goal.current) / Float(goal.aim))
+        }
+    }
 }

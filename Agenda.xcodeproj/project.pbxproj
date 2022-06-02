@@ -32,6 +32,7 @@
 		F03FE972284955ED00F265A2 /* GoalDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96C284955ED00F265A2 /* GoalDetailsProtocols.swift */; };
 		F03FE973284955ED00F265A2 /* GoalDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */; };
 		F03FE974284955ED00F265A2 /* GoalDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */; };
+		F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9762849707000F265A2 /* GoalViewModel.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
 		F053020A27FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift */; };
 		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
@@ -90,6 +91,7 @@
 		F03FE96C284955ED00F265A2 /* GoalDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsProtocols.swift; sourceTree = "<group>"; };
 		F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsInteractor.swift; sourceTree = "<group>"; };
 		F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsContainer.swift; sourceTree = "<group>"; };
+		F03FE9762849707000F265A2 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F053020927FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewControllerOld.swift; sourceTree = "<group>"; };
 		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -211,15 +213,32 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
+		F03FE9752849684D00F265A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F065E7E72847ECBF00FAEFE9 /* AgendaViewController.swift */,
+				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F03FE978284970B600F265A2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F065E7E22847ECA400FAEFE9 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
 				F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */,
 				F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */,
-				F065E7E72847ECBF00FAEFE9 /* AgendaViewController.swift */,
 				F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */,
 				F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */,
 				F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */,
+				F03FE9752849684D00F265A2 /* Views */,
+				F03FE978284970B600F265A2 /* ViewModels */,
 				F0BB553E27EF509F00FA7E99 /* OldAgendaViewController.swift */,
 			);
 			path = Agenda;
@@ -307,6 +326,7 @@
 				F0BB555527EF5AD800FA7E99 /* CoreData */,
 				F016F77B27F7A4D6008D184A /* GoalData.swift */,
 				F02572A027FDE750000A9A06 /* Summary.swift */,
+				F03FE9762849707000F265A2 /* GoalViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,7 +345,6 @@
 		F0BB554127EF510D00FA7E99 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
 				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
 				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
 				F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */,
@@ -432,6 +451,7 @@
 				F03FE972284955ED00F265A2 /* GoalDetailsProtocols.swift in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
 				F037C51C27F5EC92001D2CBC /* OldAddGoalViewController.swift in Sources */,
+				F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,

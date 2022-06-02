@@ -48,7 +48,7 @@ extension MonthDetailsViewControllerOld {
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
             fatalError("Error at casting to Goal in AgendaTableView (cellForRowAt)")
         }
-        cell.configure(goal: goal)
+//        cell.configure(goal: goal)
         return cell
     }
     
