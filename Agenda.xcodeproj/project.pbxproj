@@ -33,6 +33,7 @@
 		F03FE973284955ED00F265A2 /* GoalDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */; };
 		F03FE974284955ED00F265A2 /* GoalDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */; };
 		F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9762849707000F265A2 /* GoalViewModel.swift */; };
+		F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9792849787200F265A2 /* DateViewModel.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
 		F053020A27FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift */; };
 		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
@@ -92,6 +93,7 @@
 		F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsInteractor.swift; sourceTree = "<group>"; };
 		F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsContainer.swift; sourceTree = "<group>"; };
 		F03FE9762849707000F265A2 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		F03FE9792849787200F265A2 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F053020927FA24CB00C62FAC /* MonthDetailsViewControllerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewControllerOld.swift; sourceTree = "<group>"; };
 		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -225,6 +227,8 @@
 		F03FE978284970B600F265A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F03FE9762849707000F265A2 /* GoalViewModel.swift */,
+				F03FE9792849787200F265A2 /* DateViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -326,7 +330,6 @@
 				F0BB555527EF5AD800FA7E99 /* CoreData */,
 				F016F77B27F7A4D6008D184A /* GoalData.swift */,
 				F02572A027FDE750000A9A06 /* Summary.swift */,
-				F03FE9762849707000F265A2 /* GoalViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				F03FE971284955ED00F265A2 /* GoalDetailsViewController.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F065E7EF2847ECBF00FAEFE9 /* AgendaInteractor.swift in Sources */,
+				F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
 				F03FE972284955ED00F265A2 /* GoalDetailsProtocols.swift in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,

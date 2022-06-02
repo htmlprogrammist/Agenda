@@ -69,11 +69,24 @@ extension AgendaPresenter: AgendaInteractorOutput {
         guard let goals = month.goals?.array as? [Goal] else {
             fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
         }
-        view?.set(viewModels: makeViewModels(goals))
+        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo())
     }
 }
 
 private extension AgendaPresenter {
+    func getMonthInfo() -> DateViewModel {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
+        
+        let calendar = Calendar.current
+        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
+        
+        return DateViewModel(dayAndMonth: dateFormatter.string(from: date),
+                             year: ", \(calendar.dateComponents([.year], from: date).year ?? 1970)",
+                             progress: Float(calendar.dateComponents([.day], from: date).day!) / Float(days))
+    }
+    
     func makeViewModels(_ goals: [Goal]) -> [GoalViewModel] {
         return goals.map { goal in
             GoalViewModel(name: goal.name, current: "\(goal.current)", aim: "\(goal.aim)",

@@ -65,15 +65,19 @@ final class AgendaViewController: UIViewController {
         setupView()
         setConstraints()
         
-        getMonthInfo()
         output.viewDidLoad()
     }
 }
 
 // MARK: - AgendaViewInput
 extension AgendaViewController: AgendaViewInput {
-    func set(viewModels: [GoalViewModel]) {
+    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel) {
         self.viewModels = viewModels
+        
+        dayAndMonth.text = monthInfo.dayAndMonth
+        yearLabel.text = monthInfo.year
+        monthProgressView.progress = monthInfo.progress
+        
         tableView.reloadData()
     }
 }
@@ -110,19 +114,6 @@ private extension AgendaViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    func getMonthInfo() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
-        
-        let calendar = Calendar.current
-        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
-        
-        dayAndMonth.text = dateFormatter.string(from: date)
-        yearLabel.text = ", \(calendar.dateComponents([.year], from: date).year ?? 0)"
-        monthProgressView.progress = Float(calendar.dateComponents([.day], from: date).day!) / Float(days)
     }
     
     @objc func addNewGoal() {

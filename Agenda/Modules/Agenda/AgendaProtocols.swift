@@ -18,7 +18,7 @@ protocol AgendaModuleOutput: AnyObject {
 // Описывает то, как мы на вью отображаем какие-то элекменты (например, говорим View: "Покажи картинку")
 // Presenter имеет ссылку на View
 protocol AgendaViewInput: AnyObject {
-    func set(viewModels: [GoalViewModel])
+    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel)
 }
 
 // Перечисление тех событий, которые могут прийти ИЗ View (например, пользователь нажал на кнопку создания аккаунта)
