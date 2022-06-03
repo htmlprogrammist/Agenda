@@ -9,7 +9,7 @@
 import Foundation
 
 final class AddGoalInteractor {
-	weak var output: AddGoalInteractorOutput?
+    weak var output: AddGoalInteractorOutput?
 }
 
 extension AddGoalInteractor: AddGoalInteractorInput {

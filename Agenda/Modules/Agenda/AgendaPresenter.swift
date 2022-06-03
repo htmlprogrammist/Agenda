@@ -12,13 +12,13 @@ import Foundation
 // 2. Также он решает какой экран нужно показать (передаёт Router'у события)
 // 3. Может запросить данные у Interactor и показать во View
 final class AgendaPresenter {
-	weak var view: AgendaViewInput?
+    weak var view: AgendaViewInput?
     weak var moduleOutput: AgendaModuleOutput?
     
-	private let router: AgendaRouterInput
-	private let interactor: AgendaInteractorInput
+    private let router: AgendaRouterInput
+    private let interactor: AgendaInteractorInput
     
-    private var month: Month!
+    private var month: Month! // current month
     
     init(router: AgendaRouterInput, interactor: AgendaInteractorInput) {
         self.router = router
@@ -29,6 +29,7 @@ final class AgendaPresenter {
 extension AgendaPresenter: AgendaModuleInput {
 }
 
+// MARK: - View
 extension AgendaPresenter: AgendaViewOutput {
     func viewDidLoad() {
         interactor.fetchCurrentMonth()
@@ -73,6 +74,7 @@ extension AgendaPresenter: AgendaInteractorOutput {
     }
 }
 
+// MARK: - Methods
 private extension AgendaPresenter {
     func getMonthInfo() -> DateViewModel {
         let date = Date()
@@ -83,14 +85,13 @@ private extension AgendaPresenter {
         let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
         
         return DateViewModel(dayAndMonth: dateFormatter.string(from: date),
-                             year: ", \(calendar.dateComponents([.year], from: date).year ?? 1970)",
+                             year: calendar.dateComponents([.year], from: date).year ?? 0,
                              progress: Float(calendar.dateComponents([.day], from: date).day!) / Float(days))
     }
     
     func makeViewModels(_ goals: [Goal]) -> [GoalViewModel] {
         return goals.map { goal in
-            GoalViewModel(name: goal.name, current: "\(goal.current)", aim: "\(goal.aim)",
-                          progress: Float(goal.current) / Float(goal.aim))
+            GoalViewModel(name: goal.name, current: Int(goal.current), aim: Int(goal.aim))
         }
     }
 }

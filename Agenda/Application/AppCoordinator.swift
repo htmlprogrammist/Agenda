@@ -10,10 +10,10 @@ import UIKit
 final class AppCoordinator {
     
     public let coreDataManager = CoreDataManager(containerName: "Agenda")
+    public var viewControllers = [UIViewController]()
     
     private let window: UIWindow
     private let tabBarController = UITabBarController()
-    private var viewControllers = [UIViewController]()
     
     init(window: UIWindow) {
         self.window = window
@@ -27,6 +27,8 @@ final class AppCoordinator {
         tabBarController.setViewControllers(viewControllers, animated: true)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
+        
+        coreDataManager.coordinator = self
     }
 }
 
@@ -40,16 +42,16 @@ private extension AppCoordinator {
     }
     
     func setupHistory() {
-        let context = AgendaContext(moduleOutput: nil, moduleDependency: coreDataManager)
-        let container = AgendaContainer.assemble(with: context)
+        let context = HistoryContext(moduleOutput: nil, moduleDependency: coreDataManager)
+        let container = HistoryContainer.assemble(with: context)
         
         let historyViewController = createNavController(viewController: container.viewController, itemName: Labels.History.title, itemImage: "clock.fill")
         viewControllers.append(historyViewController)
     }
     
     func setupSummary() {
-        let context = AgendaContext(moduleOutput: nil, moduleDependency: coreDataManager)
-        let container = AgendaContainer.assemble(with: context)
+        let context = SummaryContext(moduleOutput: nil, moduleDependency: coreDataManager)
+        let container = SummaryContainer.assemble(with: context)
         
         let summaryViewController = createNavController(viewController: container.viewController, itemName: Labels.Summary.title, itemImage: "square.text.square.fill")
         viewControllers.append(summaryViewController)

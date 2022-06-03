@@ -50,7 +50,7 @@ final class SummaryViewControllerOld: UIViewController {
         
         do {
             try fetchedResultsController?.performFetch()
-            coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
+//            coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
         } catch {
             alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
         }

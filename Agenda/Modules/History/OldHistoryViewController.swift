@@ -33,7 +33,7 @@ final class HistoryViewControllerOld: UITableViewController {
         
         do {
             try fetchedResultsController?.performFetch()
-            coreDataManager?.clients.append(self)
+//            coreDataManager?.clients.append(self)
         } catch {
             alertForError(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
         }

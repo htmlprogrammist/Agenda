@@ -1,17 +1,18 @@
 //
-//  AddGoalViewController.swift
+//  SummaryViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 02.06.2022.
+//  Created by Егор Бадмаев on 03.06.2022.
 //  
 //
 
 import UIKit
 
-final class AddGoalViewController: UIViewController {
-    private let output: AddGoalViewOutput
+final class SummaryViewController: UIViewController {
     
-    init(output: AddGoalViewOutput) {
+    private let output: SummaryViewOutput
+    
+    init(output: SummaryViewOutput) {
         self.output = output
         
         super.init(nibName: nil, bundle: nil)
@@ -23,8 +24,10 @@ final class AddGoalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
 }
 
-extension AddGoalViewController: AddGoalViewInput {
+extension SummaryViewController: SummaryViewInput {
 }

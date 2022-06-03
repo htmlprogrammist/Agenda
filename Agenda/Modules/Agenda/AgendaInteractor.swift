@@ -10,7 +10,7 @@ import Foundation
 
 // Какой-то use-case (какое-то действие, например: создать аккаунт)
 final class AgendaInteractor {
-	weak var output: AgendaInteractorOutput?
+    weak var output: AgendaInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
     

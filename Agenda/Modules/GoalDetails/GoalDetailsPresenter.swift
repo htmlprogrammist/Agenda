@@ -9,11 +9,11 @@
 import Foundation
 
 final class GoalDetailsPresenter {
-	weak var view: GoalDetailsViewInput?
+    weak var view: GoalDetailsViewInput?
     weak var moduleOutput: GoalDetailsModuleOutput?
     
-	private let router: GoalDetailsRouterInput
-	private let interactor: GoalDetailsInteractorInput
+    private let router: GoalDetailsRouterInput
+    private let interactor: GoalDetailsInteractorInput
     
     init(router: GoalDetailsRouterInput, interactor: GoalDetailsInteractorInput) {
         self.router = router

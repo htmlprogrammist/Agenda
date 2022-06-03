@@ -67,6 +67,16 @@ final class AgendaViewController: UIViewController {
         
         output.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !UserDefaults.standard.hasOnboarded {
+            let onboarding = OnboardingViewController()
+            onboarding.isModalInPresentation = true
+            present(onboarding, animated: true)
+        }
+    }
 }
 
 // MARK: - AgendaViewInput

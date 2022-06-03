@@ -27,10 +27,7 @@ extension AgendaRouter: AgendaRouterInput {
 }
 
 extension AgendaRouter: AddGoalModuleOutput {
-    
 }
 
 extension AgendaRouter: GoalDetailsModuleOutput {
-    
 }
-

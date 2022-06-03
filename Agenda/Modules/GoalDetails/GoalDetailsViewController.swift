@@ -9,8 +9,8 @@
 import UIKit
 
 final class GoalDetailsViewController: UIViewController {
-	private let output: GoalDetailsViewOutput
-
+    private let output: GoalDetailsViewOutput
+    
     init(output: GoalDetailsViewOutput) {
         self.output = output
         
@@ -21,9 +21,11 @@ final class GoalDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
 }
 
 extension GoalDetailsViewController: GoalDetailsViewInput {

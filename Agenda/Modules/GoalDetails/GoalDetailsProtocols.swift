@@ -9,7 +9,7 @@
 import Foundation
 
 protocol GoalDetailsModuleInput {
-	var moduleOutput: GoalDetailsModuleOutput? { get }
+    var moduleOutput: GoalDetailsModuleOutput? { get }
 }
 
 protocol GoalDetailsModuleOutput: AnyObject {

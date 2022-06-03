@@ -8,12 +8,6 @@
 import CoreData
 
 protocol CoreDataManagerProtocol {
-    var managedObjectContext: NSManagedObjectContext { get }
-    var persistentContainer: NSPersistentContainer { get }
-    var delegate: CoreDataManagerDelegate? { get set }
-    
-    func saveContext()
-    
     var monthsFetchedResultsController: NSFetchedResultsController<Month> { get }
     func fetchCurrentMonth() -> Month
     
@@ -23,6 +17,8 @@ protocol CoreDataManagerProtocol {
     
     func deleteMonth(month: Month)
     func deleteGoal(goal: Goal)
+    
+    func saveContext()
 }
 
 protocol CoreDataManagerDelegate: AnyObject {
@@ -34,8 +30,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    weak var delegate: CoreDataManagerDelegate?
-    var clients = [CoreDataManagerDelegate]()
+    weak var coordinator: AppCoordinator?
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -138,8 +133,10 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
 
 extension CoreDataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        for client in clients {
-            client.reloadTableView()
+        for vc in (coordinator?.viewControllers)! {
+            if let vc = vc as? CoreDataManagerDelegate {
+                vc.reloadTableView()
+            }
         }
     }
 }
