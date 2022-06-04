@@ -16,6 +16,7 @@ protocol SummaryModuleOutput: AnyObject {
 }
 
 protocol SummaryViewInput: AnyObject {
+    func showAlert(title: String, message: String)
 }
 
 protocol SummaryViewOutput: AnyObject {

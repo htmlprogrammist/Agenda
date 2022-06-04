@@ -13,12 +13,16 @@ protocol AddGoalModuleInput {
 }
 
 protocol AddGoalModuleOutput: AnyObject {
+    func addGoalModuleDidFinish()
 }
 
 protocol AddGoalViewInput: AnyObject {
 }
 
 protocol AddGoalViewOutput: AnyObject {
+    func doneButtonTapped()
+    
+    func closeThisModule()
 }
 
 protocol AddGoalInteractorInput: AnyObject {

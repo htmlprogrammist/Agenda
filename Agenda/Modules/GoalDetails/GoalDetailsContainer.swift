@@ -21,6 +21,7 @@ final class GoalDetailsContainer {
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
+//        presenter.goal = context.goal
         
         interactor.output = presenter
         
@@ -35,5 +36,9 @@ final class GoalDetailsContainer {
 }
 
 struct GoalDetailsContext {
+    typealias ModuleDependency = CoreDataManagerProtocol
+    
     weak var moduleOutput: GoalDetailsModuleOutput?
+    let moduleDependency: ModuleDependency
+    let goal: Goal
 }

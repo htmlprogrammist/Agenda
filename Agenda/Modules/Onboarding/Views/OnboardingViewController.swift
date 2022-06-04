@@ -2,30 +2,33 @@
 //  OnboardingViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 10.04.2022.
+//  Created by Егор Бадмаев on 04.06.2022.
+//  
 //
 
 import UIKit
 
 final class OnboardingViewController: UIViewController {
     
+    private let output: OnboardingViewOutput
+    
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
     private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "note.text.badge.plus"]
     
-    private lazy var scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    private lazy var contentView: UIView = {
+    private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var welcomeLabel: UILabel = {
+    private let welcomeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = Labels.Onboarding.welcomeLabel
@@ -40,7 +43,7 @@ final class OnboardingViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var backgroundButtonView: UIView = {
+    private let backgroundButtonView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,18 +61,36 @@ final class OnboardingViewController: UIViewController {
         return button
     }()
     
+    init(output: OnboardingViewOutput) {
+        self.output = output
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        isModalInPresentation = true
         
         setupView()
         setConstraints()
     }
 }
 
+extension OnboardingViewController: OnboardingViewInput {
+}
+
 // MARK: - Methods
 private extension OnboardingViewController {
+    
+    @objc func continueButtonTapped() {
+        output.continueButtonTapped()
+    }
     
     func setupView() {
         view.addSubview(scrollView)
@@ -121,11 +142,6 @@ private extension OnboardingViewController {
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             continueButton.heightAnchor.constraint(equalToConstant: 52)
         ])
-    }
-    
-    @objc func continueButtonTapped() {
-        dismiss(animated: true)
-        UserDefaults.standard.hasOnboarded = true
     }
 }
 

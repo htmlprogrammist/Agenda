@@ -16,6 +16,7 @@ protocol HistoryModuleOutput: AnyObject {
 }
 
 protocol HistoryViewInput: AnyObject {
+    func showAlert(title: String, message: String)
 }
 
 protocol HistoryViewOutput: AnyObject {

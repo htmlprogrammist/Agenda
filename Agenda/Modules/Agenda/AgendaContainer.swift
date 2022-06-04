@@ -23,6 +23,9 @@ final class AgendaContainer {
         presenter.moduleOutput = context.moduleOutput
         
         interactor.output = presenter
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
         
         return AgendaContainer(view: viewController, input: presenter, router: router)
     }

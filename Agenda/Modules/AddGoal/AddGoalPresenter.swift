@@ -25,6 +25,15 @@ extension AddGoalPresenter: AddGoalModuleInput {
 }
 
 extension AddGoalPresenter: AddGoalViewOutput {
+    func doneButtonTapped() {
+//        coreDataManager.createGoal(data: goalData, in: month)
+//        delegate?.reloadTableView()
+//        dismiss(animated: true, completion: nil)
+    }
+    
+    func closeThisModule() {
+        moduleOutput?.addGoalModuleDidFinish()
+    }
 }
 
 extension AddGoalPresenter: AddGoalInteractorOutput {

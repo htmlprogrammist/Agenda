@@ -27,7 +27,7 @@ protocol AgendaViewOutput: AnyObject {
     func viewDidLoad()
     
     func addNewGoal()
-    func openDetails()
+    func showOnboarding()
     
     func didSelectRowAt(_ indexPath: IndexPath)
     func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
@@ -47,6 +47,7 @@ protocol AgendaInteractorOutput: AnyObject {
 }
 
 protocol AgendaRouterInput: AnyObject {
-    func showAddGoal()
-    func showDetails()
+    func showAddGoal(in month: Month)
+    func showDetails(by goal: Goal)
+    func showOnboarding()
 }

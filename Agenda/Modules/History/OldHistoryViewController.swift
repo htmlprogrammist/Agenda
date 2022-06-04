@@ -24,12 +24,7 @@ final class HistoryViewControllerOld: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = editButtonItem
-        title = Labels.History.title
-        view.backgroundColor = .systemBackground
         
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
         
         do {
             try fetchedResultsController?.performFetch()

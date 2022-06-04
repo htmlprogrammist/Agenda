@@ -8,26 +8,41 @@
 
 import UIKit
 
-final class AgendaRouter {
+final class AgendaRouter: BaseRouter {
 }
 
 extension AgendaRouter: AgendaRouterInput {
-    func showAddGoal() {
+    func showAddGoal(in month: Month) {
         let context = AddGoalContext(moduleOutput: self)
         let container = AddGoalContainer.assemble(with: context)
         let navController = UINavigationController(rootViewController: container.viewController)
-//        navController.present(navController)
+        navigationController?.present(navController, animated: true)
     }
     
-    func showDetails() {
-        let context = GoalDetailsContext(moduleOutput: self)
-        let container = GoalDetailsContainer.assemble(with: context)
-        let navController = UINavigationController(rootViewController: container.viewController)
+    func showDetails(by goal: Goal) {
+//        let context = GoalDetailsContext(moduleOutput: self, moduleDependency: <#GoalDetailsContext.ModuleDependency#>, goal: goal)
+//        let container = GoalDetailsContainer.assemble(with: context)
+//        navigationController?.pushViewController(container.viewController, animated: true)
+    }
+    
+    func showOnboarding() {
+        let context = OnboardingContext(moduleOutput: self)
+        let container = OnboardingContainer.assemble(with: context)
+        navigationController?.present(container.viewController, animated: true)
     }
 }
 
 extension AgendaRouter: AddGoalModuleOutput {
+    func addGoalModuleDidFinish() {
+        navigationController?.dismiss(animated: true)
+    }
 }
 
 extension AgendaRouter: GoalDetailsModuleOutput {
+}
+
+extension AgendaRouter: OnboardingModuleOutput {
+    func onboardingModuleDidFinish() {
+        navigationController?.dismiss(animated: true)
+    }
 }

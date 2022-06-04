@@ -36,21 +36,16 @@ extension AgendaPresenter: AgendaViewOutput {
     }
     
     func addNewGoal() {
-        router.showAddGoal()
+        router.showAddGoal(in: month)
     }
     
-    func openDetails() {
-        router.showDetails()
+    func showOnboarding() {
+        router.showOnboarding()
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
-        // TODO: Implement didSelectRowAt
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-//        let destination = GoalDetailsViewController(coreDataManager: coreDataManager)
-//        destination.goal = goal
-//        destination.delegate = self
-//        destination.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(destination, animated: true)
+        router.showDetails(by: goal)
     }
     
     func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {

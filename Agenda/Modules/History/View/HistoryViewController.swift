@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HistoryViewController: UIViewController {
+final class HistoryViewController: UITableViewController {
     
     private let output: HistoryViewOutput
     
@@ -25,9 +25,18 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = editButtonItem
+        title = Labels.History.title
+        view.backgroundColor = .systemBackground
         
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 
 extension HistoryViewController: HistoryViewInput {
+    func showAlert(title: String, message: String) {
+//        alertForError(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
+        alertForError(title: title, message: message)
+    }
 }

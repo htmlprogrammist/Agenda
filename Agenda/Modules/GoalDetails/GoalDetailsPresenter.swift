@@ -9,6 +9,9 @@
 import Foundation
 
 final class GoalDetailsPresenter {
+    
+    public var goal: Goal!
+    
     weak var view: GoalDetailsViewInput?
     weak var moduleOutput: GoalDetailsModuleOutput?
     
