@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 02.06.2022.
 //  
-//
 
 import UIKit
 
@@ -105,7 +104,7 @@ extension AddGoalViewController: UITableViewDataSource {
 // MARK: - Helper methods
 private extension AddGoalViewController {
     @objc func doneButtonTapped() {
-        output.doneButtonTapped()
+        output.doneButtonTapped(data: goalData)
     }
     
     @objc func closeThisVC() {

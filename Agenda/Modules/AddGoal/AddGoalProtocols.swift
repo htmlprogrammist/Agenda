@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 02.06.2022.
 //  
-//
 
 import Foundation
 
@@ -20,15 +19,17 @@ protocol AddGoalViewInput: AnyObject {
 }
 
 protocol AddGoalViewOutput: AnyObject {
-    func doneButtonTapped()
+    func doneButtonTapped(data: GoalData)
     
     func closeThisModule()
 }
 
 protocol AddGoalInteractorInput: AnyObject {
+    func createGoal(goalData: GoalData, in month: Month)
 }
 
 protocol AddGoalInteractorOutput: AnyObject {
+    func goalDidCreate()
 }
 
 protocol AddGoalRouterInput: AnyObject {

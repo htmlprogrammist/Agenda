@@ -3,7 +3,6 @@
 //  Agenda
 //
 //  Created by Егор Бадмаев on 02.06.2022.
-//  
 //
 
 import Foundation
@@ -15,6 +14,8 @@ final class AddGoalPresenter {
     private let router: AddGoalRouterInput
     private let interactor: AddGoalInteractorInput
     
+    public var month: Month!
+    
     init(router: AddGoalRouterInput, interactor: AddGoalInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -25,10 +26,8 @@ extension AddGoalPresenter: AddGoalModuleInput {
 }
 
 extension AddGoalPresenter: AddGoalViewOutput {
-    func doneButtonTapped() {
-//        coreDataManager.createGoal(data: goalData, in: month)
-//        delegate?.reloadTableView()
-//        dismiss(animated: true, completion: nil)
+    func doneButtonTapped(data: GoalData) {
+        interactor.createGoal(goalData: data, in: month)
     }
     
     func closeThisModule() {
@@ -37,4 +36,7 @@ extension AddGoalPresenter: AddGoalViewOutput {
 }
 
 extension AddGoalPresenter: AddGoalInteractorOutput {
+    func goalDidCreate() {
+        moduleOutput?.addGoalModuleDidFinish()
+    }
 }

@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.06.2022.
 //  
-//
 
 import Foundation
 
@@ -25,6 +24,9 @@ extension HistoryPresenter: HistoryModuleInput {
 }
 
 extension HistoryPresenter: HistoryViewOutput {
+    func viewDidLoad() {
+        interactor.performFetch()
+    }
 }
 
 extension HistoryPresenter: HistoryInteractorOutput {

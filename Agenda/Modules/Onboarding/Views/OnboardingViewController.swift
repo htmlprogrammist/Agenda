@@ -2,9 +2,8 @@
 //  OnboardingViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 04.06.2022.
+//  Created by Егор Бадмаев on 10.04.2022.
 //  
-//
 
 import UIKit
 

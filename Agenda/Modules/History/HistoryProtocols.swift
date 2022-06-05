@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.06.2022.
 //  
-//
 
 import Foundation
 
@@ -20,12 +19,15 @@ protocol HistoryViewInput: AnyObject {
 }
 
 protocol HistoryViewOutput: AnyObject {
+    func viewDidLoad()
 }
 
 protocol HistoryInteractorInput: AnyObject {
+    func performFetch()
 }
 
 protocol HistoryInteractorOutput: AnyObject {
+    func dataDidFetch()
 }
 
 protocol HistoryRouterInput: AnyObject {

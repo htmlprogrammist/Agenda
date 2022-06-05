@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 02.06.2022.
 //  
-//
 
 import UIKit
 import SPIndicator
@@ -68,10 +67,6 @@ final class GoalDetailsViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         
         setupViewAndConstraints()
-    }
-    
-    deinit {
-        print("deinit")
     }
 }
 

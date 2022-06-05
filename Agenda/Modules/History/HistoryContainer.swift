@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.06.2022.
 //  
-//
 
 import UIKit
 
@@ -15,7 +14,7 @@ final class HistoryContainer {
     
     static func assemble(with context: HistoryContext) -> HistoryContainer {
         let router = HistoryRouter()
-        let interactor = HistoryInteractor()
+        let interactor = HistoryInteractor(coreDataManager: context.moduleDependency)
         let presenter = HistoryPresenter(router: router, interactor: interactor)
         let viewController = HistoryViewController(output: presenter)
         

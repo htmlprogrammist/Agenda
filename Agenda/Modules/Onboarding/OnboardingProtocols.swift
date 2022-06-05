@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 04.06.2022.
 //  
-//
 
 import Foundation
 
@@ -24,9 +23,11 @@ protocol OnboardingViewOutput: AnyObject {
 }
 
 protocol OnboardingInteractorInput: AnyObject {
+    func setHasOnboarded()
 }
 
 protocol OnboardingInteractorOutput: AnyObject {
+    func hasOnboardedDidSet()
 }
 
 protocol OnboardingRouterInput: AnyObject {

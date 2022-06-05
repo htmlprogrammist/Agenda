@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 01.06.2022.
 //  
-//
 
 import Foundation
 
@@ -36,7 +35,7 @@ extension AgendaPresenter: AgendaViewOutput {
     }
     
     func addNewGoal() {
-        router.showAddGoal(in: month)
+        router.showAddGoalModule(in: month, moduleDependency: interactor.coreDataManager)
     }
     
     func showOnboarding() {
@@ -45,7 +44,7 @@ extension AgendaPresenter: AgendaViewOutput {
     
     func didSelectRowAt(_ indexPath: IndexPath) {
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        router.showDetails(by: goal)
+        router.showDetailsModule(by: goal, moduleDependency: interactor.coreDataManager)
     }
     
     func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {

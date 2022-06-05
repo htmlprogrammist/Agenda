@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 04.06.2022.
 //  
-//
 
 import Foundation
 
@@ -13,4 +12,8 @@ final class OnboardingInteractor {
 }
 
 extension OnboardingInteractor: OnboardingInteractorInput {
+    func setHasOnboarded() {
+        UserDefaults.standard.hasOnboarded = true
+        output?.hasOnboardedDidSet()
+    }
 }

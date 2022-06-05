@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 01.06.2022.
 //
-//
 
 import Foundation
 
@@ -36,6 +35,8 @@ protocol AgendaViewOutput: AnyObject {
 
 // Presenter через протокол говорит Interactor'у, что надо создать аккаунт (1b/2)
 protocol AgendaInteractorInput: AnyObject {
+    var coreDataManager: CoreDataManagerProtocol { get }
+    
     func fetchCurrentMonth()
     func replaceGoal(_ goal: Goal, in month: Month, from a: Int, to b: Int)
     func deleteGoal(_ goal: Goal)
@@ -47,7 +48,7 @@ protocol AgendaInteractorOutput: AnyObject {
 }
 
 protocol AgendaRouterInput: AnyObject {
-    func showAddGoal(in month: Month)
-    func showDetails(by goal: Goal)
+    func showAddGoalModule(in month: Month, moduleDependency: CoreDataManagerProtocol)
+    func showDetailsModule(by goal: Goal, moduleDependency: CoreDataManagerProtocol)
     func showOnboarding()
 }

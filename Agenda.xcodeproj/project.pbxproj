@@ -23,7 +23,6 @@
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
 		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
 		F0315AB127F84F6100C7D8F0 /* OldGoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* OldGoalDetailsViewController.swift */; };
-		F037C51C27F5EC92001D2CBC /* OldAddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* OldAddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F03FE95C2849544700F265A2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95B2849544700F265A2 /* AppCoordinator.swift */; };
 		F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */; };
@@ -106,7 +105,6 @@
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		F0315AB027F84F6100C7D8F0 /* OldGoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGoalDetailsViewController.swift; sourceTree = "<group>"; };
-		F037C51B27F5EC92001D2CBC /* OldAddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldAddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F03FE95B2849544700F265A2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalPresenter.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				F03FE960284955E300F265A2 /* AddGoalProtocols.swift */,
 				F03FE961284955E300F265A2 /* AddGoalInteractor.swift */,
 				F03FE962284955E300F265A2 /* AddGoalContainer.swift */,
-				F037C51B27F5EC92001D2CBC /* OldAddGoalViewController.swift */,
 			);
 			path = AddGoal;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 				F0027EE5284BE01200D73820 /* BaseRouter.swift in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
 				F0751399284A925000BD887D /* HistoryProtocols.swift in Sources */,
-				F037C51C27F5EC92001D2CBC /* OldAddGoalViewController.swift in Sources */,
 				F07513B3284A9D6700BD887D /* MonthDetailsProtocols.swift in Sources */,
 				F075139A284A925000BD887D /* HistoryInteractor.swift in Sources */,
 				F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */,

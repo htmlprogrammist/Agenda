@@ -4,11 +4,9 @@
 //
 //  Created by Егор Бадмаев on 01.06.2022.
 //  
-//
 
 import UIKit
 
-// Отображение данных и обработка событий пользователя
 final class AgendaViewController: UIViewController {
 	
     private let output: AgendaViewOutput
@@ -173,6 +171,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let strongSelf = self else { return }
                 
                 strongSelf.output.deleteGoal(at: indexPath)
+                strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
             let no = UIAlertAction(title: Labels.cancel, style: .default)

@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.06.2022.
 //  
-//
 
 import UIKit
 
@@ -31,6 +30,8 @@ final class HistoryViewController: UITableViewController {
         
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
+        
+        output.viewDidLoad()
     }
 }
 

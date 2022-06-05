@@ -133,6 +133,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
 
 extension CoreDataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("Delegate!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") // пока не реализую History/Summary, не узнаю, работает или нет
         for vc in (coordinator?.viewControllers)! {
             if let vc = vc as? CoreDataManagerDelegate {
                 vc.reloadTableView()

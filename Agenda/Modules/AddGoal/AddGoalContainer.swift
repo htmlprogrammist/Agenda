@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 02.06.2022.
 //  
-//
 
 import UIKit
 
@@ -15,12 +14,13 @@ final class AddGoalContainer {
     
     static func assemble(with context: AddGoalContext) -> AddGoalContainer {
         let router = AddGoalRouter()
-        let interactor = AddGoalInteractor()
+        let interactor = AddGoalInteractor(coreDataManager: context.moduleDependency)
         let presenter = AddGoalPresenter(router: router, interactor: interactor)
         let viewController = AddGoalViewController(output: presenter)
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
+        presenter.month = context.month
         
         interactor.output = presenter
         
@@ -35,5 +35,9 @@ final class AddGoalContainer {
 }
 
 struct AddGoalContext {
+    typealias ModuleDependency = CoreDataManagerProtocol
+    
     weak var moduleOutput: AddGoalModuleOutput?
+    let moduleDependency: ModuleDependency
+    let month: Month
 }

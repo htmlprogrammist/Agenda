@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 01.06.2022.
 //  
-//
 
 import UIKit
 

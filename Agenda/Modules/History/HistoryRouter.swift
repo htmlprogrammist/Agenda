@@ -4,11 +4,10 @@
 //
 //  Created by Егор Бадмаев on 03.06.2022.
 //  
-//
 
 import UIKit
 
-final class HistoryRouter {
+final class HistoryRouter: BaseRouter {
 }
 
 extension HistoryRouter: HistoryRouterInput {

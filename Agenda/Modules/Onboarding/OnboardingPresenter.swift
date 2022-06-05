@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 04.06.2022.
 //  
-//
 
 import Foundation
 
@@ -26,10 +25,12 @@ extension OnboardingPresenter: OnboardingModuleInput {
 
 extension OnboardingPresenter: OnboardingViewOutput {
     func continueButtonTapped() {
-        UserDefaults.standard.hasOnboarded = true
-        moduleOutput?.onboardingModuleDidFinish()
+        interactor.setHasOnboarded()
     }
 }
 
 extension OnboardingPresenter: OnboardingInteractorOutput {
+    func hasOnboardedDidSet() {
+        moduleOutput?.onboardingModuleDidFinish()
+    }
 }

@@ -96,7 +96,6 @@ extension HistoryViewControllerOld {
             let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
                 tableView.beginUpdates()
-                
                 guard let month = fetchedResultsController?.object(at: indexPath) else { return }
                 coreDataManager?.deleteMonth(month: month)
                 
