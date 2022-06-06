@@ -12,10 +12,11 @@ protocol AgendaModuleInput {
 }
 
 protocol AgendaModuleOutput: AnyObject {
+    func monthDetailsModuleDidFinish()
 }
 
 protocol AgendaViewInput: AnyObject {
-    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel)
+    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel, title: String)
 }
 
 protocol AgendaViewOutput: AnyObject {

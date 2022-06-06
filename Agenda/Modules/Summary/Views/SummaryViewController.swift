@@ -9,13 +9,11 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
     private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
-    
     
     private let output: SummaryViewOutput
     

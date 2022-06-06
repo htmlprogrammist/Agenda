@@ -61,12 +61,6 @@
 		F07513A5284A9B8200BD887D /* SummaryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139F284A9B8200BD887D /* SummaryProtocols.swift */; };
 		F07513A6284A9B8200BD887D /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A0284A9B8200BD887D /* SummaryInteractor.swift */; };
 		F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A1284A9B8200BD887D /* SummaryContainer.swift */; };
-		F07513B0284A9D6700BD887D /* MonthDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AA284A9D6700BD887D /* MonthDetailsPresenter.swift */; };
-		F07513B1284A9D6700BD887D /* MonthDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AB284A9D6700BD887D /* MonthDetailsRouter.swift */; };
-		F07513B2284A9D6700BD887D /* MonthDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AC284A9D6700BD887D /* MonthDetailsViewController.swift */; };
-		F07513B3284A9D6700BD887D /* MonthDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AD284A9D6700BD887D /* MonthDetailsProtocols.swift */; };
-		F07513B4284A9D6700BD887D /* MonthDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AE284A9D6700BD887D /* MonthDetailsInteractor.swift */; };
-		F07513B5284A9D6700BD887D /* MonthDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513AF284A9D6700BD887D /* MonthDetailsContainer.swift */; };
 		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
@@ -141,12 +135,6 @@
 		F075139F284A9B8200BD887D /* SummaryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProtocols.swift; sourceTree = "<group>"; };
 		F07513A0284A9B8200BD887D /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		F07513A1284A9B8200BD887D /* SummaryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainer.swift; sourceTree = "<group>"; };
-		F07513AA284A9D6700BD887D /* MonthDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsPresenter.swift; sourceTree = "<group>"; };
-		F07513AB284A9D6700BD887D /* MonthDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsRouter.swift; sourceTree = "<group>"; };
-		F07513AC284A9D6700BD887D /* MonthDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewController.swift; sourceTree = "<group>"; };
-		F07513AD284A9D6700BD887D /* MonthDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsProtocols.swift; sourceTree = "<group>"; };
-		F07513AE284A9D6700BD887D /* MonthDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsInteractor.swift; sourceTree = "<group>"; };
-		F07513AF284A9D6700BD887D /* MonthDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsContainer.swift; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,19 +255,6 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		F03FE959284953F400F265A2 /* MonthDetails */ = {
-			isa = PBXGroup;
-			children = (
-				F07513AA284A9D6700BD887D /* MonthDetailsPresenter.swift */,
-				F07513AB284A9D6700BD887D /* MonthDetailsRouter.swift */,
-				F07513AC284A9D6700BD887D /* MonthDetailsViewController.swift */,
-				F07513AD284A9D6700BD887D /* MonthDetailsProtocols.swift */,
-				F07513AE284A9D6700BD887D /* MonthDetailsInteractor.swift */,
-				F07513AF284A9D6700BD887D /* MonthDetailsContainer.swift */,
-			);
-			path = MonthDetails;
-			sourceTree = "<group>";
-		};
 		F03FE95A284953FA00F265A2 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +264,7 @@
 				F07513A0284A9B8200BD887D /* SummaryInteractor.swift */,
 				F07513A1284A9B8200BD887D /* SummaryContainer.swift */,
 				F07513A9284A9D1800BD887D /* Views */,
-				F06199A1284AEDF900F83719 /* ViewModels */,
+				F02572A027FDE750000A9A06 /* Summary.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -308,14 +283,6 @@
 			children = (
 				F03FE9762849707000F265A2 /* GoalViewModel.swift */,
 				F03FE9792849787200F265A2 /* DateViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		F06199A1284AEDF900F83719 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F02572A027FDE750000A9A06 /* Summary.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -341,7 +308,6 @@
 				F03FE956284953C900F265A2 /* AddGoal */,
 				F03FE957284953D200F265A2 /* GoalDetails */,
 				F03FE958284953EF00F265A2 /* History */,
-				F03FE959284953F400F265A2 /* MonthDetails */,
 				F03FE95A284953FA00F265A2 /* Summary */,
 				F0027EE6284BE56500D73820 /* Onboarding */,
 			);
@@ -545,7 +511,6 @@
 				F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */,
 				F03FE971284955ED00F265A2 /* GoalDetailsViewController.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
-				F07513B1284A9D6700BD887D /* MonthDetailsRouter.swift in Sources */,
 				F065E7EF2847ECBF00FAEFE9 /* AgendaInteractor.swift in Sources */,
 				F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
@@ -555,7 +520,6 @@
 				F0027EE5284BE01200D73820 /* BaseRouter.swift in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
 				F0751399284A925000BD887D /* HistoryProtocols.swift in Sources */,
-				F07513B3284A9D6700BD887D /* MonthDetailsProtocols.swift in Sources */,
 				F075139A284A925000BD887D /* HistoryInteractor.swift in Sources */,
 				F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
@@ -582,7 +546,6 @@
 				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0F45FF02801C90C00BA244D /* String.swift in Sources */,
 				F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */,
-				F07513B0284A9D6700BD887D /* MonthDetailsPresenter.swift in Sources */,
 				F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */,
 				F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */,
 				F01FDD2F28030A2F0011F1F3 /* UserDefaults.swift in Sources */,
@@ -590,7 +553,6 @@
 				F03FE968284955E300F265A2 /* AddGoalContainer.swift in Sources */,
 				F075139B284A925000BD887D /* HistoryContainer.swift in Sources */,
 				F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */,
-				F07513B4284A9D6700BD887D /* MonthDetailsInteractor.swift in Sources */,
 				F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */,
 				F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
@@ -606,10 +568,8 @@
 				F07513A4284A9B8200BD887D /* SummaryViewController.swift in Sources */,
 				F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
-				F07513B2284A9D6700BD887D /* MonthDetailsViewController.swift in Sources */,
 				F0F45FE72801C2F000BA244D /* Labels.swift in Sources */,
 				F0751397284A925000BD887D /* HistoryRouter.swift in Sources */,
-				F07513B5284A9D6700BD887D /* MonthDetailsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

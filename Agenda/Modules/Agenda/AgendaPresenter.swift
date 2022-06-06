@@ -14,7 +14,8 @@ final class AgendaPresenter {
     private let router: AgendaRouterInput
     private let interactor: AgendaInteractorInput
     
-    private var month: Month! // current month
+    public var month: Month! // current month
+    public var isAgenda: Bool! // depending on this property, data is loaded differently
     
     init(router: AgendaRouterInput, interactor: AgendaInteractorInput) {
         self.router = router
@@ -28,7 +29,14 @@ extension AgendaPresenter: AgendaModuleInput {
 // MARK: - View
 extension AgendaPresenter: AgendaViewOutput {
     func fetchData() {
-        interactor.fetchCurrentMonth()
+        if isAgenda {
+            interactor.fetchCurrentMonth()
+        } else {
+            guard let goals = month.goals?.array as? [Goal] else {
+                fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
+            }
+            view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: DateViewModel(), title: month.date.formatTo("MMMMy"))
+        }
     }
     
     func addNewGoal() {
@@ -61,7 +69,7 @@ extension AgendaPresenter: AgendaInteractorOutput {
         guard let goals = month.goals?.array as? [Goal] else {
             fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
         }
-        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo())
+        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), title: "")
     }
 }
 

@@ -13,13 +13,18 @@ final class AgendaContainer {
     private(set) weak var router: AgendaRouterInput!
     
     static func assemble(with context: AgendaContext) -> AgendaContainer {
+        let isAgenda = context.moduleOutput == nil ? true : false
         let router = AgendaRouter()
         let interactor = AgendaInteractor(coreDataManager: context.moduleDependency)
         let presenter = AgendaPresenter(router: router, interactor: interactor)
-        let viewController = AgendaViewController(output: presenter)
+        let viewController = AgendaViewController(output: presenter, isAgenda: isAgenda)
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
+        presenter.isAgenda = isAgenda
+        if !isAgenda {
+            presenter.month = context.month
+        }
         
         interactor.output = presenter
         router.navigationControllerProvider = { [weak viewController] in
@@ -41,4 +46,5 @@ struct AgendaContext {
     
     weak var moduleOutput: AgendaModuleOutput?
     let moduleDependency: ModuleDependency
+    var month: Month = Month()
 }

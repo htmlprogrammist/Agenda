@@ -11,6 +11,8 @@ final class AgendaViewController: UIViewController {
 	
     private let output: AgendaViewOutput
     private var viewModels = [GoalViewModel]()
+    
+    public let isAgenda: Bool // depending on this property, month data is displayed
 
     private lazy var dayAndMonth: UILabel = {
         let label = UILabel()
@@ -42,8 +44,9 @@ final class AgendaViewController: UIViewController {
         return tableView
     }()
     
-    init(output: AgendaViewOutput) {
+    init(output: AgendaViewOutput, isAgenda: Bool) {
         self.output = output
+        self.isAgenda = isAgenda
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,10 +59,6 @@ final class AgendaViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Agenda"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
-        navigationItem.leftBarButtonItem = editButtonItem
-        
         setupView()
         setConstraints()
         
@@ -77,13 +76,17 @@ final class AgendaViewController: UIViewController {
 
 // MARK: - AgendaViewInput
 extension AgendaViewController: AgendaViewInput {
-    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel) {
+    func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel, title: String) {
         self.viewModels = viewModels
         
-        dayAndMonth.text = monthInfo.dayAndMonth
-        yearLabel.text = monthInfo.year
-        monthProgressView.progress = monthInfo.progress
-        
+        if title == "" { // Agenda
+            navigationItem.title = "Agenda"
+            dayAndMonth.text = monthInfo.dayAndMonth
+            yearLabel.text = monthInfo.year
+            monthProgressView.progress = monthInfo.progress
+        } else { // MonthDetails, which is called from History
+            navigationItem.title = title
+        }
         tableView.reloadData()
     }
 }
@@ -92,30 +95,44 @@ extension AgendaViewController: AgendaViewInput {
 private extension AgendaViewController {
     
     func setupView() {
-        view.addSubview(monthProgressView)
-        view.addSubview(dayAndMonth)
-        view.addSubview(yearLabel)
-        view.addSubview(separatorView)
-        
+        if isAgenda {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+            navigationItem.leftBarButtonItem = editButtonItem
+            
+            view.addSubview(monthProgressView)
+            view.addSubview(dayAndMonth)
+            view.addSubview(yearLabel)
+            view.addSubview(separatorView)
+        } else {
+            navigationItem.rightBarButtonItem = editButtonItem
+        }
         view.addSubview(tableView)
     }
     
     func setConstraints() {
+        if isAgenda {
+            NSLayoutConstraint.activate([
+                monthProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                monthProgressView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+                monthProgressView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+                monthProgressView.heightAnchor.constraint(equalToConstant: 4), // for correct displaying in iOS 13
+                
+                dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
+                dayAndMonth.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+                yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
+                yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
+                
+                separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
+                separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+                
+                tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            ])
+        }
         NSLayoutConstraint.activate([
-            monthProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            monthProgressView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            monthProgressView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            monthProgressView.heightAnchor.constraint(equalToConstant: 4), // for correct displaying in iOS 13
-            
-            dayAndMonth.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
-            dayAndMonth.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            yearLabel.topAnchor.constraint(equalTo: monthProgressView.bottomAnchor, constant: 1),
-            yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
-            
-            separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
-            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
