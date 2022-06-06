@@ -14,13 +14,13 @@ final class GoalDetailsContainer {
     
     static func assemble(with context: GoalDetailsContext) -> GoalDetailsContainer {
         let router = GoalDetailsRouter()
-        let interactor = GoalDetailsInteractor()
+        let interactor = GoalDetailsInteractor(coreDataManager: context.moduleDependency)
         let presenter = GoalDetailsPresenter(router: router, interactor: interactor)
         let viewController = GoalDetailsViewController(output: presenter)
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
-//        presenter.goal = context.goal
+        presenter.goal = context.goal
         
         interactor.output = presenter
         

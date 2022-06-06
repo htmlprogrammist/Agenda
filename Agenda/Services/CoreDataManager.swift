@@ -12,7 +12,7 @@ protocol CoreDataManagerProtocol {
     func fetchMonths() -> [Month]?
     
     func createGoal(data: GoalData, in month: Month)
-    func rewriteGoal(data: GoalData, in goal: Goal)
+    func rewriteGoal(with data: GoalData, in goal: Goal)
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int)
     
     func deleteMonth(month: Month)
@@ -88,7 +88,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         updateViewModels()
     }
     
-    func rewriteGoal(data: GoalData, in goal: Goal) {
+    func rewriteGoal(with data: GoalData, in goal: Goal) {
         goal.name = data.title
         goal.current = Int64(data.current) ?? 0
         goal.aim = Int64(data.aim) ?? 0

@@ -10,16 +10,13 @@ import SPIndicator
 
 final class GoalDetailsViewController: UIViewController {
     
+    private let output: GoalDetailsViewOutput
     
-    public var goal: Goal!
-    public lazy var goalData = goal.goalData {
+    public var goalData = GoalData() {
         didSet {
-            checkBarButtonEnabled()
+            saveBarButton.isEnabled = output.checkBarButtonEnabled(goalData: goalData)
         }
     }
-    
-    
-    private let output: GoalDetailsViewOutput
     
     private let saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
@@ -58,19 +55,40 @@ final class GoalDetailsViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         title = Labels.Agenda.details
-//        navigationItem.rightBarButtonItem = saveBarButton
+        navigationItem.rightBarButtonItem = saveBarButton
         view.backgroundColor = .systemGroupedBackground
-        hidesBottomBarWhenPushed = true // TODO: test this
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place
         hideKeyboardWhenTappedAround()
         
         setupViewAndConstraints()
+        output.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        unregisterForKeyboardNotifications()
+        indicatorView.dismiss()
     }
 }
 
 extension GoalDetailsViewController: GoalDetailsViewInput {
+    func setViewModel(goalData: GoalData) {
+        self.goalData = goalData
+        tableView.reloadData()
+    }
+    
+    func presentSuccess() {
+        indicatorView.present(haptic: .success)
+    }
 }
 
 // MARK: - UITableView
@@ -85,11 +103,11 @@ extension GoalDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
             fatalError("Error")
         }
         cell.goal = goalData
+        cell.delegate = self
         cell.configure(indexPath: indexPath)
         return cell
     }
@@ -102,24 +120,10 @@ extension GoalDetailsViewController: UITableViewDataSource {
 // MARK: Methods
 private extension GoalDetailsViewController {
     
-    func checkBarButtonEnabled() {
-        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
-                saveBarButton.isEnabled = true
-            }
-        } else {
-            saveBarButton.isEnabled = false
-        }
-    }
-    
-    @objc private func saveButtonTapped() {
+    @objc func saveButtonTapped() {
         view.endEditing(true)
         saveBarButton.isEnabled = false
-//        coreDataManager.rewriteGoal(data: goalData, in: goal)
-//        delegate?.reloadTableView() // не надо!
-        
-//        output.saveButtonTapped()
-        indicatorView.present(haptic: .success)
+        output.saveButtonTapped(data: goalData)
     }
     
     func setupViewAndConstraints() {

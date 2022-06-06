@@ -93,7 +93,7 @@ final class GoalDetailsViewControllerOld: UIViewController {
     @objc private func saveButtonTapped() {
         view.endEditing(true)
         saveBarButton.isEnabled = false
-        coreDataManager.rewriteGoal(data: goalData, in: goal)
+        coreDataManager.rewriteGoal(with: goalData, in: goal)
 //        delegate?.reloadTableView()
         
         indicatorView.present(haptic: .success)
