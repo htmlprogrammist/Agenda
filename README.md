@@ -2,9 +2,10 @@
 Application that allows you to track your goals for a month
 
 # Demo
-<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/171418119-147d0849-31fe-4e79-9d5d-fe7e5d400c21.png"></a>
+<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
 
 # Screenshots
+
 | Onboarding | Agenda | Dark theme |
 | ------------- |:-------------|:-------------:|
 | ![Onboarding](https://user-images.githubusercontent.com/60363270/172213702-00b141b4-ce33-4ec4-8e59-b64917a67e96.png) | ![Agenda](https://user-images.githubusercontent.com/60363270/171423568-5019b22f-1683-4da2-a009-7b31e2abd2c3.png) | ![Dark theme](https://user-images.githubusercontent.com/60363270/172213738-a23dec39-e681-48e4-b3ac-e09acc133732.png) |
@@ -36,7 +37,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 Приложение, позволяющее отслеживать цели на месяц
 
 # Демо
-<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/171418119-147d0849-31fe-4e79-9d5d-fe7e5d400c21.png"></a>
+<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
 
 # Скриншоты
 | Онбоардинг | Цели | Тёмная тема |
