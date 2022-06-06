@@ -48,12 +48,17 @@ final class SummaryViewController: UIViewController {
         title = Labels.Summary.title
         
         setupViewAndConstraints()
+        output.fetchData()
     }
 }
 
 extension SummaryViewController: SummaryViewInput {
+    func setData(numbers: [Double]) {
+        self.numbers = numbers
+        tableView.reloadData()
+    }
+    
     func showAlert(title: String, message: String) {
-//        alertForError(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
         alertForError(title: title, message: message)
     }
 }
@@ -103,7 +108,6 @@ extension SummaryViewController: UITableViewDataSource {
 // MARK: - CoreDataManagerDelegate
 extension SummaryViewController: CoreDataManagerDelegate {
     func updateViewModel() {
-//        countGoals(months: months)
-        tableView.reloadData()
+        output.fetchData()
     }
 }

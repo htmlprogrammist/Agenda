@@ -14,7 +14,7 @@ final class HistoryPresenter {
     private let router: HistoryRouterInput
     private let interactor: HistoryInteractorInput
     
-    private var months: [Month]!
+    private var months = [Month]()
     
     init(router: HistoryRouterInput, interactor: HistoryInteractorInput) {
         self.router = router

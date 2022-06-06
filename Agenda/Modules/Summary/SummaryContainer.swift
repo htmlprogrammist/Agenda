@@ -14,7 +14,7 @@ final class SummaryContainer {
     
     static func assemble(with context: SummaryContext) -> SummaryContainer {
         let router = SummaryRouter()
-        let interactor = SummaryInteractor()
+        let interactor = SummaryInteractor(coreDataManager: context.moduleDependency)
         let presenter = SummaryPresenter(router: router, interactor: interactor)
         let viewController = SummaryViewController(output: presenter)
         

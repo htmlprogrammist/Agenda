@@ -23,6 +23,9 @@ final class MonthDetailsContainer {
         presenter.month = context.month
         
         interactor.output = presenter
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
         
         return MonthDetailsContainer(view: viewController, input: presenter, router: router)
     }
