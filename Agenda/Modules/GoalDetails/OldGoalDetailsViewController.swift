@@ -94,7 +94,7 @@ final class GoalDetailsViewControllerOld: UIViewController {
         view.endEditing(true)
         saveBarButton.isEnabled = false
         coreDataManager.rewriteGoal(data: goalData, in: goal)
-        delegate?.reloadTableView()
+//        delegate?.reloadTableView()
         
         indicatorView.present(haptic: .success)
     }

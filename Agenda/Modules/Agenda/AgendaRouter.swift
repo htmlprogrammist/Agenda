@@ -35,6 +35,10 @@ extension AgendaRouter: AddGoalModuleOutput {
     func addGoalModuleDidFinish() {
         navigationController?.dismiss(animated: true)
     }
+    
+    func goalDetailsModuleDidFinish() {
+        navigationController?.dismiss(animated: true)
+    }
 }
 
 extension AgendaRouter: GoalDetailsModuleOutput {

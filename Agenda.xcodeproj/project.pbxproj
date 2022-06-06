@@ -24,6 +24,7 @@
 		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
 		F0315AB127F84F6100C7D8F0 /* OldGoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* OldGoalDetailsViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
+		F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */; };
 		F03FE95C2849544700F265A2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95B2849544700F265A2 /* AppCoordinator.swift */; };
 		F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */; };
 		F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95E284955E300F265A2 /* AddGoalRouter.swift */; };
@@ -40,7 +41,6 @@
 		F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9762849707000F265A2 /* GoalViewModel.swift */; };
 		F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9792849787200F265A2 /* DateViewModel.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
-		F053020A27FA24CB00C62FAC /* OldMonthDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* OldMonthDetailsViewController.swift */; };
 		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
 		F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */; };
 		F065E7EC2847ECBF00FAEFE9 /* AgendaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */; };
@@ -73,7 +73,6 @@
 		F0BB552727EF4D5700FA7E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */; };
 		F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */; };
 		F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */; };
-		F0BB554527EF523B00FA7E99 /* OldHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554427EF523B00FA7E99 /* OldHistoryViewController.swift */; };
 		F0BB554727EF525300FA7E99 /* OldSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554627EF525300FA7E99 /* OldSummaryViewController.swift */; };
 		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
 		F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */; };
@@ -106,6 +105,7 @@
 		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		F0315AB027F84F6100C7D8F0 /* OldGoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldGoalDetailsViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
 		F03FE95B2849544700F265A2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalPresenter.swift; sourceTree = "<group>"; };
 		F03FE95E284955E300F265A2 /* AddGoalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalRouter.swift; sourceTree = "<group>"; };
@@ -122,7 +122,6 @@
 		F03FE9762849707000F265A2 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
 		F03FE9792849787200F265A2 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		F053020927FA24CB00C62FAC /* OldMonthDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldMonthDetailsViewController.swift; sourceTree = "<group>"; };
 		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenter.swift; sourceTree = "<group>"; };
 		F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouter.swift; sourceTree = "<group>"; };
@@ -158,7 +157,6 @@
 		F0BB552E27EF4D8700FA7E99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
-		F0BB554427EF523B00FA7E99 /* OldHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldHistoryViewController.swift; sourceTree = "<group>"; };
 		F0BB554627EF525300FA7E99 /* OldSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSummaryViewController.swift; sourceTree = "<group>"; };
 		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
 		F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -266,7 +264,7 @@
 				F0751394284A925000BD887D /* HistoryInteractor.swift */,
 				F0751395284A925000BD887D /* HistoryContainer.swift */,
 				F07513A8284A9D0400BD887D /* View */,
-				F0BB554427EF523B00FA7E99 /* OldHistoryViewController.swift */,
+				F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -280,7 +278,6 @@
 				F07513AD284A9D6700BD887D /* MonthDetailsProtocols.swift */,
 				F07513AE284A9D6700BD887D /* MonthDetailsInteractor.swift */,
 				F07513AF284A9D6700BD887D /* MonthDetailsContainer.swift */,
-				F053020927FA24CB00C62FAC /* OldMonthDetailsViewController.swift */,
 			);
 			path = MonthDetails;
 			sourceTree = "<group>";
@@ -548,6 +545,7 @@
 				F03FE967284955E300F265A2 /* AddGoalInteractor.swift in Sources */,
 				F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */,
 				F07513A2284A9B8200BD887D /* SummaryPresenter.swift in Sources */,
+				F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */,
 				F03FE971284955ED00F265A2 /* GoalDetailsViewController.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
 				F07513B1284A9D6700BD887D /* MonthDetailsRouter.swift in Sources */,
@@ -598,7 +596,6 @@
 				F07513B4284A9D6700BD887D /* MonthDetailsInteractor.swift in Sources */,
 				F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */,
 				F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */,
-				F053020A27FA24CB00C62FAC /* OldMonthDetailsViewController.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
@@ -612,7 +609,6 @@
 				F07513A4284A9B8200BD887D /* SummaryViewController.swift in Sources */,
 				F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
-				F0BB554527EF523B00FA7E99 /* OldHistoryViewController.swift in Sources */,
 				F0BB554727EF525300FA7E99 /* OldSummaryViewController.swift in Sources */,
 				F07513B2284A9D6700BD887D /* MonthDetailsViewController.swift in Sources */,
 				F0F45FE72801C2F000BA244D /* Labels.swift in Sources */,

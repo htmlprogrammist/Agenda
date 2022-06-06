@@ -10,7 +10,7 @@ import UIKit
 class BaseRouter {
     // замыкание, которое возвращает опциональный UINavigationController
     var navigationControllerProvider: (() -> UINavigationController?)?
-    
+
     // чтобы не вызывать один и тот же метод, сделаем вот так:
     var navigationController: UINavigationController? {
         navigationControllerProvider?()

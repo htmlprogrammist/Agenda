@@ -12,6 +12,7 @@ protocol GoalDetailsModuleInput {
 }
 
 protocol GoalDetailsModuleOutput: AnyObject {
+    func goalDetailsModuleDidFinish()
 }
 
 protocol GoalDetailsViewInput: AnyObject {

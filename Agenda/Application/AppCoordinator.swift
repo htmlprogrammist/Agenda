@@ -27,8 +27,6 @@ final class AppCoordinator {
         tabBarController.setViewControllers(viewControllers, animated: true)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
-        
-        coreDataManager.coordinator = self
     }
 }
 
@@ -39,6 +37,7 @@ private extension AppCoordinator {
         
         let agendaViewController = createNavController(viewController: container.viewController, itemName: Labels.goals, itemImage: "calendar")
         viewControllers.append(agendaViewController)
+        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     func setupHistory() {
@@ -47,14 +46,15 @@ private extension AppCoordinator {
         
         let historyViewController = createNavController(viewController: container.viewController, itemName: Labels.History.title, itemImage: "clock.fill")
         viewControllers.append(historyViewController)
+        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     func setupSummary() {
         let context = SummaryContext(moduleOutput: nil, moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
-        
         let summaryViewController = createNavController(viewController: container.viewController, itemName: Labels.Summary.title, itemImage: "square.text.square.fill")
         viewControllers.append(summaryViewController)
+        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     func createNavController(viewController: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
@@ -63,5 +63,10 @@ private extension AppCoordinator {
         navController.tabBarItem = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
         navController.navigationBar.prefersLargeTitles = true
         return navController
+    }
+    
+    func subscribeToCoreDataManager(vc: UIViewController) {
+        guard let vc = vc as? CoreDataManagerDelegate else { return }
+        coreDataManager.viewControllers.append(vc)
     }
 }

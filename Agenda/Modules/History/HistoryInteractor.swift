@@ -19,7 +19,14 @@ final class HistoryInteractor {
 
 extension HistoryInteractor: HistoryInteractorInput {
     func performFetch() {
-        
-        output?.dataDidFetch()
+        guard let months = coreDataManager.fetchMonths() else {
+            output?.dataDidNotFetch()
+            return
+        }
+        output?.dataDidFetch(months: months)
+    }
+    
+    func deleteMonth(_ month: Month) {
+        coreDataManager.deleteMonth(month: month)
     }
 }

@@ -7,9 +7,6 @@
 
 import Foundation
 
-// 1. Отвечает за обработку событий пользователя, полученных от View
-// 2. Также он решает какой экран нужно показать (передаёт Router'у события)
-// 3. Может запросить данные у Interactor и показать во View
 final class AgendaPresenter {
     weak var view: AgendaViewInput?
     weak var moduleOutput: AgendaModuleOutput?
@@ -30,7 +27,7 @@ extension AgendaPresenter: AgendaModuleInput {
 
 // MARK: - View
 extension AgendaPresenter: AgendaViewOutput {
-    func viewDidLoad() {
+    func fetchData() {
         interactor.fetchCurrentMonth()
     }
     
@@ -52,7 +49,7 @@ extension AgendaPresenter: AgendaViewOutput {
         interactor.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
-    func deleteGoal(at indexPath: IndexPath) {
+    func deleteItem(at indexPath: IndexPath) {
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
         interactor.deleteGoal(goal)
     }

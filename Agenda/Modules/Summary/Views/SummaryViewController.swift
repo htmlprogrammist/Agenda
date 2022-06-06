@@ -102,7 +102,7 @@ extension SummaryViewController: UITableViewDataSource {
 
 // MARK: - CoreDataManagerDelegate
 extension SummaryViewController: CoreDataManagerDelegate {
-    func reloadTableView() {
+    func updateViewModel() {
 //        countGoals(months: months)
         tableView.reloadData()
     }

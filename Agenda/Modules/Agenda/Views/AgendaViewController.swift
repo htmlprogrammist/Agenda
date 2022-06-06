@@ -63,7 +63,7 @@ final class AgendaViewController: UIViewController {
         setupView()
         setConstraints()
         
-        output.viewDidLoad()
+        output.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -170,7 +170,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
-                strongSelf.output.deleteGoal(at: indexPath)
+                strongSelf.output.deleteItem(at: indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
@@ -182,5 +182,12 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
             alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
             present(alert, animated: true)
         }
+    }
+}
+
+// MARK: - CoreDataManagerDelegate
+extension AgendaViewController: CoreDataManagerDelegate {
+    func updateViewModel() {
+        output.fetchData()
     }
 }

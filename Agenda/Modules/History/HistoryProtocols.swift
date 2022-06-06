@@ -16,19 +16,29 @@ protocol HistoryModuleOutput: AnyObject {
 
 protocol HistoryViewInput: AnyObject {
     func showAlert(title: String, message: String)
+    
+    func setData(viewModels: [MonthViewModel])
 }
 
 protocol HistoryViewOutput: AnyObject {
-    func viewDidLoad()
+    func fetchData()
+    
+    func didSelectRowAt(_ indexPath: IndexPath)
+    func deleteItem(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorInput: AnyObject {
+    var coreDataManager: CoreDataManagerProtocol { get }
+    
     func performFetch()
+    func deleteMonth(_ month: Month)
 }
 
 protocol HistoryInteractorOutput: AnyObject {
-    func dataDidFetch()
+    func dataDidFetch(months: [Month])
+    func dataDidNotFetch()
 }
 
 protocol HistoryRouterInput: AnyObject {
+    func showMonthDetailsModule(month: Month, moduleDependency: CoreDataManagerProtocol)
 }

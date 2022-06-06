@@ -10,7 +10,7 @@ import UIKit
 final class SummaryViewControllerOld: UIViewController {
     
     private weak var coreDataManager: CoreDataManager?
-    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
+//    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
     private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
@@ -48,17 +48,17 @@ final class SummaryViewControllerOld: UIViewController {
         
         setupViewAndConstraints()
         
-        do {
-            try fetchedResultsController?.performFetch()
+//        do {
+//            try fetchedResultsController?.performFetch()
 //            coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
-        } catch {
-            alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
-        }
-        
-        if let months = fetchedResultsController?.fetchedObjects {
-            self.months = months
-            countGoals(months: months)
-        }
+//        } catch {
+//            alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
+//        }
+//
+//        if let months = fetchedResultsController?.fetchedObjects {
+//            self.months = months
+//            countGoals(months: months)
+//        }
     }
     
     private func setupViewAndConstraints() {
@@ -127,9 +127,9 @@ extension SummaryViewControllerOld: UITableViewDataSource {
 }
 
 // MARK: - CoreDataManagerDelegate
-extension SummaryViewControllerOld: CoreDataManagerDelegate {
-    func reloadTableView() {
-        countGoals(months: months)
-        tableView.reloadData()
-    }
-}
+//extension SummaryViewControllerOld: CoreDataManagerDelegate {
+//    func reloadTableView() {
+//        countGoals(months: months)
+//        tableView.reloadData()
+//    }
+//}

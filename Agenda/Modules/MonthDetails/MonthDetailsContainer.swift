@@ -14,12 +14,13 @@ final class MonthDetailsContainer {
     
     static func assemble(with context: MonthDetailsContext) -> MonthDetailsContainer {
         let router = MonthDetailsRouter()
-        let interactor = MonthDetailsInteractor()
+        let interactor = MonthDetailsInteractor(coreDataManager: context.moduleDependency)
         let presenter = MonthDetailsPresenter(router: router, interactor: interactor)
         let viewController = MonthDetailsViewController(output: presenter)
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
+        presenter.month = context.month
         
         interactor.output = presenter
         
@@ -34,5 +35,9 @@ final class MonthDetailsContainer {
 }
 
 struct MonthDetailsContext {
+    typealias ModuleDependency = CoreDataManagerProtocol
+    
     weak var moduleOutput: MonthDetailsModuleOutput?
+    let moduleDependency: ModuleDependency
+    let month: Month
 }

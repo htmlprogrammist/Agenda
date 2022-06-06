@@ -8,8 +8,8 @@
 import CoreData
 
 protocol CoreDataManagerProtocol {
-    var monthsFetchedResultsController: NSFetchedResultsController<Month> { get }
     func fetchCurrentMonth() -> Month
+    func fetchMonths() -> [Month]?
     
     func createGoal(data: GoalData, in month: Month)
     func rewriteGoal(data: GoalData, in goal: Goal)
@@ -22,7 +22,7 @@ protocol CoreDataManagerProtocol {
 }
 
 protocol CoreDataManagerDelegate: AnyObject {
-    func reloadTableView()
+    func updateViewModel()
 }
 
 final class CoreDataManager: NSObject, CoreDataManagerProtocol {
@@ -30,7 +30,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    weak var coordinator: AppCoordinator?
+    var viewControllers = [CoreDataManagerDelegate]()
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -66,16 +66,14 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
     }
     
-    lazy var monthsFetchedResultsController: NSFetchedResultsController<Month> = {
+    func fetchMonths() -> [Month]? {
         let fetchRequest = Month.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date < %@", Date() as CVarArg) // only current and old months (not new one)
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "monthsCache")
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
-    }()
+        let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
+        return months
+    }
     
     func createGoal(data: GoalData, in month: Month) {
         let goal = Goal(context: managedObjectContext)
@@ -87,6 +85,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         month.addToGoals(goal)
         saveContext()
+        updateViewModels()
     }
     
     func rewriteGoal(data: GoalData, in goal: Goal) {
@@ -97,6 +96,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
         saveContext()
+        updateViewModels()
     }
     
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {
@@ -112,11 +112,13 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
         managedObjectContext.delete(month)
         saveContext()
+        updateViewModels(in: [2])
     }
     
     func deleteGoal(goal: Goal) {
         managedObjectContext.delete(goal)
         saveContext()
+        updateViewModels(in: [1, 2])
     }
     
     func saveContext() {
@@ -129,15 +131,10 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
             }
         }
     }
-}
-
-extension CoreDataManager: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("Delegate!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") // пока не реализую History/Summary, не узнаю, работает или нет
-        for vc in (coordinator?.viewControllers)! {
-            if let vc = vc as? CoreDataManagerDelegate {
-                vc.reloadTableView()
-            }
+    
+    private func updateViewModels(in viewControllersIndicies: [Int] = [0, 1, 2]) {
+        for index in viewControllersIndicies {
+            viewControllers[index].updateViewModel()
         }
     }
 }
