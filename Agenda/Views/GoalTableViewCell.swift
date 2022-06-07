@@ -132,7 +132,7 @@ extension GoalTableViewCell: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+        // limiting input to 120 symbols
         let currentCharacterCount = textField.text?.count ?? 0
         if range.length + range.location > currentCharacterCount {
             return false

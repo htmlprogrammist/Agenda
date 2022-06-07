@@ -8,25 +8,21 @@
 import CoreData
 
 protocol CoreDataManagerProtocol {
-    var managedObjectContext: NSManagedObjectContext { get }
-    var persistentContainer: NSPersistentContainer { get }
-    var delegate: CoreDataManagerDelegate? { get set }
-    
-    func saveContext()
-    
-    var monthsFetchedResultsController: NSFetchedResultsController<Month> { get }
     func fetchCurrentMonth() -> Month
+    func fetchMonths() -> [Month]?
     
     func createGoal(data: GoalData, in month: Month)
-    func rewriteGoal(data: GoalData, in goal: Goal)
+    func rewriteGoal(with data: GoalData, in goal: Goal)
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int)
     
     func deleteMonth(month: Month)
     func deleteGoal(goal: Goal)
+    
+    func saveContext()
 }
 
 protocol CoreDataManagerDelegate: AnyObject {
-    func reloadTableView()
+    func updateViewModel()
 }
 
 final class CoreDataManager: NSObject, CoreDataManagerProtocol {
@@ -34,8 +30,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    weak var delegate: CoreDataManagerDelegate?
-    var clients = [CoreDataManagerDelegate]()
+    var viewControllers = [CoreDataManagerDelegate]()
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -71,16 +66,14 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
     }
     
-    lazy var monthsFetchedResultsController: NSFetchedResultsController<Month> = {
+    func fetchMonths() -> [Month]? {
         let fetchRequest = Month.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date < %@", Date() as CVarArg) // only current and old months (not new one)
         let sortDescriptor = NSSortDescriptor(key: #keyPath(Month.date), ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: "monthsCache")
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
-    }()
+        let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
+        return months
+    }
     
     func createGoal(data: GoalData, in month: Month) {
         let goal = Goal(context: managedObjectContext)
@@ -92,9 +85,10 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         month.addToGoals(goal)
         saveContext()
+        updateViewModels()
     }
     
-    func rewriteGoal(data: GoalData, in goal: Goal) {
+    func rewriteGoal(with data: GoalData, in goal: Goal) {
         goal.name = data.title
         goal.current = Int64(data.current) ?? 0
         goal.aim = Int64(data.aim) ?? 0
@@ -102,6 +96,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
         saveContext()
+        updateViewModels()
     }
     
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {
@@ -112,16 +107,18 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     
     func deleteMonth(month: Month) {
         guard let goals = month.goals?.array as? [Goal] else { return }
-        goals.forEach {
-            deleteGoal(goal: $0)
+        goals.forEach { goal in
+            managedObjectContext.delete(goal)
         }
         managedObjectContext.delete(month)
         saveContext()
+        updateViewModels(in: [2])
     }
     
     func deleteGoal(goal: Goal) {
         managedObjectContext.delete(goal)
         saveContext()
+        updateViewModels(in: [1, 2])
     }
     
     func saveContext() {
@@ -134,12 +131,10 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
             }
         }
     }
-}
-
-extension CoreDataManager: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        for client in clients {
-            client.reloadTableView()
+    
+    private func updateViewModels(in viewControllersIndicies: [Int] = [0, 1, 2]) {
+        for index in viewControllersIndicies {
+            viewControllers[index].updateViewModel()
         }
     }
 }

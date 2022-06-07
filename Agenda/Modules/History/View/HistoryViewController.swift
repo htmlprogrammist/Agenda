@@ -2,22 +2,24 @@
 //  HistoryViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 10.12.2021.
-//
+//  Created by Егор Бадмаев on 03.06.2022.
+//  
 
 import UIKit
 
 final class HistoryViewController: UITableViewController {
     
-    private weak var coreDataManager: CoreDataManager?
-    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
+    private let output: HistoryViewOutput
     
-    init(coreDataManager: CoreDataManager) {
-        self.coreDataManager = coreDataManager
+    private var viewModels = [MonthViewModel]()
+    
+    init(output: HistoryViewOutput) {
+        self.output = output
+        
         super.init(style: .grouped)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -31,12 +33,18 @@ final class HistoryViewController: UITableViewController {
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         
-        do {
-            try fetchedResultsController?.performFetch()
-            coreDataManager?.clients.append(self)
-        } catch {
-            alertForError(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
-        }
+        output.fetchData()
+    }
+}
+
+extension HistoryViewController: HistoryViewInput {
+    func showAlert(title: String, message: String) {
+        alertForError(title: title, message: message)
+    }
+    
+    func setData(viewModels: [MonthViewModel]) {
+        self.viewModels = viewModels
+        tableView.reloadData()
     }
 }
 
@@ -44,16 +52,13 @@ final class HistoryViewController: UITableViewController {
 extension HistoryViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = fetchedResultsController?.sections?[section] else {
-            return 0
-        }
-        return section.numberOfObjects
+        viewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return HistoryTableViewCell() }
-        guard let month = fetchedResultsController?.object(at: indexPath) else { return HistoryTableViewCell() }
-        cell.configure(month: month)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell
+        else { return HistoryTableViewCell() }
+        cell.configure(with: viewModels[indexPath.row])
         return cell
     }
     
@@ -76,10 +81,7 @@ extension HistoryViewController {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-            guard let month = fetchedResultsController?.object(at: indexPath) else { return }
-            // we are sure that coreDataManager is not nil
-            let destination = MonthDetailsViewController(month: month, coreDataManager: coreDataManager!)
-            navigationController?.pushViewController(destination, animated: true)
+            output.didSelectRowAt(indexPath)
         }
     }
     
@@ -99,14 +101,12 @@ extension HistoryViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [self] _ in
-                tableView.beginUpdates()
+            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
+                guard let strongSelf = self else { return }
                 
-                guard let month = fetchedResultsController?.object(at: indexPath) else { return }
-                coreDataManager?.deleteMonth(month: month)
-                
+                strongSelf.output.deleteItemAt(indexPath)
+                strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
             })
             let no = UIAlertAction(title: Labels.cancel, style: .default)
             
@@ -121,7 +121,7 @@ extension HistoryViewController {
 
 // MARK: - CoreDataManagerDelegate
 extension HistoryViewController: CoreDataManagerDelegate {
-    func reloadTableView() {
-        tableView.reloadData()
+    func updateViewModel() {
+        output.fetchData()
     }
 }

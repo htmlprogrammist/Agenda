@@ -73,10 +73,10 @@ final class AgendaTableViewCell: UITableViewCell {
         ])
     }
     
-    public func configure(goal: Goal) {
+    public func configure(goal: GoalViewModel) {
         goalTextLabel.text = goal.name
-        goalCurrentLabel.text = "\(goal.current)"
-        goalEndLabel.text = "\(goal.aim)"
-        goalProgressView.progress = Float(goal.current) / Float(goal.aim)
+        goalCurrentLabel.text = goal.current
+        goalEndLabel.text = goal.aim
+        goalProgressView.progress = goal.progress
     }
 }

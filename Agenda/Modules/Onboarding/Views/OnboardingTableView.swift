@@ -33,7 +33,7 @@ final class OnboardingTableView: UITableView {
             setNeedsLayout()
         }
     }
-
+    
     override var intrinsicContentSize: CGSize {
         return CGSize(width: contentSize.width, height: contentSize.height)
     }
