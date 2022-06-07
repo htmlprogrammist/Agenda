@@ -14,24 +14,24 @@ final class AgendaViewController: UIViewController {
     
     public let isAgenda: Bool // depending on this property, month data is displayed
 
-    private lazy var dayAndMonth: UILabel = {
+    private let dayAndMonth: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var yearLabel: UILabel = {
+    private let yearLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private lazy var monthProgressView: UIProgressView = {
+    private let monthProgressView: UIProgressView = {
         let progress = UIProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    private lazy var separatorView = SeparatorView()
+    private let separatorView = SeparatorView()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -61,16 +61,18 @@ final class AgendaViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupView()
         setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        output.fetchData()
+        output.fetchData() // in month details mode there is no possibility to update view models, so fetching data is now here
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !UserDefaults.standard.hasOnboarded {
-            output.showOnboarding()
-        }
+        output.checkForOnboarding()
     }
 }
 
@@ -79,7 +81,7 @@ extension AgendaViewController: AgendaViewInput {
     func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel, title: String) {
         self.viewModels = viewModels
         
-        if title == "" { // Agenda
+        if isAgenda {
             navigationItem.title = "Agenda"
             dayAndMonth.text = monthInfo.dayAndMonth
             yearLabel.text = monthInfo.year
@@ -89,10 +91,17 @@ extension AgendaViewController: AgendaViewInput {
         }
         tableView.reloadData()
     }
+    
+    func showAlert(title: String, message: String) {
+        alertForError(title: title, message: message)
+    }
 }
 
-// MARK: - Methods
+// MARK: - Helper methods
 private extension AgendaViewController {
+    @objc func addNewGoal() {
+        output.addNewGoal()
+    }
     
     func setupView() {
         if isAgenda {
@@ -102,10 +111,10 @@ private extension AgendaViewController {
             view.addSubview(monthProgressView)
             view.addSubview(dayAndMonth)
             view.addSubview(yearLabel)
-            view.addSubview(separatorView)
         } else {
             navigationItem.rightBarButtonItem = editButtonItem
         }
+        view.addSubview(separatorView)
         view.addSubview(tableView)
     }
     
@@ -123,24 +132,20 @@ private extension AgendaViewController {
                 yearLabel.leadingAnchor.constraint(equalTo: dayAndMonth.trailingAnchor, constant: 0),
                 
                 separatorView.topAnchor.constraint(equalTo: dayAndMonth.bottomAnchor, constant: 10),
-                separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-                
-                tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             ])
         } else {
             NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                separatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             ])
         }
         NSLayoutConstraint.activate([
+            separatorView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: -1), // -1 is separatorView's height
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    @objc func addNewGoal() {
-        output.addNewGoal()
     }
 }
 
@@ -151,9 +156,8 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AgendaTableViewCell.identifier, for: indexPath) as? AgendaTableViewCell else {
-            fatalError("Error at creating cell in AgendaTableView (cellForRowAt)")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AgendaTableViewCell.identifier, for: indexPath) as? AgendaTableViewCell
+        else { return AgendaTableViewCell() }
         cell.configure(goal: viewModels[indexPath.row])
         return cell
     }

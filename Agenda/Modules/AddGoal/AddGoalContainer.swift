@@ -20,9 +20,9 @@ final class AddGoalContainer {
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
-        presenter.month = context.month
         
         interactor.output = presenter
+        interactor.month = context.month
         
         return AddGoalContainer(view: viewController, input: presenter, router: router)
     }

@@ -12,13 +12,15 @@ final class AddGoalInteractor {
     
     private let coreDataManager: CoreDataManagerProtocol
     
+    public var month: Month!
+    
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
     }
 }
 
 extension AddGoalInteractor: AddGoalInteractorInput {
-    func createGoal(goalData: GoalData, in month: Month) {
+    func createGoal(goalData: GoalData) {
         coreDataManager.createGoal(data: goalData, in: month)
         output?.goalDidCreate()
     }

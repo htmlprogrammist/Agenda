@@ -12,6 +12,8 @@ final class HistoryInteractor {
     
     public let coreDataManager: CoreDataManagerProtocol
     
+    private var months = [Month]()
+    
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
     }
@@ -23,10 +25,17 @@ extension HistoryInteractor: HistoryInteractorInput {
             output?.dataDidNotFetch()
             return
         }
+        self.months = months
         output?.dataDidFetch(months: months)
     }
     
-    func deleteMonth(_ month: Month) {
-        coreDataManager.deleteMonth(month: month)
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        let month = months[indexPath.row]
+        output?.showMonthDetailsModule(month: month, moduleDependency: coreDataManager)
+    }
+    
+    func deleteMonth(at indexPath: IndexPath) {
+        months.remove(at: indexPath.row)
+        coreDataManager.deleteMonth(month: months[indexPath.row])
     }
 }

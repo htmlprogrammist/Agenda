@@ -31,12 +31,15 @@ protocol HistoryInteractorInput: AnyObject {
     var coreDataManager: CoreDataManagerProtocol { get }
     
     func performFetch()
-    func deleteMonth(_ month: Month)
+    func didSelectRowAt(_ indexPath: IndexPath)
+    func deleteMonth(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorOutput: AnyObject {
     func dataDidFetch(months: [Month])
     func dataDidNotFetch()
+    
+    func showMonthDetailsModule(month: Month, moduleDependency: CoreDataManagerProtocol)
 }
 
 protocol HistoryRouterInput: AnyObject {

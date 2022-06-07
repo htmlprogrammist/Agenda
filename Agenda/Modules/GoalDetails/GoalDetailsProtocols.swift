@@ -28,10 +28,13 @@ protocol GoalDetailsViewOutput: AnyObject {
 }
 
 protocol GoalDetailsInteractorInput: AnyObject {
-    func rewriteGoal(with data: GoalData, in goal: Goal)
+    func provideData()
+    func rewriteGoal(with data: GoalData)
+    func checkBarButtonEnabled(goalData: GoalData) -> Bool
 }
 
 protocol GoalDetailsInteractorOutput: AnyObject {
+    func goalDidLoad(goalData: GoalData)
     func goalDidRewrite()
 }
 

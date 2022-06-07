@@ -93,7 +93,6 @@ extension GoalDetailsViewController: GoalDetailsViewInput {
 
 // MARK: - UITableView
 extension GoalDetailsViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -103,9 +102,8 @@ extension GoalDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
-            fatalError("Error")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell
+        else { return GoalTableViewCell() }
         cell.goal = goalData
         cell.delegate = self
         cell.configure(indexPath: indexPath)
@@ -117,7 +115,7 @@ extension GoalDetailsViewController: UITableViewDataSource {
     }
 }
 
-// MARK: Methods
+// MARK: - Helper methods
 private extension GoalDetailsViewController {
     
     @objc func saveButtonTapped() {

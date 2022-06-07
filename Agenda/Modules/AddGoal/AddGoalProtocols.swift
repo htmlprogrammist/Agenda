@@ -25,7 +25,7 @@ protocol AddGoalViewOutput: AnyObject {
 }
 
 protocol AddGoalInteractorInput: AnyObject {
-    func createGoal(goalData: GoalData, in month: Month)
+    func createGoal(goalData: GoalData)
 }
 
 protocol AddGoalInteractorOutput: AnyObject {

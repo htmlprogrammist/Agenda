@@ -14,8 +14,6 @@ final class AddGoalPresenter {
     private let router: AddGoalRouterInput
     private let interactor: AddGoalInteractorInput
     
-    public var month: Month!
-    
     init(router: AddGoalRouterInput, interactor: AddGoalInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -27,7 +25,7 @@ extension AddGoalPresenter: AddGoalModuleInput {
 
 extension AddGoalPresenter: AddGoalViewOutput {
     func doneButtonTapped(data: GoalData) {
-        interactor.createGoal(goalData: data, in: month)
+        interactor.createGoal(goalData: data)
     }
     
     func closeThisModule() {

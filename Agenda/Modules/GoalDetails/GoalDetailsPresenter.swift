@@ -14,8 +14,6 @@ final class GoalDetailsPresenter {
     private let router: GoalDetailsRouterInput
     private let interactor: GoalDetailsInteractorInput
     
-    public var goal: Goal!
-    
     init(router: GoalDetailsRouterInput, interactor: GoalDetailsInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -27,25 +25,24 @@ extension GoalDetailsPresenter: GoalDetailsModuleInput {
 
 extension GoalDetailsPresenter: GoalDetailsViewOutput {
     func viewDidLoad() {
-        view?.setViewModel(goalData: goal.goalData)
+        interactor.provideData()
     }
     
     func saveButtonTapped(data: GoalData) {
-        interactor.rewriteGoal(with: data, in: goal)
+        interactor.rewriteGoal(with: data)
     }
     
     func checkBarButtonEnabled(goalData: GoalData) -> Bool {
-        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
-                return true
-            }
-        }
-        return false
+        interactor.checkBarButtonEnabled(goalData: goalData)
     }
 }
 
 extension GoalDetailsPresenter: GoalDetailsInteractorOutput {
     func goalDidRewrite() {
         view?.presentSuccess()
+    }
+    
+    func goalDidLoad(goalData: GoalData) {
+        view?.setViewModel(goalData: goalData)
     }
 }

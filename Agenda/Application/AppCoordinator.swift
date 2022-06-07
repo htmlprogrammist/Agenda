@@ -24,7 +24,7 @@ final class AppCoordinator {
         setupHistory()
         setupSummary()
         
-        tabBarController.setViewControllers(viewControllers, animated: true)
+        tabBarController.setViewControllers(viewControllers, animated: false)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
     }

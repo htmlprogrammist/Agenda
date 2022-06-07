@@ -157,9 +157,7 @@ extension OnboardingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnboardingTableViewCell.identifier, for: indexPath) as? OnboardingTableViewCell
-        else {
-            fatalError("Fatal error at creating OnboardingTableViewCell in `cellForRowAt` method")
-        }
+        else { return OnboardingTableViewCell() }
         cell.backgroundColor = .clear
         cell.iconImageView.image = UIImage(named: imagePathsArray[indexPath.section])
         cell.titleLabel.text = titlesArray[indexPath.section]

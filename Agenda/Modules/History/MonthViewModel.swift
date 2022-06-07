@@ -10,8 +10,6 @@ struct MonthViewModel {
     let goalsCounter: String
     
     init(month: Month) {
-        self.date = month.date.formatTo("MMMMy")
-        
         var completedGoalsCounter = 0
         var monthGoals = [Goal]()
         
@@ -23,7 +21,7 @@ struct MonthViewModel {
                 }
             }
         }
-        
+        self.date = month.date.formatTo("MMMMy")
         self.goalsCounter = "\(Labels.goals): \(completedGoalsCounter)/\(monthGoals.count)"
     }
 }

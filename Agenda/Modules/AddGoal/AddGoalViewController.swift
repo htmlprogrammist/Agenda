@@ -9,6 +9,7 @@ import UIKit
 
 final class AddGoalViewController: UIViewController {
     
+    private let output: AddGoalViewOutput
     
     public var goalData = GoalData() {
         didSet {
@@ -16,13 +17,11 @@ final class AddGoalViewController: UIViewController {
         }
     }
     
-    
     private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         barButton.isEnabled = false
         return barButton
     }()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
@@ -32,8 +31,6 @@ final class AddGoalViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    private let output: AddGoalViewOutput
     
     init(output: AddGoalViewOutput) {
         self.output = output
@@ -51,13 +48,13 @@ final class AddGoalViewController: UIViewController {
         title = Labels.Agenda.newGoal
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
+        
         view.backgroundColor = .systemBackground
+        setupViewAndConstraints()
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place
         hideKeyboardWhenTappedAround()
-        
-        setupViewAndConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +75,6 @@ extension AddGoalViewController: AddGoalViewInput {
 
 // MARK: - UITableView
 extension AddGoalViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -88,11 +84,10 @@ extension AddGoalViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
-            fatalError("Error")
-        }
-        cell.configure(indexPath: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell
+        else { return GoalTableViewCell() }
         cell.delegate = self
+        cell.configure(indexPath: indexPath)
         return cell
     }
     

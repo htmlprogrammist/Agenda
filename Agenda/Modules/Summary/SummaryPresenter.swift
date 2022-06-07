@@ -14,8 +14,6 @@ final class SummaryPresenter {
     private let router: SummaryRouterInput
     private let interactor: SummaryInteractorInput
     
-    private var months = [Month]()
-    
     init(router: SummaryRouterInput, interactor: SummaryInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -33,8 +31,7 @@ extension SummaryPresenter: SummaryViewOutput {
 
 extension SummaryPresenter: SummaryInteractorOutput {
     func dataDidFetch(months: [Month]) {
-        self.months = months
-        view?.setData(numbers: countGoals())
+        view?.setData(numbers: countGoals(months: months))
     }
     
     func dataDidNotFetch() {
@@ -43,7 +40,7 @@ extension SummaryPresenter: SummaryInteractorOutput {
 }
 
 private extension SummaryPresenter {
-    func countGoals() -> [Double] {
+    func countGoals(months: [Month]) -> [Double] {
         var completedGoalsCounter = 0.0
         var uncompletedGoalsCounter = 0.0
         var allGoalsCounter = 0.0

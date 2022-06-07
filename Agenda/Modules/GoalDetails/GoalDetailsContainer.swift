@@ -20,9 +20,9 @@ final class GoalDetailsContainer {
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
-        presenter.goal = context.goal
         
         interactor.output = presenter
+        interactor.goal = context.goal
         
         return GoalDetailsContainer(view: viewController, input: presenter, router: router)
     }

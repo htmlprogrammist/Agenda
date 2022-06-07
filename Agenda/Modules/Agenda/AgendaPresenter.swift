@@ -14,9 +14,6 @@ final class AgendaPresenter {
     private let router: AgendaRouterInput
     private let interactor: AgendaInteractorInput
     
-    public var month: Month! // current month
-    public var isAgenda: Bool! // depending on this property, data is loaded differently
-    
     init(router: AgendaRouterInput, interactor: AgendaInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -29,47 +26,53 @@ extension AgendaPresenter: AgendaModuleInput {
 // MARK: - View
 extension AgendaPresenter: AgendaViewOutput {
     func fetchData() {
-        if isAgenda {
-            interactor.fetchCurrentMonth()
-        } else {
-            guard let goals = month.goals?.array as? [Goal] else {
-                fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
-            }
-            view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: DateViewModel(), title: month.date.formatTo("MMMMy"))
-        }
+        interactor.fetchMonthGoals()
     }
     
     func addNewGoal() {
-        router.showAddGoalModule(in: month, moduleDependency: interactor.coreDataManager)
+        interactor.provideDataForAdding()
     }
     
-    func showOnboarding() {
-        router.showOnboarding()
+    func checkForOnboarding() {
+        interactor.checkForOnboarding()
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        router.showDetailsModule(by: goal, moduleDependency: interactor.coreDataManager)
+        interactor.getGoalAt(indexPath)
     }
     
     func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let chosenGoal = month.goals?.object(at: sourceIndexPath.row) as? Goal else { return }
-        interactor.replaceGoal(chosenGoal, in: month, from: sourceIndexPath.row, to: destinationIndexPath.row)
+        interactor.replaceGoal(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
     func deleteItem(at indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        interactor.deleteGoal(goal)
+        interactor.deleteItem(at: indexPath)
     }
 }
 
 extension AgendaPresenter: AgendaInteractorOutput {
-    func monthDidFetch(month: Month) {
-        self.month = month
-        guard let goals = month.goals?.array as? [Goal] else {
-            fatalError("Error at AgendaPresenter/monthDidFetch, goals in month are not [Goal] type")
-        }
-        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), title: "")
+    func monthDidFetch(goals: [Goal], date: String) {
+        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), title: date)
+    }
+    
+    func dataDidNotFetch() {
+        view?.showAlert(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
+    }
+    
+    func monthDidProvide(month: Month) {
+        router.showAddGoalModule(in: month, moduleDependency: interactor.coreDataManager)
+    }
+    
+    func showAddGoalModuleWith(month: Month, moduleDependency: CoreDataManagerProtocol) {
+        router.showAddGoalModule(in: month, moduleDependency: moduleDependency)
+    }
+    
+    func showDetailsModuleWith(goal: Goal, moduleDependency: CoreDataManagerProtocol) {
+        router.showDetailsModule(by: goal, moduleDependency: interactor.coreDataManager)
+    }
+    
+    func showOnboarding() {
+        router.showOnboarding()
     }
 }
 
