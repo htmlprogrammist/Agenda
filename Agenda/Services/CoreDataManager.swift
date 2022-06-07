@@ -107,8 +107,8 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     
     func deleteMonth(month: Month) {
         guard let goals = month.goals?.array as? [Goal] else { return }
-        goals.forEach {
-            deleteGoal(goal: $0)
+        goals.forEach { goal in
+            managedObjectContext.delete(goal)
         }
         managedObjectContext.delete(month)
         saveContext()

@@ -32,8 +32,6 @@ protocol AgendaViewOutput: AnyObject {
 }
 
 protocol AgendaInteractorInput: AnyObject {
-    var coreDataManager: CoreDataManagerProtocol { get }
-    
     func fetchMonthGoals()
     func getGoalAt(_ indexPath: IndexPath)
     func replaceGoal(from a: Int, to b: Int)

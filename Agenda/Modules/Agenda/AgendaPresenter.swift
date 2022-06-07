@@ -23,7 +23,6 @@ final class AgendaPresenter {
 extension AgendaPresenter: AgendaModuleInput {
 }
 
-// MARK: - View
 extension AgendaPresenter: AgendaViewOutput {
     func fetchData() {
         interactor.fetchMonthGoals()
@@ -59,16 +58,12 @@ extension AgendaPresenter: AgendaInteractorOutput {
         view?.showAlert(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
     }
     
-    func monthDidProvide(month: Month) {
-        router.showAddGoalModule(in: month, moduleDependency: interactor.coreDataManager)
-    }
-    
     func showAddGoalModuleWith(month: Month, moduleDependency: CoreDataManagerProtocol) {
         router.showAddGoalModule(in: month, moduleDependency: moduleDependency)
     }
     
     func showDetailsModuleWith(goal: Goal, moduleDependency: CoreDataManagerProtocol) {
-        router.showDetailsModule(by: goal, moduleDependency: interactor.coreDataManager)
+        router.showDetailsModule(by: goal, moduleDependency: moduleDependency)
     }
     
     func showOnboarding() {
@@ -76,7 +71,7 @@ extension AgendaPresenter: AgendaInteractorOutput {
     }
 }
 
-// MARK: - Methods
+// MARK: - Helper methods
 private extension AgendaPresenter {
     func getMonthInfo() -> DateViewModel {
         let date = Date()

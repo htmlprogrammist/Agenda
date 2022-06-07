@@ -32,8 +32,8 @@ extension HistoryPresenter: HistoryViewOutput {
         interactor.didSelectRowAt(indexPath)
     }
     
-    func deleteItem(at indexPath: IndexPath) {
-        interactor.deleteMonth(at: indexPath)
+    func deleteItemAt(_ indexPath: IndexPath) {
+        interactor.deleteMonthAt(indexPath)
     }
 }
 
@@ -51,6 +51,7 @@ extension HistoryPresenter: HistoryInteractorOutput {
     }
 }
 
+// MARK: - Helper methods
 private extension HistoryPresenter {
     func makeViewModels(_ months: [Month]) -> [MonthViewModel] {
         return months.map { MonthViewModel(month: $0) }

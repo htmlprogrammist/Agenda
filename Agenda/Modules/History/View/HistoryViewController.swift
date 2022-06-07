@@ -104,7 +104,7 @@ extension HistoryViewController {
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
-                strongSelf.output.deleteItem(at: indexPath)
+                strongSelf.output.deleteItemAt(indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })

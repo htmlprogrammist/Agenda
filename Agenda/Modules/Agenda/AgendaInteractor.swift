@@ -10,7 +10,7 @@ import Foundation
 final class AgendaInteractor {
     weak var output: AgendaInteractorOutput?
     
-    public let coreDataManager: CoreDataManagerProtocol
+    private let coreDataManager: CoreDataManagerProtocol
     public var month: Month! // current month
     
     init(coreDataManager: CoreDataManagerProtocol) {

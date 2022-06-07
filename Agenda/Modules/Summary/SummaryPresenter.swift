@@ -39,6 +39,7 @@ extension SummaryPresenter: SummaryInteractorOutput {
     }
 }
 
+// MARK: - Helper methods
 private extension SummaryPresenter {
     func countGoals(months: [Month]) -> [Double] {
         var completedGoalsCounter = 0.0

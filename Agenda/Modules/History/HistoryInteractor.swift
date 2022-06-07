@@ -10,8 +10,7 @@ import Foundation
 final class HistoryInteractor {
     weak var output: HistoryInteractorOutput?
     
-    public let coreDataManager: CoreDataManagerProtocol
-    
+    private let coreDataManager: CoreDataManagerProtocol
     private var months = [Month]()
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -34,8 +33,8 @@ extension HistoryInteractor: HistoryInteractorInput {
         output?.showMonthDetailsModule(month: month, moduleDependency: coreDataManager)
     }
     
-    func deleteMonth(at indexPath: IndexPath) {
-        months.remove(at: indexPath.row)
+    func deleteMonthAt(_ indexPath: IndexPath) {
         coreDataManager.deleteMonth(month: months[indexPath.row])
+        months.remove(at: indexPath.row)
     }
 }
