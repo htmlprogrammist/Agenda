@@ -2,30 +2,28 @@
 //  GoalDetailsViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 16.12.2021.
-//
+//  Created by Егор Бадмаев on 02.06.2022.
+//  
 
 import UIKit
 import SPIndicator
 
 final class GoalDetailsViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol
+    private let output: GoalDetailsViewOutput
     
-    public var goal: Goal!
-    public lazy var goalData = goal.goalData {
+    public var goalData = GoalData() {
         didSet {
-            checkBarButtonEnabled()
+            saveBarButton.isEnabled = output.checkBarButtonEnabled(goalData: goalData)
         }
     }
-    public weak var delegate: CoreDataManagerDelegate?
     
-    private lazy var saveBarButton: UIBarButtonItem = {
+    private let saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
         return barButton
     }()
-    private lazy var indicatorView: SPIndicatorView = {
+    private let indicatorView: SPIndicatorView = {
         let indicatorView = SPIndicatorView(title: Labels.Agenda.saved, preset: .done)
         indicatorView.presentSide = .bottom
         indicatorView.iconView?.tintColor = .systemGreen
@@ -42,12 +40,13 @@ final class GoalDetailsViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManagerProtocol) {
-        self.coreDataManager = coreDataManager
+    init(output: GoalDetailsViewOutput) {
+        self.output = output
+        
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -64,6 +63,7 @@ final class GoalDetailsViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         
         setupViewAndConstraints()
+        output.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,31 +78,21 @@ final class GoalDetailsViewController: UIViewController {
         unregisterForKeyboardNotifications()
         indicatorView.dismiss()
     }
-    
-    private func setupViewAndConstraints() {
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+}
+
+extension GoalDetailsViewController: GoalDetailsViewInput {
+    func setViewModel(goalData: GoalData) {
+        self.goalData = goalData
+        tableView.reloadData()
     }
     
-    @objc private func saveButtonTapped() {
-        view.endEditing(true)
-        saveBarButton.isEnabled = false
-        coreDataManager.rewriteGoal(data: goalData, in: goal)
-        delegate?.reloadTableView()
-        
+    func presentSuccess() {
         indicatorView.present(haptic: .success)
     }
 }
 
 // MARK: - UITableView
 extension GoalDetailsViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -112,12 +102,11 @@ extension GoalDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
-            fatalError("Error")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell
+        else { return GoalTableViewCell() }
         cell.goal = goalData
-        cell.configure(indexPath: indexPath)
         cell.delegate = self
+        cell.configure(indexPath: indexPath)
         return cell
     }
     
@@ -128,14 +117,22 @@ extension GoalDetailsViewController: UITableViewDataSource {
 
 // MARK: - Helper methods
 private extension GoalDetailsViewController {
-    func checkBarButtonEnabled() {
-        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
-                saveBarButton.isEnabled = true
-            }
-        } else {
-            saveBarButton.isEnabled = false
-        }
+    
+    @objc func saveButtonTapped() {
+        view.endEditing(true)
+        saveBarButton.isEnabled = false
+        output.saveButtonTapped(data: goalData)
+    }
+    
+    func setupViewAndConstraints() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     func registerForKeyboardNotifications() {

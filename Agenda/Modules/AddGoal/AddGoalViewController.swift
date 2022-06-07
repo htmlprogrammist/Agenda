@@ -2,29 +2,26 @@
 //  AddGoalViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 17.12.2021.
-//
+//  Created by Егор Бадмаев on 02.06.2022.
+//  
 
 import UIKit
 
 final class AddGoalViewController: UIViewController {
     
-    private let coreDataManager: CoreDataManagerProtocol
-    private let month: Month
+    private let output: AddGoalViewOutput
     
     public var goalData = GoalData() {
         didSet {
             checkBarButtonEnabled()
         }
     }
-    public weak var delegate: CoreDataManagerDelegate?
     
     private lazy var doneBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         barButton.isEnabled = false
         return barButton
     }()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
@@ -35,19 +32,29 @@ final class AddGoalViewController: UIViewController {
         return tableView
     }()
     
+    init(output: AddGoalViewOutput) {
+        self.output = output
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = Labels.Agenda.newGoal
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
+        
         view.backgroundColor = .systemBackground
+        setupViewAndConstraints()
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place
         hideKeyboardWhenTappedAround()
-        
-        setupViewAndConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,44 +68,13 @@ final class AddGoalViewController: UIViewController {
         
         unregisterForKeyboardNotifications()
     }
-    
-    init(month: Month, coreDataManager: CoreDataManagerProtocol) {
-        self.month = month
-        self.coreDataManager = coreDataManager
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func closeThisVC() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func doneButtonTapped() {
-        coreDataManager.createGoal(data: goalData, in: month)
-        delegate?.reloadTableView()
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    private func setupViewAndConstraints() {
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
+}
+
+extension AddGoalViewController: AddGoalViewInput {
 }
 
 // MARK: - UITableView
 extension AddGoalViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
@@ -108,11 +84,10 @@ extension AddGoalViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell else {
-            fatalError("Error")
-        }
-        cell.configure(indexPath: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTableViewCell.identifier, for: indexPath) as? GoalTableViewCell
+        else { return GoalTableViewCell() }
         cell.delegate = self
+        cell.configure(indexPath: indexPath)
         return cell
     }
     
@@ -123,6 +98,14 @@ extension AddGoalViewController: UITableViewDataSource {
 
 // MARK: - Helper methods
 private extension AddGoalViewController {
+    @objc func doneButtonTapped() {
+        output.doneButtonTapped(data: goalData)
+    }
+    
+    @objc func closeThisVC() {
+        output.closeThisModule()
+    }
+    
     func checkBarButtonEnabled() {
         if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
             doneBarButton.isEnabled = true
@@ -149,6 +132,17 @@ private extension AddGoalViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         tableView.contentInset = .zero
+    }
+    
+    func setupViewAndConstraints() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 

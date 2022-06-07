@@ -43,18 +43,9 @@ class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(month: Month) {
-        monthDateLabel.text = month.date.formatTo("MMMMy")
-        
-        var completedGoalsCounter = 0
-        guard let goals = month.goals?.array as? [Goal] else { return }
-        
-        for goal in goals {
-            if goal.current >= goal.aim {
-                completedGoalsCounter += 1
-            }
-        }
-        detailsSubtitle.text = "\(Labels.goals): \(completedGoalsCounter)/\(goals.count)"
+    public func configure(with month: MonthViewModel) {
+        monthDateLabel.text = month.date
+        detailsSubtitle.text = month.goalsCounter
     }
 }
 

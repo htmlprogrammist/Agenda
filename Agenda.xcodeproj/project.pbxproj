@@ -7,32 +7,65 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0027EE5284BE01200D73820 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE4284BE01200D73820 /* BaseRouter.swift */; };
+		F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE7284BE57C00D73820 /* OnboardingPresenter.swift */; };
+		F0027EEE284BE57C00D73820 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE8284BE57C00D73820 /* OnboardingRouter.swift */; };
+		F0027EEF284BE57C00D73820 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE9284BE57C00D73820 /* OnboardingViewController.swift */; };
+		F0027EF0284BE57C00D73820 /* OnboardingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEA284BE57C00D73820 /* OnboardingProtocols.swift */; };
+		F0027EF1284BE57C00D73820 /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */; };
+		F0027EF2284BE57C00D73820 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */; };
 		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
 		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
-		F01FDD2B280307A40011F1F3 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */; };
 		F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */; };
 		F01FDD2F28030A2F0011F1F3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2E28030A2F0011F1F3 /* UserDefaults.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
 		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
-		F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */; };
-		F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
+		F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */; };
+		F03FE95C2849544700F265A2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95B2849544700F265A2 /* AppCoordinator.swift */; };
+		F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */; };
+		F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95E284955E300F265A2 /* AddGoalRouter.swift */; };
+		F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE95F284955E300F265A2 /* AddGoalViewController.swift */; };
+		F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE960284955E300F265A2 /* AddGoalProtocols.swift */; };
+		F03FE967284955E300F265A2 /* AddGoalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE961284955E300F265A2 /* AddGoalInteractor.swift */; };
+		F03FE968284955E300F265A2 /* AddGoalContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE962284955E300F265A2 /* AddGoalContainer.swift */; };
+		F03FE96F284955ED00F265A2 /* GoalDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE969284955ED00F265A2 /* GoalDetailsPresenter.swift */; };
+		F03FE970284955ED00F265A2 /* GoalDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96A284955ED00F265A2 /* GoalDetailsRouter.swift */; };
+		F03FE971284955ED00F265A2 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96B284955ED00F265A2 /* GoalDetailsViewController.swift */; };
+		F03FE972284955ED00F265A2 /* GoalDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96C284955ED00F265A2 /* GoalDetailsProtocols.swift */; };
+		F03FE973284955ED00F265A2 /* GoalDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */; };
+		F03FE974284955ED00F265A2 /* GoalDetailsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */; };
+		F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9762849707000F265A2 /* GoalViewModel.swift */; };
+		F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03FE9792849787200F265A2 /* DateViewModel.swift */; };
 		F053020827FA161D00C62FAC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020727FA161D00C62FAC /* UIViewController.swift */; };
-		F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */; };
 		F053020C27FA264300C62FAC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F053020B27FA264300C62FAC /* Date.swift */; };
+		F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */; };
+		F065E7EC2847ECBF00FAEFE9 /* AgendaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */; };
+		F065E7ED2847ECBF00FAEFE9 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E72847ECBF00FAEFE9 /* AgendaViewController.swift */; };
+		F065E7EE2847ECBF00FAEFE9 /* AgendaProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */; };
+		F065E7EF2847ECBF00FAEFE9 /* AgendaInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */; };
+		F065E7F02847ECBF00FAEFE9 /* AgendaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */; };
 		F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */; };
+		F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751390284A925000BD887D /* HistoryPresenter.swift */; };
+		F0751397284A925000BD887D /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751391284A925000BD887D /* HistoryRouter.swift */; };
+		F0751398284A925000BD887D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751392284A925000BD887D /* HistoryViewController.swift */; };
+		F0751399284A925000BD887D /* HistoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751393284A925000BD887D /* HistoryProtocols.swift */; };
+		F075139A284A925000BD887D /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751394284A925000BD887D /* HistoryInteractor.swift */; };
+		F075139B284A925000BD887D /* HistoryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751395284A925000BD887D /* HistoryContainer.swift */; };
+		F07513A2284A9B8200BD887D /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139C284A9B8200BD887D /* SummaryPresenter.swift */; };
+		F07513A3284A9B8200BD887D /* SummaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139D284A9B8200BD887D /* SummaryRouter.swift */; };
+		F07513A4284A9B8200BD887D /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139E284A9B8200BD887D /* SummaryViewController.swift */; };
+		F07513A5284A9B8200BD887D /* SummaryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139F284A9B8200BD887D /* SummaryProtocols.swift */; };
+		F07513A6284A9B8200BD887D /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A0284A9B8200BD887D /* SummaryInteractor.swift */; };
+		F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A1284A9B8200BD887D /* SummaryContainer.swift */; };
 		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
 		F0BB552727EF4D5700FA7E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552527EF4D5700FA7E99 /* LaunchScreen.storyboard */; };
 		F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */; };
-		F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */; };
-		F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */; };
 		F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */; };
-		F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */; };
-		F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554627EF525300FA7E99 /* SummaryViewController.swift */; };
 		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
 		F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */; };
 		F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */; };
@@ -47,22 +80,59 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0027EE4284BE01200D73820 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		F0027EE7284BE57C00D73820 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		F0027EE8284BE57C00D73820 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		F0027EE9284BE57C00D73820 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F0027EEA284BE57C00D73820 /* OnboardingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProtocols.swift; sourceTree = "<group>"; };
+		F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractor.swift; sourceTree = "<group>"; };
+		F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainer.swift; sourceTree = "<group>"; };
 		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
 		F01FDD2E28030A2F0011F1F3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
-		F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
-		F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
+		F03FE95B2849544700F265A2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalPresenter.swift; sourceTree = "<group>"; };
+		F03FE95E284955E300F265A2 /* AddGoalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalRouter.swift; sourceTree = "<group>"; };
+		F03FE95F284955E300F265A2 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		F03FE960284955E300F265A2 /* AddGoalProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalProtocols.swift; sourceTree = "<group>"; };
+		F03FE961284955E300F265A2 /* AddGoalInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalInteractor.swift; sourceTree = "<group>"; };
+		F03FE962284955E300F265A2 /* AddGoalContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalContainer.swift; sourceTree = "<group>"; };
+		F03FE969284955ED00F265A2 /* GoalDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsPresenter.swift; sourceTree = "<group>"; };
+		F03FE96A284955ED00F265A2 /* GoalDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsRouter.swift; sourceTree = "<group>"; };
+		F03FE96B284955ED00F265A2 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
+		F03FE96C284955ED00F265A2 /* GoalDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsProtocols.swift; sourceTree = "<group>"; };
+		F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsInteractor.swift; sourceTree = "<group>"; };
+		F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsContainer.swift; sourceTree = "<group>"; };
+		F03FE9762849707000F265A2 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		F03FE9792849787200F265A2 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		F053020727FA161D00C62FAC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDetailsViewController.swift; sourceTree = "<group>"; };
 		F053020B27FA264300C62FAC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenter.swift; sourceTree = "<group>"; };
+		F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouter.swift; sourceTree = "<group>"; };
+		F065E7E72847ECBF00FAEFE9 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaProtocols.swift; sourceTree = "<group>"; };
+		F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaInteractor.swift; sourceTree = "<group>"; };
+		F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaContainer.swift; sourceTree = "<group>"; };
 		F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
+		F0751390284A925000BD887D /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
+		F0751391284A925000BD887D /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		F0751392284A925000BD887D /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		F0751393284A925000BD887D /* HistoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProtocols.swift; sourceTree = "<group>"; };
+		F0751394284A925000BD887D /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		F0751395284A925000BD887D /* HistoryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainer.swift; sourceTree = "<group>"; };
+		F075139C284A9B8200BD887D /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
+		F075139D284A9B8200BD887D /* SummaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRouter.swift; sourceTree = "<group>"; };
+		F075139E284A9B8200BD887D /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		F075139F284A9B8200BD887D /* SummaryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProtocols.swift; sourceTree = "<group>"; };
+		F07513A0284A9B8200BD887D /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
+		F07513A1284A9B8200BD887D /* SummaryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainer.swift; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,11 +141,7 @@
 		F0BB552827EF4D5700FA7E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0BB552E27EF4D8700FA7E99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
-		F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		F0BB554627EF525300FA7E99 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
 		F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -102,6 +168,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0027EE6284BE56500D73820 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F0027EE7284BE57C00D73820 /* OnboardingPresenter.swift */,
+				F0027EE8284BE57C00D73820 /* OnboardingRouter.swift */,
+				F0027EEA284BE57C00D73820 /* OnboardingProtocols.swift */,
+				F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */,
+				F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */,
+				F0027EF3284BE58800D73820 /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F0027EF3284BE58800D73820 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0027EE9284BE57C00D73820 /* OnboardingViewController.swift */,
+				F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */,
+				F00AB2232805902400C57F9D /* OnboardingTableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F037C51F27F5ECF8001D2CBC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +210,123 @@
 				F053020727FA161D00C62FAC /* UIViewController.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		F03FE956284953C900F265A2 /* AddGoal */ = {
+			isa = PBXGroup;
+			children = (
+				F03FE95D284955E300F265A2 /* AddGoalPresenter.swift */,
+				F03FE95E284955E300F265A2 /* AddGoalRouter.swift */,
+				F03FE95F284955E300F265A2 /* AddGoalViewController.swift */,
+				F03FE960284955E300F265A2 /* AddGoalProtocols.swift */,
+				F03FE961284955E300F265A2 /* AddGoalInteractor.swift */,
+				F03FE962284955E300F265A2 /* AddGoalContainer.swift */,
+			);
+			path = AddGoal;
+			sourceTree = "<group>";
+		};
+		F03FE957284953D200F265A2 /* GoalDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F03FE969284955ED00F265A2 /* GoalDetailsPresenter.swift */,
+				F03FE96A284955ED00F265A2 /* GoalDetailsRouter.swift */,
+				F03FE96B284955ED00F265A2 /* GoalDetailsViewController.swift */,
+				F03FE96C284955ED00F265A2 /* GoalDetailsProtocols.swift */,
+				F03FE96D284955ED00F265A2 /* GoalDetailsInteractor.swift */,
+				F03FE96E284955ED00F265A2 /* GoalDetailsContainer.swift */,
+			);
+			path = GoalDetails;
+			sourceTree = "<group>";
+		};
+		F03FE958284953EF00F265A2 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F0751390284A925000BD887D /* HistoryPresenter.swift */,
+				F0751391284A925000BD887D /* HistoryRouter.swift */,
+				F0751393284A925000BD887D /* HistoryProtocols.swift */,
+				F0751394284A925000BD887D /* HistoryInteractor.swift */,
+				F0751395284A925000BD887D /* HistoryContainer.swift */,
+				F07513A8284A9D0400BD887D /* View */,
+				F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		F03FE95A284953FA00F265A2 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				F075139C284A9B8200BD887D /* SummaryPresenter.swift */,
+				F075139D284A9B8200BD887D /* SummaryRouter.swift */,
+				F075139F284A9B8200BD887D /* SummaryProtocols.swift */,
+				F07513A0284A9B8200BD887D /* SummaryInteractor.swift */,
+				F07513A1284A9B8200BD887D /* SummaryContainer.swift */,
+				F07513A9284A9D1800BD887D /* Views */,
+				F02572A027FDE750000A9A06 /* Summary.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		F03FE9752849684D00F265A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F065E7E72847ECBF00FAEFE9 /* AgendaViewController.swift */,
+				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F03FE978284970B600F265A2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F03FE9762849707000F265A2 /* GoalViewModel.swift */,
+				F03FE9792849787200F265A2 /* DateViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F065E7E22847ECA400FAEFE9 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				F065E7E52847ECBF00FAEFE9 /* AgendaPresenter.swift */,
+				F065E7E62847ECBF00FAEFE9 /* AgendaRouter.swift */,
+				F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */,
+				F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */,
+				F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */,
+				F03FE9752849684D00F265A2 /* Views */,
+				F03FE978284970B600F265A2 /* ViewModels */,
+			);
+			path = Agenda;
+			sourceTree = "<group>";
+		};
+		F065E7E32847ECAA00FAEFE9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				F065E7E22847ECA400FAEFE9 /* Agenda */,
+				F03FE956284953C900F265A2 /* AddGoal */,
+				F03FE957284953D200F265A2 /* GoalDetails */,
+				F03FE958284953EF00F265A2 /* History */,
+				F03FE95A284953FA00F265A2 /* Summary */,
+				F0027EE6284BE56500D73820 /* Onboarding */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		F07513A8284A9D0400BD887D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0751392284A925000BD887D /* HistoryViewController.swift */,
+				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F07513A9284A9D1800BD887D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F075139E284A9B8200BD887D /* SummaryViewController.swift */,
+				F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F0BB550E27EF4D5400FA7E99 = {
@@ -144,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				F0BB553027EF4DC500FA7E99 /* Application */,
-				F0BB553527EF4F0600FA7E99 /* Controllers */,
+				F065E7E32847ECAA00FAEFE9 /* Modules */,
 				F0BB554027EF510500FA7E99 /* Views */,
 				F0BB553627EF4F0D00FA7E99 /* Models */,
 				F0BB553427EF4EFE00FA7E99 /* Services */,
@@ -172,6 +378,7 @@
 			children = (
 				F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */,
 				F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */,
+				F03FE95B2849544700F265A2 /* AppCoordinator.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -180,20 +387,9 @@
 			isa = PBXGroup;
 			children = (
 				F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */,
+				F0027EE4284BE01200D73820 /* BaseRouter.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		F0BB553527EF4F0600FA7E99 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				F0BB553927EF4FB700FA7E99 /* MainTabBarController.swift */,
-				F0BB553B27EF506A00FA7E99 /* Agenda */,
-				F0BB553C27EF507000FA7E99 /* History */,
-				F0BB553D27EF507800FA7E99 /* Summary */,
-				F01FDD2A280307A40011F1F3 /* OnboardingViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F0BB553627EF4F0D00FA7E99 /* Models */ = {
@@ -201,59 +397,18 @@
 			children = (
 				F0BB555527EF5AD800FA7E99 /* CoreData */,
 				F016F77B27F7A4D6008D184A /* GoalData.swift */,
-				F02572A027FDE750000A9A06 /* Summary.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F0BB553B27EF506A00FA7E99 /* Agenda */ = {
-			isa = PBXGroup;
-			children = (
-				F0BB553E27EF509F00FA7E99 /* AgendaViewController.swift */,
-				F037C51B27F5EC92001D2CBC /* AddGoalViewController.swift */,
-				F0315AB027F84F6100C7D8F0 /* GoalDetailsViewController.swift */,
-			);
-			path = Agenda;
-			sourceTree = "<group>";
-		};
-		F0BB553C27EF507000FA7E99 /* History */ = {
-			isa = PBXGroup;
-			children = (
-				F0BB554427EF523B00FA7E99 /* HistoryViewController.swift */,
-				F053020927FA24CB00C62FAC /* MonthDetailsViewController.swift */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
-		F0BB553D27EF507800FA7E99 /* Summary */ = {
-			isa = PBXGroup;
-			children = (
-				F0BB554627EF525300FA7E99 /* SummaryViewController.swift */,
-			);
-			path = Summary;
 			sourceTree = "<group>";
 		};
 		F0BB554027EF510500FA7E99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0BB554127EF510D00FA7E99 /* Cells */,
 				F030A20227F8DD51004B375A /* AlertError.swift */,
 				F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */,
-				F00AB2232805902400C57F9D /* OnboardingTableView.swift */,
+				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F0BB554127EF510D00FA7E99 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */,
-				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
-				F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */,
-				F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */,
-				F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		F0BB555527EF5AD800FA7E99 /* CoreData */ = {
@@ -345,39 +500,72 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0027EF0284BE57C00D73820 /* OnboardingProtocols.swift in Sources */,
 				F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */,
+				F03FE967284955E300F265A2 /* AddGoalInteractor.swift in Sources */,
+				F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */,
+				F07513A2284A9B8200BD887D /* SummaryPresenter.swift in Sources */,
+				F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */,
+				F03FE971284955ED00F265A2 /* GoalDetailsViewController.swift in Sources */,
 				F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */,
+				F065E7EF2847ECBF00FAEFE9 /* AgendaInteractor.swift in Sources */,
+				F03FE97A2849787200F265A2 /* DateViewModel.swift in Sources */,
 				F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */,
+				F0027EF1284BE57C00D73820 /* OnboardingInteractor.swift in Sources */,
+				F07513A6284A9B8200BD887D /* SummaryInteractor.swift in Sources */,
+				F03FE972284955ED00F265A2 /* GoalDetailsProtocols.swift in Sources */,
+				F0027EE5284BE01200D73820 /* BaseRouter.swift in Sources */,
 				F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */,
-				F037C51C27F5EC92001D2CBC /* AddGoalViewController.swift in Sources */,
+				F0751399284A925000BD887D /* HistoryProtocols.swift in Sources */,
+				F075139A284A925000BD887D /* HistoryInteractor.swift in Sources */,
+				F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
+				F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
+				F065E7ED2847ECBF00FAEFE9 /* AgendaViewController.swift in Sources */,
 				F02572A127FDE750000A9A06 /* Summary.swift in Sources */,
+				F065E7EC2847ECBF00FAEFE9 /* AgendaRouter.swift in Sources */,
+				F0027EF2284BE57C00D73820 /* OnboardingContainer.swift in Sources */,
+				F07513A5284A9B8200BD887D /* SummaryProtocols.swift in Sources */,
+				F03FE95C2849544700F265A2 /* AppCoordinator.swift in Sources */,
+				F065E7F02847ECBF00FAEFE9 /* AgendaContainer.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
+				F03FE973284955ED00F265A2 /* GoalDetailsInteractor.swift in Sources */,
+				F0027EEE284BE57C00D73820 /* OnboardingRouter.swift in Sources */,
+				F0027EEF284BE57C00D73820 /* OnboardingViewController.swift in Sources */,
+				F03FE970284955ED00F265A2 /* GoalDetailsRouter.swift in Sources */,
 				F053020C27FA264300C62FAC /* Date.swift in Sources */,
+				F03FE974284955ED00F265A2 /* GoalDetailsContainer.swift in Sources */,
 				F053020827FA161D00C62FAC /* UIViewController.swift in Sources */,
 				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
+				F065E7EE2847ECBF00FAEFE9 /* AgendaProtocols.swift in Sources */,
+				F03FE96F284955ED00F265A2 /* GoalDetailsPresenter.swift in Sources */,
 				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0F45FF02801C90C00BA244D /* String.swift in Sources */,
+				F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */,
+				F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */,
+				F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */,
 				F01FDD2F28030A2F0011F1F3 /* UserDefaults.swift in Sources */,
-				F0BB553F27EF509F00FA7E99 /* AgendaViewController.swift in Sources */,
-				F0BB553A27EF4FB700FA7E99 /* MainTabBarController.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
+				F03FE968284955E300F265A2 /* AddGoalContainer.swift in Sources */,
+				F075139B284A925000BD887D /* HistoryContainer.swift in Sources */,
 				F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */,
-				F053020A27FA24CB00C62FAC /* MonthDetailsViewController.swift in Sources */,
+				F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */,
+				F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
 				F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */,
 				F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */,
-				F0315AB127F84F6100C7D8F0 /* GoalDetailsViewController.swift in Sources */,
-				F01FDD2B280307A40011F1F3 /* OnboardingViewController.swift in Sources */,
+				F07513A3284A9B8200BD887D /* SummaryRouter.swift in Sources */,
+				F0751398284A925000BD887D /* HistoryViewController.swift in Sources */,
 				F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */,
 				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
+				F07513A4284A9B8200BD887D /* SummaryViewController.swift in Sources */,
+				F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
-				F0BB554527EF523B00FA7E99 /* HistoryViewController.swift in Sources */,
-				F0BB554727EF525300FA7E99 /* SummaryViewController.swift in Sources */,
 				F0F45FE72801C2F000BA244D /* Labels.swift in Sources */,
+				F0751397284A925000BD887D /* HistoryRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

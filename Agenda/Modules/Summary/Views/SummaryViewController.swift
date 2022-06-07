@@ -2,22 +2,20 @@
 //  SummaryViewController.swift
 //  Agenda
 //
-//  Created by Егор Бадмаев on 10.12.2021.
-//
+//  Created by Егор Бадмаев on 03.06.2022.
+//  
 
 import UIKit
 
 final class SummaryViewController: UIViewController {
-    
-    private weak var coreDataManager: CoreDataManager?
-    private lazy var fetchedResultsController = coreDataManager?.monthsFetchedResultsController
-    private var months: [Month]! // set only after the first fetch, used only after the setting
     
     private let imagePaths = ["number", "checkmark", "xmark", "sum"]
     private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
     private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
     private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
     private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
+    
+    private let output: SummaryViewOutput
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -30,12 +28,13 @@ final class SummaryViewController: UIViewController {
         return tableView
     }()
     
-    init(coreDataManager: CoreDataManager) {
-        self.coreDataManager = coreDataManager
+    init(output: SummaryViewOutput) {
+        self.output = output
+        
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -47,21 +46,23 @@ final class SummaryViewController: UIViewController {
         title = Labels.Summary.title
         
         setupViewAndConstraints()
-        
-        do {
-            try fetchedResultsController?.performFetch()
-            coreDataManager?.clients.append(self) // add vc to clients to update when NSFetchedResultsController update
-        } catch {
-            alertForError(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
-        }
-        
-        if let months = fetchedResultsController?.fetchedObjects {
-            self.months = months
-            countGoals(months: months)
-        }
+        output.fetchData()
+    }
+}
+
+extension SummaryViewController: SummaryViewInput {
+    func setData(numbers: [Double]) {
+        self.numbers = numbers
+        tableView.reloadData()
     }
     
-    private func setupViewAndConstraints() {
+    func showAlert(title: String, message: String) {
+        alertForError(title: title, message: message)
+    }
+}
+
+private extension SummaryViewController {
+    func setupViewAndConstraints() {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -70,30 +71,6 @@ final class SummaryViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    private func countGoals(months: [Month]) {
-        var completedGoalsCounter = 0.0
-        var uncompletedGoalsCounter = 0.0
-        var allGoalsCounter = 0.0
-        var percentage = 0.0
-        
-        for month in months {
-            guard let goals = month.goals?.array as? [Goal] else { return }
-            for goal in goals {
-                if goal.current >= goal.aim {
-                    completedGoalsCounter += 1
-                } else {
-                    uncompletedGoalsCounter += 1
-                }
-                allGoalsCounter += 1
-            }
-            
-            if allGoalsCounter > 0 {
-                percentage = round(100 * Double(completedGoalsCounter) / Double(allGoalsCounter))
-            }
-        }
-        numbers = [percentage, completedGoalsCounter, uncompletedGoalsCounter, allGoalsCounter]
     }
 }
 
@@ -109,9 +86,8 @@ extension SummaryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell else {
-            fatalError("Could not create SummaryTableViewCell")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
+        else { return SummaryTableViewCell() }
         let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
         cell.configure(data: summary)
         return cell
@@ -128,8 +104,7 @@ extension SummaryViewController: UITableViewDataSource {
 
 // MARK: - CoreDataManagerDelegate
 extension SummaryViewController: CoreDataManagerDelegate {
-    func reloadTableView() {
-        countGoals(months: months)
-        tableView.reloadData()
+    func updateViewModel() {
+        output.fetchData()
     }
 }

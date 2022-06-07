@@ -25,7 +25,7 @@ title3 = "More details";
 
 description1 = "Discover monthly planning as a new tool to achieve your goals";
 description2 = "Easily track your progress throughout the month with the progress bars";
-description3 = "Add notes to your goals to concretize your goals and not forget anything";
+description3 = "Add notes to your goals to concretize them and not forget anything";
 
 // Agenda
 titleLabel = "Title";
