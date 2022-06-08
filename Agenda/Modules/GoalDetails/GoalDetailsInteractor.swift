@@ -29,12 +29,13 @@ extension GoalDetailsInteractor: GoalDetailsInteractorInput {
         output?.goalDidRewrite()
     }
     
-    func checkBarButtonEnabled(goalData: GoalData) -> Bool {
-        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            if goalData.title != goal.name || goalData.current != String(goal.current) || goalData.aim != String(goal.aim) || goalData.notes != goal.notes {
-                return true
-            }
+    func checkBarButtonEnabled(goalData: GoalData) {
+        if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty,
+            (goalData.title != goal.name || goalData.current != String(goal.current) ||
+             goalData.aim != String(goal.aim) || goalData.notes != goal.notes) {
+            output?.barButtonDidCheck(with: true)
+        } else {
+            output?.barButtonDidCheck(with: false)
         }
-        return false
     }
 }

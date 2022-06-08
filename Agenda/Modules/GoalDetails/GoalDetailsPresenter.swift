@@ -32,7 +32,7 @@ extension GoalDetailsPresenter: GoalDetailsViewOutput {
         interactor.rewriteGoal(with: data)
     }
     
-    func checkBarButtonEnabled(goalData: GoalData) -> Bool {
+    func checkBarButtonEnabled(goalData: GoalData) {
         interactor.checkBarButtonEnabled(goalData: goalData)
     }
 }
@@ -44,5 +44,9 @@ extension GoalDetailsPresenter: GoalDetailsInteractorOutput {
     
     func goalDidLoad(goalData: GoalData) {
         view?.setViewModel(goalData: goalData)
+    }
+    
+    func barButtonDidCheck(with flag: Bool) {
+        view?.updateBarButton(with: flag)
     }
 }

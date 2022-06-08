@@ -14,7 +14,7 @@ final class GoalDetailsViewController: UIViewController {
     
     public var goalData = GoalData() {
         didSet {
-            saveBarButton.isEnabled = output.checkBarButtonEnabled(goalData: goalData)
+            output.checkBarButtonEnabled(goalData: goalData)
         }
     }
     
@@ -84,6 +84,10 @@ extension GoalDetailsViewController: GoalDetailsViewInput {
     func setViewModel(goalData: GoalData) {
         self.goalData = goalData
         tableView.reloadData()
+    }
+    
+    func updateBarButton(with flag: Bool) {
+        saveBarButton.isEnabled = flag
     }
     
     func presentSuccess() {
