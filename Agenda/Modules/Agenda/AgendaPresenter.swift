@@ -50,8 +50,8 @@ extension AgendaPresenter: AgendaViewOutput {
 }
 
 extension AgendaPresenter: AgendaInteractorOutput {
-    func monthDidFetch(goals: [Goal], date: String) {
-        view?.setMonthData(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), title: date)
+    func monthDidFetch(viewModels: [GoalViewModel], monthInfo: DateViewModel, date: String) {
+        view?.setMonthData(viewModels: viewModels, monthInfo: monthInfo, title: date)
     }
     
     func dataDidNotFetch() {
@@ -68,27 +68,5 @@ extension AgendaPresenter: AgendaInteractorOutput {
     
     func showOnboarding() {
         router.showOnboarding()
-    }
-}
-
-// MARK: - Helper methods
-private extension AgendaPresenter {
-    func getMonthInfo() -> DateViewModel {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
-        
-        let calendar = Calendar.current
-        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
-        
-        return DateViewModel(dayAndMonth: dateFormatter.string(from: date),
-                             year: calendar.dateComponents([.year], from: date).year ?? 0,
-                             progress: Float(calendar.dateComponents([.day], from: date).day!) / Float(days))
-    }
-    
-    func makeViewModels(_ goals: [Goal]) -> [GoalViewModel] {
-        return goals.map { goal in
-            GoalViewModel(name: goal.name, current: Int(goal.current), aim: Int(goal.aim))
-        }
     }
 }

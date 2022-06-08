@@ -38,8 +38,8 @@ extension HistoryPresenter: HistoryViewOutput {
 }
 
 extension HistoryPresenter: HistoryInteractorOutput {
-    func dataDidFetch(months: [Month]) {
-        view?.setData(viewModels: makeViewModels(months))
+    func dataDidFetch(viewModels: [MonthViewModel]) {
+        view?.setData(viewModels: viewModels)
     }
     
     func dataDidNotFetch() {
@@ -48,12 +48,5 @@ extension HistoryPresenter: HistoryInteractorOutput {
     
     func showMonthDetailsModule(month: Month, moduleDependency: CoreDataManagerProtocol) {
         router.showMonthDetailsModule(month: month, moduleDependency: moduleDependency)
-    }
-}
-
-// MARK: - Helper methods
-private extension HistoryPresenter {
-    func makeViewModels(_ months: [Month]) -> [MonthViewModel] {
-        return months.map { MonthViewModel(month: $0) }
     }
 }

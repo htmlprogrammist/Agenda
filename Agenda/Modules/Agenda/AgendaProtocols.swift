@@ -42,7 +42,7 @@ protocol AgendaInteractorInput: AnyObject {
 }
 
 protocol AgendaInteractorOutput: AnyObject {
-    func monthDidFetch(goals: [Goal], date: String)
+    func monthDidFetch(viewModels: [GoalViewModel], monthInfo: DateViewModel, date: String)
     func dataDidNotFetch()
     
     func showAddGoalModuleWith(month: Month, moduleDependency: CoreDataManagerProtocol)

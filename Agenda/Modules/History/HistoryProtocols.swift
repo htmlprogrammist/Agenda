@@ -34,7 +34,7 @@ protocol HistoryInteractorInput: AnyObject {
 }
 
 protocol HistoryInteractorOutput: AnyObject {
-    func dataDidFetch(months: [Month])
+    func dataDidFetch(viewModels: [MonthViewModel])
     func dataDidNotFetch()
     
     func showMonthDetailsModule(month: Month, moduleDependency: CoreDataManagerProtocol)

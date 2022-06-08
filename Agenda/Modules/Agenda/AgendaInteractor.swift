@@ -11,6 +11,7 @@ final class AgendaInteractor {
     weak var output: AgendaInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
+    
     public var month: Month! // current month
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -27,7 +28,7 @@ extension AgendaInteractor: AgendaInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        output?.monthDidFetch(goals: goals, date: month.date.formatTo("MMMMy"))
+        output?.monthDidFetch(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), date: month.date.formatTo("MMMMy"))
     }
     
     func getGoalAt(_ indexPath: IndexPath) {
@@ -55,6 +56,28 @@ extension AgendaInteractor: AgendaInteractorInput {
     func checkForOnboarding() {
         if !UserDefaults.standard.hasOnboarded {
             output?.showOnboarding()
+        }
+    }
+}
+
+// MARK: - Helper methods
+private extension AgendaInteractor {
+    func getMonthInfo() -> DateViewModel {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM d")
+        
+        let calendar = Calendar.current
+        let days = calendar.range(of: .day, in: .month, for: date)!.count // all days in current month
+        
+        return DateViewModel(dayAndMonth: dateFormatter.string(from: date),
+                             year: calendar.dateComponents([.year], from: date).year ?? 0,
+                             progress: Float(calendar.dateComponents([.day], from: date).day!) / Float(days))
+    }
+    
+    func makeViewModels(_ goals: [Goal]) -> [GoalViewModel] {
+        return goals.map { goal in
+            GoalViewModel(name: goal.name, current: Int(goal.current), aim: Int(goal.aim))
         }
     }
 }

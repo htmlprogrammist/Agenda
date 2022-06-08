@@ -25,7 +25,7 @@ extension HistoryInteractor: HistoryInteractorInput {
             return
         }
         self.months = months
-        output?.dataDidFetch(months: months)
+        output?.dataDidFetch(viewModels: makeViewModels(months))
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
@@ -36,5 +36,12 @@ extension HistoryInteractor: HistoryInteractorInput {
     func deleteMonthAt(_ indexPath: IndexPath) {
         coreDataManager.deleteMonth(month: months[indexPath.row])
         months.remove(at: indexPath.row)
+    }
+}
+
+// MARK: - Helper methods
+private extension HistoryInteractor {
+    func makeViewModels(_ months: [Month]) -> [MonthViewModel] {
+        return months.map { MonthViewModel(month: $0) }
     }
 }
