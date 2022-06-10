@@ -55,7 +55,7 @@ extension AgendaPresenter: AgendaInteractorOutput {
     }
     
     func dataDidNotFetch() {
-        view?.showAlert(title: Labels.oopsError, message: Labels.Summary.fetchErrorDescription)
+        view?.showAlert(title: Labels.oopsError, message: Labels.Agenda.unknownErrorDescription)
     }
     
     func showAddGoalModuleWith(month: Month, moduleDependency: CoreDataManagerProtocol) {

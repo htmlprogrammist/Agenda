@@ -40,12 +40,18 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func replaceGoal(from a: Int, to b: Int) {
-        guard let goal = month.goals?.object(at: a) as? Goal else { return }
+        guard let goal = month.goals?.object(at: a) as? Goal else {
+            output?.dataDidNotFetch()
+            return
+        }
         coreDataManager.replaceGoal(goal, in: month, from: a, to: b)
     }
     
     func deleteItem(at indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
+            output?.dataDidNotFetch()
+            return
+        }
         coreDataManager.deleteGoal(goal: goal)
     }
     
@@ -54,7 +60,8 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func checkForOnboarding() {
-        if !UserDefaults.standard.hasOnboarded {
+        let settings = UserSettings()
+        if let hasOnboarded = settings.hasOnboarded, !hasOnboarded {
             output?.showOnboarding()
         }
     }

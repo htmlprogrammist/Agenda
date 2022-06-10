@@ -13,7 +13,8 @@ final class OnboardingInteractor {
 
 extension OnboardingInteractor: OnboardingInteractorInput {
     func setHasOnboarded() {
-        UserDefaults.standard.hasOnboarded = true
+        var settings = UserSettings()
+        settings.hasOnboarded = true
         output?.hasOnboardedDidSet()
     }
 }

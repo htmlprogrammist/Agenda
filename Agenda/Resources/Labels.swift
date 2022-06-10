@@ -35,6 +35,7 @@ enum Labels {
         static let saved = "saved".localized
         static let deleteGoalTitle = "deleteGoalTitle".localized
         static let deleteGoalDescription = "deleteGoalDescription".localized
+        static let unknownErrorDescription = "unknownErrorDescription".localized
     }
     
     enum History {
