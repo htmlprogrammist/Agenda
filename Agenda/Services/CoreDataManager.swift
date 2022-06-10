@@ -112,13 +112,13 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
         managedObjectContext.delete(month)
         saveContext()
-        updateViewModels(in: [2])
+        updateViewModels(in: [.summary])
     }
     
     func deleteGoal(goal: Goal) {
         managedObjectContext.delete(goal)
         saveContext()
-        updateViewModels(in: [1, 2])
+        updateViewModels(in: [.history, .summary])
     }
     
     func saveContext() {
@@ -132,9 +132,15 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
     }
     
-    private func updateViewModels(in viewControllersIndicies: [Int] = [0, 1, 2]) {
-        for index in viewControllersIndicies {
-            viewControllers[index].updateViewModel()
+    private func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
+        for viewController in viewControllers {
+            self.viewControllers[viewController.rawValue].updateViewModel()
         }
     }
+}
+
+fileprivate enum ViewControllers: Int {
+    case agenda
+    case history
+    case summary
 }
