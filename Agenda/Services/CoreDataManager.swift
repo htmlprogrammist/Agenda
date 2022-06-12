@@ -7,7 +7,7 @@
 
 import CoreData
 
-protocol CoreDataManagerProtocol {
+protocol CoreDataManagerProtocol: AnyObject {
     func fetchCurrentMonth() -> Month?
     func fetchMonths() -> [Month]?
     

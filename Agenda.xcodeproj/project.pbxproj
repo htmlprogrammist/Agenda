@@ -74,12 +74,16 @@
 		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
 		F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */; };
 		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
+		F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */; };
+		F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */; };
+		F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */; };
+		F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */; };
 		F0EA8B2C27FAD2220048327A /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = F0EA8B2B27FAD2220048327A /* SPIndicator */; };
 		F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */; };
 		F0F45FE72801C2F000BA244D /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F45FE62801C2F000BA244D /* Labels.swift */; };
 		F0F45FEB2801C8DB00BA244D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0F45FED2801C8DB00BA244D /* Localizable.strings */; };
 		F0F45FF02801C90C00BA244D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F45FEF2801C90C00BA244D /* String.swift */; };
-		F0FFD18C28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD18B28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift */; };
+		F0FFD18C28549D80001EE4A6 /* AgendaInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD18B28549D80001EE4A6 /* AgendaInteractorTest.swift */; };
 		F0FFD19628549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */; };
 		F0FFD1A428549FD5001EE4A6 /* AgendaViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD1A328549FD5001EE4A6 /* AgendaViewTest.swift */; };
 /* End PBXBuildFile section */
@@ -173,13 +177,17 @@
 		F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouterMock.swift; sourceTree = "<group>"; };
+		F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenterSpy.swift; sourceTree = "<group>"; };
+		F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
+		F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerStub.swift; sourceTree = "<group>"; };
 		F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		F0F45FE62801C2F000BA244D /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		F0F45FE82801C84C00BA244D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F0F45FEC2801C8DB00BA244D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0F45FEE2801C8E000BA244D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0F45FEF2801C90C00BA244D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F0FFD18B28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenterInteractorTest.swift; sourceTree = "<group>"; };
+		F0FFD18B28549D80001EE4A6 /* AgendaInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaInteractorTest.swift; sourceTree = "<group>"; };
 		F0FFD19128549DC6001EE4A6 /* AgendaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F0FFD1A328549FD5001EE4A6 /* AgendaViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewTest.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 				F0FFD18928549D42001EE4A6 /* SummaryModuleTests */,
 				F0FFD18A28549D49001EE4A6 /* OnboardingModuleTests */,
 				F037986A285527AE00749971 /* ServicesTests */,
+				F0E817502855D64900DD4EE1 /* Mocks+Stubs+Spies */,
 			);
 			path = AgendaTests;
 			sourceTree = "<group>";
@@ -492,18 +501,29 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		F0E817482855CE5B00DD4EE1 /* Stubs+Spies */ = {
+		F0E817482855CE5B00DD4EE1 /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
+				F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */,
+				F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */,
 			);
-			path = "Stubs+Spies";
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
+		F0E817502855D64900DD4EE1 /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+				F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */,
+				F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */,
+			);
+			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
 		};
 		F0FFD18528549D1C001EE4A6 /* AgendaModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				F0E817482855CE5B00DD4EE1 /* Stubs+Spies */,
-				F0FFD18B28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift */,
+				F0E817482855CE5B00DD4EE1 /* Mocks+Stubs+Spies */,
+				F0FFD18B28549D80001EE4A6 /* AgendaInteractorTest.swift */,
 			);
 			path = AgendaModuleTests;
 			sourceTree = "<group>";
@@ -738,8 +758,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */,
+				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTest.swift in Sources */,
-				F0FFD18C28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift in Sources */,
+				F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */,
+				F0FFD18C28549D80001EE4A6 /* AgendaInteractorTest.swift in Sources */,
+				F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

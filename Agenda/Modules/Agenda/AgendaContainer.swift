@@ -45,5 +45,5 @@ struct AgendaContext {
     
     weak var moduleOutput: AgendaModuleOutput?
     let moduleDependency: ModuleDependency
-    var month: Month? = nil
+    var month: Month?
 }

@@ -38,9 +38,16 @@ class CoreDataManagerTest: XCTestCase {
     }
     
     /**
-     `fetchMonths(:)` method must always return array of months, not `nil`
+     The next two tests will check for providing months. Both of them should not return nil
+     `fetchCurrentMonth(:)` method must always return month instance
+     `fetchMonths(:)` method must always return array of months
      */
-    func testFetchMonths() {
+    func testFetchingCurrentMonth() {
+        let month = coreDataManager.fetchCurrentMonth()
+        XCTAssertNotNil(month, "Month should not be nil")
+    }
+    
+    func testFetchingArrayOfMonths() {
         let months = coreDataManager.fetchMonths()
         XCTAssertNotNil(months, "Months were not fetched successfully")
     }
@@ -89,9 +96,10 @@ class CoreDataManagerTest: XCTestCase {
      Then we test every sample goals' names (to simplify, since the `name` property  is enough for us)
      */
     func testReorderingGoals() {
-        coreDataManager.createGoal(data: GoalData(title: "Sample goal 1", current: "\(75)", aim: "\(100)", notes: ""), in: month)
-        coreDataManager.createGoal(data: GoalData(title: "Sample goal 2", current: "\(75)", aim: "\(100)", notes: ""), in: month)
-        coreDataManager.createGoal(data: GoalData(title: "Sample goal 3", current: "\(75)", aim: "\(100)", notes: ""), in: month)
+        for i in 1...3 {
+            let goalData = GoalData(title: "Sample goal \(i)", current: "\(75 + i * 5)", aim: "\(100)", notes: "")
+            coreDataManager.createGoal(data: goalData, in: month)
+        }
         let firstGoal = month.goals?.array.first as? Goal
         
         if let goal = firstGoal {
