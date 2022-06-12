@@ -58,7 +58,6 @@ final class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
         setupView()
         setConstraints()
     }
@@ -116,6 +115,7 @@ private extension AgendaViewController {
         }
         view.addSubview(separatorView)
         view.addSubview(tableView)
+        view.backgroundColor = .systemBackground
     }
     
     func setConstraints() {

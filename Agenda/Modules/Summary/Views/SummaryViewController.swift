@@ -42,7 +42,6 @@ final class SummaryViewController: UIViewController {
         super.viewDidLoad()
         
         tabBarController?.tabBar.backgroundColor = .systemBackground
-        view.backgroundColor = .systemGroupedBackground
         title = Labels.Summary.title
         
         setupViewAndConstraints()
@@ -63,6 +62,7 @@ extension SummaryViewController: SummaryViewInput {
 
 private extension SummaryViewController {
     func setupViewAndConstraints() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([

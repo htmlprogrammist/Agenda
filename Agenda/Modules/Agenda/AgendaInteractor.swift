@@ -12,7 +12,7 @@ final class AgendaInteractor {
     
     private let coreDataManager: CoreDataManagerProtocol
     
-    public var month: Month! // current month
+    public var month: Month! // current (Agenda) or selected (MonthDetails) month
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager

@@ -45,11 +45,10 @@ final class AddGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Labels.Agenda.newGoal
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
         navigationItem.rightBarButtonItem = doneBarButton
+        title = Labels.Agenda.newGoal
         
-        view.backgroundColor = .systemBackground
         setupViewAndConstraints()
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
@@ -135,6 +134,7 @@ private extension AddGoalViewController {
     }
     
     func setupViewAndConstraints() {
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([

@@ -73,7 +73,6 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
         isModalInPresentation = true
         
         setupView()
@@ -92,6 +91,7 @@ private extension OnboardingViewController {
     }
     
     func setupView() {
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         

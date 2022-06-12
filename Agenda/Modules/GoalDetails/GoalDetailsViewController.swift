@@ -18,7 +18,7 @@ final class GoalDetailsViewController: UIViewController {
         }
     }
     
-    private let saveBarButton: UIBarButtonItem = {
+    private lazy var saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
         return barButton
@@ -56,7 +56,6 @@ final class GoalDetailsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         title = Labels.Agenda.details
         navigationItem.rightBarButtonItem = saveBarButton
-        view.backgroundColor = .systemGroupedBackground
         
         // This methods is declared in Extensions/UIKit/UIViewController.swift
         // It allows to hide keyboard when user taps in any place
@@ -129,6 +128,7 @@ private extension GoalDetailsViewController {
     }
     
     func setupViewAndConstraints() {
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([

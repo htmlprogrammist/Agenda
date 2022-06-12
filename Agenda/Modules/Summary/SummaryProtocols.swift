@@ -28,7 +28,7 @@ protocol SummaryInteractorInput: AnyObject {
 }
 
 protocol SummaryInteractorOutput: AnyObject {
-    func dataDidFetch(months: [Month])
+    func dataDidFetch(numbers: [Double])
     func dataDidNotFetch()
 }
 

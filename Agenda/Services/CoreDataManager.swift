@@ -94,7 +94,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.aim = Int64(data.aim) ?? 0
         goal.notes = data.notes
         
-        managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
         saveContext()
         updateViewModels()
     }
@@ -106,9 +105,8 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     }
     
     func deleteMonth(month: Month) {
-        guard let goals = month.goals?.array as? [Goal] else { return }
-        goals.forEach { goal in
-            managedObjectContext.delete(goal)
+        if let goals = month.goals?.array as? [Goal] {
+            goals.forEach { managedObjectContext.delete($0) }
         }
         managedObjectContext.delete(month)
         saveContext()
@@ -131,16 +129,22 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
             }
         }
     }
+}
+
+private extension CoreDataManager {
+    /**
+     Updating view controllers after making changes in CoreData.
+     `enum ViewControllers` implement tab bar's viewcontrollers.
+     */
+    enum ViewControllers: Int {
+        case agenda
+        case history
+        case summary
+    }
     
-    private func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
+    func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
         for viewController in viewControllers {
             self.viewControllers[viewController.rawValue].updateViewModel()
         }
     }
-}
-
-fileprivate enum ViewControllers: Int {
-    case agenda
-    case history
-    case summary
 }
