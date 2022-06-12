@@ -8,32 +8,48 @@
 import XCTest
 @testable import Agenda
 
+class MockCoreDataManager: CoreDataManagerProtocol {
+    func fetchCurrentMonth() -> Month? {
+        return nil
+    }
+    func fetchMonths() -> [Month]? {
+        return nil
+    }
+    func createGoal(data: GoalData, in month: Month) {}
+    func rewriteGoal(with data: GoalData, in goal: Goal) {}
+    func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {}
+    func deleteMonth(month: Month) {}
+    func deleteGoal(goal: Goal) {}
+    func saveContext() {}
+}
+
+class MockRouter: AgendaRouterInput {
+    func showAddGoalModule(in month: Month, moduleDependency: CoreDataManagerProtocol) {}
+    func showDetailsModule(by goal: Goal, moduleDependency: CoreDataManagerProtocol) {}
+    func showOnboarding() {}
+}
+
 /**
  I am testing the `Presenter` and the `Interactor` together, since the `Presenter` is a proxy between the `View` and the `Interactor` without any branches
  */
 class AgendaPresenterInteractorTest: XCTestCase {
     
+    var presenter: AgendaPresenter!
+    var interactor: AgendaInteractor!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        presenter = AgendaPresenter(router: MockRouter(), interactor: interactor)
+        interactor = AgendaInteractor(coreDataManager: MockCoreDataManager())
+        interactor.output = presenter
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        presenter = nil
+        interactor = nil
     }
     
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testFetchData() {
+        presenter.fetchData()
     }
     
 }

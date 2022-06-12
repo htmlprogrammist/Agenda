@@ -492,9 +492,17 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		F0E817482855CE5B00DD4EE1 /* Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Stubs+Spies";
+			sourceTree = "<group>";
+		};
 		F0FFD18528549D1C001EE4A6 /* AgendaModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0E817482855CE5B00DD4EE1 /* Stubs+Spies */,
 				F0FFD18B28549D80001EE4A6 /* AgendaPresenterInteractorTest.swift */,
 			);
 			path = AgendaModuleTests;

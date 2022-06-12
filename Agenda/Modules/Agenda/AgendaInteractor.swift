@@ -12,7 +12,7 @@ final class AgendaInteractor {
     
     private let coreDataManager: CoreDataManagerProtocol
     
-    public var month: Month! // current (Agenda) or selected (MonthDetails) month
+    public var month: Month? // current (Agenda) or selected (MonthDetails) month
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
@@ -21,10 +21,12 @@ final class AgendaInteractor {
 
 extension AgendaInteractor: AgendaInteractorInput {
     func fetchMonthGoals() {
-        if month == nil {
+        if month == nil { // if month was not provided (e.g. in Agenda module)
             self.month = coreDataManager.fetchCurrentMonth()
         }
-        guard let goals = self.month.goals?.array as? [Goal] else {
+        guard let month = month,
+              let goals = month.goals?.array as? [Goal]
+        else {
             output?.dataDidNotFetch()
             return
         }
@@ -32,7 +34,7 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func getGoalAt(_ indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
+        guard let goal = month?.goals?.object(at: indexPath.row) as? Goal else {
             output?.dataDidNotFetch()
             return
         }
@@ -40,7 +42,9 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func replaceGoal(from a: Int, to b: Int) {
-        guard let goal = month.goals?.object(at: a) as? Goal else {
+        guard let month = month,
+              let goal = month.goals?.object(at: a) as? Goal 
+        else {
             output?.dataDidNotFetch()
             return
         }
@@ -48,7 +52,7 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func deleteItem(at indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
+        guard let goal = month?.goals?.object(at: indexPath.row) as? Goal else {
             output?.dataDidNotFetch()
             return
         }
@@ -56,6 +60,10 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func provideDataForAdding() {
+        guard let month = month else {
+            output?.dataDidNotFetch()
+            return
+        }
         output?.showAddGoalModuleWith(month: month, moduleDependency: coreDataManager)
     }
     

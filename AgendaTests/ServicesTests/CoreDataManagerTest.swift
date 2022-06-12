@@ -10,8 +10,7 @@ import CoreData
 @testable import Agenda
 
 class MockCoreDataManagerDelegate: CoreDataManagerDelegate {
-    func updateViewModel() {
-    }
+    func updateViewModel() {}
 }
 
 class CoreDataManagerTest: XCTestCase {
