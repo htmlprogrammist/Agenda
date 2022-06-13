@@ -48,7 +48,10 @@ extension AgendaInteractor: AgendaInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        coreDataManager.replaceGoal(goal, in: month, from: a, to: b)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            self.coreDataManager.replaceGoal(goal, in: month, from: a, to: b)
+        }
     }
     
     func deleteItem(at indexPath: IndexPath) {
@@ -56,7 +59,10 @@ extension AgendaInteractor: AgendaInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        coreDataManager.deleteGoal(goal: goal)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            self.coreDataManager.deleteGoal(goal: goal)
+        }
     }
     
     func provideDataForAdding() {

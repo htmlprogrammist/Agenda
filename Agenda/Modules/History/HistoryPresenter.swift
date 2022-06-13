@@ -29,7 +29,7 @@ extension HistoryPresenter: HistoryViewOutput {
     }
     
     func didSelectRowAt(_ indexPath: IndexPath) {
-        interactor.didSelectRowAt(indexPath)
+        interactor.openDetailsByMonthAt(indexPath)
     }
     
     func deleteItemAt(_ indexPath: IndexPath) {

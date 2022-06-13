@@ -29,7 +29,7 @@ protocol HistoryViewOutput: AnyObject {
 
 protocol HistoryInteractorInput: AnyObject {
     func performFetch()
-    func didSelectRowAt(_ indexPath: IndexPath)
+    func openDetailsByMonthAt(_ indexPath: IndexPath)
     func deleteMonthAt(_ indexPath: IndexPath)
 }
 

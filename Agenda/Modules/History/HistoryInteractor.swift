@@ -28,14 +28,18 @@ extension HistoryInteractor: HistoryInteractorInput {
         output?.dataDidFetch(viewModels: makeViewModels(months))
     }
     
-    func didSelectRowAt(_ indexPath: IndexPath) {
+    func openDetailsByMonthAt(_ indexPath: IndexPath) {
         let month = months[indexPath.row]
         output?.showMonthDetailsModule(month: month, moduleDependency: coreDataManager)
     }
     
     func deleteMonthAt(_ indexPath: IndexPath) {
-        coreDataManager.deleteMonth(month: months[indexPath.row])
-        months.remove(at: indexPath.row)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            self.coreDataManager.deleteMonth(month: self.months[indexPath.row])
+            self.months.remove(at: indexPath.row)
+        }
+        
     }
 }
 

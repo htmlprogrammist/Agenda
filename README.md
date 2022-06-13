@@ -24,6 +24,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 6. Localization
 7. SPM
 8. Testing (Unit/UI)
+9. Concurrency
 
 # Requirements
 - Minimum version: iOS 13
