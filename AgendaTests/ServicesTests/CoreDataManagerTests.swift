@@ -1,5 +1,5 @@
 //
-//  CoreDataManagerTest.swift
+//  CoreDataManagerTests.swift
 //  AgendaTests
 //
 //  Created by Егор Бадмаев on 11.06.2022.
@@ -9,11 +9,11 @@ import XCTest
 import CoreData
 @testable import Agenda
 
-class MockCoreDataManagerDelegate: CoreDataManagerDelegate {
+class CoreDataManagerDelegateMock: CoreDataManagerDelegate {
     func updateViewModel() {}
 }
 
-class CoreDataManagerTest: XCTestCase {
+class CoreDataManagerTests: XCTestCase {
     
     var coreDataManager: CoreDataManager!
     var month: Month!
@@ -28,11 +28,12 @@ class CoreDataManagerTest: XCTestCase {
         month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\((calendarDate.year ?? 1970) - 1)") ?? Date()
         
         for _ in 0..<3 {
-            coreDataManager.viewControllers.append(MockCoreDataManagerDelegate())
+            coreDataManager.viewControllers.append(CoreDataManagerDelegateMock())
         }
     }
     
     override func tearDownWithError() throws {
+        coreDataManager.managedObjectContext.delete(month)
         coreDataManager = nil
         month = nil
     }

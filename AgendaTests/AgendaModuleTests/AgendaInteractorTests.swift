@@ -1,5 +1,5 @@
 //
-//  AgendaInteractorTest.swift
+//  AgendaInteractorTests.swift
 //  AgendaTests
 //
 //  Created by Егор Бадмаев on 11.06.2022.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Agenda
 
-class AgendaInteractorTest: XCTestCase {
+class AgendaInteractorTests: XCTestCase {
     
     var interactor: AgendaInteractor!
     var presenter: AgendaPresenterSpy!
@@ -58,7 +58,7 @@ class AgendaInteractorTest: XCTestCase {
      The next 2 tests describe providing data from presenter to router, when it's time to create new module with some data provided by interactor
      Firstly, we create stub core data manager, recreate interactor with injecting stub and month.
      Then we need to create sample goals to our month, so there will be possibility to get something.
-     In the end, we check that provided goal  is not nil and moduleDependency was provided clearly
+     In the end, we check that provided goal is not nil and moduleDependency was provided clearly
      */
     func testGettingGoalAtIndexPath() {
         let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
