@@ -187,21 +187,13 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
+            alertForDeletion(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription) { [weak self] in
                 guard let strongSelf = self else { return }
                 
                 strongSelf.output.deleteItem(at: indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            let no = UIAlertAction(title: Labels.cancel, style: .default)
-            
-            alert.addAction(yes)
-            alert.addAction(no)
-            
-            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true)
+            }
         }
     }
 }

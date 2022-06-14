@@ -76,7 +76,8 @@ final class SummaryTableViewCell: UITableViewCell {
     }
     
     public func configure(data: Summary) {
-        iconImageView.image = UIImage(systemName: data.iconImagePath, withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))?.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
+//        iconImageView.image = UIImage(systemName: data.iconImagePath, withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))?.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
+        iconImageView.image = data.icon.withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
         titleLabel.text = data.title
         titleLabel.textColor = data.tintColor
         numberLabel.text = NSNumber(value: data.number).stringValue // to display "1" instead of "1.0"

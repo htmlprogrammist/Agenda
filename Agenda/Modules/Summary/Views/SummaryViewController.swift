@@ -9,13 +9,8 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    private let icons = [Icons.grid, Icons.checkmark, Icons.xmark, Icons.sum]
-    private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
-    private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
-    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
-    
     private let output: SummaryViewOutput
+    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -91,8 +86,8 @@ extension SummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
         else { return SummaryTableViewCell() }
-        let summary = Summary(icon: icons[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
-        cell.configure(data: summary)
+        Summary.summaries[indexPath.row].number = numbers[indexPath.row] // provide computed number for Summary model
+        cell.configure(data: Summary.summaries[indexPath.row])
         return cell
     }
     

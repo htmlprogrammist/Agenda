@@ -17,10 +17,8 @@
 		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
-		F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77D27F7B1EC008D184A /* UIAlertController.swift */; };
 		F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
-		F030A20327F8DD51004B375A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030A20227F8DD51004B375A /* AlertError.swift */; };
 		F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037986B285527CB00749971 /* CoreDataManagerTests.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */; };
@@ -61,6 +59,7 @@
 		F07513A6284A9B8200BD887D /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A0284A9B8200BD887D /* SummaryInteractor.swift */; };
 		F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A1284A9B8200BD887D /* SummaryContainer.swift */; };
 		F07FC1C72858DFFF0028C446 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FC1C62858DFFF0028C446 /* Icons.swift */; };
+		F07FC1C92858E9D20028C446 /* CoreDataManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FC1C82858E9D20028C446 /* CoreDataManagerSpy.swift */; };
 		F090EAB328531DE400510ED5 /* UserDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */; };
 		F090EAB528533F7B00510ED5 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB428533F7B00510ED5 /* UserSettings.swift */; };
 		F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */; };
@@ -86,6 +85,7 @@
 		F0DB53292858624F0074FFBA /* SummaryContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB53282858624F0074FFBA /* SummaryContainerTests.swift */; };
 		F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */; };
 		F0DB532D2858626F0074FFBA /* OnboardingContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */; };
+		F0E36EF62858F8170000C9F3 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E36EF52858F8160000C9F3 /* UIAlertController.swift */; };
 		F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */; };
 		F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */; };
 		F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */; };
@@ -130,10 +130,8 @@
 		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
-		F016F77D27F7B1EC008D184A /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
-		F030A20227F8DD51004B375A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		F037986B285527CB00749971 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +172,7 @@
 		F07513A0284A9B8200BD887D /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		F07513A1284A9B8200BD887D /* SummaryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainer.swift; sourceTree = "<group>"; };
 		F07FC1C62858DFFF0028C446 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		F07FC1C82858E9D20028C446 /* CoreDataManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerSpy.swift; sourceTree = "<group>"; };
 		F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsContainer.swift; sourceTree = "<group>"; };
 		F090EAB428533F7B00510ED5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaContainerTests.swift; sourceTree = "<group>"; };
@@ -202,6 +201,7 @@
 		F0DB53282858624F0074FFBA /* SummaryContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainerTests.swift; sourceTree = "<group>"; };
 		F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractorTests.swift; sourceTree = "<group>"; };
 		F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerTests.swift; sourceTree = "<group>"; };
+		F0E36EF52858F8160000C9F3 /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouterMock.swift; sourceTree = "<group>"; };
 		F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenterSpy.swift; sourceTree = "<group>"; };
 		F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
@@ -304,8 +304,8 @@
 		F037C52027F5ED00001D2CBC /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				F0E36EF52858F8160000C9F3 /* UIAlertController.swift */,
 				F037C52127F5ED1F001D2CBC /* UITextField.swift */,
-				F016F77D27F7B1EC008D184A /* UIAlertController.swift */,
 				F053020727FA161D00C62FAC /* UIViewController.swift */,
 			);
 			path = UIKit;
@@ -510,7 +510,6 @@
 		F0BB554027EF510500FA7E99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F030A20227F8DD51004B375A /* AlertError.swift */,
 				F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */,
 				F010C62B27F75D410068E591 /* GoalTableViewCell.swift */,
 			);
@@ -577,6 +576,7 @@
 			children = (
 				F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */,
 				F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */,
+				F07FC1C82858E9D20028C446 /* CoreDataManagerSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
@@ -845,6 +845,7 @@
 				F0DB53272858622B0074FFBA /* SummaryInteractorTests.swift in Sources */,
 				F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */,
 				F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */,
+				F07FC1C92858E9D20028C446 /* CoreDataManagerSpy.swift in Sources */,
 				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,
 				F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */,
@@ -883,7 +884,6 @@
 				F03FE9772849707000F265A2 /* GoalViewModel.swift in Sources */,
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */,
-				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
 				F07FC1C72858DFFF0028C446 /* Icons.swift in Sources */,
 				F065E7ED2847ECBF00FAEFE9 /* AgendaViewController.swift in Sources */,
 				F02572A127FDE750000A9A06 /* Summary.swift in Sources */,
@@ -905,8 +905,8 @@
 				F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */,
 				F065E7EE2847ECBF00FAEFE9 /* AgendaProtocols.swift in Sources */,
 				F03FE96F284955ED00F265A2 /* GoalDetailsPresenter.swift in Sources */,
-				F030A20327F8DD51004B375A /* AlertError.swift in Sources */,
 				F0F45FF02801C90C00BA244D /* String.swift in Sources */,
+				F0E36EF62858F8170000C9F3 /* UIAlertController.swift in Sources */,
 				F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */,
 				F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */,
 				F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */,
