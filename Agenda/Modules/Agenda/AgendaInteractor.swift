@@ -48,9 +48,8 @@ extension AgendaInteractor: AgendaInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else { return }
-            self.coreDataManager.replaceGoal(goal, in: month, from: a, to: b)
+        DispatchQueue.global(qos: .utility).async { [weak coreDataManager] in
+            coreDataManager?.replaceGoal(goal, in: month, from: a, to: b)
         }
     }
     
@@ -59,9 +58,8 @@ extension AgendaInteractor: AgendaInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else { return }
-            self.coreDataManager.deleteGoal(goal: goal)
+        DispatchQueue.global(qos: .utility).async { [weak coreDataManager] in
+            coreDataManager?.deleteGoal(goal: goal)
         }
     }
     

@@ -23,9 +23,8 @@ extension AddGoalInteractor: AddGoalInteractorInput {
     func createGoal(goalData: GoalData) {
         output?.goalDidCreate()
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            self.coreDataManager.createGoal(data: goalData, in: self.month)
+        DispatchQueue.global(qos: .userInitiated).async { [weak coreDataManager] in
+            coreDataManager?.createGoal(data: goalData, in: self.month)
         }
     }
 }

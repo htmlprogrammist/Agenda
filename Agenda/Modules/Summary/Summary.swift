@@ -8,7 +8,7 @@
 import UIKit
 
 struct Summary {
-    let iconImagePath: String
+    let icon: UIImage
     let title: String
     let tintColor: UIColor
     let number: Double

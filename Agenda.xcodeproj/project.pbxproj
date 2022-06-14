@@ -60,6 +60,7 @@
 		F07513A5284A9B8200BD887D /* SummaryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075139F284A9B8200BD887D /* SummaryProtocols.swift */; };
 		F07513A6284A9B8200BD887D /* SummaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A0284A9B8200BD887D /* SummaryInteractor.swift */; };
 		F07513A7284A9B8200BD887D /* SummaryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07513A1284A9B8200BD887D /* SummaryContainer.swift */; };
+		F07FC1C72858DFFF0028C446 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FC1C62858DFFF0028C446 /* Icons.swift */; };
 		F090EAB328531DE400510ED5 /* UserDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */; };
 		F090EAB528533F7B00510ED5 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB428533F7B00510ED5 /* UserSettings.swift */; };
 		F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */; };
@@ -172,6 +173,7 @@
 		F075139F284A9B8200BD887D /* SummaryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProtocols.swift; sourceTree = "<group>"; };
 		F07513A0284A9B8200BD887D /* SummaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractor.swift; sourceTree = "<group>"; };
 		F07513A1284A9B8200BD887D /* SummaryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainer.swift; sourceTree = "<group>"; };
+		F07FC1C62858DFFF0028C446 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsContainer.swift; sourceTree = "<group>"; };
 		F090EAB428533F7B00510ED5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaContainerTests.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 			children = (
 				F0BB552327EF4D5700FA7E99 /* Assets.xcassets */,
 				F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */,
+				F07FC1C62858DFFF0028C446 /* Icons.swift */,
 				F0F45FE62801C2F000BA244D /* Labels.swift */,
 				F0F45FED2801C8DB00BA244D /* Localizable.strings */,
 				F0BB552827EF4D5700FA7E99 /* Info.plist */,
@@ -881,6 +884,7 @@
 				F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */,
 				F065E7EB2847ECBF00FAEFE9 /* AgendaPresenter.swift in Sources */,
 				F016F77E27F7B1EC008D184A /* UIAlertController.swift in Sources */,
+				F07FC1C72858DFFF0028C446 /* Icons.swift in Sources */,
 				F065E7ED2847ECBF00FAEFE9 /* AgendaViewController.swift in Sources */,
 				F02572A127FDE750000A9A06 /* Summary.swift in Sources */,
 				F065E7EC2847ECBF00FAEFE9 /* AgendaRouter.swift in Sources */,
