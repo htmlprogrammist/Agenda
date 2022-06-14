@@ -75,6 +75,16 @@
 		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
 		F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */; };
 		F0D83A9027F065EA0029CFD1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */; };
+		F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB531A285861C20074FFBA /* AddGoalInteractorTests.swift */; };
+		F0DB531D285861D50074FFBA /* AddGoalContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB531C285861D50074FFBA /* AddGoalContainerTests.swift */; };
+		F0DB531F285861EF0074FFBA /* GoalDetailsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB531E285861EF0074FFBA /* GoalDetailsInteractorTests.swift */; };
+		F0DB5321285861FA0074FFBA /* GoalDetailsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB5320285861FA0074FFBA /* GoalDetailsContainerTests.swift */; };
+		F0DB53232858620F0074FFBA /* HistoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB53222858620F0074FFBA /* HistoryInteractorTests.swift */; };
+		F0DB53252858621B0074FFBA /* HistoryContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB53242858621B0074FFBA /* HistoryContainerTests.swift */; };
+		F0DB53272858622B0074FFBA /* SummaryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB53262858622B0074FFBA /* SummaryInteractorTests.swift */; };
+		F0DB53292858624F0074FFBA /* SummaryContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB53282858624F0074FFBA /* SummaryContainerTests.swift */; };
+		F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */; };
+		F0DB532D2858626F0074FFBA /* OnboardingContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */; };
 		F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */; };
 		F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */; };
 		F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */; };
@@ -180,6 +190,16 @@
 		F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C8DA2127F4605200ED47C5 /* Month+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0D83A8F27F065EA0029CFD1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F0DB531A285861C20074FFBA /* AddGoalInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalInteractorTests.swift; sourceTree = "<group>"; };
+		F0DB531C285861D50074FFBA /* AddGoalContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalContainerTests.swift; sourceTree = "<group>"; };
+		F0DB531E285861EF0074FFBA /* GoalDetailsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsInteractorTests.swift; sourceTree = "<group>"; };
+		F0DB5320285861FA0074FFBA /* GoalDetailsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsContainerTests.swift; sourceTree = "<group>"; };
+		F0DB53222858620F0074FFBA /* HistoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractorTests.swift; sourceTree = "<group>"; };
+		F0DB53242858621B0074FFBA /* HistoryContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerTests.swift; sourceTree = "<group>"; };
+		F0DB53262858622B0074FFBA /* SummaryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInteractorTests.swift; sourceTree = "<group>"; };
+		F0DB53282858624F0074FFBA /* SummaryContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainerTests.swift; sourceTree = "<group>"; };
+		F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractorTests.swift; sourceTree = "<group>"; };
+		F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerTests.swift; sourceTree = "<group>"; };
 		F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouterMock.swift; sourceTree = "<group>"; };
 		F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenterSpy.swift; sourceTree = "<group>"; };
 		F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
@@ -505,6 +525,41 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		F0DB532E285866830074FFBA /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
+		F0DB532F285866870074FFBA /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
+		F0DB53302858668D0074FFBA /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
+		F0DB53312858668F0074FFBA /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
+		F0DB5332285866920074FFBA /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
+			sourceTree = "<group>";
+		};
 		F0E817482855CE5B00DD4EE1 /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +592,9 @@
 		F0FFD18628549D2A001EE4A6 /* AddGoalModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB532E285866830074FFBA /* Mocks+Stubs+Spies */,
+				F0DB531A285861C20074FFBA /* AddGoalInteractorTests.swift */,
+				F0DB531C285861D50074FFBA /* AddGoalContainerTests.swift */,
 			);
 			path = AddGoalModuleTests;
 			sourceTree = "<group>";
@@ -544,6 +602,9 @@
 		F0FFD18728549D34001EE4A6 /* GoalDetailsModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB532F285866870074FFBA /* Mocks+Stubs+Spies */,
+				F0DB531E285861EF0074FFBA /* GoalDetailsInteractorTests.swift */,
+				F0DB5320285861FA0074FFBA /* GoalDetailsContainerTests.swift */,
 			);
 			path = GoalDetailsModuleTests;
 			sourceTree = "<group>";
@@ -551,6 +612,9 @@
 		F0FFD18828549D3C001EE4A6 /* HistoryModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB53302858668D0074FFBA /* Mocks+Stubs+Spies */,
+				F0DB53222858620F0074FFBA /* HistoryInteractorTests.swift */,
+				F0DB53242858621B0074FFBA /* HistoryContainerTests.swift */,
 			);
 			path = HistoryModuleTests;
 			sourceTree = "<group>";
@@ -558,6 +622,9 @@
 		F0FFD18928549D42001EE4A6 /* SummaryModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB53312858668F0074FFBA /* Mocks+Stubs+Spies */,
+				F0DB53262858622B0074FFBA /* SummaryInteractorTests.swift */,
+				F0DB53282858624F0074FFBA /* SummaryContainerTests.swift */,
 			);
 			path = SummaryModuleTests;
 			sourceTree = "<group>";
@@ -565,6 +632,9 @@
 		F0FFD18A28549D49001EE4A6 /* OnboardingModuleTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB5332285866920074FFBA /* Mocks+Stubs+Spies */,
+				F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */,
+				F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */,
 			);
 			path = OnboardingModuleTests;
 			sourceTree = "<group>";
@@ -764,13 +834,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0DB532D2858626F0074FFBA /* OnboardingContainerTests.swift in Sources */,
+				F0DB53252858621B0074FFBA /* HistoryContainerTests.swift in Sources */,
+				F0DB531F285861EF0074FFBA /* GoalDetailsInteractorTests.swift in Sources */,
+				F0DB5321285861FA0074FFBA /* GoalDetailsContainerTests.swift in Sources */,
+				F0DB531D285861D50074FFBA /* AddGoalContainerTests.swift in Sources */,
+				F0DB53272858622B0074FFBA /* SummaryInteractorTests.swift in Sources */,
 				F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */,
 				F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */,
 				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,
+				F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */,
+				F0DB53292858624F0074FFBA /* SummaryContainerTests.swift in Sources */,
 				F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */,
 				F0FFD18C28549D80001EE4A6 /* AgendaInteractorTests.swift in Sources */,
+				F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */,
 				F0EC6494285640A400DC0042 /* AgendaRouterTests.swift in Sources */,
+				F0DB53232858620F0074FFBA /* HistoryInteractorTests.swift in Sources */,
 				F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

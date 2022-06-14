@@ -36,11 +36,11 @@ extension AgendaPresenter: AgendaViewOutput {
         interactor.checkForOnboarding()
     }
     
-    func didSelectRowAt(_ indexPath: IndexPath) {
-        interactor.getGoalAt(indexPath)
+    func didSelectRow(at indexPath: IndexPath) {
+        interactor.getGoal(at: indexPath)
     }
     
-    func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func moveRow(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         interactor.replaceGoal(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     

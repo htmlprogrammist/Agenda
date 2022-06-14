@@ -33,7 +33,7 @@ extension AgendaInteractor: AgendaInteractorInput {
         output?.monthDidFetch(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), date: month.date.formatTo("MMMMy"))
     }
     
-    func getGoalAt(_ indexPath: IndexPath) {
+    func getGoal(at indexPath: IndexPath) {
         guard let goal = month?.goals?.object(at: indexPath.row) as? Goal else {
             output?.dataDidNotFetch()
             return

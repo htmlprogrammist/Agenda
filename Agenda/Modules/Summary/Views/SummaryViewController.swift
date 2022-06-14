@@ -52,7 +52,10 @@ final class SummaryViewController: UIViewController {
 extension SummaryViewController: SummaryViewInput {
     func setData(numbers: [Double]) {
         self.numbers = numbers
-        tableView.reloadData()
+        
+        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
     
     func showAlert(title: String, message: String) {

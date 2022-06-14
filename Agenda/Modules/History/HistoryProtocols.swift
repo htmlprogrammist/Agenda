@@ -23,14 +23,14 @@ protocol HistoryViewInput: AnyObject {
 protocol HistoryViewOutput: AnyObject {
     func fetchData()
     
-    func didSelectRowAt(_ indexPath: IndexPath)
-    func deleteItemAt(_ indexPath: IndexPath)
+    func didSelectRow(at indexPath: IndexPath)
+    func deleteItem(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorInput: AnyObject {
     func performFetch()
-    func openDetailsByMonthAt(_ indexPath: IndexPath)
-    func deleteMonthAt(_ indexPath: IndexPath)
+    func openDetailsByMonth(at indexPath: IndexPath)
+    func deleteMonth(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorOutput: AnyObject {

@@ -173,7 +173,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        output.didSelectRowAt(indexPath)
+        output.didSelectRow(at: indexPath)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -182,7 +182,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        output.moveRowAt(from: sourceIndexPath, to: destinationIndexPath)
+        output.moveRow(from: sourceIndexPath, to: destinationIndexPath)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

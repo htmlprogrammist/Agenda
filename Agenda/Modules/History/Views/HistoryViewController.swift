@@ -44,7 +44,10 @@ extension HistoryViewController: HistoryViewInput {
     
     func setData(viewModels: [MonthViewModel]) {
         self.viewModels = viewModels
-        tableView.reloadData()
+        
+        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
 }
 
@@ -81,7 +84,7 @@ extension HistoryViewController {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-            output.didSelectRowAt(indexPath)
+            output.didSelectRow(at: indexPath)
         }
     }
     
@@ -104,7 +107,7 @@ extension HistoryViewController {
             let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
-                strongSelf.output.deleteItemAt(indexPath)
+                strongSelf.output.deleteItem(at: indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             })
