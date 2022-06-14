@@ -10,7 +10,10 @@ import UIKit
 final class SummaryViewController: UIViewController {
     
     private let output: SummaryViewOutput
-    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
+    // TODO: rewrite this comment
+    /// Indexes of `Summary.summaries` - instances of `Summary` to display data in cells. User selects the data he needs and then we add/remove these indexes.
+    private var cells: [SummaryCell] = [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
+    private var summaries: [Summary] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -39,14 +42,14 @@ final class SummaryViewController: UIViewController {
         tabBarController?.tabBar.backgroundColor = .systemBackground
         title = Labels.Summary.title
         
-        setupViewAndConstraints()
         output.fetchData()
+        setupViewAndConstraints()
     }
 }
 
 extension SummaryViewController: SummaryViewInput {
-    func setData(numbers: [Double]) {
-        self.numbers = numbers
+    func setData(summaries: [Summary]) {
+        self.summaries = summaries
         
         UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
             self?.tableView.reloadData()
@@ -76,7 +79,7 @@ private extension SummaryViewController {
 extension SummaryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        numbers.count
+        summaries.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +89,7 @@ extension SummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
         else { return SummaryTableViewCell() }
-        Summary.summaries[indexPath.row].number = numbers[indexPath.row] // provide computed number for Summary model
-        cell.configure(data: Summary.summaries[indexPath.row])
+        cell.configure(data: summaries[cells[indexPath.section].rawValue])
         return cell
     }
     

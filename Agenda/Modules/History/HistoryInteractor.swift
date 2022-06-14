@@ -25,7 +25,10 @@ extension HistoryInteractor: HistoryInteractorInput {
             return
         }
         self.months = months
-        output?.dataDidFetch(viewModels: makeViewModels(months))
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.output?.dataDidFetch(viewModels: strongSelf.makeViewModels(months))
+        }
     }
     
     func openDetailsByMonth(at indexPath: IndexPath) {
@@ -39,7 +42,6 @@ extension HistoryInteractor: HistoryInteractorInput {
             self.coreDataManager.deleteMonth(month: self.months[indexPath.row])
             self.months.remove(at: indexPath.row)
         }
-        
     }
 }
 

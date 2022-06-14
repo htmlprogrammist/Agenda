@@ -65,7 +65,12 @@ final class AgendaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        output.fetchData() // in month details mode there is no possibility to update view models, so fetching data is now here
+        /**
+         There is no possibility to update view models in month details, when you change goal details.
+         So, the only solution we have is to update every time `viewWillAppear` method is being called.
+         This will not affect negatively on the app's perfomance, because in Agenda this method is called only one time and month details is used by user rarely.
+         */
+        output.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {

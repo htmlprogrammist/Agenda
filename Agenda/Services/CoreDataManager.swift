@@ -8,7 +8,7 @@
 import CoreData
 
 protocol CoreDataManagerProtocol: AnyObject {
-    func fetchCurrentMonth() -> Month?
+    func fetchCurrentMonth() -> Month
     func fetchMonths() -> [Month]?
     
     func createGoal(data: GoalData, in month: Month)
@@ -43,7 +43,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     }
     
     // Fetches current month or creates a new one
-    func fetchCurrentMonth() -> Month? {
+    func fetchCurrentMonth() -> Month {
         
         let calendarDate = Calendar.current.dateComponents([.year, .month], from: Date())
         let dateFormatter = DateFormatter()
@@ -57,7 +57,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         if let months = months, !months.isEmpty {
             // filled with smth? Ok then, display **current** month
-            return months.first
+            return months.first!
         } else {
             // empty? Ok, create new month
             let month = Month(context: managedObjectContext)

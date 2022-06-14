@@ -7,10 +7,21 @@
 
 import Foundation
 
+enum SummaryCell: Int {
+    case percentOfSetGoals, completedGoals, uncompletedGoals, allGoals
+}
+
 final class SummaryInteractor {
     weak var output: SummaryInteractorOutput?
     
     public let coreDataManager: CoreDataManagerProtocol
+    
+    var summaries: [Summary] = [
+        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)"),
+        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension),
+        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension),
+        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension)
+    ]
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
@@ -23,22 +34,24 @@ extension SummaryInteractor: SummaryInteractorInput {
             output?.dataDidNotFetch()
             return
         }
-        output?.dataDidFetch(numbers: countGoals(months: months))
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.countGoals(months: months)
+            strongSelf.output?.dataDidFetch(data: strongSelf.summaries)
+        }
     }
 }
 
 // MARK: - Helper methods
 private extension SummaryInteractor {
-    func countGoals(months: [Month]) -> [Double] {
+    func countGoals(months: [Month]) {
         var completedGoalsCounter = 0.0
         var uncompletedGoalsCounter = 0.0
         var allGoalsCounter = 0.0
         var percentage = 0.0
         
         for month in months {
-            guard let goals = month.goals?.array as? [Goal] else {
-                return []
-            }
+            guard let goals = month.goals?.array as? [Goal] else { return }
             for goal in goals {
                 if goal.current >= goal.aim {
                     completedGoalsCounter += 1
@@ -52,6 +65,9 @@ private extension SummaryInteractor {
                 percentage = round(100 * Double(completedGoalsCounter) / Double(allGoalsCounter))
             }
         }
-        return [percentage, completedGoalsCounter, uncompletedGoalsCounter, allGoalsCounter]
+        summaries[SummaryCell.percentOfSetGoals.rawValue].number = percentage
+        summaries[SummaryCell.completedGoals.rawValue].number = completedGoalsCounter
+        summaries[SummaryCell.uncompletedGoals.rawValue].number = uncompletedGoalsCounter
+        summaries[SummaryCell.allGoals.rawValue].number = allGoalsCounter
     }
 }
