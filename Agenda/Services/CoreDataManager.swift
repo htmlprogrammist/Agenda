@@ -143,8 +143,10 @@ private extension CoreDataManager {
     }
     
     func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
-        for viewController in viewControllers {
-            self.viewControllers[viewController.rawValue].updateViewModel()
+        DispatchQueue.main.async { [weak self] in
+            for viewController in viewControllers {
+                self?.viewControllers[viewController.rawValue].updateViewModel()
+            }
         }
     }
 }

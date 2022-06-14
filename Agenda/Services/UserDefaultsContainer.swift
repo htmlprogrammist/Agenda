@@ -10,7 +10,7 @@ import Foundation
 final class UserDefaultsContainer<K: CodingKey> {
     private let userDefaults: UserDefaults
     
-    public init(keyedBy: K.Type, userDefaults: UserDefaults = .standard) {
+    init(keyedBy: K.Type, userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
     }
     

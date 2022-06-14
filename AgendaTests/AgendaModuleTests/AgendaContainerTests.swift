@@ -56,7 +56,7 @@ class AgendaContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutput() {
+    func testCreatingWithoutModuleOutputAndMonth() {
         context = AgendaContext(moduleDependency: CoreDataManagerMock())
         container = AgendaContainer.assemble(with: context)
         
