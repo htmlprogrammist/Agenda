@@ -39,13 +39,12 @@ class CoreDataManagerTests: XCTestCase {
     }
     
     /**
-     The next two tests will check for providing months. Both of them should not return nil
+     The next two tests will check for providing months. Both of them should not throw an error or return nil 
      `fetchCurrentMonth(:)` method must always return month instance
      `fetchMonths(:)` method must always return array of months
      */
     func testFetchingCurrentMonth() {
-        let month = coreDataManager.fetchCurrentMonth()
-        XCTAssertNotNil(month, "Month should not be nil")
+        XCTAssertNoThrow(coreDataManager.fetchCurrentMonth())
     }
     
     func testFetchingArrayOfMonths() {

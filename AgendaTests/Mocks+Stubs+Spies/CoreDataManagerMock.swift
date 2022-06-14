@@ -8,8 +8,8 @@
 @testable import Agenda
 
 class CoreDataManagerMock: CoreDataManagerProtocol {
-    func fetchCurrentMonth() -> Month? {
-        return nil
+    func fetchCurrentMonth() -> Month {
+        return Month()
     }
     func fetchMonths() -> [Month]? {
         return nil

@@ -15,7 +15,7 @@ class AgendaPresenterSpy: AgendaInteractorOutput {
     var dataDidNotFetchBool = false
     var dependencyProvided: CoreDataManagerProtocol?
     var monthProvided: Month?
-    var goalProvided: Goal?
+    var goalDidProvide = false
     var onboardingDidShow = false
     
     func monthDidFetch(viewModels: [GoalViewModel], monthInfo: DateViewModel, date: String) {
@@ -34,7 +34,7 @@ class AgendaPresenterSpy: AgendaInteractorOutput {
     }
     
     func showDetailsModuleWith(goal: Goal, moduleDependency: CoreDataManagerProtocol) {
-        goalProvided = goal
+        goalDidProvide = true
         dependencyProvided = moduleDependency
     }
     

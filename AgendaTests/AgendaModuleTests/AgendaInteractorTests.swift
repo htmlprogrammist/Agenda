@@ -12,18 +12,21 @@ class AgendaInteractorTests: XCTestCase {
     
     var interactor: AgendaInteractor!
     var presenter: AgendaPresenterSpy!
+    var expectation: XCTestExpectation!
     
-    let stubCoreDataManager = CoreDataManagerStub(containerName: "Agenda")
+    let coreDataManager = CoreDataManagerSpy(containerName: "Agenda")
     
     override func setUpWithError() throws {
         presenter = AgendaPresenterSpy()
-        interactor = AgendaInteractor(coreDataManager: stubCoreDataManager)
+        interactor = AgendaInteractor(coreDataManager: coreDataManager)
+        
         interactor.output = presenter
     }
     
     override func tearDownWithError() throws {
         interactor = nil
         presenter = nil
+        expectation = nil
     }
     
     /**
@@ -41,10 +44,9 @@ class AgendaInteractorTests: XCTestCase {
     }
     
     func testFetchMonthGoalsWithProvidedMonth() {
-        let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
-        if let month = month {
-            interactor.month = month
-        }
+        let month = coreDataManager.fetchCurrentMonth() // creates new month
+        interactor.month = month
+        
         interactor.fetchMonthGoals()
         
         XCTAssertFalse(presenter.dataDidNotFetchBool)
@@ -61,36 +63,30 @@ class AgendaInteractorTests: XCTestCase {
      In the end, we check that provided goal is not nil and moduleDependency was provided clearly
      */
     func testGettingGoalAtIndexPath() {
-        let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
-        if let month = month {
-            interactor.month = month
-            let goalData = GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: "")
-            for _ in 0..<3 {
-                stubCoreDataManager.createGoal(data: goalData, in: month)
-            }
-        }
-        let indexPath = IndexPath(row: 0, section: 0)
+        let month = coreDataManager.fetchCurrentMonth() // creates new month
+        interactor.month = month
+        coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
         
-        interactor.getGoalAt(indexPath)
+        interactor.getGoal(at: IndexPath(row: 0, section: 0))
         XCTAssertFalse(presenter.dataDidNotFetchBool)
-        XCTAssertNotNil(presenter.goalProvided, "Goal was not provided by interactor")
-        XCTAssertIdentical(stubCoreDataManager, presenter.dependencyProvided)
+        XCTAssertTrue(presenter.goalDidProvide, "Goal was not provided by interactor")
+        XCTAssertIdentical(coreDataManager, presenter.dependencyProvided)
     }
     
     func testDataProvidingForAddingGoalModule() {
-        let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
-        if let month = month {
-            interactor.month = month
-        }
+        let month = coreDataManager.fetchCurrentMonth() // creates new month
+        interactor.month = month
         
         interactor.provideDataForAdding()
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         XCTAssertNotNil(presenter.monthProvided, "Month was not provided by interactor")
-        XCTAssertIdentical(stubCoreDataManager, presenter.dependencyProvided)
+        XCTAssertIdentical(coreDataManager, presenter.dependencyProvided)
     }
-    /*
-     In this test we simulate opening onboarding, and then check:
-     If user hasn't onboarded, onboarding will be shown, otherwise - on the contrary
+    
+    /**
+     We simulate opening onboarding, and then check: if user hasn't onboarded, onboarding will be shown, otherwise - on the contrary.
+     So, the `settings.hasOnboarded` and `presenter.onboardingDidShow` will never be equal.
+     If user **has onboarded**, the onboarding **will not be shown** and vice versa.
      */
     func testCheckForOnboarding() {
         interactor.checkForOnboarding()
@@ -99,53 +95,43 @@ class AgendaInteractorTests: XCTestCase {
     }
     
     /**
-     Firstly, we create month with sample goals
-     Then we use method under test that will replace first goal to the last place and check that there was not any errors
+     We test providing all the data to the Core Data Manager.
+     Because of usage asynchronous replacing goal (because it has no affect on view (except slight hanging), so we may do this in the background for better perfomance).
+     That is why we need to use `expectation` in our tests. The `fulFill()` method of the expectation is called inside `CoreDataManagerSpy` and is injected right down in the test.
+     We need to create sample goal, because the `replaceGoal(from:, to:)` method of Interactor provide `Goal` instance at `from` index to the replacing method of Core Data Manager.
      */
     func testReplacingGoal() {
-        let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
-        if let month = month {
-            interactor.month = month
-            
-            for i in 1...3 {
-                let goalData = GoalData(title: "Sample goal \(i)", current: "\(75 + i * 5)", aim: "\(100)", notes: "")
-                stubCoreDataManager.createGoal(data: goalData, in: month)
-            }
-        }
+        expectation = self.expectation(description: "replacingGoalExpectation")
+        coreDataManager.expectation = expectation
+        let month = coreDataManager.fetchCurrentMonth() // creates new month
+        interactor.month = month
+        coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
         
         interactor.replaceGoal(from: 0, to: 2)
         XCTAssertFalse(presenter.dataDidNotFetchBool)
+        waitForExpectations(timeout: 3, handler: nil)
         
-        if let goals = month?.goals?.array as? [Goal] {
-            XCTAssertNotEqual(goals.first?.name, "Sample goal 1") // 1st goal is not the first now
-            XCTAssertEqual(goals.last?.name, "Sample goal 1")
-            XCTAssertNotEqual(goals.last?.name, "Sample goal 3") // 3rd goal is not the last
-        }
+        XCTAssertTrue(coreDataManager.goalDidReplace)
+        XCTAssertNotNil(coreDataManager.month)
+        XCTAssertNotNil(coreDataManager.goal)
+        XCTAssertNotNil(coreDataManager.fromTo)
     }
     
     /**
-     We delete first goal (at index path 0 and 0) from sample goals array, then check, that this array does not contains deleted goal
+     Same as in the previous test, we use asynchronous deleting goal (because it has no affect on view (except slight hanging), so we may do this in the background for better perfomance).
+     We assert true, that the goal was deleted by Core Data Manager.
+     We need to create sample goal, because `deleteItem(at:)` method of Interactor requires `IndexPath` of the goal to be deleted to get its' instance and provides it to the Core Data Manager
      */
     func testDeletingGoal() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        var deletedGoal: Goal!
+        expectation = self.expectation(description: "deletingGoalExpectation")
+        coreDataManager.expectation = expectation
+        let month = coreDataManager.fetchCurrentMonth() // creates new month
+        interactor.month = month
+        coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
         
-        let month = stubCoreDataManager.fetchCurrentMonth() // creates new month
-        if let month = month {
-            interactor.month = month
-            
-            for i in 1...3 {
-                let goalData = GoalData(title: "Sample goal \(i)", current: "\(75 + i * 5)", aim: "\(100)", notes: "")
-                stubCoreDataManager.createGoal(data: goalData, in: month)
-            }
-        }
-        if let goal = month?.goals?.object(at: indexPath.row) as? Goal {
-            deletedGoal = goal
-        }
-        interactor.deleteItem(at: indexPath)
+        interactor.deleteItem(at: IndexPath(row: 0, section: 0))
         
-        if let goals = month?.goals?.array as? [Goal] {
-            XCTAssertFalse(goals.contains(deletedGoal))
-        }
+        waitForExpectations(timeout: 3, handler: nil)
+        XCTAssertTrue(coreDataManager.goalDidDelete)
     }
 }

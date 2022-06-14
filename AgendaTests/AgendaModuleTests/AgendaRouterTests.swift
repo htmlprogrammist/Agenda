@@ -32,26 +32,21 @@ class AgendaRouterTests: XCTestCase {
      And that some view controller is presented
      */
     func testOpeningAddGoalModule() {
-        let stubCoreDataManager = CoreDataManagerStub(containerName: "Agenda")
-        let month = stubCoreDataManager.fetchCurrentMonth()
-        
-        if let month = month {
-            router.showAddGoalModule(in: month, moduleDependency: stubCoreDataManager)
-        }
+        let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
+        let month = coreDataManager.fetchCurrentMonth()
+        router.showAddGoalModule(in: month, moduleDependency: coreDataManager)
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")
         XCTAssertNotIdentical(router.navigationController, router.navigationController?.presentedViewController)
     }
     
     func testOpeningGoalDetailsModule() {
-        let stubCoreDataManager = CoreDataManagerStub(containerName: "Agenda")
-        let month = stubCoreDataManager.fetchCurrentMonth()
-        if let month = month {
-            stubCoreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
-        }
+        let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
+        let month = coreDataManager.fetchCurrentMonth()
+        coreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
         
-        if let goal = month?.goals?.object(at: 0) as? Goal {
-            router.showDetailsModule(by: goal, moduleDependency: stubCoreDataManager)
+        if let goal = month.goals?.object(at: 0) as? Goal {
+            router.showDetailsModule(by: goal, moduleDependency: coreDataManager)
         }
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")
@@ -70,12 +65,10 @@ class AgendaRouterTests: XCTestCase {
      And that there is no view controller in presented
      */
     func testDismissingAddGoalModule() {
-        let stubCoreDataManager = CoreDataManagerStub(containerName: "Agenda")
-        let month = stubCoreDataManager.fetchCurrentMonth()
+        let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
+        let month = coreDataManager.fetchCurrentMonth()
         
-        if let month = month {
-            router.showAddGoalModule(in: month, moduleDependency: stubCoreDataManager)
-        }
+        router.showAddGoalModule(in: month, moduleDependency: coreDataManager)
         router.addGoalModuleDidFinish()
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")
@@ -83,14 +76,12 @@ class AgendaRouterTests: XCTestCase {
     }
     
     func testDismissingGoalDetailsModule() {
-        let stubCoreDataManager = CoreDataManagerStub(containerName: "Agenda")
-        let month = stubCoreDataManager.fetchCurrentMonth()
-        if let month = month {
-            stubCoreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
-        }
+        let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
+        let month = coreDataManager.fetchCurrentMonth()
+        coreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
         
-        if let goal = month?.goals?.object(at: 0) as? Goal {
-            router.showDetailsModule(by: goal, moduleDependency: stubCoreDataManager)
+        if let goal = month.goals?.object(at: 0) as? Goal {
+            router.showDetailsModule(by: goal, moduleDependency: coreDataManager)
         }
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")

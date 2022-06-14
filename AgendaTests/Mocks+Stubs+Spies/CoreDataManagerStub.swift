@@ -40,7 +40,7 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
     }
     
     // creates sample month
-    func fetchCurrentMonth() -> Month? {
+    func fetchCurrentMonth() -> Month {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         
         let month = Month(context: managedObjectContext)
