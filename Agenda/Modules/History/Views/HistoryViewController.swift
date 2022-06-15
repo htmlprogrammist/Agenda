@@ -44,10 +44,7 @@ extension HistoryViewController: HistoryViewInput {
     
     func setData(viewModels: [MonthViewModel]) {
         self.viewModels = viewModels
-        
-        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
-            self?.tableView.reloadData()
-        })
+        tableView.reloadData()
     }
 }
 

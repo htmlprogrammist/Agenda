@@ -39,9 +39,7 @@ extension HistoryPresenter: HistoryViewOutput {
 
 extension HistoryPresenter: HistoryInteractorOutput {
     func dataDidFetch(viewModels: [MonthViewModel]) {
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setData(viewModels: viewModels)
-        }
+        view?.setData(viewModels: viewModels)
     }
     
     func dataDidNotFetch() {

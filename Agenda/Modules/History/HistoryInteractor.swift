@@ -25,10 +25,7 @@ extension HistoryInteractor: HistoryInteractorInput {
             return
         }
         self.months = months
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.output?.dataDidFetch(viewModels: strongSelf.makeViewModels(months))
-        }
+        output?.dataDidFetch(viewModels: makeViewModels(months))
     }
     
     func openDetailsByMonth(at indexPath: IndexPath) {

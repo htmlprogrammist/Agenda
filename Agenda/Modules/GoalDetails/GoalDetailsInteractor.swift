@@ -27,8 +27,8 @@ extension GoalDetailsInteractor: GoalDetailsInteractorInput {
     func rewriteGoal(with data: GoalData) {
         output?.goalDidRewrite()
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak coreDataManager] in
-            coreDataManager?.rewriteGoal(with: data, in: self.goal)
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            coreDataManager.rewriteGoal(with: data, in: goal)
         }
     }
     

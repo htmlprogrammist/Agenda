@@ -10,9 +10,6 @@ import UIKit
 final class SummaryViewController: UIViewController {
     
     private let output: SummaryViewOutput
-    // TODO: rewrite this comment
-    /// Indexes of `Summary.summaries` - instances of `Summary` to display data in cells. User selects the data he needs and then we add/remove these indexes.
-    private var cells: [SummaryCell] = [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
     private var summaries: [Summary] = []
     
     private lazy var tableView: UITableView = {
@@ -50,10 +47,7 @@ final class SummaryViewController: UIViewController {
 extension SummaryViewController: SummaryViewInput {
     func setData(summaries: [Summary]) {
         self.summaries = summaries
-        
-        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { [weak self] in
-            self?.tableView.reloadData()
-        })
+        tableView.reloadData()
     }
     
     func showAlert(title: String, message: String) {
@@ -89,7 +83,7 @@ extension SummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
         else { return SummaryTableViewCell() }
-        cell.configure(data: summaries[cells[indexPath.section].rawValue])
+        cell.configure(data: summaries[indexPath.section])
         return cell
     }
     
