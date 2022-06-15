@@ -63,6 +63,8 @@
 		F090EAB328531DE400510ED5 /* UserDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */; };
 		F090EAB528533F7B00510ED5 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F090EAB428533F7B00510ED5 /* UserSettings.swift */; };
 		F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */; };
+		F0AD059D285A65DA000612BE /* GoalDetailsPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AD059C285A65DA000612BE /* GoalDetailsPresenterSpy.swift */; };
+		F0AD059F285A7058000612BE /* HistoryPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AD059E285A7058000612BE /* HistoryPresenterSpy.swift */; };
 		F0BB551B27EF4D5400FA7E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */; };
 		F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */; };
 		F0BB552427EF4D5700FA7E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BB552327EF4D5700FA7E99 /* Assets.xcassets */; };
@@ -176,6 +178,8 @@
 		F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsContainer.swift; sourceTree = "<group>"; };
 		F090EAB428533F7B00510ED5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F0A831BD28560FC5006F47CF /* AgendaContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaContainerTests.swift; sourceTree = "<group>"; };
+		F0AD059C285A65DA000612BE /* GoalDetailsPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsPresenterSpy.swift; sourceTree = "<group>"; };
+		F0AD059E285A7058000612BE /* HistoryPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenterSpy.swift; sourceTree = "<group>"; };
 		F0BB551727EF4D5400FA7E99 /* Agenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BB551A27EF4D5400FA7E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BB551C27EF4D5400FA7E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -527,16 +531,10 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		F0DB532E285866830074FFBA /* Mocks+Stubs+Spies */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Mocks+Stubs+Spies";
-			sourceTree = "<group>";
-		};
 		F0DB532F285866870074FFBA /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
+				F0AD059C285A65DA000612BE /* GoalDetailsPresenterSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
@@ -544,18 +542,12 @@
 		F0DB53302858668D0074FFBA /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
+				F0AD059E285A7058000612BE /* HistoryPresenterSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
 		};
 		F0DB53312858668F0074FFBA /* Mocks+Stubs+Spies */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Mocks+Stubs+Spies";
-			sourceTree = "<group>";
-		};
-		F0DB5332285866920074FFBA /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -595,7 +587,6 @@
 		F0FFD18628549D2A001EE4A6 /* AddGoalModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				F0DB532E285866830074FFBA /* Mocks+Stubs+Spies */,
 				F0DB531A285861C20074FFBA /* AddGoalInteractorTests.swift */,
 				F0DB531C285861D50074FFBA /* AddGoalContainerTests.swift */,
 			);
@@ -635,7 +626,6 @@
 		F0FFD18A28549D49001EE4A6 /* OnboardingModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				F0DB5332285866920074FFBA /* Mocks+Stubs+Spies */,
 				F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */,
 				F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */,
 			);
@@ -838,6 +828,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0DB532D2858626F0074FFBA /* OnboardingContainerTests.swift in Sources */,
+				F0AD059D285A65DA000612BE /* GoalDetailsPresenterSpy.swift in Sources */,
 				F0DB53252858621B0074FFBA /* HistoryContainerTests.swift in Sources */,
 				F0DB531F285861EF0074FFBA /* GoalDetailsInteractorTests.swift in Sources */,
 				F0DB5321285861FA0074FFBA /* GoalDetailsContainerTests.swift in Sources */,
@@ -846,6 +837,7 @@
 				F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */,
 				F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */,
 				F07FC1C92858E9D20028C446 /* CoreDataManagerSpy.swift in Sources */,
+				F0AD059F285A7058000612BE /* HistoryPresenterSpy.swift in Sources */,
 				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,
 				F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */,

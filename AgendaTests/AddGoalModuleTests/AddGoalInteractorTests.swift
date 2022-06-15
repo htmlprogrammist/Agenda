@@ -6,30 +6,51 @@
 //
 
 import XCTest
+@testable import Agenda
+
+class AddGoalPresenterSpy: AddGoalInteractorOutput {
+    var goalDidCreateBool = false
+    
+    func goalDidCreate() {
+        goalDidCreateBool = true
+    }
+}
 
 class AddGoalInteractorTests: XCTestCase {
+    
+    var interactor: AddGoalInteractor!
+    var presenter: AddGoalPresenterSpy!
+    var coreDataManager: CoreDataManagerSpy!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        coreDataManager = CoreDataManagerSpy(containerName: "Agenda")
+        presenter = AddGoalPresenterSpy()
+        interactor = AddGoalInteractor(coreDataManager: coreDataManager)
+        interactor.output = presenter
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        interactor = nil
+        presenter = nil
+        coreDataManager = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    /**
+     Because of usage asynchronous creating goal (because it has no affect on view (except slight hanging), so we may do this in the background for better perfomance).
+     That is why we need to use `expectation` in our tests. The `fulFill()` method of the expectation is called inside `CoreDataManagerSpy` and is injected right down in the test.
+     This method requires data to create goal and `Month` instance to create goal in that month.
+     */
+    func testCreatingGoal() {
+        let expectation = self.expectation(description: "Creating goal expectation")
+        coreDataManager.expectation = expectation
+        let goalData = GoalData(title: "Sample", current: "\(20)", aim: "\(100)")
+        let month = coreDataManager.fetchCurrentMonth()
+        interactor.month = month
+        
+        interactor.createGoal(goalData: goalData)
+        
+        waitForExpectations(timeout: 1)
+        XCTAssertTrue(presenter.goalDidCreateBool)
+        XCTAssertTrue(coreDataManager.goalDidCreate)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

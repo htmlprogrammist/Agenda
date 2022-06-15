@@ -47,6 +47,8 @@ class AgendaRouterTests: XCTestCase {
         
         if let goal = month.goals?.object(at: 0) as? Goal {
             router.showDetailsModule(by: goal, moduleDependency: coreDataManager)
+        } else {
+            XCTFail("Goal should not be nil")
         }
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")
@@ -82,6 +84,8 @@ class AgendaRouterTests: XCTestCase {
         
         if let goal = month.goals?.object(at: 0) as? Goal {
             router.showDetailsModule(by: goal, moduleDependency: coreDataManager)
+        } else {
+            XCTFail("Goal should not be nil")
         }
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")

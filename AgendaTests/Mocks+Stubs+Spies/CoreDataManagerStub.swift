@@ -37,20 +37,22 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
         }
         persistentContainer = container
         managedObjectContext = persistentContainer.newBackgroundContext()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
     }
     
     // creates sample month
     func fetchCurrentMonth() -> Month {
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        
         let month = Month(context: managedObjectContext)
         month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
-        
         return month
     }
     
     func fetchMonths() -> [Month]? {
-        nil
+        let month1 = Month(context: managedObjectContext)
+        month1.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
+        let month2 = Month(context: managedObjectContext)
+        month2.date = dateFormatter.date(from: "01.\((calendarDate.month ?? 2) - 1).\(calendarDate.year ?? 0)") ?? Date()
+        return [month1, month2]
     }
     
     func createGoal(data: GoalData, in month: Month) {
@@ -66,22 +68,15 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
     }
     
     func rewriteGoal(with data: GoalData, in goal: Goal) {
-        
     }
     
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {
-        month.removeFromGoals(at: from)
-        month.insertIntoGoals(goal, at: to)
-        saveContext()
     }
     
     func deleteMonth(month: Month) {
-        
     }
     
     func deleteGoal(goal: Goal) {
-        managedObjectContext.delete(goal)
-        saveContext()
     }
     
     func saveContext() {

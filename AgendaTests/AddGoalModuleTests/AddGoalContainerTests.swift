@@ -6,30 +6,49 @@
 //
 
 import XCTest
+@testable import Agenda
+
+class AddGoalModuleOutputMock: AddGoalModuleOutput {
+    func addGoalModuleDidFinish() {
+    }
+}
 
 class AddGoalContainerTests: XCTestCase {
-
+    
+    var coreDataManager: CoreDataManagerStub!
+    var month: Month!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        coreDataManager = CoreDataManagerStub(containerName: "Agenda")
+        month = coreDataManager.fetchCurrentMonth()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        coreDataManager = nil
+        month = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    /**
+     In the next 2 tests we check different cases of assembling `AddGoalContainer`: with and without provided `moduleOutput`
+     */
+    func testCreatingWithFullContext() {
+        let moduleOutput = AddGoalModuleOutputMock()
+        let context = AddGoalContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager, month: month)
+        let container = AddGoalContainer.assemble(with: context)
+        
+        XCTAssertNotNil(container.input, "Module input should not be nil")
+        XCTAssertIdentical(moduleOutput, container.input.moduleOutput, "All injected dependencies should be identical")
+        XCTAssertNotNil(container.viewController)
+        XCTAssertNotNil(container.router)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testCreatingWithoutModuleOutput() {
+        let context = AddGoalContext(moduleDependency: coreDataManager, month: month)
+        let container = AddGoalContainer.assemble(with: context)
+        
+        XCTAssertNotNil(container.input, "Module input should not be nil")
+        XCTAssertNil(container.input.moduleOutput, "Module output was not provided and should be nil")
+        XCTAssertNotNil(container.viewController)
+        XCTAssertNotNil(container.router)
     }
-
 }

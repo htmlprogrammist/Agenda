@@ -84,6 +84,8 @@ class CoreDataManagerTests: XCTestCase {
         let createdGoal = month.goals?.array.first as? Goal
         if let goal = createdGoal {
             coreDataManager.rewriteGoal(with: newGoalData, in: goal)
+        } else {
+            XCTFail("Created goal should not be nil")
         }
         XCTAssertNotNil(createdGoal, "Created goal should not be nil")
         XCTAssertNotEqual("\(createdGoal?.current ?? 0)", startGoalData.current)
@@ -104,6 +106,8 @@ class CoreDataManagerTests: XCTestCase {
         
         if let goal = firstGoal {
             coreDataManager.replaceGoal(goal, in: month, from: 0, to: 2)
+        } else {
+            XCTFail("Goal should not be nil")
         }
         let goals = month.goals?.array as? [Goal]
         
