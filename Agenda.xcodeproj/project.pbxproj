@@ -89,7 +89,6 @@
 		F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */; };
 		F0DB532D2858626F0074FFBA /* OnboardingContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */; };
 		F0E36EF62858F8170000C9F3 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E36EF52858F8160000C9F3 /* UIAlertController.swift */; };
-		F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */; };
 		F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */; };
 		F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */; };
 		F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */; };
@@ -101,7 +100,7 @@
 		F0F45FF02801C90C00BA244D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F45FEF2801C90C00BA244D /* String.swift */; };
 		F0FFD18C28549D80001EE4A6 /* AgendaInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD18B28549D80001EE4A6 /* AgendaInteractorTests.swift */; };
 		F0FFD19628549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */; };
-		F0FFD1A428549FD5001EE4A6 /* AgendaViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD1A328549FD5001EE4A6 /* AgendaViewTest.swift */; };
+		F0FFD1A428549FD5001EE4A6 /* AgendaViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD1A328549FD5001EE4A6 /* AgendaViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,7 +207,6 @@
 		F0DB532A285862650074FFBA /* OnboardingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractorTests.swift; sourceTree = "<group>"; };
 		F0DB532C2858626F0074FFBA /* OnboardingContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerTests.swift; sourceTree = "<group>"; };
 		F0E36EF52858F8160000C9F3 /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRouterMock.swift; sourceTree = "<group>"; };
 		F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaPresenterSpy.swift; sourceTree = "<group>"; };
 		F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
 		F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerStub.swift; sourceTree = "<group>"; };
@@ -222,7 +220,7 @@
 		F0FFD18B28549D80001EE4A6 /* AgendaInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaInteractorTests.swift; sourceTree = "<group>"; };
 		F0FFD19128549DC6001EE4A6 /* AgendaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F0FFD1A328549FD5001EE4A6 /* AgendaViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewTest.swift; sourceTree = "<group>"; };
+		F0FFD1A328549FD5001EE4A6 /* AgendaViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,7 +558,6 @@
 		F0E817482855CE5B00DD4EE1 /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
-				F0E817492855D4F000DD4EE1 /* AgendaRouterMock.swift */,
 				F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
@@ -638,6 +635,7 @@
 		F0FFD19228549DC6001EE4A6 /* AgendaUITests */ = {
 			isa = PBXGroup;
 			children = (
+				F0FFD1A328549FD5001EE4A6 /* AgendaViewUITests.swift */,
 				F0FFD1A228549FC0001EE4A6 /* AgendaModuleTests */,
 				F0FFD1A128549FBB001EE4A6 /* AddGoalModuleTests */,
 				F0FFD1A028549F9A001EE4A6 /* GoalDetailsModuleTests */,
@@ -687,7 +685,6 @@
 		F0FFD1A228549FC0001EE4A6 /* AgendaModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				F0FFD1A328549FD5001EE4A6 /* AgendaViewTest.swift */,
 			);
 			path = AgendaModuleTests;
 			sourceTree = "<group>";
@@ -846,7 +843,6 @@
 				F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */,
 				F0DB53292858624F0074FFBA /* SummaryContainerTests.swift in Sources */,
-				F0E8174A2855D4F000DD4EE1 /* AgendaRouterMock.swift in Sources */,
 				F0FFD18C28549D80001EE4A6 /* AgendaInteractorTests.swift in Sources */,
 				F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */,
 				F0EC6494285640A400DC0042 /* AgendaRouterTests.swift in Sources */,
@@ -934,7 +930,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FFD19628549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift in Sources */,
-				F0FFD1A428549FD5001EE4A6 /* AgendaViewTest.swift in Sources */,
+				F0FFD1A428549FD5001EE4A6 /* AgendaViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

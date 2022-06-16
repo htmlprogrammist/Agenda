@@ -39,9 +39,18 @@ class AgendaContainerTests: XCTestCase {
         context = AgendaContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager, month: month)
         container = AgendaContainer.assemble(with: context)
         XCTAssertNotNil(container.input, "Module input should not be nil")
-        XCTAssertIdentical(moduleOutput, container.input.moduleOutput, "All injected dependencies should be identical")
-        XCTAssertNotNil(container.viewController)
         XCTAssertNotNil(container.router)
+        XCTAssertNotNil(container.viewController)
+        
+        guard let viewController = container.viewController as? AgendaViewController,
+              let presenter = container.input as? AgendaPresenter,
+              let _ = container.router as? AgendaRouter
+        else {
+            XCTFail("Container assebled with wrong components")
+            return
+        }
+        XCTAssertFalse(viewController.isAgenda, "Since month was provided, this VC is no longer 'Agenda' but 'MonthDetails'")
+        XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
     func testAssemblingWithoutMonth() {
@@ -51,9 +60,18 @@ class AgendaContainerTests: XCTestCase {
         container = AgendaContainer.assemble(with: context)
         
         XCTAssertNotNil(container.input, "Module input should not be nil")
-        XCTAssertIdentical(moduleOutput, container.input.moduleOutput, "All injected dependencies should be identical")
         XCTAssertNotNil(container.viewController)
         XCTAssertNotNil(container.router)
+        
+        guard let viewController = container.viewController as? AgendaViewController,
+              let presenter = container.input as? AgendaPresenter
+        else {
+            XCTFail("Container assebled with wrong components")
+            return
+        }
+        XCTAssertTrue(viewController.isAgenda, "Since month was not provided, this VC is 'Agenda'")
+        XCTAssertIdentical(presenter.view, viewController)
+        XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
     func testAssemblingWithoutModuleOutputAndMonth() {
@@ -61,8 +79,17 @@ class AgendaContainerTests: XCTestCase {
         container = AgendaContainer.assemble(with: context)
         
         XCTAssertNotNil(container.input, "Module input should not be nil")
-        XCTAssertNil(container.input.moduleOutput, "Module output was not provided and should be nil")
         XCTAssertNotNil(container.viewController)
         XCTAssertNotNil(container.router)
+        
+        guard let viewController = container.viewController as? AgendaViewController,
+              let presenter = container.input as? AgendaPresenter
+        else {
+            XCTFail("Container assebled with wrong components")
+            return
+        }
+        XCTAssertTrue(viewController.isAgenda, "Since month was not provided, this VC is 'Agenda'")
+        XCTAssertIdentical(presenter.view, viewController)
+        XCTAssertNil(presenter.moduleOutput, "Module output was not provided and should be nil")
     }
 }

@@ -44,9 +44,17 @@ class GoalDetailsContainerTests: XCTestCase {
         let container = GoalDetailsContainer.assemble(with: context)
         
         XCTAssertNotNil(container.input, "Module input should not be nil")
-        XCTAssertIdentical(moduleOutput, container.input.moduleOutput, "All injected dependencies should be identical")
         XCTAssertNotNil(container.viewController)
         XCTAssertNotNil(container.router)
+        
+        guard let viewController = container.viewController as? GoalDetailsViewController,
+              let presenter = container.input as? GoalDetailsPresenter
+        else {
+            XCTFail("Container assebled with wrong components")
+            return
+        }
+        XCTAssertIdentical(presenter.view, viewController)
+        XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
     func testAssemblingWithoutModuleOutput() {
@@ -54,8 +62,16 @@ class GoalDetailsContainerTests: XCTestCase {
         let container = GoalDetailsContainer.assemble(with: context)
         
         XCTAssertNotNil(container.input, "Module input should not be nil")
-        XCTAssertNil(container.input.moduleOutput, "Module output was not provided and should be nil")
         XCTAssertNotNil(container.viewController)
         XCTAssertNotNil(container.router)
+        
+        guard let viewController = container.viewController as? GoalDetailsViewController,
+              let presenter = container.input as? GoalDetailsPresenter
+        else {
+            XCTFail("Container assebled with wrong components")
+            return
+        }
+        XCTAssertIdentical(presenter.view, viewController)
+        XCTAssertNil(presenter.moduleOutput, "Module output was not provided and should be nil")
     }
 }
