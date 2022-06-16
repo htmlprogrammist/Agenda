@@ -17,7 +17,7 @@ class OnboardingContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `OnboardingContainer`: with and without provided `moduleOutput`
      */
-    func testCreatingWithFullContext() {
+    func testAssemblingWithFullContext() {
         let moduleOutput = OnboardingModuleOutputMock()
         let context = OnboardingContext(moduleOutput: moduleOutput)
         let container = OnboardingContainer.assemble(with: context)
@@ -28,7 +28,7 @@ class OnboardingContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() {
         let context = OnboardingContext()
         let container = OnboardingContainer.assemble(with: context)
         

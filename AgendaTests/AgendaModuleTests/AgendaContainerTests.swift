@@ -31,7 +31,7 @@ class AgendaContainerTests: XCTestCase {
      In the next tests we will check that the module consists of the correct parts and all dependencies are filled in.
      The tests will differ by creating different contexts
      */
-    func testCreatingWithFullContext() {
+    func testAssemblingWithFullContext() {
         let moduleOutput = AgendaModuleOutputMock()
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
@@ -44,7 +44,7 @@ class AgendaContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutMonth() {
+    func testAssemblingWithoutMonth() {
         let moduleOutput = AgendaModuleOutputMock()
         
         context = AgendaContext(moduleOutput: moduleOutput, moduleDependency: CoreDataManagerMock())
@@ -56,7 +56,7 @@ class AgendaContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutputAndMonth() {
+    func testAssemblingWithoutModuleOutputAndMonth() {
         context = AgendaContext(moduleDependency: CoreDataManagerMock())
         container = AgendaContainer.assemble(with: context)
         

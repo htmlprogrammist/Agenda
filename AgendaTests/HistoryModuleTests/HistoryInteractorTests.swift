@@ -43,4 +43,28 @@ class HistoryInteractorTests: XCTestCase {
         interactor.performFetch()
         XCTAssertTrue(presenter.dataDidNotFetchBool)
     }
+    
+    func testOpeningDetailsByMonth() {
+        interactor.performFetch()
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        interactor.openDetailsByMonth(at: indexPath)
+        
+        XCTAssertNotNil(presenter.month, "Month provided for another module should not be nil")
+        XCTAssertIdentical(coreDataManager, presenter.moduleDependency)
+    }
+    
+    func testDeletingMonth() {
+        let expectation = self.expectation(description: "Deleting month expectation")
+        interactor.performFetch()
+        coreDataManager.expectation = expectation
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        interactor.deleteMonth(at: indexPath)
+        
+        waitForExpectations(timeout: 3)
+        XCTAssertNotNil(coreDataManager.month)
+        XCTAssertTrue(coreDataManager.monthDidDelete)
+    }
 }

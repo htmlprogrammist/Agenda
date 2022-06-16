@@ -99,11 +99,11 @@ class AgendaInteractorTests: XCTestCase {
      */
     func testReplacingGoal() {
         let expectation = self.expectation(description: "Replacing Goal Expectation")
-        coreDataManager.expectation = expectation
         let month = coreDataManager.fetchCurrentMonth() // creates new month
         interactor.month = month
         coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
         
+        coreDataManager.expectation = expectation
         interactor.replaceGoal(from: 0, to: 2)
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         waitForExpectations(timeout: 3, handler: nil)
@@ -119,18 +119,14 @@ class AgendaInteractorTests: XCTestCase {
      That is why we need to use `expectation` in our tests. The `fulFill()` method of the expectation is called inside `CoreDataManagerSpy` and is injected right down in the test.
      We assert true, that the goal was deleted by Core Data Manager.
      We need to create sample goal, because `deleteItem(at:)` method of Interactor requires `IndexPath` of the goal to be deleted to get its' instance and provides it to the Core Data Manager
-     Because `createGoal(data:, in:)` method in Core Data manager spy has its' own calling of `fulFill()` method, we add `ignoreExpectation` property, so there will not be error with multiple callings of this method
      */
     func testDeletingGoal() {
         let expectation = self.expectation(description: "Deleting Goal Expectation")
-        coreDataManager.expectation = expectation
         let month = coreDataManager.fetchCurrentMonth() // creates new month
         interactor.month = month
-        
-        coreDataManager.ignoreExpectation = true
         coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
-        coreDataManager.ignoreExpectation = false
         
+        coreDataManager.expectation = expectation
         interactor.deleteItem(at: IndexPath(row: 0, section: 0))
         waitForExpectations(timeout: 3, handler: nil)
         XCTAssertTrue(coreDataManager.goalDidDelete)

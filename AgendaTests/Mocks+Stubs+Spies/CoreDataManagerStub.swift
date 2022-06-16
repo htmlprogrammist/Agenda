@@ -17,6 +17,17 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
+    lazy var month1: Month = {
+        let month = Month(context: managedObjectContext)
+        month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
+        return month
+    }()
+    lazy var month2: Month = {
+        let month = Month(context: managedObjectContext)
+        month.date = dateFormatter.date(from: "01.\((calendarDate.month ?? 2) - 1).\(calendarDate.year ?? 0)") ?? Date()
+        return month
+    }()
+    
     public static let model: NSManagedObjectModel = {
         // swiftlint:disable force_unwrapping
         let modelURL = Bundle.main.url(forResource: "Agenda", withExtension: "momd")!
@@ -48,10 +59,6 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
     }
     
     func fetchMonths() -> [Month]? {
-        let month1 = Month(context: managedObjectContext)
-        month1.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\(calendarDate.year ?? 0)") ?? Date()
-        let month2 = Month(context: managedObjectContext)
-        month2.date = dateFormatter.date(from: "01.\((calendarDate.month ?? 2) - 1).\(calendarDate.year ?? 0)") ?? Date()
         return [month1, month2]
     }
     

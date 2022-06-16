@@ -26,7 +26,7 @@ class SummaryContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `SummaryContainer`: with and without provided `moduleOutput`
      */
-    func testCreatingWithFullContext() {
+    func testAssemblingWithFullContext() {
         let moduleOutput = SummaryModuleOutputMock()
         let context = SummaryContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
@@ -37,7 +37,7 @@ class SummaryContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() {
         let context = SummaryContext(moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
         

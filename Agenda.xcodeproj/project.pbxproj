@@ -16,6 +16,7 @@
 		F0027EF2284BE57C00D73820 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */; };
 		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
+		F014D940285B259200AB60A3 /* SummaryPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
 		F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
@@ -131,6 +132,7 @@
 		F0055BE92854748F00430622 /* AgendaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenterSpy.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 		F0DB53312858668F0074FFBA /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
+				F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				F0DB53272858622B0074FFBA /* SummaryInteractorTests.swift in Sources */,
 				F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */,
 				F0A831BE28560FC5006F47CF /* AgendaContainerTests.swift in Sources */,
+				F014D940285B259200AB60A3 /* SummaryPresenterSpy.swift in Sources */,
 				F07FC1C92858E9D20028C446 /* CoreDataManagerSpy.swift in Sources */,
 				F0AD059F285A7058000612BE /* HistoryPresenterSpy.swift in Sources */,
 				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,

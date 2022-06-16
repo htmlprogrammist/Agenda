@@ -16,7 +16,6 @@ class CoreDataManagerSpy: CoreDataManagerStub {
     var month: Month!
     var fromTo: (Int, Int)!
     var expectation: XCTestExpectation!
-    var ignoreExpectation = false
     var failFetchingMonth = false
     
     var goalDidCreate = false
@@ -26,7 +25,7 @@ class CoreDataManagerSpy: CoreDataManagerStub {
     var goalDidDelete = false
     
     override func fetchMonths() -> [Month]? {
-        guard failFetchingMonth else {
+        guard !failFetchingMonth else {
             return nil
         }
         return super.fetchMonths()
@@ -36,7 +35,7 @@ class CoreDataManagerSpy: CoreDataManagerStub {
         super.createGoal(data: data, in: month)
         goalDidCreate = true
         
-        if let expectation = expectation, !ignoreExpectation {
+        if let expectation = expectation {
             expectation.fulfill()
         }
     }
@@ -44,7 +43,7 @@ class CoreDataManagerSpy: CoreDataManagerStub {
     override func rewriteGoal(with data: GoalData, in goal: Goal) {
         goalDidRewrite = true
         
-        if let expectation = expectation, !ignoreExpectation {
+        if let expectation = expectation {
             expectation.fulfill()
         }
     }
@@ -55,19 +54,24 @@ class CoreDataManagerSpy: CoreDataManagerStub {
         self.fromTo = (from, to)
         goalDidReplace = true
         
-        if let expectation = expectation, !ignoreExpectation {
+        if let expectation = expectation {
             expectation.fulfill()
         }
     }
     
     override func deleteMonth(month: Month) {
+        self.month = month
         monthDidDelete = true
+        
+        if let expectation = expectation {
+            expectation.fulfill()
+        }
     }
     
     override func deleteGoal(goal: Goal) {
         goalDidDelete = true
         
-        if let expectation = expectation, !ignoreExpectation {
+        if let expectation = expectation {
             expectation.fulfill()
         }
     }

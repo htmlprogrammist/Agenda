@@ -35,9 +35,9 @@ extension HistoryInteractor: HistoryInteractorInput {
     
     func deleteMonth(at indexPath: IndexPath) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else { return }
-            self.coreDataManager.deleteMonth(month: self.months[indexPath.row])
-            self.months.remove(at: indexPath.row)
+            guard let strongSelf = self else { return }
+            strongSelf.coreDataManager.deleteMonth(month: strongSelf.months[indexPath.row])
+            strongSelf.months.remove(at: indexPath.row)
         }
     }
 }

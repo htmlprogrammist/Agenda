@@ -31,7 +31,7 @@ class AddGoalContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `AddGoalContainer`: with and without provided `moduleOutput`
      */
-    func testCreatingWithFullContext() {
+    func testAssemblingWithFullContext() {
         let moduleOutput = AddGoalModuleOutputMock()
         let context = AddGoalContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager, month: month)
         let container = AddGoalContainer.assemble(with: context)
@@ -42,7 +42,7 @@ class AddGoalContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() {
         let context = AddGoalContext(moduleDependency: coreDataManager, month: month)
         let container = AddGoalContainer.assemble(with: context)
         

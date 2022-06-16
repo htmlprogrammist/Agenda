@@ -27,9 +27,7 @@ class CoreDataManagerTests: XCTestCase {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\((calendarDate.year ?? 1970) - 1)") ?? Date()
         
-        for _ in 0..<3 {
-            coreDataManager.viewControllers.append(CoreDataManagerDelegateMock())
-        }
+        coreDataManager.viewControllers.append(CoreDataManagerDelegateMock())
     }
     
     override func tearDownWithError() throws {

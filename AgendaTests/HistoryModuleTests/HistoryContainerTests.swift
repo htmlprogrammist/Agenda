@@ -26,7 +26,7 @@ class HistoryContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `HistoryContainer`: with and without provided `moduleOutput`
      */
-    func testCreatingWithFullContext() {
+    func testAssemblingWithFullContext() {
         let moduleOutput = HistoryModuleOutputMock()
         let context = HistoryContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager)
         let container = HistoryContainer.assemble(with: context)
@@ -37,7 +37,7 @@ class HistoryContainerTests: XCTestCase {
         XCTAssertNotNil(container.router)
     }
     
-    func testCreatingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() {
         let context = HistoryContext(moduleDependency: coreDataManager)
         let container = HistoryContainer.assemble(with: context)
         
