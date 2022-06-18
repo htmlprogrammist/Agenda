@@ -57,6 +57,7 @@ final class GoalDetailsViewController: GoalViewController {
     }
 }
 
+// MARK: - ViewInput
 extension GoalDetailsViewController: GoalDetailsViewInput {
     func setViewModel(goalData: GoalData) {
         self.goalData = goalData

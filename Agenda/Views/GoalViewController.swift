@@ -10,8 +10,8 @@ import UIKit
 class GoalViewController: UIViewController {
     
     public var goalData = GoalData()
-
-    lazy var tableView: UITableView = {
+    
+    public lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.allowsSelection = false
         tableView.dataSource = self
@@ -21,6 +21,7 @@ class GoalViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +45,7 @@ class GoalViewController: UIViewController {
     }
 }
 
+// MARK: - TableView
 extension GoalViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -96,14 +98,27 @@ private extension GoalViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
 // MARK: - GoalTableViewCellDelegate
 extension GoalViewController: GoalTableViewCellDelegate {
+    /// Update height of `UITextView` based on text's number of lines
     func updateHeightOfRow(_ cell: GoalTableViewCell, _ textView: UITextView) {
-        resize(cell, in: tableView, with: textView) // Update height of UITextView based on text's number of lines
+        let size = textView.bounds.size
+        let newSize = tableView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
+        
+        if size.height != newSize.height {
+            UIView.setAnimationsEnabled(false)
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            UIView.setAnimationsEnabled(true)
+            // Scroll up to the textview
+            if let thisIndexPath = tableView.indexPath(for: cell) {
+                tableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
+            }
+        }
     }
 }

@@ -13,4 +13,5 @@ struct Summary {
     let tintColor: UIColor
     let measure: String
     var number: Double = 0.0
+    let kind: SummaryKind
 }

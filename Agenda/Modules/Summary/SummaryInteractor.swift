@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SummaryCell: Int {
+enum SummaryKind: Int {
     case percentOfSetGoals, completedGoals, uncompletedGoals, allGoals
 }
 
@@ -17,10 +17,10 @@ final class SummaryInteractor {
     public let coreDataManager: CoreDataManagerProtocol
     
     var summaries: [Summary] = [
-        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)"),
-        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension),
-        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension),
-        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension)
+        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals),
+        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals),
+        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals),
+        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals)
     ]
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -65,9 +65,9 @@ private extension SummaryInteractor {
                 percentage = round(100 * Double(completedGoalsCounter) / Double(allGoalsCounter))
             }
         }
-        summaries[SummaryCell.percentOfSetGoals.rawValue].number = percentage
-        summaries[SummaryCell.completedGoals.rawValue].number = completedGoalsCounter
-        summaries[SummaryCell.uncompletedGoals.rawValue].number = uncompletedGoalsCounter
-        summaries[SummaryCell.allGoals.rawValue].number = allGoalsCounter
+        summaries[SummaryKind.percentOfSetGoals.rawValue].number = percentage
+        summaries[SummaryKind.completedGoals.rawValue].number = completedGoalsCounter
+        summaries[SummaryKind.uncompletedGoals.rawValue].number = uncompletedGoalsCounter
+        summaries[SummaryKind.allGoals.rawValue].number = allGoalsCounter
     }
 }

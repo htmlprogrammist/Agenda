@@ -41,20 +41,4 @@ extension UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    func resize(_ cell: GoalTableViewCell, in tableView: UITableView, with textView: UITextView) {
-        let size = textView.bounds.size
-        let newSize = tableView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
-        
-        if size.height != newSize.height {
-            UIView.setAnimationsEnabled(false)
-            tableView.beginUpdates()
-            tableView.endUpdates()
-            UIView.setAnimationsEnabled(true)
-            // Scoll up your textview if required
-            if let thisIndexPath = tableView.indexPath(for: cell) {
-                tableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
-            }
-        }
-    }
 }
