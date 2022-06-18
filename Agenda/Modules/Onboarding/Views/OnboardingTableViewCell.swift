@@ -11,14 +11,13 @@ final class OnboardingTableViewCell: UITableViewCell {
     
     static let identifier = "onboardingCell"
     
-    lazy var iconImageView: UIImageView = {
+    private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .systemRed
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     private lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
@@ -26,14 +25,14 @@ final class OnboardingTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
@@ -52,7 +51,7 @@ final class OnboardingTableViewCell: UITableViewCell {
     }
     
     private func setupViewAndConstraints() {
-        contentView.backgroundColor = .clear
+        backgroundColor = .clear
         
         contentView.addSubview(iconImageView)
         contentView.addSubview(labelsStackView)
@@ -68,5 +67,11 @@ final class OnboardingTableViewCell: UITableViewCell {
             labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
+    }
+    
+    public func configure(with viewModel: OnboardingViewModel) {
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        iconImageView.image = viewModel.image
     }
 }

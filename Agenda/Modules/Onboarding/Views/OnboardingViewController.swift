@@ -13,7 +13,7 @@ final class OnboardingViewController: UIViewController {
     
     private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
     private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "note.text.badge.plus"]
+    private let images = [Icons.lightbulb, Icons.chartBarDoc, Icons.notesTextBadgePlus]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -73,8 +73,6 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isModalInPresentation = true
-        
         setupView()
         setConstraints()
     }
@@ -92,17 +90,18 @@ private extension OnboardingViewController {
     
     func setupView() {
         view.backgroundColor = .systemBackground
+        isModalInPresentation = true
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
         
+        scrollView.addSubview(contentView)
         contentView.addSubview(welcomeLabel)
+        contentView.addSubview(tableView)
+        
         let labelText = welcomeLabel.text ?? ""
         let labelAttributedText = NSMutableAttributedString(string: labelText)
         let index = labelText.lastIndex(of: "A") ?? labelText.startIndex
         labelAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: (labelText.distance(from: labelText.startIndex, to: index)), length: 6))
         welcomeLabel.attributedText = labelAttributedText
-        
-        contentView.addSubview(tableView)
         
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
@@ -148,7 +147,7 @@ private extension OnboardingViewController {
 extension OnboardingViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        titlesArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,10 +157,7 @@ extension OnboardingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnboardingTableViewCell.identifier, for: indexPath) as? OnboardingTableViewCell
         else { return OnboardingTableViewCell() }
-        cell.backgroundColor = .clear
-        cell.iconImageView.image = UIImage(named: imagePathsArray[indexPath.section])
-        cell.titleLabel.text = titlesArray[indexPath.section]
-        cell.descriptionLabel.text = descriptionsArray[indexPath.section]
+        cell.configure(with: OnboardingViewModel(title: titlesArray[indexPath.section], description: descriptionsArray[indexPath.section], image: images[indexPath.section]))
         return cell
     }
     
