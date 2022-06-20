@@ -31,7 +31,7 @@ class AgendaContainerTests: XCTestCase {
      In the next tests we will check that the module consists of the correct parts and all dependencies are filled in.
      The tests will differ by creating different contexts
      */
-    func testAssemblingWithFullContext() {
+    func testAssemblingWithFullContext() throws {
         let moduleOutput = AgendaModuleOutputMock()
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
@@ -54,7 +54,7 @@ class AgendaContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutMonth() {
+    func testAssemblingWithoutMonth() throws {
         let moduleOutput = AgendaModuleOutputMock()
         
         context = AgendaContext(moduleOutput: moduleOutput, moduleDependency: CoreDataManagerMock())
@@ -75,7 +75,7 @@ class AgendaContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutModuleOutputAndMonth() {
+    func testAssemblingWithoutModuleOutputAndMonth() throws {
         context = AgendaContext(moduleDependency: CoreDataManagerMock())
         container = AgendaContainer.assemble(with: context)
         

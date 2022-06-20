@@ -32,7 +32,7 @@ class OnboardingInteractorTests: XCTestCase {
         presenter = nil
     }
 
-    func testSettingHasOnboarded() {
+    func testSettingHasOnboarded() throws {
         let settings = UserSettings()
         
         interactor.setHasOnboarded()

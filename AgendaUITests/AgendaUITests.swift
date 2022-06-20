@@ -29,7 +29,7 @@ class AgendaUITests: XCTestCase {
     /**
      In this test we check that everything is correctly displayed on the screen
      */
-    func testAgendaViewModule() {
+    func testAgendaViewModule() throws {
         let barButtons = app.navigationBars.buttons
         XCTAssertEqual(barButtons.count, 2)
         
@@ -46,7 +46,7 @@ class AgendaUITests: XCTestCase {
     /**
      We test opening GoalDetails module and providing correct (the same) data, as it was in cell with identifier `AgendaTableViewCell`. And then we close this module
      */
-    func testGoalDetails() {
+    func testGoalDetails() throws {
         // opening
         let tableView = app.tables["tableView"]
         let cell = tableView.cells["AgendaTableViewCell"].firstMatch
@@ -73,8 +73,8 @@ class AgendaUITests: XCTestCase {
         XCTAssertFalse(goalCell.exists)
     }
     
-    func testOpeningAndClosingAddGoal() {
-        app.navigationBars/*@START_MENU_TOKEN@*/.buttons["addBarButton"]/*[[".buttons[\"Добавить\"]",".buttons[\"addBarButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    func testOpeningAndClosingAddGoal() throws {
+        app.navigationBars.buttons["addBarButton"].tap()
 
         let tableView = app.tables["GoalTableView"]
         let currentCell = tableView.cells.element(boundBy: 2)

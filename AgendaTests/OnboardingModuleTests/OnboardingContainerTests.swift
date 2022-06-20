@@ -17,7 +17,7 @@ class OnboardingContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `OnboardingContainer`: with and without provided `moduleOutput`
      */
-    func testAssemblingWithFullContext() {
+    func testAssemblingWithFullContext() throws {
         let moduleOutput = OnboardingModuleOutputMock()
         let context = OnboardingContext(moduleOutput: moduleOutput)
         let container = OnboardingContainer.assemble(with: context)
@@ -36,7 +36,7 @@ class OnboardingContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() throws {
         let context = OnboardingContext()
         let container = OnboardingContainer.assemble(with: context)
         

@@ -26,7 +26,7 @@ class SummaryContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `SummaryContainer`: with and without provided `moduleOutput`
      */
-    func testAssemblingWithFullContext() {
+    func testAssemblingWithFullContext() throws {
         let moduleOutput = SummaryModuleOutputMock()
         let context = SummaryContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
@@ -45,7 +45,7 @@ class SummaryContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() throws {
         let context = SummaryContext(moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
         

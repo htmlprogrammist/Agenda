@@ -41,11 +41,11 @@ class CoreDataManagerTests: XCTestCase {
      `fetchCurrentMonth(:)` method must always return month instance
      `fetchMonths(:)` method must always return array of months
      */
-    func testFetchingCurrentMonth() {
+    func testFetchingCurrentMonth() throws {
         XCTAssertNoThrow(coreDataManager.fetchCurrentMonth())
     }
     
-    func testFetchingArrayOfMonths() {
+    func testFetchingArrayOfMonths() throws {
         let months = coreDataManager.fetchMonths()
         XCTAssertNotNil(months, "Months were not fetched successfully")
     }
@@ -55,7 +55,7 @@ class CoreDataManagerTests: XCTestCase {
      First of all, we need to create sample data of type `GoalData`. Create sample `goalData` and use `createGoal(data:, in:)` method of CoreDataManager
      And the last block contains `createdGoal` variable. It is the only created goal, so we can use `first` property
      */
-    func testCreatingGoal() {
+    func testCreatingGoal() throws {
         let goalData = GoalData(title: "Sample goal", current: String(75), aim: String(100), notes: "")
         coreDataManager.createGoal(data: goalData, in: month)
         
@@ -74,7 +74,7 @@ class CoreDataManagerTests: XCTestCase {
      Then we need to create goal, using `startGoalData` and rewrite its' data. It is the only created goal, so we can use `first` property
      In the end, we test parameters that differ
      */
-    func testRewritingGoalsData() {
+    func testRewritingGoalsData() throws {
         let startGoalData = GoalData(title: "Sample goal", current: String(75), aim: String(100), notes: "")
         let newGoalData = GoalData(title: "Sample goal", current: String(100), aim: String(100), notes: "Sample goal notes")
         
@@ -95,7 +95,7 @@ class CoreDataManagerTests: XCTestCase {
      We replace and get array of goals of the current month.
      Then we test every sample goals' names (to simplify, since the `name` property  is enough for us)
      */
-    func testReorderingGoals() {
+    func testReorderingGoals() throws {
         for i in 1...3 {
             let goalData = GoalData(title: "Sample goal \(i)", current: "\(75 + i * 5)", aim: "\(100)", notes: "")
             coreDataManager.createGoal(data: goalData, in: month)

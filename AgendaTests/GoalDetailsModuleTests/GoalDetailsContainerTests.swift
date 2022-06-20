@@ -38,7 +38,7 @@ class GoalDetailsContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `GoalDetailsContainer`: with and without provided `moduleOutput`
      */
-    func testAssemblingWithFullContext() {
+    func testAssemblingWithFullContext() throws {
         let moduleOutput = GoalDetailsModuleOutputMock()
         let context = GoalDetailsContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager, goal: goal)
         let container = GoalDetailsContainer.assemble(with: context)
@@ -57,7 +57,7 @@ class GoalDetailsContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() throws {
         let context = GoalDetailsContext(moduleDependency: coreDataManager, goal: goal)
         let container = GoalDetailsContainer.assemble(with: context)
         

@@ -40,7 +40,7 @@ class AddGoalInteractorTests: XCTestCase {
      That is why we need to use `expectation` in our tests. The `fulFill()` method of the expectation is called inside `CoreDataManagerSpy` and is injected right down in the test.
      This method requires data to create goal and `Month` instance to create goal in that month.
      */
-    func testCreatingGoal() {
+    func testCreatingGoal() throws {
         let expectation = self.expectation(description: "Creating goal expectation")
         coreDataManager.expectation = expectation
         let goalData = GoalData(title: "Sample", current: "\(20)", aim: "\(100)")

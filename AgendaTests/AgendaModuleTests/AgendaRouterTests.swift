@@ -31,7 +31,7 @@ class AgendaRouterTests: XCTestCase {
      Let's check that navigation controller is not equal to nil
      And that some view controller is presented
      */
-    func testOpeningAddGoalModule() {
+    func testOpeningAddGoalModule() throws {
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
         router.showAddGoalModule(in: month, moduleDependency: coreDataManager)
@@ -40,7 +40,7 @@ class AgendaRouterTests: XCTestCase {
         XCTAssertNotIdentical(router.navigationController, router.navigationController?.presentedViewController)
     }
     
-    func testOpeningGoalDetailsModule() {
+    func testOpeningGoalDetailsModule() throws {
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
         coreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
@@ -55,7 +55,7 @@ class AgendaRouterTests: XCTestCase {
         XCTAssertNotIdentical(router.navigationController, router.navigationController?.presentedViewController)
     }
     
-    func testOpeningOnboardingModule() {
+    func testOpeningOnboardingModule() throws {
         router.showOnboarding()
         
         XCTAssertNotNil(router.navigationController, "Router's navigation controller should not be nil")
@@ -66,7 +66,7 @@ class AgendaRouterTests: XCTestCase {
      Let's check that navigation controller is not equal to nil
      And that there is no view controller in presented
      */
-    func testDismissingAddGoalModule() {
+    func testDismissingAddGoalModule() throws {
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
         
@@ -77,7 +77,7 @@ class AgendaRouterTests: XCTestCase {
         XCTAssertNil(router.navigationController?.presentedViewController, "There should be no presented view controller in router's navigation controller")
     }
     
-    func testDismissingGoalDetailsModule() {
+    func testDismissingGoalDetailsModule() throws {
         let coreDataManager = CoreDataManagerStub(containerName: "Agenda")
         let month = coreDataManager.fetchCurrentMonth()
         coreDataManager.createGoal(data: GoalData(title: "Sample goal", current: "\(75)", aim: "\(100)", notes: ""), in: month)
@@ -92,7 +92,7 @@ class AgendaRouterTests: XCTestCase {
         XCTAssertNil(router.navigationController?.presentedViewController, "There should be no presented view controller in router's navigation controller")
     }
     
-    func testDismissingOnboardingModule() {
+    func testDismissingOnboardingModule() throws {
         router.showOnboarding()
         router.onboardingModuleDidFinish()
         

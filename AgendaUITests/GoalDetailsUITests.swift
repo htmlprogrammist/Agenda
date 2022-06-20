@@ -35,7 +35,7 @@ class GoalDetailsUITests: XCTestCase {
         app.terminate()
     }
     
-    func testGoalDetailsViewExists() {
+    func testGoalDetailsViewExists() throws {
         let backButton = app.navigationBars.buttons.firstMatch
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
@@ -54,7 +54,7 @@ class GoalDetailsUITests: XCTestCase {
         XCTAssertTrue(aimCell.exists)
     }
     
-    func testWithSomeChangesInTitle() {
+    func testWithSomeChangesInTitle() throws {
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
         let titleCell = tableView.cells.element(boundBy: 0)
@@ -66,7 +66,7 @@ class GoalDetailsUITests: XCTestCase {
         XCTAssertTrue(saveBarButton.isEnabled)
     }
     
-    func testWithSomeChangesInNotes() {
+    func testWithSomeChangesInNotes() throws {
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
         let notesCell = tableView.cells.element(boundBy: 1)
@@ -78,7 +78,7 @@ class GoalDetailsUITests: XCTestCase {
         XCTAssertTrue(saveBarButton.isEnabled)
     }
     
-    func testWithSomeChangesInCurrentTextField() {
+    func testWithSomeChangesInCurrentTextField() throws {
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
         let currentCell = tableView.cells.element(boundBy: 2)
@@ -90,7 +90,7 @@ class GoalDetailsUITests: XCTestCase {
         XCTAssertTrue(saveBarButton.isEnabled)
     }
     
-    func testWithSomeChangesInAimTextField() {
+    func testWithSomeChangesInAimTextField() throws {
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
         let aimCell = tableView.cells.element(boundBy: 3)
@@ -102,7 +102,7 @@ class GoalDetailsUITests: XCTestCase {
         XCTAssertTrue(saveBarButton.isEnabled)
     }
     
-    func testMakingSomeChangesAndThenBack() {
+    func testMakingSomeChangesAndThenBack() throws {
         let saveBarButton = app.navigationBars.buttons["saveBarButton"]
         let tableView = app.tables["GoalTableView"]
         let titleCell = tableView.cells.element(boundBy: 0)

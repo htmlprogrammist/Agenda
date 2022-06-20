@@ -27,14 +27,14 @@ class SummaryInteractorTests: XCTestCase {
         coreDataManager = nil
     }
     
-    func testPerfomingFetchWithError() {
+    func testPerfomingFetchWithError() throws {
         coreDataManager.failFetchingMonth = true
         interactor.performFetch()
         
         XCTAssertTrue(presenter.dataDidNotFetchBool)
     }
     
-    func testPerfomingFetchWithEmptyData() {
+    func testPerfomingFetchWithEmptyData() throws {
         let expectation = self.expectation(description: "Fetching months in HistoryInteractor")
         presenter.expectation = expectation
         
@@ -51,7 +51,7 @@ class SummaryInteractorTests: XCTestCase {
         }
     }
     
-    func testPerfomingFetchWithSomeData() {
+    func testPerfomingFetchWithSomeData() throws {
         let expectation = self.expectation(description: "Fetching months in HistoryInteractor")
         presenter.expectation = expectation
         interactor.summaries = [

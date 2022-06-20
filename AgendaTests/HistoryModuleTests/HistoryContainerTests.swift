@@ -26,7 +26,7 @@ class HistoryContainerTests: XCTestCase {
     /**
      In the next 2 tests we check different cases of assembling `HistoryContainer`: with and without provided `moduleOutput`
      */
-    func testAssemblingWithFullContext() {
+    func testAssemblingWithFullContext() throws {
         let moduleOutput = HistoryModuleOutputMock()
         let context = HistoryContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager)
         let container = HistoryContainer.assemble(with: context)
@@ -45,7 +45,7 @@ class HistoryContainerTests: XCTestCase {
         XCTAssertIdentical(moduleOutput, presenter.moduleOutput, "All injected dependencies should be identical")
     }
     
-    func testAssemblingWithoutModuleOutput() {
+    func testAssemblingWithoutModuleOutput() throws {
         let context = HistoryContext(moduleDependency: coreDataManager)
         let container = HistoryContainer.assemble(with: context)
         

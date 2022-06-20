@@ -37,7 +37,7 @@ class GoalDetailsInteractorTests: XCTestCase {
         coreDataManager = nil
     }
     
-    func testProvidingData() {
+    func testProvidingData() throws {
         interactor.provideData()
         
         XCTAssertEqual(presenter.goalData.title, goalData.title)
@@ -46,7 +46,7 @@ class GoalDetailsInteractorTests: XCTestCase {
         XCTAssertEqual(presenter.goalData.notes, goalData.notes)
     }
     
-    func testRewritingGoal() {
+    func testRewritingGoal() throws {
         let expectation = self.expectation(description: "Rewriting goal expectation")
         coreDataManager.expectation = expectation
         
@@ -57,13 +57,13 @@ class GoalDetailsInteractorTests: XCTestCase {
         XCTAssertTrue(coreDataManager.goalDidRewrite)
     }
     
-    func testCheckingBarButtonEnabledWithoutChanges() {
+    func testCheckingBarButtonEnabledWithoutChanges() throws {
         interactor.checkBarButtonEnabled(goalData: goalData)
         
         XCTAssertFalse(presenter.barButtonFlag)
     }
     
-    func testCheckingBarButtonEnabledWithChanges() {
+    func testCheckingBarButtonEnabledWithChanges() throws {
         let changedGoalData = GoalData(title: "New title", current: "\(75)", aim: "\(100)")
         interactor.checkBarButtonEnabled(goalData: changedGoalData)
         

@@ -26,17 +26,12 @@ final class HistoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = editButtonItem
-        title = Labels.History.title
-        view.backgroundColor = .systemBackground
-        
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
-        
+        setupView()
         output.fetchData()
     }
 }
 
+// MARK: - ViewInput
 extension HistoryViewController: HistoryViewInput {
     func showAlert(title: String, message: String) {
         alertForError(title: title, message: message)
@@ -108,6 +103,18 @@ extension HistoryViewController {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }
+    }
+}
+
+// MARK: - Helper methods
+private extension HistoryViewController {
+    func setupView() {
+        navigationItem.rightBarButtonItem = editButtonItem
+        title = Labels.History.title
+        view.backgroundColor = .systemBackground
+        
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 

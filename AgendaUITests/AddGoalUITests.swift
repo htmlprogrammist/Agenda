@@ -24,7 +24,7 @@ class AddGoalUITests: XCTestCase {
         app = XCUIApplication()
         app.launch()
         /// Opening AddGoal module every time the tests start
-        app.navigationBars/*@START_MENU_TOKEN@*/.buttons["addBarButton"]/*[[".buttons[\"Добавить\"]",".buttons[\"addBarButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.navigationBars.buttons["addBarButton"].tap()
     }
     
     override func tearDownWithError() throws {
@@ -32,7 +32,7 @@ class AddGoalUITests: XCTestCase {
         app.terminate()
     }
     
-    func testAddGoalViewExists() {
+    func testAddGoalViewExists() throws {
         let cancelBarButton = app.navigationBars.buttons["cancelButtonItem"]
         let doneBarButton = app.navigationBars.buttons["doneButtonItem"]
         let tableView = app.tables["GoalTableView"]
@@ -55,7 +55,7 @@ class AddGoalUITests: XCTestCase {
     /**
      Before _Done_ button is enabled, user need to fill 3 required text fields. In the next 3 tests we check for button's enabling. Only last one will have effect
      */
-    func testAddGoalWithOneOfThreeFields() {
+    func testAddGoalWithOneOfThreeFields() throws {
         let tableView = app.tables["GoalTableView"]
         let doneBarButton = app.navigationBars.buttons["doneButtonItem"]
         let cell = tableView.cells["GoalTableViewCell"].firstMatch
@@ -73,7 +73,7 @@ class AddGoalUITests: XCTestCase {
         XCTAssertFalse(doneBarButton.isEnabled)
     }
     
-    func testAddGoalWithTwoOfThreeFields() {
+    func testAddGoalWithTwoOfThreeFields() throws {
         let tableView = app.tables["GoalTableView"]
         let doneBarButton = app.navigationBars.buttons["doneButtonItem"]
         let currentCell = tableView.cells.element(boundBy: 2)
@@ -95,7 +95,7 @@ class AddGoalUITests: XCTestCase {
         XCTAssertFalse(doneBarButton.isEnabled)
     }
     
-    func testAddGoalWithFullThreeFields() {
+    func testAddGoalWithFullThreeFields() throws {
         let tableView = app.tables["GoalTableView"]
         let doneBarButton = app.navigationBars.buttons["doneButtonItem"]
         let titleCell = tableView.cells.element(boundBy: 0)

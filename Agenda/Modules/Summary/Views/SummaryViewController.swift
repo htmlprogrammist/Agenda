@@ -20,6 +20,7 @@ final class SummaryViewController: UIViewController {
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "summaryTableView"
         return tableView
     }()
     
@@ -35,9 +36,6 @@ final class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tabBarController?.tabBar.backgroundColor = .systemBackground
-        title = Labels.Summary.title
         
         output.fetchData()
         setupViewAndConstraints()
@@ -55,8 +53,12 @@ extension SummaryViewController: SummaryViewInput {
     }
 }
 
+// MARK: - Helper methods
 private extension SummaryViewController {
     func setupViewAndConstraints() {
+        tabBarController?.tabBar.backgroundColor = .systemBackground
+        title = Labels.Summary.title
+        
         view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
         
