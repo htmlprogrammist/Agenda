@@ -18,6 +18,11 @@ enum Icons {
     static let checkmark = Icon("checkmark")
     static let xmark = Icon("xmark")
     static let sum = Icon("sum")
+    
+    // Onboarding
+    static let lightbulb = Icon("lightbulb")
+    static let chartBarDoc = Icon("chart.bar.doc.horizontal")
+    static let notesTextBadgePlus = Icon("note.text.badge.plus")
 }
 
 extension Icons {

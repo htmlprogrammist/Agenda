@@ -17,9 +17,15 @@ final class AddGoalViewController: GoalViewController {
         }
     }
     
-    private lazy var doneBarButton: UIBarButtonItem = {
+    private lazy var closeButtonItem: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
+        barButton.accessibilityIdentifier = "cancelButtonItem"
+        return barButton
+    }()
+    private lazy var doneButtonItem: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
         barButton.isEnabled = false
+        barButton.accessibilityIdentifier = "doneButtonItem"
         return barButton
     }()
     
@@ -36,8 +42,8 @@ final class AddGoalViewController: GoalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeThisVC))
-        navigationItem.rightBarButtonItem = doneBarButton
+        navigationItem.leftBarButtonItem = closeButtonItem
+        navigationItem.rightBarButtonItem = doneButtonItem
         title = Labels.Agenda.newGoal
     }
 }
@@ -57,9 +63,9 @@ private extension AddGoalViewController {
     
     func checkBarButtonEnabled() {
         if !goalData.title.isEmpty, !goalData.current.isEmpty, !goalData.aim.isEmpty {
-            doneBarButton.isEnabled = true
+            doneButtonItem.isEnabled = true
         } else {
-            doneBarButton.isEnabled = false
+            doneButtonItem.isEnabled = false
         }
     }
 }

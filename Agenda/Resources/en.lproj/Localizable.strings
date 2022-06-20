@@ -28,10 +28,10 @@ description2 = "Easily track your progress throughout the month with the progres
 description3 = "Add notes to your goals to concretize them and not forget anything";
 
 // Agenda
-titleLabel = "Title";
+titleLabel = "What's to achieve?";
 currentLabel = "Current";
 aimLabel = "Aim";
-notes = "Notes";
+notes = "Add more details";
 newGoal = "New Goal";
 details = "Details";
 saved = "Saved successfully";

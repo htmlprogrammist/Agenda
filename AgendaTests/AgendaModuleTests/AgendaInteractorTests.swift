@@ -65,6 +65,7 @@ class AgendaInteractorTests: XCTestCase {
         coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
         
         interactor.getGoal(at: IndexPath(row: 0, section: 0))
+        
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         XCTAssertTrue(presenter.goalDidProvide, "Goal was not provided by interactor")
         XCTAssertIdentical(coreDataManager, presenter.dependencyProvided)
@@ -75,6 +76,7 @@ class AgendaInteractorTests: XCTestCase {
         interactor.month = month
         
         interactor.provideDataForAdding()
+        
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         XCTAssertNotNil(presenter.monthProvided, "Month was not provided by interactor")
         XCTAssertIdentical(coreDataManager, presenter.dependencyProvided)
@@ -87,6 +89,7 @@ class AgendaInteractorTests: XCTestCase {
      */
     func testCheckForOnboarding() {
         interactor.checkForOnboarding()
+        
         let settings = UserSettings()
         XCTAssertNotEqual(settings.hasOnboarded, presenter.onboardingDidShow)
     }
@@ -102,12 +105,12 @@ class AgendaInteractorTests: XCTestCase {
         let month = coreDataManager.fetchCurrentMonth() // creates new month
         interactor.month = month
         coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
-        
         coreDataManager.expectation = expectation
+        
         interactor.replaceGoal(from: 0, to: 2)
+        
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         waitForExpectations(timeout: 3, handler: nil)
-        
         XCTAssertTrue(coreDataManager.goalDidReplace)
         XCTAssertNotNil(coreDataManager.month)
         XCTAssertNotNil(coreDataManager.goal)
@@ -125,9 +128,10 @@ class AgendaInteractorTests: XCTestCase {
         let month = coreDataManager.fetchCurrentMonth() // creates new month
         interactor.month = month
         coreDataManager.createGoal(data: GoalData(title: "Sample", current: "\(50)", aim: "\(100)"), in: month)
-        
         coreDataManager.expectation = expectation
+        
         interactor.deleteItem(at: IndexPath(row: 0, section: 0))
+        
         waitForExpectations(timeout: 3, handler: nil)
         XCTAssertTrue(coreDataManager.goalDidDelete)
     }

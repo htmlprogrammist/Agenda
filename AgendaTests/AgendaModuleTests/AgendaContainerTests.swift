@@ -38,6 +38,7 @@ class AgendaContainerTests: XCTestCase {
         
         context = AgendaContext(moduleOutput: moduleOutput, moduleDependency: coreDataManager, month: month)
         container = AgendaContainer.assemble(with: context)
+        
         XCTAssertNotNil(container.input, "Module input should not be nil")
         XCTAssertNotNil(container.router)
         XCTAssertNotNil(container.viewController)

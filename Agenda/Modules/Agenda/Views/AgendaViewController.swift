@@ -8,27 +8,35 @@
 import UIKit
 
 final class AgendaViewController: UIViewController {
-	
+    
     private let output: AgendaViewOutput
     private var viewModels = [GoalViewModel]()
     
     public let isAgenda: Bool // depending on this property, month data is displayed
-
+    
+    private lazy var addButtonItem: UIBarButtonItem = {
+        let barButtomItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+        barButtomItem.accessibilityIdentifier = "addBarButton"
+        return barButtomItem
+    }()
     private let dayAndMonth: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "dayAndMonthLabel"
         return label
     }()
     private let yearLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "yearLabel"
         return label
     }()
     private let monthProgressView: UIProgressView = {
         let progress = UIProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.accessibilityIdentifier = "monthProgressView"
         return progress
     }()
     private let separatorView = SeparatorView()
@@ -41,6 +49,7 @@ final class AgendaViewController: UIViewController {
         tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "tableView"
         return tableView
     }()
     
@@ -109,7 +118,7 @@ private extension AgendaViewController {
     
     func setupView() {
         if isAgenda {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+            navigationItem.rightBarButtonItem = addButtonItem
             navigationItem.leftBarButtonItem = editButtonItem
             
             view.addSubview(monthProgressView)

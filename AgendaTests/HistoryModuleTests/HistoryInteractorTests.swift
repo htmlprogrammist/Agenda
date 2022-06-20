@@ -32,6 +32,7 @@ class HistoryInteractorTests: XCTestCase {
         presenter.expectation = expectation
         
         interactor.performFetch()
+        
         XCTAssertFalse(presenter.dataDidNotFetchBool)
         waitForExpectations(timeout: 3)
         XCTAssertNotNil(presenter.viewModels, "View models should not be nil")
@@ -41,13 +42,13 @@ class HistoryInteractorTests: XCTestCase {
         coreDataManager.failFetchingMonth = true
         
         interactor.performFetch()
+        
         XCTAssertTrue(presenter.dataDidNotFetchBool)
     }
     
     func testOpeningDetailsByMonth() {
-        interactor.performFetch()
-        
         let indexPath = IndexPath(row: 0, section: 0)
+        interactor.performFetch()
         
         interactor.openDetailsByMonth(at: indexPath)
         
@@ -57,10 +58,10 @@ class HistoryInteractorTests: XCTestCase {
     
     func testDeletingMonth() {
         let expectation = self.expectation(description: "Deleting month expectation")
+        let indexPath = IndexPath(row: 0, section: 0)
         interactor.performFetch()
         coreDataManager.expectation = expectation
         
-        let indexPath = IndexPath(row: 0, section: 0)
         interactor.deleteMonth(at: indexPath)
         
         waitForExpectations(timeout: 3)

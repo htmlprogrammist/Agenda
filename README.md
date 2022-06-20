@@ -1,4 +1,4 @@
-#  Agenda
+# Agenda
 Application that allows you to track your goals for a month
 
 # Demo
@@ -23,7 +23,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 5. VIPER
 6. Localization
 7. SPM
-8. Testing (Unit/UI)
+8. Testing (Unit/UI) using XCTest
 9. Concurrency
 
 # Requirements
@@ -34,7 +34,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 - The app looks correct for iPhone SE (1st gen.) and above
 
 ---
-#  Agenda
+# Agenda
 Приложение, позволяющее отслеживать цели на месяц
 
 # Демо

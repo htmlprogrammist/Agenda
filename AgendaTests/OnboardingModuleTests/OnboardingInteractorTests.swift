@@ -34,6 +34,7 @@ class OnboardingInteractorTests: XCTestCase {
 
     func testSettingHasOnboarded() {
         let settings = UserSettings()
+        
         interactor.setHasOnboarded()
         
         XCTAssertTrue(presenter.hasOnboardedDidSetBool)

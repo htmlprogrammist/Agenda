@@ -19,11 +19,13 @@ final class OnboardingViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.accessibilityIdentifier = "onboardingScrollView"
         return scrollView
     }()
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "onboardingContentView"
         return view
     }()
     
@@ -34,11 +36,13 @@ final class OnboardingViewController: UIViewController {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "welcomeLabel"
         return label
     }()
     private lazy var tableView: OnboardingTableView = {
         let tableView = OnboardingTableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
+        tableView.accessibilityIdentifier = "onboardingTableView"
         return tableView
     }()
     
@@ -46,6 +50,7 @@ final class OnboardingViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "onboardingButtonView"
         return view
     }()
     private lazy var continueButton: UIButton = {
@@ -55,8 +60,9 @@ final class OnboardingViewController: UIViewController {
         button.layer.zPosition = 1
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         button.backgroundColor = .systemRed
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "onboardingButton"
         return button
     }()
     

@@ -18,6 +18,7 @@ class GoalViewController: UIViewController {
         tableView.register(GoalTableViewCell.self, forCellReuseIdentifier: GoalTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "GoalTableView"
         return tableView
     }()
     

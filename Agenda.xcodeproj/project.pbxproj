@@ -76,6 +76,9 @@
 		F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */; };
 		F0BB554C27EF589200FA7E99 /* Agenda.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */; };
 		F0C40294285DFDEF000F76F0 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C40293285DFDEF000F76F0 /* GoalViewController.swift */; };
+		F0C44D00285E462800E745A5 /* GoalDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C44CFF285E462800E745A5 /* GoalDetailsUITests.swift */; };
+		F0C44D02285E464E00E745A5 /* HistoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C44D01285E464E00E745A5 /* HistoryUITests.swift */; };
+		F0C44D04285E465900E745A5 /* SummaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C44D03285E465900E745A5 /* SummaryUITests.swift */; };
 		F0C8DA2227F4605300ED47C5 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */; };
 		F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */; };
 		F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */; };
@@ -197,6 +200,9 @@
 		F0BB554227EF511800FA7E99 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 		F0BB554B27EF589200FA7E99 /* Agenda.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Agenda.xcdatamodel; sourceTree = "<group>"; };
 		F0C40293285DFDEF000F76F0 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		F0C44CFF285E462800E745A5 /* GoalDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsUITests.swift; sourceTree = "<group>"; };
+		F0C44D01285E464E00E745A5 /* HistoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUITests.swift; sourceTree = "<group>"; };
+		F0C44D03285E465900E745A5 /* SummaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryUITests.swift; sourceTree = "<group>"; };
 		F0C8DA1E27F4605200ED47C5 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F0C8DA1F27F4605200ED47C5 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0C8DA2027F4605200ED47C5 /* Month+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Month+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -292,13 +298,6 @@
 				F0E817502855D64900DD4EE1 /* Mocks+Stubs+Spies */,
 			);
 			path = AgendaTests;
-			sourceTree = "<group>";
-		};
-		F01C5813285C8A090094BCE3 /* GoalDetailsModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GoalDetailsModuleTests;
 			sourceTree = "<group>";
 		};
 		F037986A285527AE00749971 /* ServicesTests */ = {
@@ -652,34 +651,12 @@
 			children = (
 				F0FFD1A328549FD5001EE4A6 /* AgendaUITests.swift */,
 				F01C5811285C89D60094BCE3 /* AddGoalUITests.swift */,
-				F01C5813285C8A090094BCE3 /* GoalDetailsModuleTests */,
-				F0FFD19F28549F95001EE4A6 /* HistoryModuleTests */,
-				F0FFD19E28549F8F001EE4A6 /* SummaryModuleTests */,
-				F0FFD19D28549F86001EE4A6 /* OnboardingModuleTests */,
+				F0C44CFF285E462800E745A5 /* GoalDetailsUITests.swift */,
+				F0C44D01285E464E00E745A5 /* HistoryUITests.swift */,
+				F0C44D03285E465900E745A5 /* SummaryUITests.swift */,
 				F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */,
 			);
 			path = AgendaUITests;
-			sourceTree = "<group>";
-		};
-		F0FFD19D28549F86001EE4A6 /* OnboardingModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OnboardingModuleTests;
-			sourceTree = "<group>";
-		};
-		F0FFD19E28549F8F001EE4A6 /* SummaryModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SummaryModuleTests;
-			sourceTree = "<group>";
-		};
-		F0FFD19F28549F95001EE4A6 /* HistoryModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HistoryModuleTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -925,7 +902,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FFD19628549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift in Sources */,
+				F0C44D00285E462800E745A5 /* GoalDetailsUITests.swift in Sources */,
+				F0C44D02285E464E00E745A5 /* HistoryUITests.swift in Sources */,
 				F0FFD1A428549FD5001EE4A6 /* AgendaUITests.swift in Sources */,
+				F0C44D04285E465900E745A5 /* SummaryUITests.swift in Sources */,
 				F01C5812285C89D60094BCE3 /* AddGoalUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

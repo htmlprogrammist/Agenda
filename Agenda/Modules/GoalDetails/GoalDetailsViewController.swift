@@ -21,6 +21,7 @@ final class GoalDetailsViewController: GoalViewController {
     private lazy var saveBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
         barButton.isEnabled = false
+        barButton.accessibilityIdentifier = "saveBarButton"
         return barButton
     }()
     private let indicatorView: SPIndicatorView = {

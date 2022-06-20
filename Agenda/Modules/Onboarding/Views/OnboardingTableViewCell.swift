@@ -16,6 +16,7 @@ final class OnboardingTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .systemRed
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "onboardingIconImageView"
         return imageView
     }()
     private lazy var labelsStackView: UIStackView = {
@@ -23,6 +24,7 @@ final class OnboardingTableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.accessibilityIdentifier = "onboardingLabelsStackView"
         return stackView
     }()
     private lazy var titleLabel: UILabel = {
@@ -30,6 +32,7 @@ final class OnboardingTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "onboardingTitleLabel"
         return label
     }()
     private lazy var descriptionLabel: UILabel = {
@@ -37,6 +40,7 @@ final class OnboardingTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "onboardingDescriptionLabel"
         return label
     }()
     
@@ -52,6 +56,7 @@ final class OnboardingTableViewCell: UITableViewCell {
     
     private func setupViewAndConstraints() {
         backgroundColor = .clear
+        accessibilityIdentifier = "OnboardingTableViewCell"
         
         contentView.addSubview(iconImageView)
         contentView.addSubview(labelsStackView)

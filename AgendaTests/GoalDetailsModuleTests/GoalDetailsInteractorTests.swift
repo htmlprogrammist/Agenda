@@ -51,6 +51,7 @@ class GoalDetailsInteractorTests: XCTestCase {
         coreDataManager.expectation = expectation
         
         interactor.rewriteGoal(with: goalData)
+        
         XCTAssertTrue(presenter.goalDidRewriteBool)
         waitForExpectations(timeout: 1)
         XCTAssertTrue(coreDataManager.goalDidRewrite)
