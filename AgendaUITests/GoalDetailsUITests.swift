@@ -115,4 +115,21 @@ class GoalDetailsUITests: XCTestCase {
         titleTextField.typeText("\(oldValue.last!)")
         XCTAssertFalse(saveBarButton.isEnabled)
     }
+    
+    func testPresentingIndicatorView() throws {
+        let saveBarButton = app.navigationBars.buttons["saveBarButton"]
+        let tableView = app.tables["GoalTableView"]
+        let aimCell = tableView.cells.element(boundBy: 3)
+        let aimTextField = aimCell.textFields["aimTextField"]
+        
+        aimTextField.tap()
+        aimTextField.typeText("100")
+        saveBarButton.tap()
+        
+        let indicatorView = app.staticTexts["Saved successfully"]
+        
+        let existsPredicate = NSPredicate(format: "exists == true")
+        let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: indicatorView)
+        wait(for: [expectation], timeout: 5)
+    }
 }
