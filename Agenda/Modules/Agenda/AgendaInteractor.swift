@@ -66,7 +66,7 @@ extension AgendaInteractor: AgendaInteractorInput {
     
     func checkForOnboarding() {
         let settings = UserSettings()
-        if let hasOnboarded = settings.hasOnboarded, hasOnboarded {
+        if let hasOnboarded = settings.hasOnboarded, !hasOnboarded {
             output?.showOnboarding()
         }
     }
