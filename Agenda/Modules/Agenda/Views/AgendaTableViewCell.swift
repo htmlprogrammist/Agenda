@@ -15,6 +15,7 @@ final class AgendaTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "titleLabel"
         return label
     }()
     private lazy var goalProgressView: UIProgressView = {
@@ -22,20 +23,23 @@ final class AgendaTableViewCell: UITableViewCell {
 //        progressView.progressTintColor = UIColor(red: 69/255, green: 208/255, blue: 100/255, alpha: 1)
         progressView.progressTintColor = .systemGreen
         progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.accessibilityIdentifier = "progressView"
         return progressView
     }()
     private lazy var goalCurrentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
+        label.accessibilityIdentifier = "currentLabel"
         return label
     }()
-    private lazy var goalEndLabel: UILabel = {
+    private lazy var goalAimLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
+        label.accessibilityIdentifier = "aimLabel"
         return label
     }()
     private lazy var labelsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalEndLabel])
+        let stackView = UIStackView(arrangedSubviews: [goalCurrentLabel, goalAimLabel])
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +57,8 @@ final class AgendaTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
+        accessibilityIdentifier = "AgendaTableViewCell"
+        
         contentView.addSubview(goalTextLabel)
         contentView.addSubview(goalProgressView)
         contentView.addSubview(labelsStackView)
@@ -76,7 +82,7 @@ final class AgendaTableViewCell: UITableViewCell {
     public func configure(goal: GoalViewModel) {
         goalTextLabel.text = goal.name
         goalCurrentLabel.text = goal.current
-        goalEndLabel.text = goal.aim
+        goalAimLabel.text = goal.aim
         goalProgressView.progress = goal.progress
     }
 }

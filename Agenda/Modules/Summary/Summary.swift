@@ -8,9 +8,10 @@
 import UIKit
 
 struct Summary {
-    let iconImagePath: String
+    let icon: UIImage
     let title: String
     let tintColor: UIColor
-    let number: Double
     let measure: String
+    var number: Double = 0.0
+    let kind: SummaryKind
 }

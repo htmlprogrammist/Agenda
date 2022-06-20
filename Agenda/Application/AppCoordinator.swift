@@ -35,7 +35,7 @@ private extension AppCoordinator {
         let context = AgendaContext(moduleOutput: nil, moduleDependency: coreDataManager)
         let container = AgendaContainer.assemble(with: context)
         
-        let agendaViewController = createNavController(viewController: container.viewController, itemName: Labels.goals, itemImage: "calendar")
+        let agendaViewController = createNavController(viewController: container.viewController, itemName: Labels.goals, itemImage: Icons.calendar)
         viewControllers.append(agendaViewController)
         subscribeToCoreDataManager(vc: container.viewController)
     }
@@ -44,7 +44,7 @@ private extension AppCoordinator {
         let context = HistoryContext(moduleOutput: nil, moduleDependency: coreDataManager)
         let container = HistoryContainer.assemble(with: context)
         
-        let historyViewController = createNavController(viewController: container.viewController, itemName: Labels.History.title, itemImage: "clock.fill")
+        let historyViewController = createNavController(viewController: container.viewController, itemName: Labels.History.title, itemImage: Icons.history)
         viewControllers.append(historyViewController)
         subscribeToCoreDataManager(vc: container.viewController)
     }
@@ -52,15 +52,15 @@ private extension AppCoordinator {
     func setupSummary() {
         let context = SummaryContext(moduleOutput: nil, moduleDependency: coreDataManager)
         let container = SummaryContainer.assemble(with: context)
-        let summaryViewController = createNavController(viewController: container.viewController, itemName: Labels.Summary.title, itemImage: "square.text.square.fill")
+        let summaryViewController = createNavController(viewController: container.viewController, itemName: Labels.Summary.title, itemImage: Icons.summary)
         viewControllers.append(summaryViewController)
         subscribeToCoreDataManager(vc: container.viewController)
     }
     
-    func createNavController(viewController: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
+    func createNavController(viewController: UIViewController, itemName: String, itemImage: UIImage) -> UINavigationController {
 
         let navController = UINavigationController(rootViewController: viewController)
-        navController.tabBarItem = UITabBarItem(title: itemName, image: UIImage(named: itemImage), tag: 0)
+        navController.tabBarItem = UITabBarItem(title: itemName, image: itemImage, tag: 0)
         navController.navigationBar.prefersLargeTitles = true
         return navController
     }

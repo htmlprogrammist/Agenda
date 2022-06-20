@@ -25,8 +25,11 @@ extension GoalDetailsInteractor: GoalDetailsInteractorInput {
     }
     
     func rewriteGoal(with data: GoalData) {
-        coreDataManager.rewriteGoal(with: data, in: goal)
         output?.goalDidRewrite()
+        
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            coreDataManager.rewriteGoal(with: data, in: goal)
+        }
     }
     
     func checkBarButtonEnabled(goalData: GoalData) {

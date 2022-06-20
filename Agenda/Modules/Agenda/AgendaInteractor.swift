@@ -11,8 +11,8 @@ final class AgendaInteractor {
     weak var output: AgendaInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
-    
-    public var month: Month! // current month
+    /// current (Agenda) or selected (MonthDetails) month containing goals that will be displayed in this module
+    public var month: Month!
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
@@ -21,17 +21,17 @@ final class AgendaInteractor {
 
 extension AgendaInteractor: AgendaInteractorInput {
     func fetchMonthGoals() {
-        if month == nil {
+        if month == nil { // if month was not provided (e.g. in Agenda module)
             self.month = coreDataManager.fetchCurrentMonth()
         }
-        guard let goals = self.month.goals?.array as? [Goal] else {
+        guard let goals = month.goals?.array as? [Goal] else {
             output?.dataDidNotFetch()
             return
         }
         output?.monthDidFetch(viewModels: makeViewModels(goals), monthInfo: getMonthInfo(), date: month.date.formatTo("MMMMy"))
     }
     
-    func getGoalAt(_ indexPath: IndexPath) {
+    func getGoal(at indexPath: IndexPath) {
         guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
             output?.dataDidNotFetch()
             return
@@ -40,13 +40,24 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func replaceGoal(from a: Int, to b: Int) {
-        guard let goal = month.goals?.object(at: a) as? Goal else { return }
-        coreDataManager.replaceGoal(goal, in: month, from: a, to: b)
+        guard let goal = month.goals?.object(at: a) as? Goal else {
+            output?.dataDidNotFetch()
+            return
+        }
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.coreDataManager.replaceGoal(goal, in: strongSelf.month, from: a, to: b)
+        }
     }
     
     func deleteItem(at indexPath: IndexPath) {
-        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else { return }
-        coreDataManager.deleteGoal(goal: goal)
+        guard let goal = month.goals?.object(at: indexPath.row) as? Goal else {
+            output?.dataDidNotFetch()
+            return
+        }
+        DispatchQueue.global(qos: .utility).async { [weak coreDataManager] in
+            coreDataManager?.deleteGoal(goal: goal)
+        }
     }
     
     func provideDataForAdding() {
@@ -54,7 +65,8 @@ extension AgendaInteractor: AgendaInteractorInput {
     }
     
     func checkForOnboarding() {
-        if !UserDefaults.standard.hasOnboarded {
+        let settings = UserSettings()
+        if let hasOnboarded = settings.hasOnboarded, !hasOnboarded {
             output?.showOnboarding()
         }
     }

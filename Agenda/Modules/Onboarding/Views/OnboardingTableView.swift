@@ -24,9 +24,10 @@ final class OnboardingTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Since each row of the table view has its own height, which cannot be obtained,
-    // it is necessary to somehow set the height for the table view, because without this it simply does not display.
-    // This code allows to set table view contentSize correctly, so there's no need for using heightAnchor
+    /**
+     Since each row of the table view has its own height, which cannot be obtained, it is necessary to somehow set the height for the table view, because without this it simply does not display.
+     This code allows to set table view `contentSize` correctly, so there's no need for using `heightAnchor`
+     */
     override var contentSize: CGSize {
         didSet {
             invalidateIntrinsicContentSize()

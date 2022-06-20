@@ -28,12 +28,12 @@ extension HistoryPresenter: HistoryViewOutput {
         interactor.performFetch()
     }
     
-    func didSelectRowAt(_ indexPath: IndexPath) {
-        interactor.didSelectRowAt(indexPath)
+    func didSelectRow(at indexPath: IndexPath) {
+        interactor.openDetailsByMonth(at: indexPath)
     }
     
-    func deleteItemAt(_ indexPath: IndexPath) {
-        interactor.deleteMonthAt(indexPath)
+    func deleteItem(at indexPath: IndexPath) {
+        interactor.deleteMonth(at: indexPath)
     }
 }
 

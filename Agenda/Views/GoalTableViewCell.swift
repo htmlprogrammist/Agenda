@@ -41,6 +41,7 @@ final class GoalTableViewCell: UITableViewCell {
         textView.textColor = .placeholderText
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.resignFirstResponder()
+        textView.accessibilityIdentifier = "notesTextView"
         return textView
     }()
     
@@ -56,8 +57,14 @@ final class GoalTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
+        accessibilityIdentifier = "GoalTableViewCell"
+        titleTextField.accessibilityIdentifier = "titleTextField"
+        currentTextField.accessibilityIdentifier = "currentTextField"
+        aimTextField.accessibilityIdentifier = "aimTextField"
+        
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
+        titleTextField.clearButtonMode = .always
         titleTextField.addTarget(self, action: #selector(titleTextFieldChange), for: .allEditingEvents)
         contentView.addSubview(notesTextView)
         

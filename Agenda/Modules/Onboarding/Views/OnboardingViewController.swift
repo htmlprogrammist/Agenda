@@ -10,20 +10,23 @@ import UIKit
 final class OnboardingViewController: UIViewController {
     
     private let output: OnboardingViewOutput
-    
-    private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
-    private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let imagePathsArray = ["lightbulb", "chart.bar.doc.horizontal", "note.text.badge.plus"]
+    private let viewModels = [
+        OnboardingViewModel(title: Labels.Onboarding.title1, description: Labels.Onboarding.description1, image: Icons.lightbulb),
+        OnboardingViewModel(title: Labels.Onboarding.title2, description: Labels.Onboarding.description2, image: Icons.chartBarDoc),
+        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus)
+    ]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.accessibilityIdentifier = "onboardingScrollView"
         return scrollView
     }()
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "onboardingContentView"
         return view
     }()
     
@@ -34,11 +37,13 @@ final class OnboardingViewController: UIViewController {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "welcomeLabel"
         return label
     }()
     private lazy var tableView: OnboardingTableView = {
         let tableView = OnboardingTableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
+        tableView.accessibilityIdentifier = "onboardingTableView"
         return tableView
     }()
     
@@ -46,6 +51,7 @@ final class OnboardingViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "onboardingButtonView"
         return view
     }()
     private lazy var continueButton: UIButton = {
@@ -55,8 +61,9 @@ final class OnboardingViewController: UIViewController {
         button.layer.zPosition = 1
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         button.backgroundColor = .systemRed
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "onboardingButton"
         return button
     }()
     
@@ -72,9 +79,6 @@ final class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
-        isModalInPresentation = true
         
         setupView()
         setConstraints()
@@ -92,17 +96,19 @@ private extension OnboardingViewController {
     }
     
     func setupView() {
+        isModalInPresentation = true
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
+        
         scrollView.addSubview(contentView)
-        
         contentView.addSubview(welcomeLabel)
-        let labelText = welcomeLabel.text ?? ""
-        let labelAttributedText = NSMutableAttributedString(string: labelText)
-        let index = labelText.lastIndex(of: "A") ?? labelText.startIndex
-        labelAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: (labelText.distance(from: labelText.startIndex, to: index)), length: 6))
-        welcomeLabel.attributedText = labelAttributedText
-        
         contentView.addSubview(tableView)
+        
+        let labelAttributedText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
+        let agendaAttributedText = NSMutableAttributedString(string: "Agenda")
+        agendaAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: 0, length: 6))
+        labelAttributedText.append(agendaAttributedText)
+        welcomeLabel.attributedText = labelAttributedText
         
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
@@ -148,7 +154,7 @@ private extension OnboardingViewController {
 extension OnboardingViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        viewModels.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,10 +164,7 @@ extension OnboardingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnboardingTableViewCell.identifier, for: indexPath) as? OnboardingTableViewCell
         else { return OnboardingTableViewCell() }
-        cell.backgroundColor = .clear
-        cell.iconImageView.image = UIImage(named: imagePathsArray[indexPath.section])
-        cell.titleLabel.text = titlesArray[indexPath.section]
-        cell.descriptionLabel.text = descriptionsArray[indexPath.section]
+        cell.configure(with: viewModels[indexPath.section])
         return cell
     }
     
