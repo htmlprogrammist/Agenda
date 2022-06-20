@@ -27,7 +27,8 @@ extension UIViewController {
         alert.addAction(yes)
         alert.addAction(no)
         
-        alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
+        /// for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
+        alert.negativeWidthConstraint()
         present(alert, animated: true)
     }
     

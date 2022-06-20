@@ -10,10 +10,11 @@ import UIKit
 final class OnboardingViewController: UIViewController {
     
     private let output: OnboardingViewOutput
-    
-    private let titlesArray = [Labels.Onboarding.title1, Labels.Onboarding.title2, Labels.Onboarding.title3]
-    private let descriptionsArray = [Labels.Onboarding.description1, Labels.Onboarding.description2, Labels.Onboarding.description3]
-    private let images = [Icons.lightbulb, Icons.chartBarDoc, Icons.notesTextBadgePlus]
+    private let viewModels = [
+        OnboardingViewModel(title: Labels.Onboarding.title1, description: Labels.Onboarding.description1, image: Icons.lightbulb),
+        OnboardingViewModel(title: Labels.Onboarding.title2, description: Labels.Onboarding.description2, image: Icons.chartBarDoc),
+        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus)
+    ]
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -95,18 +96,18 @@ private extension OnboardingViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .systemBackground
         isModalInPresentation = true
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         
         scrollView.addSubview(contentView)
         contentView.addSubview(welcomeLabel)
         contentView.addSubview(tableView)
         
-        let labelText = welcomeLabel.text ?? ""
-        let labelAttributedText = NSMutableAttributedString(string: labelText)
-        let index = labelText.lastIndex(of: "A") ?? labelText.startIndex
-        labelAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: (labelText.distance(from: labelText.startIndex, to: index)), length: 6))
+        let labelAttributedText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
+        let agendaAttributedText = NSMutableAttributedString(string: "Agenda")
+        agendaAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: 0, length: 6))
+        labelAttributedText.append(agendaAttributedText)
         welcomeLabel.attributedText = labelAttributedText
         
         view.addSubview(backgroundButtonView)
@@ -153,7 +154,7 @@ private extension OnboardingViewController {
 extension OnboardingViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        titlesArray.count
+        viewModels.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -163,7 +164,7 @@ extension OnboardingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnboardingTableViewCell.identifier, for: indexPath) as? OnboardingTableViewCell
         else { return OnboardingTableViewCell() }
-        cell.configure(with: OnboardingViewModel(title: titlesArray[indexPath.section], description: descriptionsArray[indexPath.section], image: images[indexPath.section]))
+        cell.configure(with: viewModels[indexPath.section])
         return cell
     }
     

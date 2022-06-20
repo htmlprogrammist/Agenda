@@ -11,8 +11,8 @@ final class AgendaInteractor {
     weak var output: AgendaInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
-    
-    public var month: Month! // current (Agenda) or selected (MonthDetails) month
+    /// current (Agenda) or selected (MonthDetails) month containing goals that will be displayed in this module
+    public var month: Month!
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
@@ -66,7 +66,7 @@ extension AgendaInteractor: AgendaInteractorInput {
     
     func checkForOnboarding() {
         let settings = UserSettings()
-        if let hasOnboarded = settings.hasOnboarded, !hasOnboarded {
+        if let hasOnboarded = settings.hasOnboarded, hasOnboarded {
             output?.showOnboarding()
         }
     }

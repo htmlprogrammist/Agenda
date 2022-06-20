@@ -12,7 +12,8 @@ final class AgendaViewController: UIViewController {
     private let output: AgendaViewOutput
     private var viewModels = [GoalViewModel]()
     
-    public let isAgenda: Bool // depending on this property, month data is displayed
+    /// Depending on this property, month data is being displayed
+    public let isAgenda: Bool
     
     private lazy var addButtonItem: UIBarButtonItem = {
         let barButtomItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))

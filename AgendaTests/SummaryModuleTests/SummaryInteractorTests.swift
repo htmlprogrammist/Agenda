@@ -60,6 +60,8 @@ class SummaryInteractorTests: XCTestCase {
             Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals),
             Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals)
         ]
+        var settings = UserSettings()
+        settings.summaries = [SummaryKind.percentOfSetGoals.rawValue, SummaryKind.completedGoals.rawValue, SummaryKind.uncompletedGoals.rawValue, SummaryKind.allGoals.rawValue]
         let goalData1 = GoalData(title: "Sample 1", current: "\(75)", aim: "\(100)")
         let goalData2 = GoalData(title: "Sample 2", current: "\(100)", aim: "\(100)")
         coreDataManager.createGoal(data: goalData1, in: coreDataManager.month1)

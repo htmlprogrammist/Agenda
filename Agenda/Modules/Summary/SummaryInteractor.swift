@@ -14,9 +14,12 @@ enum SummaryKind: Int {
 final class SummaryInteractor {
     weak var output: SummaryInteractorOutput?
     
+    private let settings = UserSettings()
     public let coreDataManager: CoreDataManagerProtocol
     
-    var summaries: [Summary] = [
+    /// This array describes what kind of data will be displayed in cells. User selects the data he needs and then we add/remove these `SummaryCell` enum's cases
+    public lazy var cells: [SummaryKind] = settings.summaries?.compactMap { SummaryKind(rawValue: $0) } ?? [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
+    public var summaries: [Summary] = [
         Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals),
         Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals),
         Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals),
@@ -37,7 +40,11 @@ extension SummaryInteractor: SummaryInteractorInput {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.countGoals(months: months)
-            strongSelf.output?.dataDidFetch(data: strongSelf.summaries)
+            
+            let summaries = strongSelf.summaries.filter { summary in
+                strongSelf.cells.contains(summary.kind)
+            }
+            strongSelf.output?.dataDidFetch(data: summaries)
         }
     }
 }

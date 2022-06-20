@@ -28,8 +28,7 @@ class GoalViewController: UIViewController {
         
         setupViewAndConstraints()
         
-        // This methods is declared in Extensions/UIKit/UIViewController.swift
-        // It allows to hide keyboard when user taps in any place
+        /// This method allows to hide keyboard when user taps in any place. It is declared in `Extensions/UIKit/UIViewController.swift`
         hideKeyboardWhenTappedAround()
     }
     

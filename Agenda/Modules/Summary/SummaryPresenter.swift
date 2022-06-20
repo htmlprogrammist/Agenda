@@ -14,9 +14,6 @@ final class SummaryPresenter {
     private let router: SummaryRouterInput
     private let interactor: SummaryInteractorInput
     
-    /// This array describes what kind of data will be displayed in cells. User selects the data he needs and then we add/remove these `SummaryCell` enum's cases
-    public var cells: [SummaryKind] = [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
-    
     init(router: SummaryRouterInput, interactor: SummaryInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -34,12 +31,8 @@ extension SummaryPresenter: SummaryViewOutput {
 
 extension SummaryPresenter: SummaryInteractorOutput {
     func dataDidFetch(data: [Summary]) {
-        let summaries = data.filter { summary in
-            cells.contains(summary.kind)
-        }
-        
         DispatchQueue.main.async { [weak self] in
-            self?.view?.setData(summaries: summaries)
+            self?.view?.setData(summaries: data)
         }
     }
     

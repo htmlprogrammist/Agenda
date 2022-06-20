@@ -58,7 +58,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 5. VIPER
 6. Локализация
 7. SPM
-8. Тестирование (Unit/UI)
+8. Тестирование (Unit/UI) используя XCTest
 9. Многопоточность
 
 # Требования

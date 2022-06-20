@@ -7,6 +7,7 @@
 
 fileprivate enum SettingsKey: CodingKey {
     case hasOnboarded
+    case summaries
 }
 
 struct UserSettings {
@@ -15,5 +16,10 @@ struct UserSettings {
     var hasOnboarded: Bool? {
         get { storage[.hasOnboarded] }
         set { storage[.hasOnboarded] = newValue }
+    }
+    
+    var summaries: [Int]? {
+        get { storage[.summaries] }
+        set { storage[.summaries] = newValue}
     }
 }

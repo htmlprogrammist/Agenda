@@ -17,7 +17,7 @@ history = "История";
 summary = "Обзор";
 
 // Onboarding
-welcomeLabel = "Добро пожаловать в Agenda";
+welcomeLabel = "Добро пожаловать в ";
 continueButtonLabel = "Продолжить";
 title1 = "Планирование по-новому";
 title2 = "Всё на виду";

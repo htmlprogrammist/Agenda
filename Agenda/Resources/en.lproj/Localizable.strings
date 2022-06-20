@@ -17,7 +17,7 @@ history = "History";
 summary = "Summary";
 
 // Onboarding
-welcomeLabel = "Welcome to the Agenda";
+welcomeLabel = "Welcome to the ";
 continueButtonLabel = "Continue";
 title1 = "Planning in a new way";
 title2 = "All in plain sight";
