@@ -16,7 +16,7 @@ protocol SummaryModuleOutput: AnyObject {
 
 protocol SummaryViewInput: AnyObject {
     func showAlert(title: String, message: String)
-    func setData(numbers: [Double])
+    func setData(summaries: [Summary])
 }
 
 protocol SummaryViewOutput: AnyObject {
@@ -28,7 +28,7 @@ protocol SummaryInteractorInput: AnyObject {
 }
 
 protocol SummaryInteractorOutput: AnyObject {
-    func dataDidFetch(months: [Month])
+    func dataDidFetch(data: [Summary])
     func dataDidNotFetch()
 }
 

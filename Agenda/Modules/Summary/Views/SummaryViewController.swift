@@ -9,13 +9,8 @@ import UIKit
 
 final class SummaryViewController: UIViewController {
     
-    private let imagePaths = ["number", "checkmark", "xmark", "sum"]
-    private let titleLabelsText = [Labels.Summary.percentOfSetGoals, Labels.Summary.completedGoals, Labels.Summary.uncompletedGoals, Labels.Summary.allGoals]
-    private let tintColors: [UIColor] = [.systemTeal, .systemGreen, .systemRed, .systemOrange]
-    private let measureLabelsText = ["% \(Labels.Summary.ofSetGoals)", Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension, Labels.Summary.goalsDeclension]
-    private var numbers = [0.0, 0.0, 0.0, 0.0] // to display in cells in Summary VC
-    
     private let output: SummaryViewOutput
+    private var summaries: [Summary] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -25,6 +20,7 @@ final class SummaryViewController: UIViewController {
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "summaryTableView"
         return tableView
     }()
     
@@ -41,18 +37,14 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarController?.tabBar.backgroundColor = .systemBackground
-        view.backgroundColor = .systemGroupedBackground
-        title = Labels.Summary.title
-        
-        setupViewAndConstraints()
         output.fetchData()
+        setupViewAndConstraints()
     }
 }
 
 extension SummaryViewController: SummaryViewInput {
-    func setData(numbers: [Double]) {
-        self.numbers = numbers
+    func setData(summaries: [Summary]) {
+        self.summaries = summaries
         tableView.reloadData()
     }
     
@@ -61,8 +53,13 @@ extension SummaryViewController: SummaryViewInput {
     }
 }
 
+// MARK: - Helper methods
 private extension SummaryViewController {
     func setupViewAndConstraints() {
+        tabBarController?.tabBar.backgroundColor = .systemBackground
+        title = Labels.Summary.title
+        
+        view.backgroundColor = .systemGroupedBackground
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -78,7 +75,7 @@ private extension SummaryViewController {
 extension SummaryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        numbers.count
+        summaries.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,8 +85,7 @@ extension SummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableViewCell.identifier, for: indexPath) as? SummaryTableViewCell
         else { return SummaryTableViewCell() }
-        let summary = Summary(iconImagePath: imagePaths[indexPath.section], title: titleLabelsText[indexPath.section], tintColor: tintColors[indexPath.section], number: numbers[indexPath.section], measure: measureLabelsText[indexPath.section])
-        cell.configure(data: summary)
+        cell.configure(data: summaries[indexPath.section])
         return cell
     }
     

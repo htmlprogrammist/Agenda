@@ -7,7 +7,7 @@
 
 import CoreData
 
-protocol CoreDataManagerProtocol {
+protocol CoreDataManagerProtocol: AnyObject {
     func fetchCurrentMonth() -> Month
     func fetchMonths() -> [Month]?
     
@@ -57,7 +57,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         let months: [Month]? = try? managedObjectContext.fetch(fetchRequest)
         if let months = months, !months.isEmpty {
             // filled with smth? Ok then, display **current** month
-            return months.first! // not empty check allows us to use force-unwrap
+            return months.first!
         } else {
             // empty? Ok, create new month
             let month = Month(context: managedObjectContext)
@@ -94,7 +94,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.aim = Int64(data.aim) ?? 0
         goal.notes = data.notes
         
-        managedObjectContext.refreshAllObjects() // in order to make NSFetchedResultsControllerDelegate work
         saveContext()
         updateViewModels()
     }
@@ -106,19 +105,18 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     }
     
     func deleteMonth(month: Month) {
-        guard let goals = month.goals?.array as? [Goal] else { return }
-        goals.forEach { goal in
-            managedObjectContext.delete(goal)
+        if let goals = month.goals?.array as? [Goal] {
+            goals.forEach { managedObjectContext.delete($0) }
         }
         managedObjectContext.delete(month)
         saveContext()
-        updateViewModels(in: [2])
+        updateViewModels(in: [.summary])
     }
     
     func deleteGoal(goal: Goal) {
         managedObjectContext.delete(goal)
         saveContext()
-        updateViewModels(in: [1, 2])
+        updateViewModels(in: [.history, .summary])
     }
     
     func saveContext() {
@@ -131,10 +129,24 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
             }
         }
     }
+}
+
+private extension CoreDataManager {
+    /**
+     Updating view controllers after making changes in CoreData.
+     `enum ViewControllers` implement tab bar's viewcontrollers.
+     */
+    enum ViewControllers: Int {
+        case agenda
+        case history
+        case summary
+    }
     
-    private func updateViewModels(in viewControllersIndicies: [Int] = [0, 1, 2]) {
-        for index in viewControllersIndicies {
-            viewControllers[index].updateViewModel()
+    func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
+        DispatchQueue.main.async { [weak self] in
+            for viewController in viewControllers {
+                self?.viewControllers[viewController.rawValue].updateViewModel()
+            }
         }
     }
 }

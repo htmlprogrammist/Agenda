@@ -26,14 +26,14 @@ protocol AgendaViewOutput: AnyObject {
     func addNewGoal()
     func checkForOnboarding()
     
-    func didSelectRowAt(_ indexPath: IndexPath)
-    func moveRowAt(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    func didSelectRow(at indexPath: IndexPath)
+    func moveRow(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     func deleteItem(at indexPath: IndexPath)
 }
 
 protocol AgendaInteractorInput: AnyObject {
     func fetchMonthGoals()
-    func getGoalAt(_ indexPath: IndexPath)
+    func getGoal(at indexPath: IndexPath)
     func replaceGoal(from a: Int, to b: Int)
     func deleteItem(at indexPath: IndexPath)
     
@@ -42,7 +42,7 @@ protocol AgendaInteractorInput: AnyObject {
 }
 
 protocol AgendaInteractorOutput: AnyObject {
-    func monthDidFetch(goals: [Goal], date: String)
+    func monthDidFetch(viewModels: [GoalViewModel], monthInfo: DateViewModel, date: String)
     func dataDidNotFetch()
     
     func showAddGoalModuleWith(month: Month, moduleDependency: CoreDataManagerProtocol)

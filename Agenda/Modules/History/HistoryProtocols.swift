@@ -23,18 +23,18 @@ protocol HistoryViewInput: AnyObject {
 protocol HistoryViewOutput: AnyObject {
     func fetchData()
     
-    func didSelectRowAt(_ indexPath: IndexPath)
-    func deleteItemAt(_ indexPath: IndexPath)
+    func didSelectRow(at indexPath: IndexPath)
+    func deleteItem(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorInput: AnyObject {
     func performFetch()
-    func didSelectRowAt(_ indexPath: IndexPath)
-    func deleteMonthAt(_ indexPath: IndexPath)
+    func openDetailsByMonth(at indexPath: IndexPath)
+    func deleteMonth(at indexPath: IndexPath)
 }
 
 protocol HistoryInteractorOutput: AnyObject {
-    func dataDidFetch(months: [Month])
+    func dataDidFetch(viewModels: [MonthViewModel])
     func dataDidNotFetch()
     
     func showMonthDetailsModule(month: Month, moduleDependency: CoreDataManagerProtocol)

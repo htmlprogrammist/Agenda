@@ -8,27 +8,36 @@
 import UIKit
 
 final class AgendaViewController: UIViewController {
-	
+    
     private let output: AgendaViewOutput
     private var viewModels = [GoalViewModel]()
     
-    public let isAgenda: Bool // depending on this property, month data is displayed
-
+    /// Depending on this property, month data is being displayed
+    public let isAgenda: Bool
+    
+    private lazy var addButtonItem: UIBarButtonItem = {
+        let barButtomItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+        barButtomItem.accessibilityIdentifier = "addBarButton"
+        return barButtomItem
+    }()
     private let dayAndMonth: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "dayAndMonthLabel"
         return label
     }()
     private let yearLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "yearLabel"
         return label
     }()
     private let monthProgressView: UIProgressView = {
         let progress = UIProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.accessibilityIdentifier = "monthProgressView"
         return progress
     }()
     private let separatorView = SeparatorView()
@@ -41,6 +50,7 @@ final class AgendaViewController: UIViewController {
         tableView.register(AgendaTableViewCell.self, forCellReuseIdentifier: AgendaTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.accessibilityIdentifier = "tableView"
         return tableView
     }()
     
@@ -58,7 +68,6 @@ final class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
         setupView()
         setConstraints()
     }
@@ -66,7 +75,12 @@ final class AgendaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        output.fetchData() // in month details mode there is no possibility to update view models, so fetching data is now here
+        /**
+         There is no possibility to update view models in month details, when you change goal details.
+         So, the only solution we have is to update every time `viewWillAppear` method is being called.
+         This will not affect negatively on the app's perfomance, because in Agenda this method is called only one time and month details is used by user rarely.
+         */
+        output.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,7 +119,7 @@ private extension AgendaViewController {
     
     func setupView() {
         if isAgenda {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewGoal))
+            navigationItem.rightBarButtonItem = addButtonItem
             navigationItem.leftBarButtonItem = editButtonItem
             
             view.addSubview(monthProgressView)
@@ -116,6 +130,7 @@ private extension AgendaViewController {
         }
         view.addSubview(separatorView)
         view.addSubview(tableView)
+        view.backgroundColor = .systemBackground
     }
     
     func setConstraints() {
@@ -173,7 +188,7 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        output.didSelectRowAt(indexPath)
+        output.didSelectRow(at: indexPath)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -182,26 +197,18 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        output.moveRowAt(from: sourceIndexPath, to: destinationIndexPath)
+        output.moveRow(from: sourceIndexPath, to: destinationIndexPath)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription, preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
+            alertForDeletion(title: Labels.Agenda.deleteGoalTitle, message: Labels.Agenda.deleteGoalDescription) { [weak self] in
                 guard let strongSelf = self else { return }
                 
                 strongSelf.output.deleteItem(at: indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            let no = UIAlertAction(title: Labels.cancel, style: .default)
-            
-            alert.addAction(yes)
-            alert.addAction(no)
-            
-            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true)
+            }
         }
     }
 }

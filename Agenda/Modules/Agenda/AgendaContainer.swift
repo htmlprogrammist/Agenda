@@ -16,7 +16,7 @@ final class AgendaContainer {
         let router = AgendaRouter()
         let interactor = AgendaInteractor(coreDataManager: context.moduleDependency)
         let presenter = AgendaPresenter(router: router, interactor: interactor)
-        let viewController = AgendaViewController(output: presenter, isAgenda: context.month == nil ? true : false)
+        let viewController = AgendaViewController(output: presenter, isAgenda: context.month == nil)
         
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
@@ -45,5 +45,5 @@ struct AgendaContext {
     
     weak var moduleOutput: AgendaModuleOutput?
     let moduleDependency: ModuleDependency
-    var month: Month? = nil
+    var month: Month?
 }

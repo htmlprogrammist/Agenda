@@ -21,7 +21,10 @@ final class AddGoalInteractor {
 
 extension AddGoalInteractor: AddGoalInteractorInput {
     func createGoal(goalData: GoalData) {
-        coreDataManager.createGoal(data: goalData, in: month)
         output?.goalDidCreate()
+        
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            coreDataManager.createGoal(data: goalData, in: month)
+        }
     }
 }

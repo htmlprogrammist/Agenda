@@ -7,8 +7,7 @@
 
 import UIKit
 
-// MARK: this code is needed so that the console no longer displays an error about the allegedly negative width
-
+/// this code is needed so that the console no longer displays an error about the allegedly negative width on iOS 13 (14?) 
 extension UIAlertController {
     func negativeWidthConstraint() {
         for subView in self.view.subviews {

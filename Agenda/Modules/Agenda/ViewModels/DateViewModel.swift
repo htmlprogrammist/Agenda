@@ -10,12 +10,6 @@ struct DateViewModel { // to display month info (date and progress bar in Agenda
     var year: String
     var progress: Float
     
-    init() {
-        self.dayAndMonth = ""
-        self.year = ""
-        self.progress = 0.0
-    }
-    
     init(dayAndMonth: String, year: Int, progress: Float) {
         self.dayAndMonth = dayAndMonth
         self.year = ", \(year)"

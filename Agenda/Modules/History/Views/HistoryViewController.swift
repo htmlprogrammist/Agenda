@@ -26,17 +26,12 @@ final class HistoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = editButtonItem
-        title = Labels.History.title
-        view.backgroundColor = .systemBackground
-        
-        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
-        
+        setupView()
         output.fetchData()
     }
 }
 
+// MARK: - ViewInput
 extension HistoryViewController: HistoryViewInput {
     func showAlert(title: String, message: String) {
         alertForError(title: title, message: message)
@@ -81,7 +76,7 @@ extension HistoryViewController {
         if indexPath == [0, 0] { // current month
             tabBarController?.selectedIndex = 0
         } else {
-            output.didSelectRowAt(indexPath)
+            output.didSelectRow(at: indexPath)
         }
     }
     
@@ -100,22 +95,26 @@ extension HistoryViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription, preferredStyle: .actionSheet)
-            let yes = UIAlertAction(title: Labels.yes, style: .destructive, handler: { [weak self] _ in
+            alertForDeletion(title: Labels.History.deleteMonthTitle, message: Labels.History.deleteMonthDescription) { [weak self] in
                 guard let strongSelf = self else { return }
                 
-                strongSelf.output.deleteItemAt(indexPath)
+                strongSelf.output.deleteItem(at: indexPath)
                 strongSelf.viewModels.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            let no = UIAlertAction(title: Labels.cancel, style: .default)
-            
-            alert.addAction(yes)
-            alert.addAction(no)
-            
-            alert.negativeWidthConstraint() // for definition try to open declaration of this functions in Extensions/UIKit/UIAlertController.swift
-            present(alert, animated: true)
+            }
         }
+    }
+}
+
+// MARK: - Helper methods
+private extension HistoryViewController {
+    func setupView() {
+        navigationItem.rightBarButtonItem = editButtonItem
+        title = Labels.History.title
+        view.backgroundColor = .systemBackground
+        
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 
