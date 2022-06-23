@@ -11,7 +11,7 @@ final class AddGoalInteractor {
     weak var output: AddGoalInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
-    
+    /// Month in which new goal will be added
     public var month: Month!
     
     init(coreDataManager: CoreDataManagerProtocol) {

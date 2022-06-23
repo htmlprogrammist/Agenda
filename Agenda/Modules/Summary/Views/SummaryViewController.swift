@@ -98,8 +98,8 @@ extension SummaryViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - CoreDataManagerDelegate
-extension SummaryViewController: CoreDataManagerDelegate {
+// MARK: - CoreDataManagerObserver
+extension SummaryViewController: CoreDataManagerObserver {
     func updateViewModel() {
         output.fetchData()
     }

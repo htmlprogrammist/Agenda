@@ -8,6 +8,7 @@
 import UIKit
 
 extension UITextField {
+    /// Convenience init with a lot of different properties that I need. Althouth, the only place where it is being used is `GoalTableViewCell`, but it helps me not to repeat myself (DRY)
     convenience init(keyboardType: UIKeyboardType, placeholder: String, textAlignment: NSTextAlignment = .right, borderStyle: BorderStyle) {
         self.init()
         self.isHidden = true

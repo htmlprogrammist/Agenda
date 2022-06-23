@@ -10,7 +10,7 @@ import UIKit
 final class HistoryViewController: UITableViewController {
     
     private let output: HistoryViewOutput
-    
+    /// View models created from the fetched months
     private var viewModels = [MonthViewModel]()
     
     init(output: HistoryViewOutput) {
@@ -118,8 +118,8 @@ private extension HistoryViewController {
     }
 }
 
-// MARK: - CoreDataManagerDelegate
-extension HistoryViewController: CoreDataManagerDelegate {
+// MARK: - CoreDataManagerObserver
+extension HistoryViewController: CoreDataManagerObserver {
     func updateViewModel() {
         output.fetchData()
     }

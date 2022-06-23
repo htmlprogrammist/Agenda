@@ -9,7 +9,7 @@ import XCTest
 import CoreData
 @testable import Agenda
 
-class CoreDataManagerDelegateMock: CoreDataManagerDelegate {
+class CoreDataManagerObserverMock: CoreDataManagerObserver {
     func updateViewModel() {}
 }
 
@@ -27,7 +27,7 @@ class CoreDataManagerTests: XCTestCase {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\((calendarDate.year ?? 1970) - 1)") ?? Date()
         
-        coreDataManager.viewControllers.append(CoreDataManagerDelegateMock())
+        coreDataManager.viewControllers.append(CoreDataManagerObserverMock())
     }
     
     override func tearDownWithError() throws {

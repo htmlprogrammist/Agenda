@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+    /// Format date with format `dd.MM.yyyy` to the provided template with the first capitalized letter
     func formatTo(_ template: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

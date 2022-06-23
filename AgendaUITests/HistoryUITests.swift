@@ -60,6 +60,12 @@ class HistoryUITests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == true")
         let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: monthDetailsTableView)
         wait(for: [expectation], timeout: 5)
+        let monthProgressView = app.progressIndicators["monthProgressView"]
+        let dayAndMonthLabel = app.staticTexts["dayAndMonthLabel"]
+        let yearLabel = app.staticTexts["yearLabel"]
+        XCTAssertFalse(monthProgressView.exists)
+        XCTAssertFalse(dayAndMonthLabel.exists)
+        XCTAssertFalse(yearLabel.exists)
     }
     
     func testOpeningAlertWithDeletingMonth() throws {

@@ -11,7 +11,7 @@ final class GoalDetailsInteractor {
     weak var output: GoalDetailsInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
-    
+    /// Chosen goal to change the data in
     public var goal: Goal!
     
     init(coreDataManager: CoreDataManagerProtocol) {

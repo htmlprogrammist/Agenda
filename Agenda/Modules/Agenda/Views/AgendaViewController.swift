@@ -213,8 +213,8 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - CoreDataManagerDelegate
-extension AgendaViewController: CoreDataManagerDelegate {
+// MARK: - CoreDataManagerObserver
+extension AgendaViewController: CoreDataManagerObserver {
     func updateViewModel() {
         output.fetchData()
     }

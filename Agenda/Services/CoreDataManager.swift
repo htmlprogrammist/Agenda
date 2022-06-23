@@ -21,7 +21,7 @@ protocol CoreDataManagerProtocol: AnyObject {
     func saveContext()
 }
 
-protocol CoreDataManagerDelegate: AnyObject {
+protocol CoreDataManagerObserver: AnyObject {
     func updateViewModel()
 }
 
@@ -30,7 +30,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    var viewControllers = [CoreDataManagerDelegate]()
+    var viewControllers = [CoreDataManagerObserver]()
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
