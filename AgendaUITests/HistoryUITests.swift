@@ -70,29 +70,37 @@ class HistoryUITests: XCTestCase {
     
     func testOpeningAlertWithDeletingMonth() throws {
         let tableView = app.tables.firstMatch
+        let numberOfRowsBefore = tableView.cells.count
         let cell = tableView.cells.element(boundBy: 1)
         cell.swipeLeft()
-        
-        addUIInterruptionMonitor(withDescription: "Delete month") { alert in
-            alert.buttons.firstMatch.tap()
-            return true
-        }
-        
         let deleteButton = cell.buttons.firstMatch
         deleteButton.tap()
         
+        let actionSheet = app.sheets.firstMatch
+        XCTAssertTrue(actionSheet.exists)
+        
+        actionSheet.buttons.element(boundBy: 1).tap()
+        XCTAssertFalse(actionSheet.exists)
+        
+        let numberOfRowsAfter = tableView.cells.count
+        XCTAssertEqual(numberOfRowsBefore, numberOfRowsAfter)
     }
     
     func testOpeningAlertAndDeletingMonth() throws {
         let tableView = app.tables.firstMatch
+        let numberOfRowsBefore = tableView.cells.count
         let cell = tableView.cells.element(boundBy: 1)
         cell.swipeLeft()
         let deleteButton = cell.buttons.firstMatch
         deleteButton.tap()
         
-        addUIInterruptionMonitor(withDescription: "Delete month") { alert in
-            alert.buttons.element(boundBy: 1).tap()
-            return true
-        }
+        let actionSheet = app.sheets.firstMatch
+        XCTAssertTrue(actionSheet.exists)
+        
+        actionSheet.buttons.firstMatch.tap()
+        XCTAssertFalse(actionSheet.exists)
+        
+        let numberOfRowsAfter = tableView.cells.count
+        XCTAssertNotEqual(numberOfRowsBefore, numberOfRowsAfter)
     }
 }
