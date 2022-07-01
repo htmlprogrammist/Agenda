@@ -14,9 +14,9 @@
 		F0027EF0284BE57C00D73820 /* OnboardingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEA284BE57C00D73820 /* OnboardingProtocols.swift */; };
 		F0027EF1284BE57C00D73820 /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */; };
 		F0027EF2284BE57C00D73820 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */; };
-		F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00AB2232805902400C57F9D /* OnboardingTableView.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
 		F014D940285B259200AB60A3 /* SummaryPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */; };
+		F015354A286EF3F7001E1BBD /* OnboardingTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0153549286EF3F7001E1BBD /* OnboardingTableViewHeader.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
 		F01C5810285C84A10094BCE3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C580F285C84A10094BCE3 /* OnboardingViewModel.swift */; };
 		F01C5812285C89D60094BCE3 /* AddGoalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C5811285C89D60094BCE3 /* AddGoalUITests.swift */; };
@@ -135,9 +135,9 @@
 		F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInteractor.swift; sourceTree = "<group>"; };
 		F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainer.swift; sourceTree = "<group>"; };
 		F0055BE92854748F00430622 /* AgendaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F00AB2232805902400C57F9D /* OnboardingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableView.swift; sourceTree = "<group>"; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
 		F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenterSpy.swift; sourceTree = "<group>"; };
+		F0153549286EF3F7001E1BBD /* OnboardingTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewHeader.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
 		F01C580F285C84A10094BCE3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		F01C5811285C89D60094BCE3 /* AddGoalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalUITests.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 			children = (
 				F0027EE9284BE57C00D73820 /* OnboardingViewController.swift */,
 				F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */,
-				F00AB2232805902400C57F9D /* OnboardingTableView.swift */,
+				F0153549286EF3F7001E1BBD /* OnboardingTableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -874,10 +874,10 @@
 				F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */,
 				F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */,
 				F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */,
+				F015354A286EF3F7001E1BBD /* OnboardingTableViewHeader.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
 				F03FE968284955E300F265A2 /* AddGoalContainer.swift in Sources */,
 				F075139B284A925000BD887D /* HistoryContainer.swift in Sources */,
-				F00AB2242805902500C57F9D /* OnboardingTableView.swift in Sources */,
 				F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */,
 				F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,

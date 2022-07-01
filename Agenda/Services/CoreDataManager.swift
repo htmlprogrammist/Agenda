@@ -23,8 +23,9 @@ protocol CoreDataManagerProtocol: AnyObject {
 
 final class CoreDataManager: CoreDataManagerProtocol {
     
-    private let managedObjectContext: NSManagedObjectContext
-    private let persistentContainer: NSPersistentContainer
+    let managedObjectContext: NSManagedObjectContext
+    let persistentContainer: NSPersistentContainer
+    
     /// Notifications are send to update the data on the screens
     private let agendaNotification = Notification(name: Notification.Name(rawValue: "agendaNotification"))
     private let historyNotification = Notification(name: Notification.Name(rawValue: "historyNotification"))
