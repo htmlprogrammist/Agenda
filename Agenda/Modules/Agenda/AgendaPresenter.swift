@@ -51,7 +51,9 @@ extension AgendaPresenter: AgendaViewOutput {
 
 extension AgendaPresenter: AgendaInteractorOutput {
     func monthDidFetch(viewModels: [GoalViewModel], monthInfo: DateViewModel, date: String) {
-        view?.setMonthData(viewModels: viewModels, monthInfo: monthInfo, title: date)
+        DispatchQueue.main.async { [unowned self] in
+            view?.setMonthData(viewModels: viewModels, monthInfo: monthInfo, title: date)
+        }
     }
     
     func dataDidNotFetch() {

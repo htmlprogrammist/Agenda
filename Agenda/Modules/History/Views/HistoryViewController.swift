@@ -27,7 +27,9 @@ final class HistoryViewController: UITableViewController {
         super.viewDidLoad()
         
         setupView()
-        output.fetchData()
+        fetchData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name(rawValue: "historyNotification"), object: nil)
     }
 }
 
@@ -108,6 +110,10 @@ extension HistoryViewController {
 
 // MARK: - Helper methods
 private extension HistoryViewController {
+    @objc func fetchData() {
+        output.fetchData()
+    }
+    
     func setupView() {
         navigationItem.rightBarButtonItem = editButtonItem
         title = Labels.History.title
@@ -115,12 +121,5 @@ private extension HistoryViewController {
         
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
-    }
-}
-
-// MARK: - CoreDataManagerObserver
-extension HistoryViewController: CoreDataManagerObserver {
-    func updateViewModel() {
-        output.fetchData()
     }
 }

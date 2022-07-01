@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// This module is used as Agenda and MonthDetails (you will encounter this more than once).
+/// Agenda is being created in AppCoordinator. MonthDetails is being called from the History module.
 final class AgendaContainer {
     let input: AgendaModuleInput
     let viewController: UIViewController
@@ -40,6 +42,10 @@ final class AgendaContainer {
     }
 }
 
+/**
+ For both modules, you need Core Data manager, but `month` and `moduleOutput` are being provided only in MonthDetails module.
+ In Agenda you do not need to set these properties: month is fetched from the Core Data manager and it is shown in tab bar controller (no reason for providing output of the module
+ */
 struct AgendaContext {
     typealias ModuleDependency = CoreDataManagerProtocol
     

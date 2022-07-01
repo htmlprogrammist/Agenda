@@ -22,7 +22,7 @@ final class AppCoordinator {
         self.window = window
     }
     
-    /// This method setup tab bar controllers with 3 modules and set root view controller for the `UIWindow`
+    /// This method setup tab bar controller with 3 modules and set root view controller for the `UIWindow`
     func start() {
         setupAgenda()
         setupHistory()
@@ -41,7 +41,6 @@ private extension AppCoordinator {
         
         let agendaViewController = createNavController(viewController: container.viewController, itemName: Labels.goals, itemImage: Icons.calendar)
         viewControllers.append(agendaViewController)
-        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     func setupHistory() {
@@ -50,7 +49,6 @@ private extension AppCoordinator {
         
         let historyViewController = createNavController(viewController: container.viewController, itemName: Labels.History.title, itemImage: Icons.history)
         viewControllers.append(historyViewController)
-        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     func setupSummary() {
@@ -58,7 +56,6 @@ private extension AppCoordinator {
         let container = SummaryContainer.assemble(with: context)
         let summaryViewController = createNavController(viewController: container.viewController, itemName: Labels.Summary.title, itemImage: Icons.summary)
         viewControllers.append(summaryViewController)
-        subscribeToCoreDataManager(vc: container.viewController)
     }
     
     /// Creates navigation controller and set tab bar item to it
@@ -67,11 +64,5 @@ private extension AppCoordinator {
         navController.tabBarItem = UITabBarItem(title: itemName, image: itemImage, tag: 0)
         navController.navigationBar.prefersLargeTitles = true
         return navController
-    }
-    
-    /// Subscribes to observer that notifies view controllers when any method of Core Data manager is called
-    func subscribeToCoreDataManager(vc: UIViewController) {
-        guard let vc = vc as? CoreDataManagerObserver else { return }
-        coreDataManager.viewControllers.append(vc)
     }
 }

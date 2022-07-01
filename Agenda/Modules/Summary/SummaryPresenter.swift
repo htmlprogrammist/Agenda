@@ -31,8 +31,8 @@ extension SummaryPresenter: SummaryViewOutput {
 
 extension SummaryPresenter: SummaryInteractorOutput {
     func dataDidFetch(data: [Summary]) {
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setData(summaries: data)
+        DispatchQueue.main.async { [weak view] in
+            view?.setData(summaries: data)
         }
     }
     

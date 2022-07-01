@@ -37,8 +37,10 @@ final class SummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.fetchData()
         setupViewAndConstraints()
+        fetchData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name(rawValue: "summaryNotification"), object: nil)
     }
 }
 
@@ -55,6 +57,10 @@ extension SummaryViewController: SummaryViewInput {
 
 // MARK: - Helper methods
 private extension SummaryViewController {
+    @objc func fetchData() {
+        output.fetchData()
+    }
+    
     func setupViewAndConstraints() {
         tabBarController?.tabBar.backgroundColor = .systemBackground
         title = Labels.Summary.title
@@ -95,12 +101,5 @@ extension SummaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         " " // for correct displaying (table view gets from the top too much)
-    }
-}
-
-// MARK: - CoreDataManagerObserver
-extension SummaryViewController: CoreDataManagerObserver {
-    func updateViewModel() {
-        output.fetchData()
     }
 }

@@ -25,6 +25,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 7. SPM
 8. Testing (Unit/UI) using XCTest
 9. Concurrency
+10. NotificationCenter
 
 # Requirements
 - Minimum version: iOS 13
@@ -60,6 +61,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 7. SPM
 8. Тестирование (Unit/UI) используя XCTest
 9. Многопоточность
+10. NotificationCenter
 
 # Требования
 - Минимальная версия: iOS 13
