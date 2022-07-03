@@ -111,10 +111,8 @@ extension GoalViewController: GoalTableViewCellDelegate {
         let newSize = tableView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
         
         if size.height != newSize.height {
-            UIView.setAnimationsEnabled(false)
             tableView.beginUpdates()
             tableView.endUpdates()
-            UIView.setAnimationsEnabled(true)
             // Scroll up to the textview
             if let thisIndexPath = tableView.indexPath(for: cell) {
                 tableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)

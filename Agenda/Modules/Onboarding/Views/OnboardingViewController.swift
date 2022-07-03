@@ -82,8 +82,8 @@ private extension OnboardingViewController {
     func setupView() {
         isModalInPresentation = true
         view.backgroundColor = .systemBackground
-        view.addSubview(tableView)
         
+        view.addSubview(tableView)
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
     }
