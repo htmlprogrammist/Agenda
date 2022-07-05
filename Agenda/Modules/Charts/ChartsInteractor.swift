@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.07.2022.
 //  
-//
 
 import Foundation
 
@@ -36,12 +35,12 @@ extension ChartsInteractor: ChartsInteractorInput {
 private extension ChartsInteractor {
     /// Computes the percantage of completed goals by months
     func computePercentOfSetGoals() {
-        var result = [Double]()
+        var result = [(String, Double)]()
         
         for i in 0..<months.count {
             var temp = 0.0
             // TODO: подсчитать количество достигаемых целей на тот период (то есть с первого месяца по i-тый)
-            result.append(temp)
+            result.append((months[i].date.formatTo("MMMM"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -49,7 +48,7 @@ private extension ChartsInteractor {
     
     /// Computes all completed goals by months
     func computeCompletedGoals() {
-        var result = [Double]()
+        var result = [(String, Double)]()
         
         for month in months {
             var temp = 0.0
@@ -58,7 +57,7 @@ private extension ChartsInteractor {
                 return
             }
             goals.forEach { temp += $0.current >= $0.aim ? 1 : 0 }
-            result.append(temp)
+            result.append((month.date.formatTo("MMMM"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -66,7 +65,7 @@ private extension ChartsInteractor {
     
     /// Computes all uncompleted goals by months
     func computeUncompletedGoals() {
-        var result = [Double]()
+        var result = [(String, Double)]()
         
         for month in months {
             var temp = 0.0
@@ -75,7 +74,7 @@ private extension ChartsInteractor {
                 return
             }
             goals.forEach { temp += $0.current < $0.aim ? 1 : 0 }
-            result.append(temp)
+            result.append((month.date.formatTo("MMMM"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -83,12 +82,12 @@ private extension ChartsInteractor {
     
     /// Computes all setted goals by months
     func computeAllGoals() {
-        var result = [Double]()
+        var result = [(String, Double)]()
         var tempAllGoalsCounter = 0.0
         
         for month in months {
             tempAllGoalsCounter = tempAllGoalsCounter + Double(month.goals?.count ?? 0)
-            result.append(tempAllGoalsCounter)
+            result.append((month.date.formatTo("MMMM"), tempAllGoalsCounter))
         }
         
         output?.dataDidCompute(data: result)

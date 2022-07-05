@@ -4,7 +4,6 @@
 //
 //  Created by Егор Бадмаев on 03.07.2022.
 //  
-//
 
 import Foundation
 
@@ -18,7 +17,7 @@ protocol ChartsModuleOutput: AnyObject {
 
 protocol ChartsViewInput: AnyObject {
     func showAlert(title: String, message: String)
-    func setDataEntries(data: [Double])
+    func setDataEntries(data: [(String, Double)])
 }
 
 protocol ChartsViewOutput: AnyObject {
@@ -31,7 +30,7 @@ protocol ChartsInteractorInput: AnyObject {
 
 protocol ChartsInteractorOutput: AnyObject {
     func dataDidNotCompute()
-    func dataDidCompute(data: [Double])
+    func dataDidCompute(data: [(String, Double)])
 }
 
 protocol ChartsRouterInput: AnyObject {

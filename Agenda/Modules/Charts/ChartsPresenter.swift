@@ -3,7 +3,6 @@
 //  Agenda
 //
 //  Created by Егор Бадмаев on 03.07.2022.
-//  
 //
 
 import Foundation
@@ -39,7 +38,7 @@ extension ChartsPresenter: ChartsInteractorOutput {
         }
     }
     
-    func dataDidCompute(data: [Double]) {
+    func dataDidCompute(data: [(String, Double)]) {
         DispatchQueue.main.async { [unowned self] in
             view?.setDataEntries(data: data)
         }

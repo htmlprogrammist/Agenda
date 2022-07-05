@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BC10B3F470E41310DE3DECE /* Pods_AgendaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5C97545E308C0B2E7C3617 /* Pods_AgendaTests.framework */; };
+		4BDDE031EDC1A9CEBD155DF5 /* Pods_Agenda_AgendaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA1963E261C8AE9D6368BA /* Pods_Agenda_AgendaUITests.framework */; };
+		86AC3C7A7A02E3D333B70D52 /* Pods_Agenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEF91E526283B0585D8B0E9 /* Pods_Agenda.framework */; };
 		F0027EE5284BE01200D73820 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE4284BE01200D73820 /* BaseRouter.swift */; };
 		F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE7284BE57C00D73820 /* OnboardingPresenter.swift */; };
 		F0027EEE284BE57C00D73820 /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EE8284BE57C00D73820 /* OnboardingRouter.swift */; };
@@ -104,7 +107,6 @@
 		F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8174E2855D61700DD4EE1 /* AgendaPresenterSpy.swift */; };
 		F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817512855D66600DD4EE1 /* CoreDataManagerMock.swift */; };
 		F0E817542855D86100DD4EE1 /* CoreDataManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E817532855D86100DD4EE1 /* CoreDataManagerStub.swift */; };
-		F0EA8B2C27FAD2220048327A /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = F0EA8B2B27FAD2220048327A /* SPIndicator */; };
 		F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EA8B2D27FAD2B10048327A /* SeparatorView.swift */; };
 		F0EC6494285640A400DC0042 /* AgendaRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EC6493285640A400DC0042 /* AgendaRouterTests.swift */; };
 		F0F45FE72801C2F000BA244D /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F45FE62801C2F000BA244D /* Labels.swift */; };
@@ -133,6 +135,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CCB2B433705F668DB7D12D1 /* Pods-Agenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.release.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.release.xcconfig"; sourceTree = "<group>"; };
+		1385F4FB128AF5C3C36B19B1 /* Pods-AgendaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgendaTests.debug.xcconfig"; path = "Target Support Files/Pods-AgendaTests/Pods-AgendaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1EF9D0FA6CC2A9C597B9777B /* Pods-Agenda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.debug.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.debug.xcconfig"; sourceTree = "<group>"; };
+		2CEF91E526283B0585D8B0E9 /* Pods_Agenda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agenda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D505C0EF2184F89E4DB0A4C /* Pods-Agenda-AgendaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda-AgendaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Agenda-AgendaUITests/Pods-Agenda-AgendaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C3FA1963E261C8AE9D6368BA /* Pods_Agenda_AgendaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agenda_AgendaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5747F7AC1A3A7E019362459 /* Pods-AgendaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgendaTests.release.xcconfig"; path = "Target Support Files/Pods-AgendaTests/Pods-AgendaTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF5C97545E308C0B2E7C3617 /* Pods_AgendaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgendaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0027EE4284BE01200D73820 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		F0027EE7284BE57C00D73820 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		F0027EE8284BE57C00D73820 /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
@@ -245,6 +255,7 @@
 		F0FFD19128549DC6001EE4A6 /* AgendaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F0FFD1A328549FD5001EE4A6 /* AgendaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUITests.swift; sourceTree = "<group>"; };
+		F8127F875EB012809056F7E6 /* Pods-Agenda-AgendaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda-AgendaUITests.release.xcconfig"; path = "Target Support Files/Pods-Agenda-AgendaUITests/Pods-Agenda-AgendaUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC10B3F470E41310DE3DECE /* Pods_AgendaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0EA8B2C27FAD2220048327A /* SPIndicator in Frameworks */,
+				86AC3C7A7A02E3D333B70D52 /* Pods_Agenda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,12 +279,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BDDE031EDC1A9CEBD155DF5 /* Pods_Agenda_AgendaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80F36448388C4BFCA09ABBF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CEF91E526283B0585D8B0E9 /* Pods_Agenda.framework */,
+				C3FA1963E261C8AE9D6368BA /* Pods_Agenda_AgendaUITests.framework */,
+				CF5C97545E308C0B2E7C3617 /* Pods_AgendaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDE40D4293513725CCA807D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EF9D0FA6CC2A9C597B9777B /* Pods-Agenda.debug.xcconfig */,
+				0CCB2B433705F668DB7D12D1 /* Pods-Agenda.release.xcconfig */,
+				5D505C0EF2184F89E4DB0A4C /* Pods-Agenda-AgendaUITests.debug.xcconfig */,
+				F8127F875EB012809056F7E6 /* Pods-Agenda-AgendaUITests.release.xcconfig */,
+				1385F4FB128AF5C3C36B19B1 /* Pods-AgendaTests.debug.xcconfig */,
+				C5747F7AC1A3A7E019362459 /* Pods-AgendaTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F0027EE6284BE56500D73820 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +516,8 @@
 				F0055BEA2854748F00430622 /* AgendaTests */,
 				F0FFD19228549DC6001EE4A6 /* AgendaUITests */,
 				F0BB551827EF4D5400FA7E99 /* Products */,
+				BDE40D4293513725CCA807D1 /* Pods */,
+				80F36448388C4BFCA09ABBF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -692,6 +731,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0055BEF2854748F00430622 /* Build configuration list for PBXNativeTarget "AgendaTests" */;
 			buildPhases = (
+				F47E09DC82AAD758C2738926 /* [CP] Check Pods Manifest.lock */,
 				F0055BE52854748F00430622 /* Sources */,
 				F0055BE62854748F00430622 /* Frameworks */,
 				F0055BE72854748F00430622 /* Resources */,
@@ -710,18 +750,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0BB552B27EF4D5700FA7E99 /* Build configuration list for PBXNativeTarget "Agenda" */;
 			buildPhases = (
+				2626558B352B6BA8AEFAA1FE /* [CP] Check Pods Manifest.lock */,
 				F0BB551327EF4D5400FA7E99 /* Sources */,
 				F0BB551427EF4D5400FA7E99 /* Frameworks */,
 				F0BB551527EF4D5400FA7E99 /* Resources */,
+				D003A3E4DDB2AE6C17951423 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Agenda;
-			packageProductDependencies = (
-				F0EA8B2B27FAD2220048327A /* SPIndicator */,
-			);
 			productName = Agenda;
 			productReference = F0BB551727EF4D5400FA7E99 /* Agenda.app */;
 			productType = "com.apple.product-type.application";
@@ -730,9 +769,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0FFD19928549DC6001EE4A6 /* Build configuration list for PBXNativeTarget "AgendaUITests" */;
 			buildPhases = (
+				4D0368F4B2F538E3CF081677 /* [CP] Check Pods Manifest.lock */,
 				F0FFD18D28549DC6001EE4A6 /* Sources */,
 				F0FFD18E28549DC6001EE4A6 /* Frameworks */,
 				F0FFD18F28549DC6001EE4A6 /* Resources */,
+				C57653E89FCE4B61B186879D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -777,9 +818,6 @@
 				ru,
 			);
 			mainGroup = F0BB550E27EF4D5400FA7E99;
-			packageReferences = (
-				F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */,
-			);
 			productRefGroup = F0BB551827EF4D5400FA7E99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -817,6 +855,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2626558B352B6BA8AEFAA1FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agenda-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D0368F4B2F538E3CF081677 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agenda-AgendaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C57653E89FCE4B61B186879D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda-AgendaUITests/Pods-Agenda-AgendaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda-AgendaUITests/Pods-Agenda-AgendaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agenda-AgendaUITests/Pods-Agenda-AgendaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D003A3E4DDB2AE6C17951423 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agenda/Pods-Agenda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F47E09DC82AAD758C2738926 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgendaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F0055BE52854748F00430622 /* Sources */ = {
@@ -981,6 +1122,7 @@
 /* Begin XCBuildConfiguration section */
 		F0055BF02854748F00430622 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1385F4FB128AF5C3C36B19B1 /* Pods-AgendaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1000,6 +1142,7 @@
 		};
 		F0055BF12854748F00430622 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5747F7AC1A3A7E019362459 /* Pods-AgendaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1137,6 +1280,7 @@
 		};
 		F0BB552C27EF4D5700FA7E99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EF9D0FA6CC2A9C597B9777B /* Pods-Agenda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1165,6 +1309,7 @@
 		};
 		F0BB552D27EF4D5700FA7E99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CCB2B433705F668DB7D12D1 /* Pods-Agenda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1193,6 +1338,7 @@
 		};
 		F0FFD19A28549DC6001EE4A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D505C0EF2184F89E4DB0A4C /* Pods-Agenda-AgendaUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1211,6 +1357,7 @@
 		};
 		F0FFD19B28549DC6001EE4A6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8127F875EB012809056F7E6 /* Pods-Agenda-AgendaUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1267,25 +1414,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
-			requirement = {
-				kind = exactVersion;
-				version = 1.6.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		F0EA8B2B27FAD2220048327A /* SPIndicator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F0EA8B2A27FAD2220048327A /* XCRemoteSwiftPackageReference "SPIndicator" */;
-			productName = SPIndicator;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F0BB554A27EF589100FA7E99 /* Agenda.xcdatamodeld */ = {

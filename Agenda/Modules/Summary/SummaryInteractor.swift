@@ -19,6 +19,7 @@ final class SummaryInteractor {
     
     /// This array describes what kind of data will be displayed in cells. User selects the data he needs and then we add/remove these `SummaryCell` enum's cases
     public lazy var cells: [SummaryKind] = settings.summaries?.compactMap { SummaryKind(rawValue: $0) } ?? [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
+    
     /// All summary data that could be in the application
     public var summaries: [Summary] = [
         Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals),
