@@ -17,8 +17,6 @@ protocol CoreDataManagerProtocol: AnyObject {
     
     func deleteMonth(month: Month)
     func deleteGoal(goal: Goal)
-    
-    func saveContext()
 }
 
 final class CoreDataManager: CoreDataManagerProtocol {

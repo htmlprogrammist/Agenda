@@ -15,6 +15,12 @@
 		F0027EF1284BE57C00D73820 /* OnboardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEB284BE57C00D73820 /* OnboardingInteractor.swift */; };
 		F0027EF2284BE57C00D73820 /* OnboardingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */; };
 		F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010C62B27F75D410068E591 /* GoalTableViewCell.swift */; };
+		F010E9B728717B0400AFD1D0 /* ChartsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B128717B0400AFD1D0 /* ChartsPresenter.swift */; };
+		F010E9B828717B0400AFD1D0 /* ChartsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B228717B0400AFD1D0 /* ChartsRouter.swift */; };
+		F010E9B928717B0400AFD1D0 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B328717B0400AFD1D0 /* ChartsViewController.swift */; };
+		F010E9BA28717B0400AFD1D0 /* ChartsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B428717B0400AFD1D0 /* ChartsProtocols.swift */; };
+		F010E9BB28717B0400AFD1D0 /* ChartsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B528717B0400AFD1D0 /* ChartsInteractor.swift */; };
+		F010E9BC28717B0400AFD1D0 /* ChartsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010E9B628717B0400AFD1D0 /* ChartsContainer.swift */; };
 		F014D940285B259200AB60A3 /* SummaryPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */; };
 		F015354A286EF3F7001E1BBD /* OnboardingTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0153549286EF3F7001E1BBD /* OnboardingTableViewHeader.swift */; };
 		F016F77C27F7A4D6008D184A /* GoalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F016F77B27F7A4D6008D184A /* GoalData.swift */; };
@@ -136,6 +142,12 @@
 		F0027EEC284BE57C00D73820 /* OnboardingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainer.swift; sourceTree = "<group>"; };
 		F0055BE92854748F00430622 /* AgendaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgendaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F010C62B27F75D410068E591 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		F010E9B128717B0400AFD1D0 /* ChartsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPresenter.swift; sourceTree = "<group>"; };
+		F010E9B228717B0400AFD1D0 /* ChartsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsRouter.swift; sourceTree = "<group>"; };
+		F010E9B328717B0400AFD1D0 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		F010E9B428717B0400AFD1D0 /* ChartsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsProtocols.swift; sourceTree = "<group>"; };
+		F010E9B528717B0400AFD1D0 /* ChartsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsInteractor.swift; sourceTree = "<group>"; };
+		F010E9B628717B0400AFD1D0 /* ChartsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsContainer.swift; sourceTree = "<group>"; };
 		F014D93F285B259200AB60A3 /* SummaryPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenterSpy.swift; sourceTree = "<group>"; };
 		F0153549286EF3F7001E1BBD /* OnboardingTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewHeader.swift; sourceTree = "<group>"; };
 		F016F77B27F7A4D6008D184A /* GoalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalData.swift; sourceTree = "<group>"; };
@@ -300,6 +312,19 @@
 			path = AgendaTests;
 			sourceTree = "<group>";
 		};
+		F010E9B028717AF300AFD1D0 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				F010E9B128717B0400AFD1D0 /* ChartsPresenter.swift */,
+				F010E9B228717B0400AFD1D0 /* ChartsRouter.swift */,
+				F010E9B328717B0400AFD1D0 /* ChartsViewController.swift */,
+				F010E9B428717B0400AFD1D0 /* ChartsProtocols.swift */,
+				F010E9B528717B0400AFD1D0 /* ChartsInteractor.swift */,
+				F010E9B628717B0400AFD1D0 /* ChartsContainer.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		F037986A285527AE00749971 /* ServicesTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +447,7 @@
 				F03FE957284953D200F265A2 /* GoalDetails */,
 				F03FE958284953EF00F265A2 /* History */,
 				F03FE95A284953FA00F265A2 /* Summary */,
+				F010E9B028717AF300AFD1D0 /* Charts */,
 				F0027EE6284BE56500D73820 /* Onboarding */,
 			);
 			path = Modules;
@@ -856,10 +882,12 @@
 				F07513A5284A9B8200BD887D /* SummaryProtocols.swift in Sources */,
 				F03FE95C2849544700F265A2 /* AppCoordinator.swift in Sources */,
 				F065E7F02847ECBF00FAEFE9 /* AgendaContainer.swift in Sources */,
+				F010E9BB28717B0400AFD1D0 /* ChartsInteractor.swift in Sources */,
 				F0BB551D27EF4D5400FA7E99 /* SceneDelegate.swift in Sources */,
 				F03FE973284955ED00F265A2 /* GoalDetailsInteractor.swift in Sources */,
 				F0027EEE284BE57C00D73820 /* OnboardingRouter.swift in Sources */,
 				F090EAB528533F7B00510ED5 /* UserSettings.swift in Sources */,
+				F010E9BA28717B0400AFD1D0 /* ChartsProtocols.swift in Sources */,
 				F0027EEF284BE57C00D73820 /* OnboardingViewController.swift in Sources */,
 				F03FE970284955ED00F265A2 /* GoalDetailsRouter.swift in Sources */,
 				F053020C27FA264300C62FAC /* Date.swift in Sources */,
@@ -874,6 +902,7 @@
 				F0027EED284BE57C00D73820 /* OnboardingPresenter.swift in Sources */,
 				F03FE965284955E300F265A2 /* AddGoalViewController.swift in Sources */,
 				F03FE963284955E300F265A2 /* AddGoalPresenter.swift in Sources */,
+				F010E9B828717B0400AFD1D0 /* ChartsRouter.swift in Sources */,
 				F015354A286EF3F7001E1BBD /* OnboardingTableViewHeader.swift in Sources */,
 				F0C8DA2527F4605300ED47C5 /* Month+CoreDataProperties.swift in Sources */,
 				F03FE968284955E300F265A2 /* AddGoalContainer.swift in Sources */,
@@ -881,6 +910,7 @@
 				F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */,
 				F03FE966284955E300F265A2 /* AddGoalProtocols.swift in Sources */,
 				F0C8DA2427F4605300ED47C5 /* Month+CoreDataClass.swift in Sources */,
+				F010E9B928717B0400AFD1D0 /* ChartsViewController.swift in Sources */,
 				F0BB553827EF4F1E00FA7E99 /* CoreDataManager.swift in Sources */,
 				F010C62C27F75D410068E591 /* GoalTableViewCell.swift in Sources */,
 				F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */,
@@ -888,12 +918,14 @@
 				F07513A3284A9B8200BD887D /* SummaryRouter.swift in Sources */,
 				F0751398284A925000BD887D /* HistoryViewController.swift in Sources */,
 				F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */,
+				F010E9B728717B0400AFD1D0 /* ChartsPresenter.swift in Sources */,
 				F0C8DA2327F4605300ED47C5 /* Goal+CoreDataProperties.swift in Sources */,
 				F07513A4284A9B8200BD887D /* SummaryViewController.swift in Sources */,
 				F03FE964284955E300F265A2 /* AddGoalRouter.swift in Sources */,
 				F0BB554327EF511800FA7E99 /* AgendaTableViewCell.swift in Sources */,
 				F0F45FE72801C2F000BA244D /* Labels.swift in Sources */,
 				F0751397284A925000BD887D /* HistoryRouter.swift in Sources */,
+				F010E9BC28717B0400AFD1D0 /* ChartsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,8 +1273,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.4;
+				kind = exactVersion;
+				version = 1.6.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

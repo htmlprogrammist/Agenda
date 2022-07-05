@@ -52,3 +52,4 @@ ofSetGoals = "of the set goals";
 completedGoals = "Completed goals";
 uncompletedGoals = "Uncompleted goals";
 allGoals = "All goals";
+computingDataError = "We've got unexpected error while preparing data for charts. Please, restart the application";

@@ -14,11 +14,11 @@ final class SummaryViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
-        tableView.allowsSelection = false
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false // убрать?
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.accessibilityIdentifier = "summaryTableView"
         return tableView
@@ -78,7 +78,7 @@ private extension SummaryViewController {
 }
 
 // MARK: - UITableView
-extension SummaryViewController: UITableViewDataSource {
+extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         summaries.count
@@ -93,6 +93,11 @@ extension SummaryViewController: UITableViewDataSource {
         else { return SummaryTableViewCell() }
         cell.configure(data: summaries[indexPath.section])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        output.didSelectRow(with: summaries[indexPath.section])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

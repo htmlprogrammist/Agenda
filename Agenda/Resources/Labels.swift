@@ -58,5 +58,8 @@ enum Labels {
         static let completedGoals = "completedGoals".localized
         static let uncompletedGoals = "uncompletedGoals".localized
         static let allGoals = "allGoals".localized
+        
+        // Charts
+        static let computingDataError = "computingDataError".localized
     }
 }

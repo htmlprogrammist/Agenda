@@ -48,6 +48,14 @@ extension SummaryInteractor: SummaryInteractorInput {
             strongSelf.output?.dataDidFetch(data: summaries)
         }
     }
+    
+    func provideDataForCharts(data: Summary) {
+        guard let months = coreDataManager.fetchMonths() else {
+            output?.dataDidNotFetch()
+            return
+        }
+        output?.provideDataForChartsModule(data: data, months: months)
+    }
 }
 
 // MARK: - Helper methods
