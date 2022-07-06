@@ -42,13 +42,21 @@ private extension ChartsInteractor {
     /// Computes the percantage of completed goals by months
     func computePercentOfSetGoals() {
         var result = [(String, Double)]()
+        var totalSumOfCompletedGoals = 0
+        var totalSumOfGoals = 0
         
-        for i in 0..<months.count {
-            var temp = 0.0
-            // TODO: подсчитать количество достигаемых целей на тот период (то есть с первого месяца по i-тый)
-            result.append((months[i].date.formatTo("MMM YY"), temp))
+        for month in months {
+            var tempAverage = 0.0
+            guard let goals = month.goals?.array as? [Goal] else {
+                output?.dataDidNotCompute()
+                return
+            }
+            totalSumOfGoals += goals.count
+            goals.forEach { totalSumOfCompletedGoals += $0.current >= $0.aim ? 1 : 0 }
+            
+            tempAverage = round(100 * Double(totalSumOfCompletedGoals) / Double(totalSumOfGoals))
+            result.append((month.date.formatTo("MMM YY"), tempAverage))
         }
-        
         output?.dataDidCompute(data: result)
     }
     
