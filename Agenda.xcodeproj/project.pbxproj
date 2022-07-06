@@ -34,6 +34,7 @@
 		F035F5D42875B3560041AF84 /* ChartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D32875B3560041AF84 /* ChartsUITests.swift */; };
 		F035F5D62875B4B60041AF84 /* ChartsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D52875B4B60041AF84 /* ChartsInteractorTests.swift */; };
 		F035F5D82875B4C00041AF84 /* ChartsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D72875B4C00041AF84 /* ChartsContainerTests.swift */; };
+		F035F5DA2875BFC20041AF84 /* ChartsPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D92875BFC20041AF84 /* ChartsPresenterSpy.swift */; };
 		F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037986B285527CB00749971 /* CoreDataManagerTests.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */; };
@@ -172,6 +173,7 @@
 		F035F5D32875B3560041AF84 /* ChartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsUITests.swift; sourceTree = "<group>"; };
 		F035F5D52875B4B60041AF84 /* ChartsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsInteractorTests.swift; sourceTree = "<group>"; };
 		F035F5D72875B4C00041AF84 /* ChartsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsContainerTests.swift; sourceTree = "<group>"; };
+		F035F5D92875BFC20041AF84 /* ChartsPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPresenterSpy.swift; sourceTree = "<group>"; };
 		F037986B285527CB00749971 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		F035F5D22875B33F0041AF84 /* Mocks+Stubs+Spies */ = {
 			isa = PBXGroup;
 			children = (
+				F035F5D92875BFC20041AF84 /* ChartsPresenterSpy.swift */,
 			);
 			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 				F0FFD18C28549D80001EE4A6 /* AgendaInteractorTests.swift in Sources */,
 				F035F5D62875B4B60041AF84 /* ChartsInteractorTests.swift in Sources */,
 				F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */,
+				F035F5DA2875BFC20041AF84 /* ChartsPresenterSpy.swift in Sources */,
 				F0EC6494285640A400DC0042 /* AgendaRouterTests.swift in Sources */,
 				F0DB53232858620F0074FFBA /* HistoryInteractorTests.swift in Sources */,
 				F0E8174F2855D61700DD4EE1 /* AgendaPresenterSpy.swift in Sources */,

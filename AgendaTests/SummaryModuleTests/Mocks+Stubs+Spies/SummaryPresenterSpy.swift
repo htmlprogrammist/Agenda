@@ -12,6 +12,8 @@ class SummaryPresenterSpy: SummaryInteractorOutput {
     
     var dataDidNotFetchBool = false
     var data: [Summary]!
+    var summary: Summary!
+    var months: [Month]!
     
     var expectation: XCTestExpectation!
     
@@ -25,5 +27,10 @@ class SummaryPresenterSpy: SummaryInteractorOutput {
     
     func dataDidNotFetch() {
         dataDidNotFetchBool = true
+    }
+    
+    func provideDataForChartsModule(data: Summary, months: [Month]) {
+        self.summary = data
+        self.months = months
     }
 }
