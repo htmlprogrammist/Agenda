@@ -64,7 +64,7 @@ final class GoalTableViewCell: UITableViewCell {
         
         contentView.addSubview(label)
         contentView.addSubview(titleTextField)
-        titleTextField.clearButtonMode = .always
+        titleTextField.clearButtonMode = .whileEditing
         titleTextField.addTarget(self, action: #selector(titleTextFieldChange), for: .allEditingEvents)
         contentView.addSubview(notesTextView)
         

@@ -10,7 +10,7 @@ import UIKit
 final class AddGoalViewController: GoalViewController {
     
     private let output: AddGoalViewOutput
-    
+    /// Data for a goal that will be filled from the text fields using delegate
     public override var goalData: GoalData {
         didSet {
             checkBarButtonEnabled()

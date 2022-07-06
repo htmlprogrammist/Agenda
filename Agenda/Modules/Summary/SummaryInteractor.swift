@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum SummaryKind: Int {
-    case percentOfSetGoals, completedGoals, uncompletedGoals, allGoals
-}
-
 final class SummaryInteractor {
     weak var output: SummaryInteractorOutput?
     
@@ -19,11 +15,71 @@ final class SummaryInteractor {
     
     /// This array describes what kind of data will be displayed in cells. User selects the data he needs and then we add/remove these `SummaryCell` enum's cases
     public lazy var cells: [SummaryKind] = settings.summaries?.compactMap { SummaryKind(rawValue: $0) } ?? [.percentOfSetGoals, .completedGoals, .uncompletedGoals, .allGoals]
+    
+    /// All summary data that could be in the application
     public var summaries: [Summary] = [
-        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals),
-        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals),
-        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals),
-        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals)
+        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)",
+                kind: .percentOfSetGoals, description: Labels.Charts.percentOfSetGoalsDescription, isLessBetter: false, competion: { months in
+                var result = [(String, Double)]()
+                var totalSumOfCompletedGoals = 0
+                var totalSumOfGoals = 0
+                
+                for month in months {
+                    var tempAverage = 0.0
+                    guard let goals = month.goals?.array as? [Goal] else {
+                        return .failure(SummaryKind.percentOfSetGoals)
+                    }
+                    totalSumOfGoals += goals.count
+                    goals.forEach { totalSumOfCompletedGoals += $0.current >= $0.aim ? 1 : 0 }
+                    
+                    tempAverage = round(100 * Double(totalSumOfCompletedGoals) / Double(totalSumOfGoals))
+                    result.append((month.date.formatTo("MMM YY"), tempAverage))
+                }
+                return .success(result)
+            }
+        ),
+        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension,
+                kind: .completedGoals, description: Labels.Charts.completedGoalsDescription, isLessBetter: false, competion: { months in
+                var result = [(String, Double)]()
+                
+                for month in months {
+                    var temp = 0.0
+                    guard let goals = month.goals?.array as? [Goal] else {
+                        return .failure(SummaryKind.completedGoals)
+                    }
+                    goals.forEach { temp += $0.current >= $0.aim ? 1 : 0 }
+                    result.append((month.date.formatTo("MMM YY"), temp))
+                }
+                return .success(result)
+            }
+        ),
+        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension,
+                kind: .uncompletedGoals, description: Labels.Charts.uncompletedGoalsDescription, isLessBetter: true, competion: { months in
+                var result = [(String, Double)]()
+                
+                for month in months {
+                    var temp = 0.0
+                    guard let goals = month.goals?.array as? [Goal] else {
+                        return .failure(SummaryKind.uncompletedGoals)
+                    }
+                    goals.forEach { temp += $0.current < $0.aim ? 1 : 0 }
+                    result.append((month.date.formatTo("MMM YY"), temp))
+                }
+                return .success(result)
+            }
+        ),
+        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension,
+                kind: .allGoals, description: Labels.Charts.allGoalsDescription, isLessBetter: false, competion: { months in
+                var result = [(String, Double)]()
+                var tempAllGoalsCounter = 0.0
+                
+                for month in months {
+                    tempAllGoalsCounter = tempAllGoalsCounter + Double(month.goals?.count ?? 0)
+                    result.append((month.date.formatTo("MMM YY"), tempAllGoalsCounter))
+                }
+                return .success(result)
+            }
+        )
     ]
     
     init(coreDataManager: CoreDataManagerProtocol) {
@@ -46,6 +102,14 @@ extension SummaryInteractor: SummaryInteractorInput {
             }
             strongSelf.output?.dataDidFetch(data: summaries)
         }
+    }
+    
+    func provideDataForCharts(data: Summary) {
+        guard let months = coreDataManager.fetchMonths() else {
+            output?.dataDidNotFetch()
+            return
+        }
+        output?.provideDataForChartsModule(data: data, months: months)
     }
 }
 

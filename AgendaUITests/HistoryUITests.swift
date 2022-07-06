@@ -60,33 +60,47 @@ class HistoryUITests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == true")
         let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: monthDetailsTableView)
         wait(for: [expectation], timeout: 5)
+        let monthProgressView = app.progressIndicators["monthProgressView"]
+        let dayAndMonthLabel = app.staticTexts["dayAndMonthLabel"]
+        let yearLabel = app.staticTexts["yearLabel"]
+        XCTAssertFalse(monthProgressView.exists)
+        XCTAssertFalse(dayAndMonthLabel.exists)
+        XCTAssertFalse(yearLabel.exists)
     }
     
     func testOpeningAlertWithDeletingMonth() throws {
         let tableView = app.tables.firstMatch
+        let numberOfRowsBefore = tableView.cells.count
         let cell = tableView.cells.element(boundBy: 1)
         cell.swipeLeft()
-        
-        addUIInterruptionMonitor(withDescription: "Delete month") { alert in
-            alert.buttons.firstMatch.tap()
-            return true
-        }
-        
         let deleteButton = cell.buttons.firstMatch
         deleteButton.tap()
         
+        let actionSheet = app.sheets.firstMatch
+        XCTAssertTrue(actionSheet.exists)
+        
+        actionSheet.buttons.element(boundBy: 1).tap()
+        XCTAssertFalse(actionSheet.exists)
+        
+        let numberOfRowsAfter = tableView.cells.count
+        XCTAssertEqual(numberOfRowsBefore, numberOfRowsAfter)
     }
     
     func testOpeningAlertAndDeletingMonth() throws {
         let tableView = app.tables.firstMatch
+        let numberOfRowsBefore = tableView.cells.count
         let cell = tableView.cells.element(boundBy: 1)
         cell.swipeLeft()
         let deleteButton = cell.buttons.firstMatch
         deleteButton.tap()
         
-        addUIInterruptionMonitor(withDescription: "Delete month") { alert in
-            alert.buttons.element(boundBy: 1).tap()
-            return true
-        }
+        let actionSheet = app.sheets.firstMatch
+        XCTAssertTrue(actionSheet.exists)
+        
+        actionSheet.buttons.firstMatch.tap()
+        XCTAssertFalse(actionSheet.exists)
+        
+        let numberOfRowsAfter = tableView.cells.count
+        XCTAssertNotEqual(numberOfRowsBefore, numberOfRowsAfter)
     }
 }

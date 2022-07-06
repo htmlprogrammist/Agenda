@@ -17,20 +17,17 @@ protocol CoreDataManagerProtocol: AnyObject {
     
     func deleteMonth(month: Month)
     func deleteGoal(goal: Goal)
-    
-    func saveContext()
 }
 
-protocol CoreDataManagerDelegate: AnyObject {
-    func updateViewModel()
-}
-
-final class CoreDataManager: NSObject, CoreDataManagerProtocol {
+final class CoreDataManager: CoreDataManagerProtocol {
     
     let managedObjectContext: NSManagedObjectContext
     let persistentContainer: NSPersistentContainer
     
-    var viewControllers = [CoreDataManagerDelegate]()
+    /// Notifications are send to update the data on the screens
+    private let agendaNotification = Notification(name: Notification.Name(rawValue: "agendaNotification"))
+    private let historyNotification = Notification(name: Notification.Name(rawValue: "historyNotification"))
+    private let summaryNotification = Notification(name: Notification.Name(rawValue: "summaryNotification"))
     
     init(containerName: String) {
         persistentContainer = NSPersistentContainer(name: containerName)
@@ -85,7 +82,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         
         month.addToGoals(goal)
         saveContext()
-        updateViewModels()
+        [agendaNotification, historyNotification, summaryNotification].forEach { NotificationCenter.default.post($0) }
     }
     
     func rewriteGoal(with data: GoalData, in goal: Goal) {
@@ -95,7 +92,7 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         goal.notes = data.notes
         
         saveContext()
-        updateViewModels()
+        [agendaNotification, historyNotification, summaryNotification].forEach { NotificationCenter.default.post($0) }
     }
     
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {
@@ -110,13 +107,13 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
         }
         managedObjectContext.delete(month)
         saveContext()
-        updateViewModels(in: [.summary])
+        NotificationCenter.default.post(summaryNotification)
     }
     
     func deleteGoal(goal: Goal) {
         managedObjectContext.delete(goal)
         saveContext()
-        updateViewModels(in: [.history, .summary])
+        [historyNotification, summaryNotification].forEach { NotificationCenter.default.post($0) }
     }
     
     func saveContext() {
@@ -126,26 +123,6 @@ final class CoreDataManager: NSObject, CoreDataManagerProtocol {
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-}
-
-private extension CoreDataManager {
-    /**
-     Updating view controllers after making changes in CoreData.
-     `enum ViewControllers` implement tab bar's viewcontrollers.
-     */
-    enum ViewControllers: Int {
-        case agenda
-        case history
-        case summary
-    }
-    
-    func updateViewModels(in viewControllers: [ViewControllers] = [.agenda, .history, .summary]) {
-        DispatchQueue.main.async { [weak self] in
-            for viewController in viewControllers {
-                self?.viewControllers[viewController.rawValue].updateViewModel()
             }
         }
     }

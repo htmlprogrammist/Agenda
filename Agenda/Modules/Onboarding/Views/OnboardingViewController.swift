@@ -13,36 +13,22 @@ final class OnboardingViewController: UIViewController {
     private let viewModels = [
         OnboardingViewModel(title: Labels.Onboarding.title1, description: Labels.Onboarding.description1, image: Icons.lightbulb),
         OnboardingViewModel(title: Labels.Onboarding.title2, description: Labels.Onboarding.description2, image: Icons.chartBarDoc),
-        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus)
+        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus),
+        OnboardingViewModel(title: Labels.Onboarding.title4, description: Labels.Onboarding.description4, image: Icons.charts)
     ]
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.accessibilityIdentifier = "onboardingScrollView"
-        return scrollView
-    }()
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityIdentifier = "onboardingContentView"
-        return view
-    }()
-    
-    private let welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = Labels.Onboarding.welcomeLabel
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 36, weight: .heavy)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.accessibilityIdentifier = "welcomeLabel"
-        return label
-    }()
-    private lazy var tableView: OnboardingTableView = {
-        let tableView = OnboardingTableView(frame: .zero, style: .insetGrouped)
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.backgroundColor = .clear
+        tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(OnboardingTableViewCell.self, forCellReuseIdentifier: OnboardingTableViewCell.identifier)
+        tableView.register(OnboardingTableViewHeader.self, forHeaderFooterViewReuseIdentifier: OnboardingTableViewHeader.identifier)
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.accessibilityIdentifier = "onboardingTableView"
         return tableView
     }()
@@ -98,44 +84,18 @@ private extension OnboardingViewController {
     func setupView() {
         isModalInPresentation = true
         view.backgroundColor = .systemBackground
-        view.addSubview(scrollView)
         
-        scrollView.addSubview(contentView)
-        contentView.addSubview(welcomeLabel)
-        contentView.addSubview(tableView)
-        
-        let labelAttributedText = NSMutableAttributedString(string: welcomeLabel.text ?? "")
-        let agendaAttributedText = NSMutableAttributedString(string: "Agenda")
-        agendaAttributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemRed, range: NSRange(location: 0, length: 6))
-        labelAttributedText.append(agendaAttributedText)
-        welcomeLabel.attributedText = labelAttributedText
-        
+        view.addSubview(tableView)
         view.addSubview(backgroundButtonView)
         backgroundButtonView.addSubview(continueButton)
     }
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: backgroundButtonView.topAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
-            welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-
-            tableView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: backgroundButtonView.topAnchor),
             
             backgroundButtonView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             backgroundButtonView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -151,21 +111,25 @@ private extension OnboardingViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension OnboardingViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        viewModels.count
-    }
+extension OnboardingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnboardingTableViewCell.identifier, for: indexPath) as? OnboardingTableViewCell
         else { return OnboardingTableViewCell() }
-        cell.configure(with: viewModels[indexPath.section])
+        cell.configure(with: viewModels[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: OnboardingTableViewHeader.identifier) as? OnboardingTableViewHeader
+        else {
+            fatalError("Could not create header for the table view in History in section \(section)")
+        }
+        return header
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

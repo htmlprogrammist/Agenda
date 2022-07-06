@@ -10,7 +10,7 @@ import UIKit
 final class HistoryViewController: UITableViewController {
     
     private let output: HistoryViewOutput
-    
+    /// View models created from the fetched months
     private var viewModels = [MonthViewModel]()
     
     init(output: HistoryViewOutput) {
@@ -27,7 +27,9 @@ final class HistoryViewController: UITableViewController {
         super.viewDidLoad()
         
         setupView()
-        output.fetchData()
+        fetchData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name(rawValue: "historyNotification"), object: nil)
     }
 }
 
@@ -108,6 +110,10 @@ extension HistoryViewController {
 
 // MARK: - Helper methods
 private extension HistoryViewController {
+    @objc func fetchData() {
+        output.fetchData()
+    }
+    
     func setupView() {
         navigationItem.rightBarButtonItem = editButtonItem
         title = Labels.History.title
@@ -115,12 +121,5 @@ private extension HistoryViewController {
         
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
-    }
-}
-
-// MARK: - CoreDataManagerDelegate
-extension HistoryViewController: CoreDataManagerDelegate {
-    func updateViewModel() {
-        output.fetchData()
     }
 }

@@ -27,16 +27,24 @@ extension SummaryPresenter: SummaryViewOutput {
     func fetchData() {
         interactor.performFetch()
     }
+    
+    func didSelectRow(with data: Summary) {
+        interactor.provideDataForCharts(data: data)
+    }
 }
 
 extension SummaryPresenter: SummaryInteractorOutput {
     func dataDidFetch(data: [Summary]) {
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setData(summaries: data)
+        DispatchQueue.main.async { [weak view] in
+            view?.setData(summaries: data)
         }
     }
     
     func dataDidNotFetch() {
         view?.showAlert(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
+    }
+    
+    func provideDataForChartsModule(data: Summary, months: [Month]) {
+        router.openChartsModuleWith(data: data, months: months)
     }
 }

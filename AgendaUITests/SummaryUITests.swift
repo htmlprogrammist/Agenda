@@ -29,8 +29,32 @@ class SummaryUITests: XCTestCase {
         app.terminate()
     }
     
+    /**
+     We test setting up view of View: the only thing there is table view, so we check that it exists
+     */
     func testSummaryViewSetup() {
         let tableView = app.tables["summaryTableView"]
         XCTAssertTrue(tableView.exists)
+    }
+    
+    /**
+     We tap on a random `UITableView` cell and one of charts will be opened. We check that there is no `summaryTableView` onto the screen and that there is chart and labels
+     */
+    func testOpeningChartsModule() {
+        let tableView = app.tables["summaryTableView"]
+        XCTAssertTrue(tableView.exists)
+        tableView.cells.firstMatch.tap()
+        
+        let chartView = app.otherElements["barChartView"]
+        let descriptionLabel = app.staticTexts["chartsDescriptionLabel"]
+        let moreLessLabel = app.staticTexts["chartsMoreLessLabel"]
+        
+        let existsPredicate = NSPredicate(format: "exists == true")
+        let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: chartView)
+        wait(for: [expectation], timeout: 5)
+        
+        XCTAssertTrue(chartView.exists)
+        XCTAssertTrue(descriptionLabel.exists)
+        XCTAssertTrue(moreLessLabel.exists)
     }
 }

@@ -21,16 +21,21 @@ protocol SummaryViewInput: AnyObject {
 
 protocol SummaryViewOutput: AnyObject {
     func fetchData()
+    
+    func didSelectRow(with data: Summary)
 }
 
 protocol SummaryInteractorInput: AnyObject {
     func performFetch()
+    func provideDataForCharts(data: Summary)
 }
 
 protocol SummaryInteractorOutput: AnyObject {
     func dataDidFetch(data: [Summary])
     func dataDidNotFetch()
+    func provideDataForChartsModule(data: Summary, months: [Month])
 }
 
 protocol SummaryRouterInput: AnyObject {
+    func openChartsModuleWith(data: Summary, months: [Month])
 }

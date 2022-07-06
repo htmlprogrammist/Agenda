@@ -31,7 +31,6 @@ final class OnboardingTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.accessibilityIdentifier = "onboardingTitleLabel"
         return label
     }()
@@ -39,7 +38,6 @@ final class OnboardingTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.accessibilityIdentifier = "onboardingDescriptionLabel"
         return label
     }()
@@ -63,13 +61,13 @@ final class OnboardingTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             iconImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             iconImageView.heightAnchor.constraint(equalToConstant: 48),
             iconImageView.widthAnchor.constraint(equalToConstant: 48),
             
+            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             labelsStackView.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }

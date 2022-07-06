@@ -9,10 +9,6 @@ import XCTest
 import CoreData
 @testable import Agenda
 
-class CoreDataManagerDelegateMock: CoreDataManagerDelegate {
-    func updateViewModel() {}
-}
-
 class CoreDataManagerTests: XCTestCase {
     
     var coreDataManager: CoreDataManager!
@@ -23,11 +19,10 @@ class CoreDataManagerTests: XCTestCase {
     
     override func setUpWithError() throws {
         coreDataManager = CoreDataManager(containerName: "Agenda")
+        // TODO: Rewrite NSManagedObjectContext with temporary storage (in-memory)
         month = Month(context: coreDataManager.managedObjectContext)
         dateFormatter.dateFormat = "dd.MM.yyyy"
         month.date = dateFormatter.date(from: "01.\(calendarDate.month ?? 0).\((calendarDate.year ?? 1970) - 1)") ?? Date()
-        
-        coreDataManager.viewControllers.append(CoreDataManagerDelegateMock())
     }
     
     override func tearDownWithError() throws {

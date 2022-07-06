@@ -11,6 +11,7 @@ final class HistoryInteractor {
     weak var output: HistoryInteractorOutput?
     
     private let coreDataManager: CoreDataManagerProtocol
+    /// Months fetched from Core Data that will be displayed in History. Fetching is implemented in `performFetch()` method
     private var months = [Month]()
     
     init(coreDataManager: CoreDataManagerProtocol) {

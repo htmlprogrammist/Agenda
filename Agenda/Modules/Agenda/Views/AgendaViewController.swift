@@ -10,6 +10,7 @@ import UIKit
 final class AgendaViewController: UIViewController {
     
     private let output: AgendaViewOutput
+    /// Goal view models of the month
     private var viewModels = [GoalViewModel]()
     
     /// Depending on this property, month data is being displayed
@@ -70,17 +71,9 @@ final class AgendaViewController: UIViewController {
         
         setupView()
         setConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        fetchData()
         
-        /**
-         There is no possibility to update view models in month details, when you change goal details.
-         So, the only solution we have is to update every time `viewWillAppear` method is being called.
-         This will not affect negatively on the app's perfomance, because in Agenda this method is called only one time and month details is used by user rarely.
-         */
-        output.fetchData()
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: Notification.Name(rawValue: "agendaNotification"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,10 +81,20 @@ final class AgendaViewController: UIViewController {
         
         output.checkForOnboarding()
     }
+    
+    /// We need to remove observer when the MonthDetails module is being deinited
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "agendaNotification"), object: nil)
+    }
 }
 
 // MARK: - AgendaViewInput
 extension AgendaViewController: AgendaViewInput {
+    /// Sets month's data with data provided in parameters
+    /// - Parameters:
+    ///   - viewModels: view model of the goals in month
+    ///   - monthInfo: contains date and value of the progress of the month (to set value in `monthProgressView` (used in Agenda module)
+    ///   - title: title with month's name and year (used in MonthDetails module)
     func setMonthData(viewModels: [GoalViewModel], monthInfo: DateViewModel, title: String) {
         self.viewModels = viewModels
         
@@ -106,6 +109,7 @@ extension AgendaViewController: AgendaViewInput {
         tableView.reloadData()
     }
     
+    /// Shows alert with provided message when something goes wrong
     func showAlert(title: String, message: String) {
         alertForError(title: title, message: message)
     }
@@ -113,6 +117,10 @@ extension AgendaViewController: AgendaViewInput {
 
 // MARK: - Helper methods
 private extension AgendaViewController {
+    @objc func fetchData() {
+        output.fetchData()
+    }
+    
     @objc func addNewGoal() {
         output.addNewGoal()
     }
@@ -210,12 +218,5 @@ extension AgendaViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }
-    }
-}
-
-// MARK: - CoreDataManagerDelegate
-extension AgendaViewController: CoreDataManagerDelegate {
-    func updateViewModel() {
-        output.fetchData()
     }
 }
