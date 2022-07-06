@@ -8,7 +8,10 @@
 import Foundation
 
 enum SummaryKind: Int {
-    case percentOfSetGoals, completedGoals, uncompletedGoals, allGoals
+    case percentOfSetGoals
+    case completedGoals
+    case uncompletedGoals
+    case allGoals
 }
 
 final class SummaryInteractor {
@@ -22,10 +25,42 @@ final class SummaryInteractor {
     
     /// All summary data that could be in the application
     public var summaries: [Summary] = [
-        Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals),
-        Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals),
-        Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals),
-        Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals)
+        Summary(
+            icon: Icons.grid,
+            title: Labels.Summary.percentOfSetGoals,
+            tintColor: .systemTeal,
+            measure: "% \(Labels.Summary.ofSetGoals)",
+            kind: .percentOfSetGoals,
+            description: Labels.Charts.percentOfSetGoalsDescription,
+            isLessBetter: false
+        ),
+        Summary(
+            icon: Icons.checkmark,
+            title: Labels.Summary.completedGoals,
+            tintColor: .systemGreen,
+            measure: Labels.Summary.goalsDeclension,
+            kind: .completedGoals,
+            description: Labels.Charts.completedGoalsDescription,
+            isLessBetter: false
+        ),
+        Summary(
+            icon: Icons.xmark,
+            title: Labels.Summary.uncompletedGoals,
+            tintColor: .systemRed,
+            measure: Labels.Summary.goalsDeclension,
+            kind: .uncompletedGoals,
+            description: Labels.Charts.uncompletedGoalsDescription,
+            isLessBetter: true
+        ),
+        Summary(
+            icon: Icons.sum,
+            title: Labels.Summary.allGoals,
+            tintColor: .systemOrange,
+            measure: Labels.Summary.goalsDeclension,
+            kind: .allGoals,
+            description: Labels.Charts.allGoalsDescription,
+            isLessBetter: false
+        )
     ]
     
     init(coreDataManager: CoreDataManagerProtocol) {

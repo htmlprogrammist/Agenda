@@ -18,10 +18,12 @@ enum Labels {
         static let title1 = "title1".localized
         static let title2 = "title2".localized
         static let title3 = "title3".localized
+        static let title4 = "title4".localized
         
         static let description1 = "description1".localized
         static let description2 = "description2".localized
         static let description3 = "description3".localized
+        static let description4 = "description4".localized
     }
     
     enum Agenda {
@@ -58,8 +60,16 @@ enum Labels {
         static let completedGoals = "completedGoals".localized
         static let uncompletedGoals = "uncompletedGoals".localized
         static let allGoals = "allGoals".localized
-        
-        // Charts
+    }
+    
+    enum Charts {
         static let computingDataError = "computingDataError".localized
+        static let lessBetter = "lessBetter".localized
+        static let moreBetter = "moreBetter".localized
+        
+        static let percentOfSetGoalsDescription = "percentOfSetGoalsDescription".localized
+        static let completedGoalsDescription = "completedGoalsDescription".localized
+        static let uncompletedGoalsDescription = "uncompletedGoalsDescription".localized
+        static let allGoalsDescription = "allGoalsDescription".localized
     }
 }

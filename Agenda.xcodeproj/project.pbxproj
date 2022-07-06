@@ -31,6 +31,9 @@
 		F01C5812285C89D60094BCE3 /* AddGoalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01C5811285C89D60094BCE3 /* AddGoalUITests.swift */; };
 		F01FDD2D280309040011F1F3 /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */; };
 		F02572A127FDE750000A9A06 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02572A027FDE750000A9A06 /* Summary.swift */; };
+		F035F5D42875B3560041AF84 /* ChartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D32875B3560041AF84 /* ChartsUITests.swift */; };
+		F035F5D62875B4B60041AF84 /* ChartsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D52875B4B60041AF84 /* ChartsInteractorTests.swift */; };
+		F035F5D82875B4C00041AF84 /* ChartsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035F5D72875B4C00041AF84 /* ChartsContainerTests.swift */; };
 		F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037986B285527CB00749971 /* CoreDataManagerTests.swift */; };
 		F037C52227F5ED1F001D2CBC /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037C52127F5ED1F001D2CBC /* UITextField.swift */; };
 		F03916F4284D1F5300E36ED9 /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */; };
@@ -57,6 +60,7 @@
 		F065E7EE2847ECBF00FAEFE9 /* AgendaProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */; };
 		F065E7EF2847ECBF00FAEFE9 /* AgendaInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */; };
 		F065E7F02847ECBF00FAEFE9 /* AgendaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */; };
+		F06D7C972874A985001F0CB3 /* CustomLabelsXAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D7C962874A985001F0CB3 /* CustomLabelsXAxisValueFormatter.swift */; };
 		F06DA3C927FC3A3400A93898 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */; };
 		F0751396284A925000BD887D /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751390284A925000BD887D /* HistoryPresenter.swift */; };
 		F0751397284A925000BD887D /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0751391284A925000BD887D /* HistoryRouter.swift */; };
@@ -165,6 +169,9 @@
 		F01C5811285C89D60094BCE3 /* AddGoalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalUITests.swift; sourceTree = "<group>"; };
 		F01FDD2C280309040011F1F3 /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
 		F02572A027FDE750000A9A06 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		F035F5D32875B3560041AF84 /* ChartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsUITests.swift; sourceTree = "<group>"; };
+		F035F5D52875B4B60041AF84 /* ChartsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsInteractorTests.swift; sourceTree = "<group>"; };
+		F035F5D72875B4C00041AF84 /* ChartsContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsContainerTests.swift; sourceTree = "<group>"; };
 		F037986B285527CB00749971 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		F037C52127F5ED1F001D2CBC /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		F03916F3284D1F5300E36ED9 /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +198,7 @@
 		F065E7E82847ECBF00FAEFE9 /* AgendaProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaProtocols.swift; sourceTree = "<group>"; };
 		F065E7E92847ECBF00FAEFE9 /* AgendaInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaInteractor.swift; sourceTree = "<group>"; };
 		F065E7EA2847ECBF00FAEFE9 /* AgendaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaContainer.swift; sourceTree = "<group>"; };
+		F06D7C962874A985001F0CB3 /* CustomLabelsXAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelsXAxisValueFormatter.swift; sourceTree = "<group>"; };
 		F06DA3C827FC3A3400A93898 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		F0751390284A925000BD887D /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
 		F0751391284A925000BD887D /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
@@ -306,7 +314,6 @@
 				1385F4FB128AF5C3C36B19B1 /* Pods-AgendaTests.debug.xcconfig */,
 				C5747F7AC1A3A7E019362459 /* Pods-AgendaTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -342,6 +349,7 @@
 				F0FFD18728549D34001EE4A6 /* GoalDetailsModuleTests */,
 				F0FFD18828549D3C001EE4A6 /* HistoryModuleTests */,
 				F0FFD18928549D42001EE4A6 /* SummaryModuleTests */,
+				F035F5D12875B32A0041AF84 /* ChartsModuleTests */,
 				F0FFD18A28549D49001EE4A6 /* OnboardingModuleTests */,
 				F037986A285527AE00749971 /* ServicesTests */,
 				F0E817502855D64900DD4EE1 /* Mocks+Stubs+Spies */,
@@ -360,6 +368,23 @@
 				F010E9B628717B0400AFD1D0 /* ChartsContainer.swift */,
 			);
 			path = Charts;
+			sourceTree = "<group>";
+		};
+		F035F5D12875B32A0041AF84 /* ChartsModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				F035F5D22875B33F0041AF84 /* Mocks+Stubs+Spies */,
+				F035F5D52875B4B60041AF84 /* ChartsInteractorTests.swift */,
+				F035F5D72875B4C00041AF84 /* ChartsContainerTests.swift */,
+			);
+			path = ChartsModuleTests;
+			sourceTree = "<group>";
+		};
+		F035F5D22875B33F0041AF84 /* Mocks+Stubs+Spies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mocks+Stubs+Spies";
 			sourceTree = "<group>";
 		};
 		F037986A285527AE00749971 /* ServicesTests */ = {
@@ -575,6 +600,7 @@
 				F0027EE4284BE01200D73820 /* BaseRouter.swift */,
 				F0BB553727EF4F1E00FA7E99 /* CoreDataManager.swift */,
 				F090EAB228531DE400510ED5 /* UserDefaultsContainer.swift */,
+				F06D7C962874A985001F0CB3 /* CustomLabelsXAxisValueFormatter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -719,6 +745,7 @@
 				F0C44CFF285E462800E745A5 /* GoalDetailsUITests.swift */,
 				F0C44D01285E464E00E745A5 /* HistoryUITests.swift */,
 				F0C44D03285E465900E745A5 /* SummaryUITests.swift */,
+				F035F5D32875B3560041AF84 /* ChartsUITests.swift */,
 				F0FFD19528549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift */,
 			);
 			path = AgendaUITests;
@@ -977,10 +1004,12 @@
 				F07FC1C92858E9D20028C446 /* CoreDataManagerSpy.swift in Sources */,
 				F0AD059F285A7058000612BE /* HistoryPresenterSpy.swift in Sources */,
 				F0E817522855D66600DD4EE1 /* CoreDataManagerMock.swift in Sources */,
+				F035F5D82875B4C00041AF84 /* ChartsContainerTests.swift in Sources */,
 				F0DB531B285861C30074FFBA /* AddGoalInteractorTests.swift in Sources */,
 				F037986C285527CB00749971 /* CoreDataManagerTests.swift in Sources */,
 				F0DB53292858624F0074FFBA /* SummaryContainerTests.swift in Sources */,
 				F0FFD18C28549D80001EE4A6 /* AgendaInteractorTests.swift in Sources */,
+				F035F5D62875B4B60041AF84 /* ChartsInteractorTests.swift in Sources */,
 				F0DB532B285862650074FFBA /* OnboardingInteractorTests.swift in Sources */,
 				F0EC6494285640A400DC0042 /* AgendaRouterTests.swift in Sources */,
 				F0DB53232858620F0074FFBA /* HistoryInteractorTests.swift in Sources */,
@@ -992,6 +1021,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06D7C972874A985001F0CB3 /* CustomLabelsXAxisValueFormatter.swift in Sources */,
 				F0C40294285DFDEF000F76F0 /* GoalViewController.swift in Sources */,
 				F0027EF0284BE57C00D73820 /* OnboardingProtocols.swift in Sources */,
 				F0EA8B2E27FAD2B10048327A /* SeparatorView.swift in Sources */,
@@ -1075,6 +1105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FFD19628549DC6001EE4A6 /* AgendaUITestsLaunchTests.swift in Sources */,
+				F035F5D42875B3560041AF84 /* ChartsUITests.swift in Sources */,
 				F0C44D00285E462800E745A5 /* GoalDetailsUITests.swift in Sources */,
 				F0C44D02285E464E00E745A5 /* HistoryUITests.swift in Sources */,
 				F0FFD1A428549FD5001EE4A6 /* AgendaUITests.swift in Sources */,

@@ -14,4 +14,6 @@ struct Summary {
     let measure: String
     var number: Double = 0.0
     let kind: SummaryKind
+    let description: String
+    let isLessBetter: Bool
 }

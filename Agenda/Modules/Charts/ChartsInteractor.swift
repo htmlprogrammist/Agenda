@@ -10,14 +10,18 @@ import Foundation
 final class ChartsInteractor {
     weak var output: ChartsInteractorOutput?
     
+    /// Array of user's months history
     private let months: [Month]
     
     init(months: [Month]) {
+        /// We need to reverse them to make the order be descending
         self.months = months.reversed()
     }
 }
 
 extension ChartsInteractor: ChartsInteractorInput {
+    /// Method calls another method with computing data by provided `kind`
+    /// - Parameter kind: kind of summary data
     func computeData(by kind: SummaryKind) {
         switch kind {
         case .percentOfSetGoals:
@@ -32,6 +36,8 @@ extension ChartsInteractor: ChartsInteractorInput {
     }
 }
 
+// MARK: - Computing data methods
+/// For every kind of summary data we need to implement method that prepares data for charts
 private extension ChartsInteractor {
     /// Computes the percantage of completed goals by months
     func computePercentOfSetGoals() {
@@ -40,7 +46,7 @@ private extension ChartsInteractor {
         for i in 0..<months.count {
             var temp = 0.0
             // TODO: подсчитать количество достигаемых целей на тот период (то есть с первого месяца по i-тый)
-            result.append((months[i].date.formatTo("MMMM"), temp))
+            result.append((months[i].date.formatTo("MMM YY"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -57,7 +63,7 @@ private extension ChartsInteractor {
                 return
             }
             goals.forEach { temp += $0.current >= $0.aim ? 1 : 0 }
-            result.append((month.date.formatTo("MMMM"), temp))
+            result.append((month.date.formatTo("MMM YY"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -74,7 +80,7 @@ private extension ChartsInteractor {
                 return
             }
             goals.forEach { temp += $0.current < $0.aim ? 1 : 0 }
-            result.append((month.date.formatTo("MMMM"), temp))
+            result.append((month.date.formatTo("MMM YY"), temp))
         }
         
         output?.dataDidCompute(data: result)
@@ -87,7 +93,7 @@ private extension ChartsInteractor {
         
         for month in months {
             tempAllGoalsCounter = tempAllGoalsCounter + Double(month.goals?.count ?? 0)
-            result.append((month.date.formatTo("MMMM"), tempAllGoalsCounter))
+            result.append((month.date.formatTo("MMM YY"), tempAllGoalsCounter))
         }
         
         output?.dataDidCompute(data: result)

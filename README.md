@@ -22,7 +22,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 4. Human Interface Guidelines
 5. VIPER
 6. Localization
-7. SPM
+7. CocoaPods
 8. Testing (Unit/UI) using XCTest
 9. Concurrency
 10. NotificationCenter
@@ -58,7 +58,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 4. Human Interface Guidelines
 5. VIPER
 6. Локализация
-7. SPM
+7. CocoaPods
 8. Тестирование (Unit/UI) используя XCTest
 9. Многопоточность
 10. NotificationCenter

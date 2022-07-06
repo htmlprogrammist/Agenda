@@ -22,7 +22,7 @@ final class ChartsContainer {
         presenter.moduleOutput = context.moduleOutput
         
         interactor.output = presenter
-        viewController.data = context.data
+        viewController.summary = context.data
         
         return ChartsContainer(view: viewController, input: presenter, router: router)
     }
