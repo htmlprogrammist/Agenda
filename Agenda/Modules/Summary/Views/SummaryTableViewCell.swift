@@ -33,7 +33,7 @@ final class SummaryTableViewCell: UITableViewCell {
     private lazy var measureLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .systemGray
+        label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -75,6 +75,8 @@ final class SummaryTableViewCell: UITableViewCell {
         ])
     }
     
+    /// Configures cells' private fields with provided data (incapsulation)
+    /// - Parameter data: Model of Summary
     public func configure(data: Summary) {
         iconImageView.image = data.icon
             .withTintColor(data.tintColor, renderingMode: .alwaysOriginal)
@@ -85,6 +87,11 @@ final class SummaryTableViewCell: UITableViewCell {
         measureLabel.text = goalsDeclensionRU(number: data.number, measure: data.measure)
     }
     
+    /// <#Description#>
+    /// - Parameters:
+    ///   - number: <#number description#>
+    ///   - measure: <#measure description#>
+    /// - Returns: <#description#>
     private func goalsDeclensionRU(number: Double, measure: String) -> String {
         var variants: [String]
         

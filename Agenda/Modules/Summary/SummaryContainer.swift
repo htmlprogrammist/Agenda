@@ -22,6 +22,9 @@ final class SummaryContainer {
         presenter.moduleOutput = context.moduleOutput
         
         interactor.output = presenter
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
         
         return SummaryContainer(view: viewController, input: presenter, router: router)
     }

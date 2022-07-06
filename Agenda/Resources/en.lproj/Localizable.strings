@@ -22,10 +22,12 @@ continueButtonLabel = "Continue";
 title1 = "Planning in a new way";
 title2 = "All in plain sight";
 title3 = "More details";
+title4 = "Data visualization";
 
 description1 = "Discover monthly planning as a new tool to achieve your goals";
 description2 = "Easily track your progress throughout the month with the progress bars";
 description3 = "Add notes to your goals to concretize them and not forget anything";
+description4 = "Check out your data and become a better version of yourself";
 
 // Agenda
 titleLabel = "What's to achieve?";
@@ -52,3 +54,13 @@ ofSetGoals = "of the set goals";
 completedGoals = "Completed goals";
 uncompletedGoals = "Uncompleted goals";
 allGoals = "All goals";
+
+// Charts
+computingDataError = "We've got unexpected error while preparing data for charts. Please, restart the application";
+lessBetter = "Less is better";
+moreBetter = "More is better";
+
+percentOfSetGoalsDescription = "This chart shows the average number of completed goals of all set goals for the time period from the first month to month N";
+completedGoalsDescription = "This chart shows the number of completed goals by month";
+uncompletedGoalsDescription = "This chart shows the number of uncompleted goals by month";
+allGoalsDescription = "This chart describes the total number of set goals over a certain period of time";

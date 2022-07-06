@@ -27,6 +27,10 @@ extension SummaryPresenter: SummaryViewOutput {
     func fetchData() {
         interactor.performFetch()
     }
+    
+    func didSelectRow(with data: Summary) {
+        interactor.provideDataForCharts(data: data)
+    }
 }
 
 extension SummaryPresenter: SummaryInteractorOutput {
@@ -38,5 +42,9 @@ extension SummaryPresenter: SummaryInteractorOutput {
     
     func dataDidNotFetch() {
         view?.showAlert(title: Labels.oopsError, message: Labels.History.fetchErrorDescription)
+    }
+    
+    func provideDataForChartsModule(data: Summary, months: [Month]) {
+        router.openChartsModuleWith(data: data, months: months)
     }
 }

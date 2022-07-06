@@ -23,6 +23,7 @@ enum Icons {
     static let lightbulb = Icon("lightbulb")
     static let chartBarDoc = Icon("chart.bar.doc.horizontal")
     static let notesTextBadgePlus = Icon("note.text.badge.plus")
+    static let charts = Icon("chart.bar.xaxis")
 }
 
 extension Icons {

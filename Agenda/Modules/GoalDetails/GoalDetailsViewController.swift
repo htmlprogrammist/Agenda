@@ -28,6 +28,7 @@ final class GoalDetailsViewController: GoalViewController {
         let indicatorView = SPIndicatorView(title: Labels.Agenda.saved, preset: .done)
         indicatorView.presentSide = .bottom
         indicatorView.iconView?.tintColor = .systemGreen
+        indicatorView.accessibilityIdentifier = "indicatorView"
         return indicatorView
     }()
     

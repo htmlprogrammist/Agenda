@@ -13,7 +13,8 @@ final class OnboardingViewController: UIViewController {
     private let viewModels = [
         OnboardingViewModel(title: Labels.Onboarding.title1, description: Labels.Onboarding.description1, image: Icons.lightbulb),
         OnboardingViewModel(title: Labels.Onboarding.title2, description: Labels.Onboarding.description2, image: Icons.chartBarDoc),
-        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus)
+        OnboardingViewModel(title: Labels.Onboarding.title3, description: Labels.Onboarding.description3, image: Icons.notesTextBadgePlus),
+        OnboardingViewModel(title: Labels.Onboarding.title4, description: Labels.Onboarding.description4, image: Icons.charts)
     ]
     
     private lazy var tableView: UITableView = {
@@ -24,6 +25,7 @@ final class OnboardingViewController: UIViewController {
         tableView.register(OnboardingTableViewCell.self, forCellReuseIdentifier: OnboardingTableViewCell.identifier)
         tableView.register(OnboardingTableViewHeader.self, forHeaderFooterViewReuseIdentifier: OnboardingTableViewHeader.identifier)
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false

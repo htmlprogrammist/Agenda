@@ -1,13 +1,13 @@
 //
-//  SummaryUITests.swift
+//  ChartsUITests.swift
 //  AgendaUITests
 //
-//  Created by Егор Бадмаев on 18.06.2022.
+//  Created by Егор Бадмаев on 06.07.2022.
 //
 
 import XCTest
 
-class SummaryUITests: XCTestCase {
+class ChartsUITests: XCTestCase {
     
     var app: XCUIApplication!
     
@@ -23,24 +23,18 @@ class SummaryUITests: XCTestCase {
         /// Opening Summary module in  tab bar
         app.tabBars.buttons.element(boundBy: 2).tap()
     }
-    
+
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         app.terminate()
     }
     
     /**
-     We test setting up view of View: the only thing there is table view, so we check that it exists
+     In this test we check that everything is correctly displayed on the screen.
+     
+     We open _Summary_ module, then tap the first cell and this opens _Charts_ module
      */
-    func testSummaryViewSetup() {
-        let tableView = app.tables["summaryTableView"]
-        XCTAssertTrue(tableView.exists)
-    }
-    
-    /**
-     We tap on a random `UITableView` cell and one of charts will be opened. We check that there is no `summaryTableView` onto the screen and that there is chart and labels
-     */
-    func testOpeningChartsModule() {
+    func testChartsViewModule() throws {
         let tableView = app.tables["summaryTableView"]
         XCTAssertTrue(tableView.exists)
         tableView.cells.firstMatch.tap()
@@ -48,10 +42,6 @@ class SummaryUITests: XCTestCase {
         let chartView = app.otherElements["barChartView"]
         let descriptionLabel = app.staticTexts["chartsDescriptionLabel"]
         let moreLessLabel = app.staticTexts["chartsMoreLessLabel"]
-        
-        let existsPredicate = NSPredicate(format: "exists == true")
-        let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: chartView)
-        wait(for: [expectation], timeout: 5)
         
         XCTAssertTrue(chartView.exists)
         XCTAssertTrue(descriptionLabel.exists)
