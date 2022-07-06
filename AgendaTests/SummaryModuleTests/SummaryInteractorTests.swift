@@ -55,10 +55,10 @@ class SummaryInteractorTests: XCTestCase {
         let expectation = self.expectation(description: "Fetching months in HistoryInteractor")
         presenter.expectation = expectation
         interactor.summaries = [
-            Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals, description: "", isLessBetter: false),
-            Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals, description: "", isLessBetter: false),
-            Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals, description: "", isLessBetter: false),
-            Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals, description: "", isLessBetter: false)
+            Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals, description: "", isLessBetter: false, competion: { _ in return .success([(String, Double)]()) }),
+            Summary(icon: Icons.checkmark, title: Labels.Summary.completedGoals, tintColor: .systemGreen, measure: Labels.Summary.goalsDeclension, kind: .completedGoals, description: "", isLessBetter: false, competion: { _ in return .success([(String, Double)]()) }),
+            Summary(icon: Icons.xmark, title: Labels.Summary.uncompletedGoals, tintColor: .systemRed, measure: Labels.Summary.goalsDeclension, kind: .uncompletedGoals, description: "", isLessBetter: false, competion: { _ in return .success([(String, Double)]()) }),
+            Summary(icon: Icons.sum, title: Labels.Summary.allGoals, tintColor: .systemOrange, measure: Labels.Summary.goalsDeclension, kind: .allGoals, description: "", isLessBetter: false, competion: { _ in return .success([(String, Double)]()) })
         ]
         var settings = UserSettings()
         settings.summaries = [SummaryKind.percentOfSetGoals.rawValue, SummaryKind.completedGoals.rawValue, SummaryKind.uncompletedGoals.rawValue, SummaryKind.allGoals.rawValue]
@@ -79,7 +79,7 @@ class SummaryInteractorTests: XCTestCase {
     }
     
     func testProvidingDataForCharts() throws {
-        let summary = Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals, description: "", isLessBetter: false)
+        let summary = Summary(icon: Icons.grid, title: Labels.Summary.percentOfSetGoals, tintColor: .systemTeal, measure: "% \(Labels.Summary.ofSetGoals)", kind: .percentOfSetGoals, description: "", isLessBetter: false, competion: { _ in return .success([(String, Double)]()) })
         interactor.provideDataForCharts(data: summary)
         
         XCTAssertNotNil(presenter.summary, "Provided summary should not be nil")

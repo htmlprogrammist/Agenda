@@ -31,7 +31,8 @@ class ChartsContainerTests: XCTestCase {
             measure: "% \(Labels.Summary.ofSetGoals)",
             kind: .percentOfSetGoals,
             description: Labels.Charts.percentOfSetGoalsDescription,
-            isLessBetter: false
+            isLessBetter: false,
+            competion: { _ in return .success([(String, Double)]()) }
         )
         months = coreDataManagerStub.fetchMonths()
     }

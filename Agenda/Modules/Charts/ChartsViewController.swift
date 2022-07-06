@@ -76,7 +76,7 @@ final class ChartsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewDidLoad(with: summary.kind)
+        output.viewDidLoad(with: summary)
         setupView()
     }
 }

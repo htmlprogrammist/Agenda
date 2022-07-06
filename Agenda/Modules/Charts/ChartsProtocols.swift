@@ -21,7 +21,7 @@ protocol ChartsViewInput: AnyObject {
 }
 
 protocol ChartsViewOutput: AnyObject {
-    func viewDidLoad(with kind: SummaryKind)
+    func viewDidLoad(with summary: Summary)
 }
 
 protocol ChartsInteractorInput: AnyObject {

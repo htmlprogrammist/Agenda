@@ -126,7 +126,7 @@ class GoalDetailsUITests: XCTestCase {
         aimTextField.typeText("100")
         saveBarButton.tap()
         
-        let indicatorView = app.staticTexts["Saved successfully"]
+        let indicatorView = app.otherElements["indicatorView"]
         
         let existsPredicate = NSPredicate(format: "exists == true")
         let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: indicatorView)

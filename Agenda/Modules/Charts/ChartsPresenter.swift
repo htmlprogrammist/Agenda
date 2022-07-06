@@ -26,9 +26,9 @@ extension ChartsPresenter: ChartsModuleInput {
 extension ChartsPresenter: ChartsViewOutput {
     /// This method is being called when `viewDidLoad` method in `view` is being called
     /// - Parameter kind: describes what kind of data you need to show charts with
-    func viewDidLoad(with kind: SummaryKind) {
+    func viewDidLoad(with summary: Summary) {
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            interactor.computeData(by: kind)
+            interactor.computeData(by: summary)
         }
     }
 }
