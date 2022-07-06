@@ -18,7 +18,7 @@ final class SummaryViewController: UIViewController {
         tableView.dataSource = self
         tableView.sectionHeaderHeight = 0
         tableView.register(SummaryTableViewCell.self, forCellReuseIdentifier: SummaryTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false // убрать?
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.accessibilityIdentifier = "summaryTableView"
         return tableView
