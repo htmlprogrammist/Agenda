@@ -16,4 +16,12 @@ struct Summary {
     let kind: SummaryKind
     let description: String
     let isLessBetter: Bool
+    let competion: (_ months: [Month]) -> Result<[(String, Double)], Error>
+}
+
+enum SummaryKind: Int, Error {
+    case percentOfSetGoals
+    case completedGoals
+    case uncompletedGoals
+    case allGoals
 }

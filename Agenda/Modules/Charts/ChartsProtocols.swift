@@ -25,7 +25,7 @@ protocol ChartsViewOutput: AnyObject {
 }
 
 protocol ChartsInteractorInput: AnyObject {
-    func computeData(by kind: SummaryKind)
+    func computeData(by data: Summary)
 }
 
 protocol ChartsInteractorOutput: AnyObject {
