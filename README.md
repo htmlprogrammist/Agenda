@@ -2,7 +2,7 @@
 Application that allows you to track your goals for a month
 
 # Demo
-<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
+<a href="https://youtu.be/Pw6n4QYfHaQ"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
 
 # Screenshots
 
@@ -41,7 +41,7 @@ My first independent pet-project. In this project, I demonstrated the knowledge 
 Приложение, позволяющее отслеживать цели на месяц
 
 # Демо
-<a href="https://youtu.be/vGj_aa4yipk"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
+<a href="https://youtu.be/Pw6n4QYfHaQ"><img src="https://user-images.githubusercontent.com/60363270/172214878-3a349ce8-0cd4-4933-b5dd-7a0d52aa191a.png"></a>
 
 # Скриншоты
 | Онбоардинг | Цели | Тёмная тема |
