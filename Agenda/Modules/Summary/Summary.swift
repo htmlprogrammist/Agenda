@@ -19,7 +19,7 @@ struct Summary {
     let competion: (_ months: [Month]) -> Result<[(String, Double)], Error>
 }
 
-enum SummaryKind: Int, Error {
+enum SummaryKind: Int {
     case percentOfSetGoals
     case completedGoals
     case uncompletedGoals

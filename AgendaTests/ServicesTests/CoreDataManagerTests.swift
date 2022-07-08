@@ -76,7 +76,7 @@ class CoreDataManagerTests: XCTestCase {
         coreDataManager.createGoal(data: startGoalData, in: month)
         let createdGoal = month.goals?.array.first as? Goal
         if let goal = createdGoal {
-            coreDataManager.rewriteGoal(with: newGoalData, in: goal)
+            coreDataManager.updateGoal(with: newGoalData, in: goal)
         } else {
             XCTFail("Created goal should not be nil")
         }

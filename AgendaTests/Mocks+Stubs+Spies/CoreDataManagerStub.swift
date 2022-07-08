@@ -73,7 +73,7 @@ class CoreDataManagerStub: CoreDataManagerProtocol {
         month.addToGoals(goal)
     }
     
-    func rewriteGoal(with data: GoalData, in goal: Goal) {
+    func updateGoal(with data: GoalData, in goal: Goal) {
     }
     
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {
