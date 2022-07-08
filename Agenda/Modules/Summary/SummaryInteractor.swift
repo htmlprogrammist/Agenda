@@ -27,7 +27,7 @@ final class SummaryInteractor {
                 for month in months {
                     var tempAverage = 0.0
                     guard let goals = month.goals?.array as? [Goal] else {
-                        return .failure(SummaryKind.percentOfSetGoals)
+                        return .failure(NSError(domain: "", code: 5, userInfo: [NSLocalizedDescriptionKey: "Invalid `goals` value"]))
                     }
                     totalSumOfGoals += goals.count
                     goals.forEach { totalSumOfCompletedGoals += $0.current >= $0.aim ? 1 : 0 }
@@ -45,7 +45,7 @@ final class SummaryInteractor {
                 for month in months {
                     var temp = 0.0
                     guard let goals = month.goals?.array as? [Goal] else {
-                        return .failure(SummaryKind.completedGoals)
+                        return .failure(NSError(domain: "", code: 5, userInfo: [NSLocalizedDescriptionKey: "Invalid `goals` value"]))
                     }
                     goals.forEach { temp += $0.current >= $0.aim ? 1 : 0 }
                     result.append((month.date.formatTo("MMM YY"), temp))
@@ -60,7 +60,7 @@ final class SummaryInteractor {
                 for month in months {
                     var temp = 0.0
                     guard let goals = month.goals?.array as? [Goal] else {
-                        return .failure(SummaryKind.uncompletedGoals)
+                        return .failure(NSError(domain: "", code: 5, userInfo: [NSLocalizedDescriptionKey: "Invalid `goals` value"]))
                     }
                     goals.forEach { temp += $0.current < $0.aim ? 1 : 0 }
                     result.append((month.date.formatTo("MMM YY"), temp))
