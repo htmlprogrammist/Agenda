@@ -6,8 +6,8 @@
 //
 
 import Charts
-// IAxisValueFormatter
-class CustomLabelsXAxisValueFormatter: AxisValueFormatter {
+
+class CustomLabelsXAxisValueFormatter: IAxisValueFormatter {
     
     var labels: [String] = []
     

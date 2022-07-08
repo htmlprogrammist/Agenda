@@ -40,7 +40,7 @@ class CoreDataManagerSpy: CoreDataManagerStub {
         }
     }
     
-    override func rewriteGoal(with data: GoalData, in goal: Goal) {
+    override func updateGoal(with data: GoalData, in goal: Goal) {
         goalDidRewrite = true
         
         if let expectation = expectation {

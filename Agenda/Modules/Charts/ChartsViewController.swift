@@ -37,7 +37,7 @@ final class ChartsViewController: UIViewController {
         xAxis.valueFormatter = formatter
         xAxis.labelPosition = .bottom
         xAxis.labelTextColor = .label
-        xAxis.centerAxisLabelsEnabled = true
+        xAxis.centerAxisLabelsEnabled = false
         xAxis.axisLineColor = .label
         xAxis.granularityEnabled = true
         xAxis.enabled = true

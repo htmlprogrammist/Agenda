@@ -15,7 +15,7 @@ class CoreDataManagerMock: CoreDataManagerProtocol {
         return nil
     }
     func createGoal(data: GoalData, in month: Month) {}
-    func rewriteGoal(with data: GoalData, in goal: Goal) {}
+    func updateGoal(with data: GoalData, in goal: Goal) {}
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int) {}
     func deleteMonth(month: Month) {}
     func deleteGoal(goal: Goal) {}

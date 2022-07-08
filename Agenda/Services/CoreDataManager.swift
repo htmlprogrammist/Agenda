@@ -12,7 +12,7 @@ protocol CoreDataManagerProtocol: AnyObject {
     func fetchMonths() -> [Month]?
     
     func createGoal(data: GoalData, in month: Month)
-    func rewriteGoal(with data: GoalData, in goal: Goal)
+    func updateGoal(with data: GoalData, in goal: Goal)
     func replaceGoal(_ goal: Goal, in month: Month, from: Int, to: Int)
     
     func deleteMonth(month: Month)
@@ -85,7 +85,7 @@ final class CoreDataManager: CoreDataManagerProtocol {
         [agendaNotification, historyNotification, summaryNotification].forEach { NotificationCenter.default.post($0) }
     }
     
-    func rewriteGoal(with data: GoalData, in goal: Goal) {
+    func updateGoal(with data: GoalData, in goal: Goal) {
         goal.name = data.title
         goal.current = Int64(data.current) ?? 0
         goal.aim = Int64(data.aim) ?? 0
