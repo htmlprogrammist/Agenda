@@ -11,14 +11,14 @@ import XCTest
 class AgendaRouterTests: XCTestCase {
     
     var router: AgendaRouter!
-    var viewController: UIViewController!
+    var viewController: UINavigationController!
 
     override func setUpWithError() throws {
         router = AgendaRouter()
-        viewController = UIViewController()
+        viewController = UINavigationController()
         
         router.navigationControllerProvider = { [weak viewController] in
-            viewController?.navigationController
+            viewController
         }
     }
 
